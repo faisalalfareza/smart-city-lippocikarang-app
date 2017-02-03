@@ -22,7 +22,6 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="iosPersistentFileLocation" value="Library" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
         <param name="android-package" value="org.apache.cordova.NetworkManager" />
@@ -41,6 +40,48 @@
     </gap:plugin>
     <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin" />
     <platform name="ios">
+        <key>CFBundleDocumentTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeIconFiles</key>
+                <array>
+                    <string>Document-molecules-320.png</string>
+                    <string>Document-molecules-64.png</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>Molecules Structure File</string>
+                <key>CFBundleTypeRole</key>
+                <string>Viewer</string>
+                <key>LSHandlerRank</key>
+                <string>Owner</string>
+                <key>LSItemContentTypes</key>
+                <array>
+                    <string>com.sunsetlakesoftware.molecules.pdb</string>
+                    <string>org.gnu.gnu-zip-archive</string>
+                </array>
+            </dict>
+        </array>
+        <key>UTExportedTypeDeclarations</key>
+        <array>
+            <dict>
+                <key>UTTypeConformsTo</key>
+                <array>
+                    <string>public.plain-text</string>
+                    <string>public.text</string>
+                </array>
+                <key>UTTypeDescription</key>
+                <string>Molecules Structure File</string>
+                <key>UTTypeIdentifier</key>
+                <string>com.sunsetlakesoftware.molecules.pdb</string>
+                <key>UTTypeTagSpecification</key>
+                <dict>
+                    <key>public.filename-extension</key>
+                    <string>pdb</string>
+                    <key>public.mime-type</key>
+                    <string>chemical/x-pdb</string>
+                </dict>
+            </dict>
+        </array>
         <config-file parent="NSAppTransportSecurity" platform="ios" target="*-Info.plist">
             <dict>
                 <key>NSAllowsArbitraryLoads</key>
@@ -139,4 +180,5 @@
         <variable name="APP_ID" value="217892791967144" />
         <variable name="APP_NAME" value="Livein_iOS" />
     </plugin>
+    <plugin name="cordova-plugin-file-opener2" spec="~2.0.6" />
 </widget>

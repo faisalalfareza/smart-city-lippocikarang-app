@@ -15,7 +15,6 @@ angular
         DownloadService.listdownloadgeneral(function(response) {
             if (response != false) {
                 $scope.datageneral = response;
-                $scope.file = response[0].filename;
                 var source = response;
 
                 var fileData = localStorage.added_file.split(',');
@@ -59,7 +58,7 @@ angular
                     .then(function (success) {
                         // success
                         $scope.listGeneral = 'ada';
-                        alert('dicek sudah');
+                        alert('hal 62 : dicek sudah');
                     }, function (error) {
                         // error
                         $scope.listGeneral = 'ndak';
@@ -287,6 +286,19 @@ angular
 
                             var data = $scope.filename;
                             appendToStorage('added_file', data);
+
+                          cordova.plugins.fileOpener2.open(
+                            targetDownload, // e.g. '/var/mobile/Applications/XXXXXXXXX/Library/files/mypdf.pdf'
+                            'application/pdf',
+                            {
+                              error : function(errorObj) {
+                                console.log('Error status: ' + errorObj.status + ' - Error message: ' + errorObj.message);
+                              },
+                              success : function () {
+                                console.log('file opened successfully');
+                              }
+                            }
+                          );
 
                         }, function(error) {
                             $scope.hasil = 'Error Download file';
