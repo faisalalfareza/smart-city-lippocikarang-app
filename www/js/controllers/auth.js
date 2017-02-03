@@ -66,7 +66,6 @@
                       facebookConnectPlugin.api("me"+"/?fields=id,email,gender,birthday,name",null,
                         function onSuccess (datauser) {
                           console.log("Result: ", datauser);
-                          alert(JSON.stringify(datauser))
                           senddatauser(datauser,"facebook");
                           /* logs:
                            {
@@ -109,7 +108,6 @@
                                     'offline': false, // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
                                 },
                                 function (obj) {
-                                    alert(JSON.stringify(obj));
                                     senddatauser(obj,"google")// do something useful instead of alerting
                                 },
                                 function (msg) {
@@ -180,12 +178,10 @@
                 data_user.email,
                 Math.random(),
                 function (response) {
-                  alert(JSON.stringify(response))
-                  alert(Math.random());
                   if (response != false) {
                     if (response[0].status == false) {
 
-                      //$localStorage.currentUser = { data : response[0] };
+                      $localStorage.currentUser = { data : response };
                       $state.go('app.main');
 
                       var alertPopup = $ionicPopup.alert({
@@ -239,7 +235,7 @@
                       $state.go('app.main');
 
 
-                      $localStorage.currentUser = { data : response[0] };
+                      $localStorage.currentUser = { data : response };
 
                       var alertPopup = $ionicPopup.alert({
                         template: $filter('translate')('hello') + ' ' + response[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + response[0].privilege + '!</strong> ',

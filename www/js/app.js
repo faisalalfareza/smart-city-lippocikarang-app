@@ -1489,7 +1489,8 @@ angular
                             // console.log('playSound : ' + playSound);
                             cordova.plugins.notification.local.schedule({
                                 id: 1,
-                                message: $filter('translate')('notification_push'),
+                                title: $filter('translate')('notification_push'),
+                                // message: $filter('translate')('notification_push'),
                                 sound: playSound,
                                 badge: sum
                             });
