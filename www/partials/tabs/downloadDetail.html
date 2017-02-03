@@ -1,0 +1,27 @@
+<ion-view title="Download">
+  <ion-content>
+    <div class="item" ng-repeat="item in detailDiskon">
+      <img src="{{ item.avatar }}" style="width:100%">
+      <div style="margin-top:5%; ">
+        <h2 style="font-size:13px;margin-bottom:-2% ">{{ item.title }}</h2>
+        <!--<pre>{{ hasil }}</pre>-->
+        <h2>{{ filename }}</h2>
+        </br>
+        <div >
+          <div id="myBar">
+            <center><div ng-if="downloadProgress != 100" id="label">{{ 'download2' | translate }} {{ downloadProgress | number: 2}} %</div></center>
+            <center><div ng-if="downloadProgress === 100" id="label">{{ 'downloaded' | translate }}</div></center>
+          </div>
+        </div>
+
+        <progress max="100" value="{{ downloadProgress }}">
+          <div pseudo="-webkit-progress-inner-element">
+            <div pseudo="-webkit-progress-bar">
+              <div pseudo="-webkit-progress-value"></div>
+            </div>
+          </div>
+        </progress>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

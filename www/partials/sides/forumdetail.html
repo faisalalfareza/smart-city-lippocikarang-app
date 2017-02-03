@@ -1,0 +1,62 @@
+<ion-view view-title="{{categoryname}}">
+    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+        <div class="row">
+            <div class="col col-50">
+            </div>
+            <div class="col col-50">
+                <a href="#/app/newforum">
+                    <h5 style="float:right;">{{ 'new_topic' | translate }}</h5>
+                </a>
+            </div>
+        </div>
+    </ion-bar>
+    <ion-content style="margin-top:45px;">
+        <div class="contentTenant" style="margin-bottom:6%">
+            <div class="row">
+                <div class="col col-75">
+                    <h5>
+                        <p>{{detail.fullname}}</p>
+                    </h5>
+                    <p style="font-size:12px;">Post on {{detail.createdate.replace(" ","T") | date:"MMMM y h:mm a"}}</p>
+                </div>
+                <div class="col col-25 row-center" ng-if="account == detail.idaccount">
+                    <a class="" ng-click="openModal(1)">
+                    {{ 'edit' | translate }}
+                    </a>
+                </div>
+            </div>
+
+            <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
+            <p>{{detail.description}}</p>
+            <img ng-repeat="gallery in galleryforums" style="width: 30%; padding-right: 5%;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+            <br>
+            <a href="#/app/forumComment/{{ detail.idforums }}">
+                <button class="button button-positive ">{{ 'post_a_comment' | translate }}</button>
+            </a>
+            <div class=" " ng-repeat="comment in comment ">
+                <div class="card ">
+                    <div class="item item-avatar ">
+                        <img src="{{comment.avatar}} ">
+                        <div class="row ">
+                            <h2 class="col col-70 ">{{comment.fullname}}</h2>
+                            <h5 class="col col-30 " style="color: #2980b9; ">
+                                {{comment.createdate.replace(" ","T ") | date:"h:mm a "}}
+                            </h5>
+                        </div>
+                        <p>{{comment.comment}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <script id="templates/modal.html" type="text/ng-template" ng-controller="forumdetail">
+        <div class="modal image-modal transparent" ng-click="closeModal(1)">
+            <ion-pane class="transparent row row-center ">
+                <div class="list col col-80 col-offset-10" style="padding-top:45%">
+                    <a class="button button-full button-light" ng-href="#/app/forumupdate/{{detail.idforums}}" ng-click="closeModal()">{{ 'edit_post' | translate }}</a>
+                    <a class="button button-full button-light" ng-click="deleteforum(detail.idforums)">{{ 'delete_discussion' | translate }}</a>
+                </div>
+            </ion-pane>
+        </div>
+    </script>
+</ion-view>

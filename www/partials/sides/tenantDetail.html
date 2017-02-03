@@ -1,0 +1,159 @@
+ <ion-view view-title="{{tenantname}}" cache-view="false">
+     <ion-nav-bar class="bar-positive nav-title-slide-ios7">
+      <ion-nav-back-button class="button-icon">
+        <i class="ion-chevron-left"></i> 
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content>
+        <!--tenant action-->
+        <div class="row row-center rowaction" style="height:auto">
+            <div class="col tenantAction">
+                <a href="tel:{{tenantdata.phone}}" style="text-decoration:none">
+                    <img src="img/tenantDetail/action_call.png" class="ion-image">
+                    <i>{{'action_call'| translate}}</i>
+                </a>
+            </div>
+            <div class="col">
+                <div ng-click="Bookmark()" class="col tenantAction">
+                    <img src="img/tenantDetail/action_bookmark.png" class="ion-image">
+                    <i>{{'action_bookmark'| translate}}</i>
+                </div>
+            </div>
+            <div class="col" ng-click="MapClick(tenantdata.longlat)">
+                <div class="col tenantAction">
+                    <img src="img/tenantDetail/action_map.png" class="ion-image">
+                    <i>{{'action_map'| translate}}</i>
+                </div>
+            </div>
+            <div class="col" ng-click="reviewClick(tenantdata.link)">
+                <div class="col tenantAction">
+                    <img src="img/tenantDetail/action_review.png" class="ion-image">
+                    <i>{{'action_review'| translate}}</i>
+                </div>
+            </div>
+        </div>
+        <!--end Tenatn Action-->
+
+        <div style="display: block"></div>
+
+        <div class="row thumbnailGaleri">
+            <div class="col thumbnailimg1">
+                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 0}}">
+                    <img height="253" class="col" ng-src="{{img.avatar != null ? img.avatar : 'img/items/property_add_photo.png'}}">
+                </a>
+            </div>
+
+            <div class="col thumbnailGaleri">
+                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 1}}">
+                    <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="{{img1.avatar != null ? img1.avatar : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 2}}">
+                    <img height="126" class="col" ng-src="{{img2.avatar != null ? img2.avatar : 'img/items/property_add_photo.png'}}">
+                </a>
+            </div>
+        </div>
+
+
+        <div class="contentTenant" style="margin-bottom:6%">
+            <h4>
+                <p>{{tenantdata.name}}</p>
+            </h4>
+            <div class="row" style="width: 100%">
+                <div class="col-50">
+                    <fieldset class="ratingbtn">
+                        <input type="radio" id="star5" name="rating" value="5" ng-checked="(rateValue == 5)" />
+                        <label class="full" for="star5" title="5"></label>
+                        <input type="radio" id="star4half" name="rating" value="4.5" ng-checked="(rateValue == 4.5)" />
+                        <label class="half" for="star4half" title="4.5"></label>
+                        <input type="radio" id="star4" name="rating" value="4" ng-checked="(rateValue == 4)" />
+                        <label class="full" for="star4" title="4"></label>
+                        <input type="radio" id="star3half" name="rating" value="3.5" ng-checked="(rateValue == 3.5)" />
+                        <label class="half" for="star3half" title="3.5"></label>
+                        <input type="radio" id="star3" name="rating" value="3" ng-checked="(rateValue == 3)" />
+                        <label class="full" for="star3" title="3"></label>
+                        <input type="radio" id="star2half" name="rating" value="2.5" ng-checked="(rateValue == 2.5)" />
+                        <label class="half" for="star2half" title="2.5"></label>
+                        <input type="radio" id="star2" name="rating" value="2" ng-checked="(rateValue == 2)" />
+                        <label class="full" for="star2" title="2"></label>
+                        <input type="radio" id="star1half" name="rating" value="1.5" ng-checked="(rateValue == 1.5)" />
+                        <label class="half" for="star1half" title="1.5"></label>
+                        <input type="radio" id="star1" name="rating" value="1" ng-checked="(rateValue == 1)" />
+                        <label class="full" for="star1" title="1"></label>
+                        <input type="radio" id="starhalf" name="rating" value="0.5" ng-checked="(rateValue == 0.5)" />
+                        <label class="half" for="starhalf" title="0.5"></label>
+                    </fieldset>
+                </div>
+                <div class="col col-50 " style="padding-top: 0">
+                    <p id="disntance" style="">{{distance| number:0}} KM</p>
+                </div>
+            </div>
+            <div class="row">
+                <p id="category">{{categorytenant}}</p>
+            </div>
+            <div class="row">
+                <div class="col col-75" style="padding: 0;margin-top:0">
+                    <i id="openhours">{{'hours_today'| translate}} : {{tenantdata.openhour | limitTo:5}}- {{tenantdata.closehour |
+            limitTo:5 }}</i>
+                </div>
+                <div class="col col-25 openhour" style="">
+                    <img width="8" height="8" class="indicator_hour" src="img/circular.png" style="margin-top: 9%">
+                    <i ng-if="tenantdata.open == 1" style="vertical-align: middle;margin-top:-5%">{{'open' | translate}}</i>
+                    <i ng-if="tenantdata.open == 0" style="vertical-align: middle;margin-top:-5%">{{'close'| translate}}</i>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 8%;padding-right: 8%;padding-top: 2%" class="contentTenantBottom">
+            <div class="row" style="">
+                <div class="col col-10">
+                    <img height="18" width="18" src="img/tenantDetail/tenant_map.png">
+                </div>
+                <div class="col col-90">
+                    <i>{{tenantdata.address}}</i>
+                </div>
+
+            </div>
+        </div>
+        <div style="padding-left: 8%;padding-right: 8%;padding-top: 2%" class="contentTenantBottom">
+            <div class="row" style="">
+                <div class="col col-10">
+                    <img height="18" width="18" src="img/tenantDetail/tenant_call.png">
+                </div>
+                <div class="col col-90">
+                    <i>{{tenantdata.phone}}</i>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 8%;padding-right: 8%;padding-top: 2%;" class="contentTenantBottom">
+            <div class="row" style="border-top:0.5px solid;border-top-color: #0c60ee">
+                <div class="col col-30">
+                    <i style="margin-top: 10%;margin-bottom: 10%">Rate this tenant</i>
+                </div>
+                <div class="col col-70">
+                    <fieldset class="ratingbtn postratingbtn">
+                        <input ng-change="inputrate(rating)" type="radio" id="rate5" ng-model="rating" style="" ng-value="5" />
+                        <label class="full" for="rate5" title="Awesome - 5 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate4half" ng-model="rating" ng-value="4.5" />
+                        <label class="half" for="rate4half" title="Pretty good - 4.5 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate4" ng-model="rating" ng-value="4" />
+                        <label class="full" for="rate4" title="Pretty good - 4 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate3half" ng-model="rating" ng-value="3.5" />
+                        <label class="half" for="rate3half" title="Meh - 3.5 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate3" ng-model="rating" ng-value="3" />
+                        <label class="full" for="rate3" title="Meh - 3 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate2half" ng-model="rating" ng-value="2.5" />
+                        <label class="half" for="rate2half" title="Kinda bad - 2.5 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate2" ng-model="rating" ng-value="2" />
+                        <label class="full" for="rate2" title="Kinda bad - 2 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate1half" ng-model="rating" ng-value="1.5" />
+                        <label class="half" for="rate1half" title="Meh - 1.5 stars"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="rate1" ng-model="rating" ng-value="1" />
+                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input ng-change="inputrate(rating)" type="radio" id="ratehalf" ng-model="rating" ng-value="0.5" />
+                        <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        </div>
+    </ion-content>
+</ion-view>

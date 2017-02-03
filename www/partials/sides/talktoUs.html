@@ -1,0 +1,94 @@
+<div class="modal transparent image-modal">
+    <div class="row">
+        <div class="col col-80 transparent"></div>
+        <div ng-click="closeModal()" class="col" style="margin: 0;background-color: white;">
+            <center><img style="width: 50%;height: 50%" src="img/ic_close.png"></center>
+        </div>
+    </div>
+
+    <div class="itemModal" ng-repeat="talktoUs in data">
+        <ion-scroll direction="y" style="width: 100%; height: 100%">
+            <div>
+                <p>{{ talktoUs.header }}</p>
+                <hr>
+                <p style="white-space: pre-wrap;font-size: 80%;">{{ talktoUs.description }}</p>
+                <div class="row talktoUs">
+                    <img class="col-15" src="img/talkToUs/languagesupport.png" style="width: 10%;height: 10%;margin-top: 0.5em;"> &nbsp;
+                    <div class="col-85">
+                        <h2 style="font-size: 12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading1 }}</h2>
+                        <p style="font-size: 10px;">{{ talktoUs.content1 }}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row talktoUs">
+                    <img class="col-15" src="img/talkToUs/servicehours.png" style="width: 10%;height: 10%;margin-top: 0.5em;"> &nbsp;
+                    <div class="col-75">
+                        <h2 style="font-size: 12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading2 }}</h2>
+                        <p style="font-size: 10px;">{{ talktoUs.content2 }}</p>
+                    </div>
+                </div>
+                <br>
+                <div class="talktoUsRed">
+                    <center>
+                        <p style="font-size: 10px;">{{ talktoUs.content3 }}</p>
+                        <table align="center" border="1" style="margin-top: -5px">
+                            <tr>
+                                <td><img class="r1" src="img/talkToUs/fire.png"></td>
+                                <td><img class="r1" src="img/talkToUs/crash.png"></td>
+                                <td><img class="r1" src="img/talkToUs/emergency.png"></td>
+                                <td><img class="r1" src="img/talkToUs/respon_team.png"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="row1">Fire</p>
+                                </td>
+                                <td>
+                                    <p class="row1">Crash</p>
+                                </td>
+                                <td>
+                                    <p class="row1">Emergency Call</p>
+                                </td>
+                                <td>
+                                    <p class="row1">Response Team</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 12px;font-weight:bold;margin-bottom:0;">{{ talktoUs.content4 }}</p>
+                        <p style="font-size: 12px;font-weight:bold;">{{ talktoUs.emergencycall }}</p>
+                        <a style="border-radius: 10px" href="tel:{{ talktoUs.emergencycall }}" class="button button-assertive"><b>{{ 'emergency_call' | translate }}</b><img src="img/talkToUs/call_w.png"></a>
+                    </center>
+                </div>
+                <br>
+                <div class="talktoUs">
+                    <center>
+                        <p style="font-size: 10px;">{{ talktoUs.content5 }}</p>
+                        <table align="center" border="1">
+                            <tr>
+                                <td><img class="r1" src="img/talkToUs/services.png"></td>
+                                <td><img class="r1" src="img/talkToUs/billing.png"></td>
+                                <td><img class="r1" src="img/talkToUs/water.png"></td>
+                                <td><img class="r1" src="img/talkToUs/issue.png"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="row2">Services</p>
+                                </td>
+                                <td>
+                                    <p class="row2">Billing</p>
+                                </td>
+                                <td>
+                                    <p class="row2">Water</p>
+                                </td>
+                                <td>
+                                    <p class="row2">Environment Issue</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 12px;">reach us <b>{{talktoUs.callcenter}}</b></p>
+                        <a style="border-radius:10px;" href="tel:{{ talktoUs.callcenter }}" class="button button-positive">{{ 'call_center' | translate }}<img src="img/talkToUs/call_w.png"></a>
+                    </center>
+                </div>
+            </div>
+        </ion-scroll>
+    </div>
+</div>

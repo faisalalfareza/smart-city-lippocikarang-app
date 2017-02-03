@@ -1,0 +1,15 @@
+<ion-view view-title="eBilling">
+    <ion-content class="has-footer padding" style="padding: 50px" overflow-scroll="true">
+        <h3 style="text-align: center">{{ 'acces_billing' | translate }}</h3>
+        
+        <label style="margin-top:15%;border: solid 1px;border-color:#0a9dc7 " class="item item-input">
+            <input ng-model="email" type="text" placeholder="Email">
+        </label>
+
+        <button type="submit" ng-click="loginbilling(email)" style="margin-top:15%;border-radius:34px;text-transform:uppercase;font-size:13px;" class="button button-full button-positive">
+            {{ 'let_acces_billing' | translate }}
+        </button>
+        
+        <p style="color: #0a9dc7;text-align: center;vertical-align: middle"> {{ 'cant_acces_billing' | translate }}</p>
+    </ion-content>
+</ion-view>

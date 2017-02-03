@@ -1,0 +1,64 @@
+<ion-view view-title="{{'currency' | translate}}">
+    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+        <div class="row">
+            <div class="col col-50">
+                <i>{{date}} {{time | date:'HH:mm'}}</i>
+            </div>
+            <div class="col col-50" style="vertical-align:middle;text-align:right">
+                <button style="margin-top:-3%;text-transform:uppercase;border: 0.5px solid #000;border-radius:10px;color:#2980b9;font-size:70%;" class="button button-light set-main" ng-click="settomain()">{{'set_to_main' | translate}}</button>
+            </div>
+        </div>
+    </ion-bar>
+    <ion-content style="margin-top:45px; height: 40%">
+        <ion-list class="currency">
+            <ion-item class="item" style="border-width: 0; padding: 0" ng-repeat="list in itemrate">
+                <div class="row">
+                    <div class="col col-20">
+                        <img width="48" style="vertical-align: middle" ng-src="{{flag[$index]}}">
+                    </div>
+                    <div class="col col-20" style="margin-left: -3%; vertical-align: middle">
+                        <h6 style="vertical-align: middle;">{{list * 10000 | limitTo:5}} {{currency[$index]}}</h6>
+                    </div>
+                    <div class="col col-25" style="padding: 0">
+                        <h5 align="center" style="vertical-align: middle">{{name[$index]}}</h5>
+                    </div>
+                    <div class="col col-20">
+                        <h5 style="color: #2980b9;vertical-align: middle;">IDR 10.000</h5>
+                    </div>
+                    <div style="border-width: 0;" class="col col-10">
+                        <ion-checkbox style="border-width: 0;" ng-click="maxCheck($index)" ng-model="selected[$index]" ng-change="tesslected()" </ion-checkbox>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+    <div class="row" style="margin-top:100%;background-color:#D9D9D9">
+        <div class="col col-100" style="margin-top:20px">
+            <p>Calculator</p>
+        </div>
+    </div>
+
+    <div class="row calculator_currency">
+        <div class="col col-40" style="margin-left:auto;margin-right:auto">
+            <div class="row">
+                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;border:none; bottom: 0; vertical-align: bottom; " ng-model="cur1" ng-options="key as value for (value,key) in itemrate"></select>
+            </div>
+            <div class="row" style="margin-top:0">
+                <label class="item item-input" style="border-radius: 0 0 10px 10px;border-top: 1px solid #0D6DB6;">
+                    <input ng-model="curtext1"  ng-change="calculator()" type="text" placeholder="0" style="text-align: center">
+                </label>
+            </div>
+        </div>
+        <div class="col col-40" style="margin-left:auto;margin-right:auto">
+            <div class="row">
+                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;border:none; bottom: 0; vertical-align: bottom; " ng-model="cur2" ng-options="key as value for (value,key) in itemrate"></select>
+            </div>
+            <div class="row" style="margin-top:0">
+                <label class="item item-input" style="border-radius: 0 0 10px 10px;border-top: 1px solid #0D6DB6;">
+                    <input disabled ng-model="curtext2" ng-change="calculator()" type="text" placeholder="0" style="text-align: center">
+                </label>
+            </div>
+        </div>
+    </div>
+</ion-view>

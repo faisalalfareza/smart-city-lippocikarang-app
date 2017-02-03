@@ -1,0 +1,108 @@
+<ion-view view-title="Profile">
+    <ion-content class="has-footer">
+        <!--<button class="button icon-left ion-camera" ng-click="loadImage()">Take Photo</button>-->
+        <div ng-repeat="data in dataaccount" style="padding:0;margin:0;">
+            <div class="row sub-menu header" style="background-color:#fafafa;padding: 5px;display: block">
+                <div style="width: 100%">
+                    <center>
+                        <!--<img class="border-radius: 50%;" src="img/side-menu/icon_beauty.png">-->
+                        <!--<img ng-src="{{pathForImage(image)}}" style="width: 100%; height: 100%;  border-radius: 50%;">-->
+                        <div ng-if="image === null">
+                            <div ng-if="data.avatar !== undefined">
+                                <img ng-click="loadImage()" ng-src="{{data.avatar}}" style="width: 75px; height: 75px; border-radius: 50%; margin: 20px 0 0 0">
+                            </div>
+                            <div ng-if="data.avatar === undefined">
+                                <img ng-click="loadImage()" ng-src="img/defaultavatar.png" style="width: 75px; height: 75px; border-radius: 50%; border: 4px solid #fff; margin: 20px 0 0 0">
+                            </div>
+                        </div>
+                        <div ng-if="image !==null ">
+                            <img ng-click="loadImage() " ng-src="{{pathForImage(image)}} " style="width: 75px; height:75px; border-radius: 50%; margin: 20px 0 0 0">
+                        </div>
+                    </center>
+                </div>
+                <div style="width: 100%">
+                    <center>
+                        <p>Edit</p>
+                    </center>
+                </div>
+            </div>
+            <div style="display:block; background-color: #fbfbfb; padding : 0 5px 0px 10px; margin : 15px 15px 25px 15px; ">
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">PSCode</h5>
+                    </div>
+                    <div class="col col-75 "><input class="input-profile " style="background-color: transparent;border-color:transparent;;width:100%" type="text " value="{{data.pscode}} " ng-model="data.pscode " readonly></div>
+                </div>
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">Email</h5>
+                    </div>
+                    <div class="col col-75 "><input class="input-profile " style="background-color:transparent;border-color:transparent;width:100%" type="text " value="{{data.email}} " ng-model="data.email " readonly></div>
+                </div>
+            </div>
+
+            <div style="display:block; background-color: transparent; border: 2px solid #2558aa; padding : 0 5px 0px 10px; margin : 15px; ">
+
+                <div class="row ">
+                    <div class="col col-80 ">
+                    </div>
+                    <div class="col col-20 ">
+                        <p style="color:#2558aa " ng-if="isRead===true " ng-click="ShowRead() ">ubah</p>
+                        <p style="color:#2558aa " ng-if="isRead===false " ng-click="ShowRead() ">Simpan</p>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">{{ 'name' | translate }}</h5>
+                    </div>
+                    <div class="col col-75 ">
+                        <input class="input-profile " style="background-color: transparent;border-color:transparent;
+                            " type="text " value="{{data.fullname}} " ng-model="data.fullname " ng-readonly="isRead " focus-me="true ">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">{{ 'gender' | translate }}</h5>
+                    </div>
+                    <div class="col col-75 ">
+                        <!--<input class="input-profile " style="background-color: transparent;border-color:transparent;
+                            " type="text " value="{{data.gender}} "
+                            ng-model="data.gender " ng-readonly="isRead ">-->
+                        <select ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
+                                <option value="M " ng-selected="data.gender=='M' " ng-readonly="isRead ">{{ 'male' | translate }}</option>
+                                <option value="F " ng-selected="data.gender=='F' " ng-readonly="isRead ">{{ 'female' | translate }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">{{ 'address' | translate }}</h5>
+                    </div>
+                    <div class="col col-75 ">
+                        <input class="input-profile " style="background-color: transparent;border-color:transparent;
+                            " type="text " value="{{data.address}} " ng-model="data.address " ng-readonly="isRead ">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col col-25 ">
+                        <h5 style="font-weight: 300; ">{{ 'phone' | translate }}</h5>
+                    </div>
+                    <div class="col col-75 ">
+                        <input class="input-profile " style="background-color: transparent;border-color:transparent;
+                            " type="text " value="{{data.phone}} " ng-model="data.phone " ng-readonly="isRead ">
+                    </div>
+                </div>
+                <input class="input-profile " type="hidden" value="{{data.avatar}} " ng-model="data.avatar ">
+                <input class="input-profile " type="hidden" value="{{data.idaccount}} " ng-model="data.idaccount ">
+                <input class="input-profile " type="hidden" value="{{data.privilege}} " ng-model="data.privilege ">
+                <input class="input-profile " type="hidden" value="{{data.createdate}} " ng-model="data.createdate ">
+                <input class="input-profile " type="hidden" value="{{data.dateofbirth}} " ng-model="data.dateofbirth ">
+            </div>
+
+            <div style="padding : 0 5px 0px 10px; margin : 15px; ">
+                <button class="button button-block button-positive" ng-click="saveEditProfile(data) " type="submit" style="border-radius:30px;min-height:20px;line-height:37px">{{ 'save_profile' | translate }}</button>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

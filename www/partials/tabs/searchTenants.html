@@ -1,0 +1,20 @@
+<ion-view view-title="Search : {{$root.searchKeyword}}">
+    <ion-content>
+        <ion-list ng-if="listTenCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">Tenants {{ lengthTenants }}</p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="listTen in detailTenants" ng-if="name">
+                <a ng-href="#/app/tenantDetail/{{listTen.idtenant}}" style="text-decoration:none">
+                    <div class="item item-thumbnail-left">
+                        <img src="{{listTen.avatar != null && listTen.avatar != '' ? listTen.avatar : 'img/items/tenant_add_photo.png'}}">
+                        <p>{{ listTen.tenantsname }}</p>
+                    </div>
+                </a>
+            </div>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

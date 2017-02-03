@@ -1,0 +1,15 @@
+<ion-view view-title="Property Gallery">
+    <ion-slide-box on-slide-changed="slideChanged()" show-pager="false" active-slide="gall">
+        <ion-slide ng-repeat="details in propertygallery">
+            <div class="photoGallery">
+                <img ng-src="{{details.image}}" class="square"/>
+                <br>
+                <p class="bottomTitle">{{details.title}}</p>
+                <div class="row" style="margin-top:35%;"> 
+                        <a class="col-50" ng-href="#/app/propertyDetailImage/{{details.idproperty}}/{{ (gall-1) }}"><i class="ion-chevron-left" style="color:blue;"></i></a>
+                        <a class="col-50" ng-href="#/app/propertyDetailImage/{{details.idproperty}}/{{ (gall-(-1)) }}"><i class="ion-chevron-right" style="color:blue;"></i></a>
+                </div> 
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>

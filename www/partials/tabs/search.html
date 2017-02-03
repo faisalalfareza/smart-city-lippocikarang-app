@@ -1,0 +1,82 @@
+<ion-view view-title="Search : {{$root.searchKeyword}}">
+    <ion-content>
+        <ion-list ng-if="listTenCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchTenants/{{name}}">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">Tenants {{ lengthTenants }}</p>
+                    <p align="right" class="col-50" style="margin:0"><i class="ion-chevron-right" style="color:black;"></i></p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="listTen in tenants" ng-if="listTen.tenantsname">
+                <a ng-href="#/app/tenantDetail/{{listTen.idtenant}}" style="text-decoration:none">
+                    <div class="item item-thumbnail-left">
+                        <img src="{{listTen.avatar != null && listTen.avatar != '' ? listTen.avatar : 'img/items/tenant_add_photo.png'}}">
+                        <p>{{ listTen.tenantsname }}</p>
+                    </div>
+                </a>
+            </div>
+        </ion-list>
+        <ion-list ng-if="listProCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchProperty/{{name}}">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">Property {{ lengthProperty }}</p>
+                    <p align="right" class="col-50" style="margin:0"><i class="ion-chevron-right" style="color:black;"></i></p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="listPro in property" ng-if="listPro.name">
+                <a ng-href="#/app/propertyDetail/{{listPro.idproperty}}" style="text-decoration:none">
+                    <div class="item item-thumbnail-left">
+                        <img src="{{listPro.avatar != null && listPro.avatar != '' ? listPro.avatar : 'img/items/tenant_add_photo.png'}}">
+                        <p>{{ listPro.name }}</p>
+                    </div>
+                </a>
+            </div>
+        </ion-list>
+        <ion-list ng-if="listDcCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchDiscount/{{name}}">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">Discount Coupon {{ lengthDiscount }}</p>
+                    <p align="right" class="col-50" style="margin:0"><i class="ion-chevron-right" style="color:black;margin-right:5%;"></i></p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="listDisc in disc" ng-if="listDisc.title">
+                <a ng-href="#/app/searchDiscount/{{name}}" style="text-decoration:none">
+                    <div class="item item-thumbnail-left">
+                        <img src="{{listDisc.imageurl != null && listDisc.imageurl != '' ? listDisc.imageurl : 'img/items/tenant_add_photo.png'}}">
+                        <p>{{ listDisc.title }}</p>
+                    </div>
+                </a>
+            </div>
+        </ion-list>
+        <ion-list ng-if="listCgCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchGallery/{{name}}">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">City Gallery {{ listCount }}</p>
+                    <p align="right" class="col-50" style="margin:0"><i class="ion-chevron-right" style="color:black;"></i></p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="listCg in detailGallery" ng-if="listCg.title">
+                <a ng-href="#/app/searchGalleryDetail/{{name}}/{{$index}}" style="text-decoration:none">
+                    <div class="item item-thumbnail-left">
+                        <img src="{{listCg.avatar != null && listCg.avatar != '' ? listCg.avatar : 'img/items/tenant_add_photo.png'}}">
+                        <p>{{ listCg.title }}</p>
+                    </div>
+                </a>
+            </div>
+        </ion-list>
+        <ion-list ng-if="listNewsCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchNews/{{name}}">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">News {{ lengthNews }}</p>
+                    <p align="right" class="col-50" style="margin:0"><i class="ion-chevron-right" style="color:black;"></i></p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="list in news" ng-if="list.title" ng-click="openModalNews(list)">
+                <div class="item item-thumbnail-left">
+                    <img src="{{list.avatar != null && list.avatar != '' ? list.avatar : 'img/items/tenant_add_photo.png'}}">
+                    <p>{{ list.title }}</p>
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

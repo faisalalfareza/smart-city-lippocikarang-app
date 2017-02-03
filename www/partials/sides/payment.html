@@ -1,0 +1,80 @@
+<ion-view view-title="{{'payment' | translate}}">
+  <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+    <div style="text-align: center" class="row">
+      <h4 class="col" align="center" style="color: #2980b9;vertical-align: middle">{{ 'payment' | translate }}</h4>
+    </div>
+  </ion-bar>
+  <ion-content class="has-footer" style="margin-top:45px;">
+    <div class="detailresident" style="color:#FFFFFF;background-color: #0a9dc7;height: 40%;padding-top: 15%;padding-left: 15%;">
+      <div class="row" style="height: 100%">
+        <div class="col col-50">
+          <ui> {{ 'unit_no' | translate }}</ui>
+          <ul> {{ 'client_name' | translate }}</ul>
+          <ul> {{ 'client_code' | translate }}</ul>
+          <ul> {{ 'total_bill' | translate }}</ul>
+        </div>
+        <div class="col col-50">
+          <ul>{{unitno| limitTo : unitno.length - 1}}</ul>
+          <ul>{{atribute.Name|limitTo : 8}}</ul>
+          <ul>{{atribute.PsCode}}</ul>
+          <ul>Rp.{{atribute.BillingOutstandingBalance}},00</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="detailbilling" style="margin-top: 10%">
+      <div style="margin-left: 10%" class="row wiewpagercontrol">
+        <p>{{ 'select_payment' | translate }}</p>
+      </div>
+      <div class="row" style="padding-left: 10%;">
+        <div class="col col-50">
+          <div class="panel-body">
+            <ul class="input-list">
+              <li>
+                <div class="pure-radiobutton">
+                  <input id="radio1" name="radio" type="radio" class="radio" checked="checked"  ng-model="type_payment" ng-value="'Credit Card'">
+                  <label for="radio1"></label>
+                  <img style="margin-right: auto;vertical-align: -webkit-baseline-middle;" width="90" src="img/visamaster.png">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="panel-body">
+            <ul class="input-list">
+              <li>
+                <div class="pure-radiobutton">
+                  <input id="radio2" name="radio" type="radio" class="radio" checked="checked" ng-model="type_payment" ng-value="'Cimb Clicks'">
+                  <label for="radio2">
+                  </label>
+                  <img style="margin-right: auto;vertical-align: -webkit-baseline-middle;" width="90" src="img/cimbniaga.png">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="padding-right: 4%;padding-left: 4%">
+        <div class="panel-body">
+          <ul class="input-list">
+            <li>
+              <div class="pure-checkbox" style="position: relative;">
+                <input id="checkbox1" name="checkbox" type="checkbox" checked="checked"  ng-model="checkterm" style="margin-left:1em;">
+                <label for="checkbox1" style="font-size:1em;width:25em;margin-left:1em;">{{ 'read_condition' | translate }}</label>
+              </div>
+            </li>
+            </ul>
+          </div>
+      </div>
+      <div class="row" style="margin-top: 15%;align-content: center;text-align: center;">
+        <button ng-click="select_type(type_payment)" style="border-radius: 15px;text-align: center;vertical-align: middle;margin-left:30%;margin-right: 30% " class="col button button-outline button-positive">
+          {{ 'pay_now' | translate }}
+        </button>
+      </div>
+
+
+    </div>
+
+  </ion-content>
+</ion-view>

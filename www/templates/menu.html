@@ -1,0 +1,333 @@
+<ion-side-menus enable-menu-with-back-views="false" drag-content="false">
+    <ion-side-menu-content drag-content="false">
+        <ion-nav-bar class="bar bar-positive bar-custom">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+
+            <ion-nav-buttons side="right">
+                <div ng-if="navbar">
+                    <button class="button button-icon icon ion-ios-search" ng-click="searchbarAct()"></button>
+                </div>
+                <span ng-if="searchbar">
+                    <label class="searchBar item-input-wrapper">
+                        <input type="search" class="input-search" placeholder="{{ 'search_title'| translate }}" ng-model="search_page" ng-enter="search(search_page)">
+                    </label>
+                    <button class="button button-icon icon ion-ios-close-empty" ng-click="navbarAct()"></button>
+                </span>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <!-- Navigation Tabs -->
+        <ion-tabs ng-show="$root.tab" class="tabs-icon-top tabs-custom">
+
+            <ion-tab title="{{ 'main' | translate }}" icon-on="sc-main-on" icon-off="sc-main-off" href="#/app/main">
+                <ion-nav-view name="main-content"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="{{ 'profile' | translate }}" icon-off="sc-profile-off" icon-on="sc-profile-on" href="#/app/profile">
+                <ion-nav-view name="profile-content"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="{{ 'map' | translate }}" icon-off="sc-map-off" icon-on="sc-map-on" ui-sref="app.map">
+                <ion-nav-view name="map-content"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="{{ 'download' | translate }}" icon-off="sc-download-off" icon-on="sc-download-on" href="#/app/download">
+                <ion-nav-view name="download-content"></ion-nav-view>
+            </ion-tab>
+
+            <ion-tab title="{{ 'more' | translate }}" icon-off="sc-more-off" icon-on="sc-more-on" href="#/app/more">
+                <ion-nav-view name="more-content"></ion-nav-view>
+            </ion-tab>
+
+        </ion-tabs>
+
+        <ion-nav-view id="sidemenu-con" name="menu-content"></ion-nav-view>
+
+    </ion-side-menu-content>
+
+    <!-- Side Menu -->
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-calm bar-sidemenu-custom">
+            <h1 class="title">{{fullname}}</h1>
+        </ion-header-bar>
+        <ion-content class="has-expanded-header">
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/aboutUs">{{ 'about_us'| translate }}</ion-item>
+                <ion-item nav-clear menu-close href="#/app/whatsNew">{{'what_new' | translate}}</ion-item>
+                <ion-item nav-clear menu-close href="#/app/property">{{ 'property_market'| translate }}</ion-item>
+                <ion-item nav-clear nav-clear ng-click="showResident()" style="border-bottom-color:#0D6DB6;">{{ 'resident'| translate }}</ion-item>
+                <div class="row sub-menu" ng-show="subResident">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item href="#/app/loginbilling" class="sub item-stable" nav-clear menu-close href="">
+                            <p>{{ 'ebilling'| translate }} </p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/forum">
+                            <p>{{ 'forum'| translate }} </p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/cctvList">
+                            <p> CCTV </p>
+                        </ion-item>
+                    </div>
+                </div>
+
+                <!-- Start : Entertaiment -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showEntertaiment()">
+                    <img src="img/side-menu/entertainment.png" width="20px" height="20px"> &nbsp; {{ 'entertaiment'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subEntertaiment">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/recomended/11">
+                            <p> {{ 'recommended'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/17">
+                            <p> {{ 'sport'| translate }} </p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/19">
+                            <p> {{ 'art'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/103">
+                            <p> {{ 'others'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/16">
+                            <p> {{ 'events'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/18">
+                            <p> {{ 'leisure'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/20">
+                            <p> {{ 'beauty'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Entertaiment -->
+                <!-- Start : Dining -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showDining()">
+                    <img src="img/side-menu/dining.png" width="20px" height="20px"> &nbsp; {{ 'dining'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subDining">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/recomended/12">
+                            <p> {{ 'recommended'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/35">
+                            <p> {{ 'westren_food'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/31">
+                            <p> {{ 'fastfood'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/33">
+                            <p> {{ 'traditional'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/38">
+                            <p> {{ 'others'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/32">
+                            <p> {{ 'japanese'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/37">
+                            <p> {{ 'bar_cafe_club'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/90">
+                            <p> {{ 'korean'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/36">
+                            <p> {{ 'bakery'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Dining -->
+                <!-- Start : Accomodation -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showAccomodation()">
+                    <img src="img/side-menu/accomodation.png" width="20px" height="20px"> &nbsp; {{ 'accomodation'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subAccomodation">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/recomended/13">
+                            <p> {{ 'recommended'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/45">
+                            <p> {{ 'hotel'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/46">
+                            <p> {{ 'condominiums'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/47">
+                            <p> {{ 'apartment'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Accomodation -->
+                <!-- Start : Shopping -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showShopping()">
+                    <img src="img/side-menu/shopping.png" width="20px" height="20px"> &nbsp; {{ 'shopping'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subShopping">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/recomended/14">
+                            <p> {{ 'recommended'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/49">
+                            <p> {{ 'mart'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/50">
+                            <p> {{ 'fashion'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/53">
+                            <p> {{ 'electronic'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/64">
+                            <p> {{ 'others'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/48">
+                            <p> {{ 'deparment_store'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/51">
+                            <p> {{ 'home_improvement'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/52">
+                            <p> {{ 'book_stationety'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/54">
+                            <p> {{ 'automotive'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Shopping -->
+                <!-- Start : Education -->
+                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/65">
+                    <img src="img/side-menu/education.png" width="20px" height="20px"> &nbsp; {{ 'education'| translate }}
+                </ion-item>
+                <!-- End : Education -->
+                <!-- Start : Health Care -->
+                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/69">
+                    <img src="img/side-menu/health_care.png" width="20px" height="20px"> &nbsp; {{ 'health_care'| translate }}
+                </ion-item>
+                <!-- End : Health Care -->
+                <!-- Start : Transportation -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showTransportation()">
+                    <img src="img/side-menu/transportation.png" width="20px" height="20px"> &nbsp; {{ 'transportation'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subTransportation">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/publictransportation">
+                            <p> {{ 'public_transportation'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/bus">
+                            <p> {{ 'bus'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear ng-click="showTrain()">
+                            <p> {{ 'train'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/106">
+                            <p> {{ 'rental_cars'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Transportation -->
+                <!-- Start : Public Services -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showPublicServ()">
+                    <img src="img/side-menu/public_services.png" width="20px" height="20px"> &nbsp; {{ 'public_services'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subPublicServ">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/75">
+                            <p> {{ 'tour_travel'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/78">
+                            <p> {{ 'spbu'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/74">
+                            <p> {{ 'atm_gallery'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/77">
+                            <p> {{ 'insurance'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/80">
+                            <p> {{ 'others'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/73">
+                            <p> {{ 'property_agents'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/79">
+                            <p> {{ 'notaris'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/76">
+                            <p> {{ 'bank'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/category/81">
+                            <p> {{ 'workshop_services'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Public Services -->
+                <!-- Start : Industrial Directory -->
+                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/82">
+                    <img src="img/side-menu/industrial_directory.png" width="20px" height="20px"> &nbsp; {{ 'industry'| translate }}
+                </ion-item>
+                <!-- End : Industrial Directory -->
+                <!-- Start : Photo Gallery -->
+                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/gallery">
+                    <img src="img/side-menu/gallery.png" width="20px" height="20px"> &nbsp; {{ 'photo_gallery'| translate }}
+                </ion-item>
+                <!-- End : Photo Gallery -->
+                <!-- Start : Help -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showHelp()">
+                    <img src="img/side-menu/help.png" width="20px" height="20px"> &nbsp; {{ 'help'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subHelp">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/aboutHelp">
+                            <p> {{ 'about'| translate }}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/callCenter">
+                            <p> {{ 'call_center'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- End : Help -->
+                <!-- Start : Useful Information -->
+                <ion-item class="item-positive item-custom" nav-clear ng-click="showInformation()">
+                    <img src="img/side-menu/useful_information.png" width="20px" height="20px"> &nbsp; {{ 'useful_information'| translate }}
+                </ion-item>
+                <div class="row sub-menu" ng-show="subInformation">
+                    <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/worldclock">
+                            <p> {{ 'world_clock'| translate }}</p>
+                        </ion-item>
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/coupon">
+                            <p>{{'discount' | translate}} {{'coupon' | translate}}</p>
+                        </ion-item>
+                    </div>
+                    <div class="col col-50 sub-menu" style="background-color:#F1F1F2">
+                        <ion-item class="sub item-stable" nav-clear menu-close href="#/app/helpfulNumber">
+                            <p> {{ 'helpful_number'| translate }}</p>
+                        </ion-item>
+                    </div>
+                </div>
+                <!-- ENd : Useful Information -->
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

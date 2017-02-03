@@ -1,0 +1,16 @@
+<ion-view view-title="Photo Gallery">
+     <ion-slide-box on-slide-changed="slideChanged()" show-pager="false"  active-slide="gallPict">
+           <ion-slide ng-repeat="data in detailGallery">
+               <div class="photoGallery" style="position: relative;">
+                    <img ng-src="{{data.avatar}}" class="square" style="margin-top: 7em;"/>
+                    <p class="bottomNumber" style="position: absolute;margin-bottom: -15em;">{{data.idcitygallery - 1}} </p>
+                    <p class="bottomTitle" style="position: absolute;margin-bottom: -17em;">{{data.title}}</p>
+                    <br>  
+               </div>
+               <div class="row" style="margin-top:20%;position: absolute;"> 
+                        <a class="col-50" ng-href="#/app/searchGalleryDetail/{{name}}/{{ gallPict-1 }}" ng-click="previous"><i class="ion-chevron-left" style="color:blue;"></i></a>
+                        <a class="col-50" ng-href="#/app/searchGalleryDetail/{{name}}/{{ gallPict-(-1) }}" ng-click="next"><i class="ion-chevron-right" style="color:blue;"></i></a>
+                </div>  
+           </ion-slide>
+    </ion-slide-box>
+</ion-view>

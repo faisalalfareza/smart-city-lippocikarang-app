@@ -1,0 +1,37 @@
+<ion-view view-title="{{ 'forum' | translate }}">
+    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+        <div class="row">
+            <div class="col col-50">
+            </div>
+            <div class="col col-50">
+                <a href="#/app/newforum" style="text-transform:uppercase;">
+                    <h4 style="color: #2980b9;float:right;margin-top:-1%;">{{ 'new_topic' | translate }}</h4>
+                </a>
+            </div>
+        </div>
+    </ion-bar>
+    <ion-content class="has-footer" style="margin-top:45px;padding-bottom:15px;">
+        <ion-list>
+            <ion-item class="item item-avatar" ng-repeat="list in data | filter : byCategory | filter : search_page | orderBy : '-createdate'" ng-href="#/app/forumdetail/{{list.idforums}}">
+                <img src="{{list.avatar}}" ng-if="list.avatar">
+                <img src="img/defaultavatar.png" ng-if="list.avatar ===''">
+                <div class="row sub-menu" style="margin-bottom:3px;">
+                    <h2 class="col col-50 col-offset-50" style="font-weight:500;font-size:14px;"> {{list.fullname | uppercase}} </h2>
+                    <a href="" class=" row-center">
+                        <h5 class="col col-offset-50" style="color: #2980b9;"> {{ 'stared_a_thread' | translate }} </h5>
+                    </a>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <h2 class="col col-offset-50" style="font-weight:500;font-size:18px;"> {{list.title | uppercase}} </h2>
+                </div>
+
+                <div class=" row sub-menu " style="margin-bottom:10px; ">
+                    <h5 class="col col-offset-50 " style="color: #2980b9;">
+                        {{list.comment}} {{ 'comment' | translate }} | {{list.viewer}} {{ 'views' | translate }}
+                    </h5>
+                    <h5 class="col col-offset-50 " style="color: #2980b9; "> {{list.createdate.replace(" ","T") | date:"dd-MM-yyyy h:mm a"}} </h5>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

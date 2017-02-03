@@ -1,0 +1,64 @@
+<ion-view view-title="Register" name="register-view" class="bg-login">
+    <ion-content style="padding: 50px" overflow-scroll="true">
+
+        <div class="col" style="text-align:center">
+            <h3 style="color:#fff;letter-spacing:1px;font-weight:100;">{{ 'create_ur_account'| translate }}</h3>
+        </div>
+
+        <form ng-submit="registerManual(user)">
+            <div class="list list-inset" style="background-color:transparent">
+                <label class="item item-input">
+                    <input type="text" placeholder="Fullname" ng-model="user.fullname" required>
+                </label>
+                <label class="item item-input" style="margin-top:1%">
+                    <select ng-model="user.gender" required style="width:100%;margin:0;padding:7px;border:0;">
+                        <option selected>{{ 'gender'| translate }}</option>
+                        <option ng-value="M">{{ 'male'| translate }}</option>
+                        <option ng-value="F">{{ 'female'| translate }}</option>
+                    </select>
+                </label>
+                <label class="item item-input" style="margin-top:1%">
+                    <input type="tel" placeholder="Phone" ng-model="user.phone" required>
+                </label>
+                <label class="item item-input" style="margin-top:1%">
+                    <input type="text" placeholder="Email" ng-model="user.email" required>
+                </label>
+                <label class="item item-input" style="margin-top:1%">
+                    <input type="password" placeholder="Password" ng-model="user.password" required>
+                </label>
+                <label class="item item-input" style="margin-top:1%">
+                    <input type="password" placeholder="Confirm Password" ng-model="user.password" required>
+                </label>
+                <center>
+                    <select style="margin-top:3%;width:auto;height:32px;border-radius:10px;padding:7px;text-align:center">
+                        <option>{{ 'language'| translate }}</option>
+                        <option>{{ 'BUTTON_TEXT_DE'| translate }}</option>
+                        <option selected>{{ 'BUTTON_TEXT_EN'| translate }}</option>
+                    </select>
+                </center>
+                <div class="col" style="text-align:center">
+                    <p style="color:#fff;letter-spacing:1px;">{{ 'join_us'| translate }}</p>
+                    <a ng-click="facebook_auth()" style="margin:4px;">
+                        <img src="img/lg_fb.png" width="50px">
+                    </a>
+                    <a ng-click="google_auth()" style="margin:4px;">
+                        <img src="img/lg_g+.png" width="50px">
+                    </a>
+                    <a ng-click="twitter_auth()" style="margin:4px;">
+                        <img src="img/lg_tw.png" width="50px">
+                    </a>
+                    <div class="item-text-wrap">
+                        <ion-checkbox required style="background-color:transparent;color:#fff;border:0;word-wrap:break-word;word-break:break-all;font-size:12px;">{{ 'terms_privacy'| translate }}</ion-checkbox>
+                    </div>
+                </div>
+
+                <button class="button button-outline button-full button-positive" type="submit" style="border:3px solid #fff;color:#fff;font-weight:bold;border-radius:15px;text-transform:uppercase">{{ 'start_now'| translate }}</button>
+                
+                <div class="col" style="text-align:center">
+                    <p style="color:#C5EFF7;letter-spacing:1px;font-size:13px;">{{ 'are_alreadyaccount'| translate }} <a style="text-decoration:none" ui-sref="login">{{ 'login'| translate }}</a></p>
+                </div>
+            </div>
+        </form>
+
+    </ion-content>
+</ion-view>

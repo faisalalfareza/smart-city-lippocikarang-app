@@ -1,0 +1,92 @@
+<ion-view view-title="{{'profile' | translate}}">
+  <ion-content class="has-expanded-header">
+    <div class="row sub-menu" style="background-color:#ecf0f1;height:130px;">
+      <div class="header-content">
+        <div ng-if="avatar !== undefined" style="width: 100vw">
+          <center>
+            <img ng-click="loadImage()" ng-src="{{avatar}}" style="width: 75px; height: 75px; border-radius: 50%; margin : 10px ">
+          </center>
+        </div>
+        <div ng-if="avatar === undefined" style="width: 100vw">
+          <center>
+            <img ng-click="loadImage()" ng-src="img/defaultavatar.png" style="width: 75px; height: 75px; border-radius: 50%; border: 4px solid #fff;  margin: 10px ">
+          </center>
+        </div>
+        <div style="width: 100vw">
+          <center>
+            <p class="title">{{fullname}}</p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="row sub-menu profile-menu">
+      <div class="col col-100 sub-menu" style="width:100%;margin:0;padding:25px;">
+        <ion-item class="sub item-light" href="#/app/notification">
+          <div class="row">
+            <div class="col pmenu-icon">
+              <img src="img/profile/notification_p.png" style="height:25px">
+              <div ng-if="countnotif!==0" style="position:absolute;width:21px;height:100%;background-image:url('img/profile/notification.png');background-repeat:no-repeat;background-size:contain;color:white;top:-5px;left:65%;text-align:center">
+                {{ countnotif }}
+              </div>
+            </div>
+            <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+              <p> {{ 'my_notification' | translate }} </p>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="sub item-light" href="#/app/history">
+          <div class="row">
+            <div class="col pmenu-icon">
+              <img src="img/profile/myhistory_p.png" style="height:25px;">
+            </div>
+            <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+              <p> {{ 'my_history' | translate }} </p>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="sub item-light" href="#/app/editprofile">
+          <div class="row">
+            <div class="col pmenu-icon">
+              <img src="img/profile/edit_profile_p.png" style="height:25px;">
+            </div>
+            <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+              <p> {{ 'edit_profile' | translate }} </p>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="sub item-light" href="#/app/listbookmark">
+          <div class="row">
+            <div class="col pmenu-icon">
+              <img src="img/profile/bookmark_p.png" style="height:25px;">
+            </div>
+            <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+              <p> {{ 'bookmark' | translate }} </p>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="sub item-light" href="#/app/inivitefriend">
+          <div class="row">
+            <div class="col pmenu-icon">
+              <img src="img/profile/invite_friend_p.png" style="height:25px;">
+            </div>
+            <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+              <p> {{ 'invite_friend' | translate }} </p>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item class="sub item-light" ng-click="logoutConfirm()">
+          <div style="margin: -10px;">
+            <div class="row">
+              <div class="col pmenu-icon">
+                <img src="img/profile/sign_out_p.png" style="height:25px;">
+              </div>
+              <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
+                <p> {{ 'signout' | translate }} </p>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

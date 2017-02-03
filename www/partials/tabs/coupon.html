@@ -1,0 +1,43 @@
+<ion-view view-title="Discount Coupon">
+    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+        <div class="row">
+            <div class="col col-50">
+                <select ng-model="byCategory" class="dropdown-filter">
+                     <option value="">{{ 'category' | translate }}</option>
+                     <option value="">{{ 'category_all' | translate }}</option>
+                     <option value="{{ category.categoryValue }}" ng-repeat="category in categoryData" ng-click="sortBy('category.idcategory')">{{ category.categoryName }}</option>
+                </select>                
+            </div>
+            <div class="col col-50">
+                <select ng-model="sortType" class="dropdown-filter">
+                    <option value="">{{ 'sort' | translate }}</option>
+                    <option value="title">{{ 'name' | translate }}</option>
+                </select>
+            </div>
+        </div>
+    </ion-bar>
+    <ion-content style="margin-top:45px;" class="recomList has-footer">
+        <ion-item class="list card item item-thumbnail-left" ng-repeat="list in data | filter : byId | filter : search_page | orderBy : sortType">
+            <div style="width:100%;height:120px;position:relative;" class="row">
+                <div class="col" style="position:relative;padding:0;overflow:hidden;align-items:center;justify-content:center;background-color:#e6e7e8;max-width:39%;">
+                    <div class="arrow-left" style="position:absolute;right:0;top:3em;"></div>
+                    <img src="{{list.imageurl == null ? 'img/items/item_beauty.png' : list.imageurl}}" style="height:100%">
+                </div>
+                <div class="col" style="max-width:61%">
+                    <div class="row sub-menu" style="margin-bottom:10px;">
+                        <h5 class="col col-50 sub-menu" style="color: #bdc3c7;"> {{list.categoryname}} </h5>
+                    </div>
+                    <img src="
+                    {{
+                        list.idcategory == 17 || list.idcategory == 21 || list.idcategory == 22 ? 'img/items/icon_sport.png' : (list.idcategory == 19 ? 'img/items/icon_art.png' : (list.idcategory == 16 ? 'img/items/icon_events.png' : (list.idcategory == 18 || list.idcategory == 24 || list.idcategory == 26 ? 'img/items/icon_leisure.png' : (list.idcategory == 20  || list.idcategory == 27 || list.idcategory == 28 || list.idcategory == 29 || list.idcategory == 30  ? 'img/items/icon_beauty.png' : (list.idcategory == 35 ? 'img/items/icon_western.png' : (list.idcategory == 31 ? 'img/items/icon_fast_food.png' : (list.idcategory == 33 ? 'img/items/icon_traditional.png' : (list.idcategory == 32 ? 'img/items/icon_japanese.png' : (list.idcategory == 37 ? 'img/items/icon_bar.png' : (list.idcategory == 90 ? 'img/items/icon_korean.png' : (list.idcategory == 36 ? 'img/items/icon_bakery.png' : (list.idcategory == 45 ? 'img/items/icon_hotel.png' : (list.idcategory == 46 ? 'img/items/icon_condominiums.png' : (list.idcategory == 47 ? 'img/items/icon_apartment.png' : (list.idcategory == 49 ? 'img/items/icon_mart.png' : (list.idcategory == 50 || list.idcategory == 62 ? 'img/items/icon_fashion.png' : (list.idcategory == 53 ? 'img/items/icon_electronic.png' : (list.idcategory == 48 ? 'img/items/icon_department_store.png' : (list.idcategory == 51 ? 'img/items/icon_home_improvement.png' :
+                        (list.idcategory == 52 ? 'img/items/icon_book.png' : (list.idcategory == 54 ? 'img/items/icon_automotive.png' : (list.idcategory == 65 ? 'img/items/icon_education.png' : (list.idcategory == 69 ? 'img/items/icon_health.png' : (list.idcategory == 106 ? 'img/items/icon_transportation.png' : (list.idcategory == 75 ? 'img/items/icon_tour.png' : (list.idcategory == 74 ? 'img/items/icon_atm.png' : (list.idcategory == 77 ? 'img/items/icon_insurance.png' :
+                        (list.idcategory == 73 ? 'img/items/icon_property_agent.png' : (list.idcategory == 79 ? 'img/items/icon_notaris.png' : (list.idcategory == 76 ? 'img/items/icon_bank.png' : 'img/circular.png'))))))))))))))))))))))))))))))
+                    }}
+                    " width="20px">
+                    <h2 style="font-weight:500;font-size:14px;margin:0">  {{list.title}} </h2>
+                    <p style="font-size:12px;margin:0"> {{list.caption}} </p>
+                </div>
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-view>

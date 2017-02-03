@@ -1,0 +1,16 @@
+<ion-view view-title="Bookmark" padding>
+    <ion-content padding>
+        <form ng-submit="bookmarkTenant(data)">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="idtenant" ng-model="data.idtenant" required>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="idaccount" ng-model="data.idaccount" required>
+                </label>
+                <button class="button button-block button-positive" type="submit">{{ 'bookmark' | translate }}</button>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>

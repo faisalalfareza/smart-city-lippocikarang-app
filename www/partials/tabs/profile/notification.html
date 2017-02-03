@@ -1,0 +1,123 @@
+<ion-view view-title="{{'profile' | translate}}">
+    <ion-bar class="bar bar-subheader bar-positive" style="border:0;outline:0;background-color:#3498db">
+        <div class="row">
+            <div class="col col-10">
+                <h1 style="font-size:18px;color:white"> i</h1>
+            </div>
+            <div class="col col-70">
+                <h2 style="font-size:18px;color:white">{{ 'my_notification' | translate }}</h2>
+            </div>
+            <div class="col col-20 checknotif">
+                <p style="font-size:16px;color:white;margin-left:1em;" ng-if="check_box === false || check_box === undefined">{{ 'edit' | translate }}</p>
+                <p style="font-size:16px;color:white" ng-if="check_box === true">{{ 'cancel' | translate }}</p><input type="checkbox" ng-model="check_box" style="width: 3em;height: 3em;margin-top: -2.4em;" />
+            </div>
+        </div>
+    </ion-bar>
+    <ion-content style="margin-top:40px;">
+        <ion-list ng-repeat="list in listnotifUser | filter : search_page | orderBy: 'true' | orderBy: '-idnotif'">
+            <ion-item style="padding: 0 0 0 0 ;" ng-if="list.isread != 't'">
+                <div class="row" style="background-color: #d3d3d3;">
+                    <div ng-show="check_box" class="checknotif">
+                        <input type="checkbox" ng-click="list.idnotif" ng-model="list.checked" ng-checked="list.checked">
+                        <div class="so"></div>
+                    </div>
+
+                    <div class="col-60" style="padding:0.5em;">
+                        <a href="#/app/notificationDetail/{{list.idnotif}}/{{list.bookmarked}}">
+                            <h2 style="font-size:18px; "> {{list.title}} </h2>
+                            <h3 style="font-size:12px; "> {{list.description}} </h3>
+                        </a>
+                    </div>
+                    </div>
+                    <div style="float: right;margin-top:-3.2em;margin-right:0.2em;">
+                        <div class="row">
+                            <center>
+                                <h3 style="font-size:9px;color:#ABB7B7;">
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 1"> JAN {{ list.createdate | limitTo : 2 : 8 }} </div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 2"> FEB {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 3"> MAR {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 4"> APR {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 5"> MEY {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 6"> JUN {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 7"> JUL {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 8"> AUG {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 9"> SEP {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 10"> OCT {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 11"> NOV {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                    <div ng-if="(list.createdate | limitTo : 2 : 5)  == 12"> DES {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                </h3>
+                            </center>
+                        </div>
+                        <div class="row">
+                            <fieldset align="right" class="ratingbtn postratingbtn" ng-if="list.bookmarked == false" ng-click="insertbookmarknotif(list.idnotif)">
+                                <input type="radio" />
+                                <label style="transform:scale(1.2);vertical-align:middle;"></label>
+                            </fieldset>
+
+                            <fieldset align="right" class="ratingbtn postratingbtn" ng-if="list.bookmarked == true" ng-click="deletebookmarknotif(list.idnotifbookmark)">
+                                <input type="radio" />
+                                <label style="transform:scale(1.2);vertical-align:middle;color:#f1c40f;"></label>
+                            </fieldset>
+                        </div>
+                    </div>
+            </ion-item>
+
+            <ion-item style="padding: 0 0 0 0 ;" ng-if="list.isread != 'f'">
+                <div class="row" style="background-color: white;">
+                    <div ng-show="check_box" class="checknotif">
+                        <input type="checkbox" ng-click="list.idnotif" ng-model="list.checked" ng-checked="list.checked">
+                        <div class="so"></div>
+                    </div>
+
+                    <div class="col-60" style="padding:0.5em;">
+                        <a href="#/app/notificationDetail/{{list.idnotif}}/{{list.bookmarked}}" style="text-decoration: none">
+                            <h3 style="font-size:15px;font-weight:400;"> {{list.title}} </h3>
+                            <p style="font-size:12px;"> {{list.description}} </p>
+                        </a>
+                    </div>
+                </div>
+                <div style="float: right;margin-top:-3.2em;margin-right:0.2em;">
+                    <div class="row">
+                        <center>
+                            <h3 style="font-size:9px;color:#ABB7B7;">
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 1"> JAN {{ list.createdate | limitTo : 2 : 8 }} </div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 2"> FEB {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 3"> MAR {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 4"> APR {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 5"> MEY {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 6"> JUN {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 7"> JUL {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 8"> AUG {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 9"> SEP {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 10"> OCT {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 11"> NOV {{ list.createdate | limitTo : 2 : 8 }}</div>
+                                <div ng-if="(list.createdate | limitTo : 2 : 5)  == 12"> DES {{ list.createdate | limitTo : 2 : 8 }}</div>
+                            </h3>
+                        </center>
+                    </div>
+                    <div class="row">
+                        <fieldset class="ratingbtn postratingbtn" ng-if="list.bookmarked == false" ng-click="insertbookmarknotif(list.idnotif)">
+                            <input type="radio" />
+                            <label style="transform:scale(1.2);vertical-align:middle;margin-top:0.5em;"></label>
+                        </fieldset>
+
+                        <fieldset class="ratingbtn postratingbtn" ng-if="list.bookmarked == true" ng-click="deletebookmarknotif(list.idnotifbookmark)">
+                            <input type="radio" />
+                            <label style="transform:scale(1.2);vertical-align:middle;color:#f1c40f;"></label>
+                        </fieldset>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-bar ng-show="check_box" class="bar bar-subfooter bar-stable" style="border:0;outline:0;height:auto;">
+        <div class="row">                   
+            <div class="col col-50">
+                <h4 style="color:#95a5a6;font-weight:400;" align="center" ng-click="readed()">{{ 'mark' | translate }}</h4>
+            </div>
+            <div class="col col-50">
+                <h4 style="color:#95a5a6;font-weight:400;" align="center" ng-click="delete()">{{ 'delete' | translate }}</h4>
+            </div>      
+        </div>
+    </ion-bar>     
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view view-title="Search : {{$root.searchKeyword}}">
+    <ion-content>
+        <ion-list ng-if="listDcCount">
+            <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none">
+                <div class="row">
+                    <p align="left" class="col-50" style="margin:0">Discount Coupon {{ lengthDiscount }}</p>
+                </div>
+            </a>
+            <div class="container" ng-repeat="list in detailDiscount" ng-if="name">
+                <div class="item item-thumbnail-left">
+                    <img src="{{list.imageurl != null && list.imageurl != '' ? list.imageurl : 'img/items/tenant_add_photo.png'}}">
+                    <p>{{ list.title }}</p>
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

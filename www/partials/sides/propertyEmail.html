@@ -1,0 +1,19 @@
+<ion-view view-title="Email">
+    <ion-content class="padding comment-page">
+        <div class="row">
+            <img class="item-avatar" ng-if="!propertydata.avatar" src="propertydata.avatar">
+            <p>{{propertydata.agentname}}</p>
+        </div>
+        <form ng-submit="sending(email)" ng-controller="sendEmail">
+            <div class="row">
+                <div class="col">
+                    <label class="item item-input text">
+                    <textarea name="description" placeholder="Description*" rows="20" ng-model="email.desc" ng-required="true"></textarea>
+                </label>
+                    <br>
+                    <button class="button button-positive" type="submit">{{ 'send_email' | translate }}</button>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

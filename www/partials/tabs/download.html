@@ -1,0 +1,101 @@
+<ion-view title="{{'download' | translate}}">
+
+  <div class="tabs-top tabs-background-light tabs-color-positive">
+    <div class="tabs">
+      <a class="tab-item {{ generals }}" style="border-bottom:{{generals == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}}" ng-click="general()" id="generaltab" ng-show="slideIndex = 1">
+        <i class="dark">{{ 'general' | translate }}</i>
+      </a>
+
+      <a class="tab-item {{ propertys }}" style="border-bottom:{{propertys == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}}" ng-click="property()" id="propertytab" ng-show="slideIndex = 2">
+        <i class="dark">{{ 'category_property' | translate }}</i>
+      </a>
+    </div>
+  </div>
+
+  <ion-content class="has-footer">
+
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
+
+      <ion-slide>
+        <!-- Start : Saturday & Sunday -->
+        <div class="row" style="height:auto">
+          <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
+            <div class="row">
+              <div class="col col-50">
+                <select ng-model="byCategory" class="dropdown-filter">
+                  <option value="">{{ 'category' | translate }}</option>
+                  <option ng-repeat="cat in gencategory | filter : {level : '!' +1}" ng-click="sortBy('cat.idcategory')">{{ cat.categoryname }}</option>
+                </select>
+              </div>
+              <div class="col col-50">
+                <select ng-model="sortBy" class="dropdown-filter">
+                  <option value="">{{ 'sort' | translate }}</option>
+                  <option value="title">{{ 'name' | translate }}</option>
+                </select>
+              </div>
+            </div>
+          </ion-bar>
+
+          <ion-content style="margin-top:8em;">
+            <div class="list">
+              <div class="item item-thumbnail-left" ng-repeat="item in datageneral |filter : byCategory | orderBy : sortBy | filter :search_page" style="margin-bottom:-10%;margin-top:-1%">
+                <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
+                <div style="margin-top:5%;">
+                  <h2 style="font-size:13px;margin-bottom:-2% ">{{ item.title }}</h2>
+                  <a ng-if="item.filename !== storage" class="positive " ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px ">
+                    {{ 'download2' | translate }}
+                  </a>
+                  <a ng-if="item.filename === storage" ng-click="cordova.InAppBrowser.open(item.linkfile, '_system', 'location=yes');" style="text-decoration:none;font-size:10px;color: grey;">
+                    {{ 'downloaded' | translate }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ion-content>
+        </div>
+        <!-- End : Saturday & Sunday -->
+      </ion-slide>
+
+      <ion-slide>
+        <!-- Start : Monday - Friday -->
+        <div class="row" style="height:auto">
+          <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
+            <div class="row">
+              <div class="col col-50">
+                <select ng-model="byCategory" class="dropdown-filter">
+                  <option value="">{{ 'category_all' | translate }}</option>
+                  <option ng-repeat="cat in procategory | filter : {level : '!' +1}" ng-click="sortBy('cat.idcategory')">{{ cat.categoryname }}</option>
+                </select>
+              </div>
+              <div class="col col-50">
+                <select ng-model="sortBy" class="dropdown-filter">
+                  <option value="">{{ 'category_all' | translate }}</option>
+                  <option value="title">{{ 'name' | translate }}</option>
+                </select>
+              </div>
+            </div>
+          </ion-bar>
+
+          <ion-content style="margin-top:8em;">
+            <div class="list">
+              <div class="item item-thumbnail-left" ng-repeat="item in dataproperty |filter : byCategory | orderBy : sortBy | filter :search_page" style="margin-bottom:-10%;margin-top:-1%">
+                <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
+                <div style="margin-top:5%; ">
+                  <h2 style="font-size:13px;margin-bottom:-2% ">{{ item.title }}</h2>
+                  <a ng-if="item.filename !== file" class="positive" ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px ">
+                    {{ 'download2' | translate }}
+                  </a>
+                  <a ng-if="item.filename === file" ng-click="cordova.InAppBrowser.open(item.linkfile, '_system', 'location=yes');"  style="text-decoration:none;font-size:10px;color: grey;">
+                    {{ 'downloaded' | translate }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ion-content>
+        </div>
+        <!-- End : Monday - Friday -->
+      </ion-slide>
+
+    </ion-slide-box>
+  </ion-content>
+</ion-view>

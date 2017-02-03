@@ -1,0 +1,12 @@
+<ion-view view-title="{{'gallery' | translate}}">
+    <ion-content class="blue">
+	    <ion-list>
+	    	<div collection-repeat="image in images" collection-item-height="23%" collection-item-width="33%">
+	            <a ng-href="#/app/detailGallery/{{$index}}">
+	              <img src="{{image.avatar}}" class="homeGallery" >
+	            </a>
+        	</div>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar></ion-footer-bar>
+</ion-view>

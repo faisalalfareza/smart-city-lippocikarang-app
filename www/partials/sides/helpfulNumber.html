@@ -1,0 +1,12 @@
+<ion-view view-title="HelpfulNumber">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="list in data" style="padding:0">
+                <div class="row" style="padding:5px 20px;display:flex;align-items:center;">
+                    <h2 class="col-90"> {{list.name}} </h2>
+                    <h2 align="right" class="col" style="font-size:30px;padding:0"><a href="tel:{{ list.phonenumber }}"><i class="icon ion-ios-telephone"></i></a></h2>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

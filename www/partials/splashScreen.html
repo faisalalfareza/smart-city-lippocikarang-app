@@ -1,0 +1,42 @@
+<ion-view hide-nav-bar="true">
+    <ion-slide-box auto-play="true" does-continue="true" slide-interval="3000" on-slide-changed="slideChanged(index)">
+        <ion-slide class="img1">
+            <img class="splashScreen" src="img/back2.png" width="50%">
+            <h3>
+                <w>{{ 'splash_g1_1'| translate }}</w>
+            </h3>
+        </ion-slide>
+        <ion-slide class="img2">
+            <div class="splashScreen2">
+                <h3>
+                    <w>{{ 'splash_g2_1'| translate }}</w>
+                </h3>
+                <h3>
+                    <w>{{ 'splash_g2_2'| translate }}</w>
+                </h3>
+                <h3>
+                    <w>{{ 'splash_g2_3'| translate }}</w>
+                </h3>
+            </div>
+        </ion-slide>
+        <ion-slide class="img3">
+            <div class="splashScreen3">
+                <h3>
+                    <w>{{ 'splash_g3_1'| translate }}</w>
+                </h3>
+                <h4>
+                    <w>{{ 'splash_g3_2'| translate }}</w>
+                </h4>
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+    <div class="headerSphlash">
+        <div class="bottomLeft">
+            <w>Versi 1.0</w>
+        </div>
+        <button class="getStarted button button-block button-positive" ng-click="startApp()">{{ 'get_started'| translate }}</button>
+        <button-clear class="button-clear bottomRight" ng-click="startApp()">
+            <w>{{ 'skip'| translate }}</w>
+            </button>
+    </div>
+</ion-view>

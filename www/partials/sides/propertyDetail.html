@@ -1,0 +1,69 @@
+<ion-view view-title="{{propertydata.name}}" cache-view="false">
+    <ion-nav-bar class="bar-positive nav-title-slide-ios7">
+      <ion-nav-back-button class="button-icon">
+        <i class="ion-chevron-left"></i> 
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content class="has-footer">
+        <div class="row thumbnailGaleri">
+            <div class="col thumbnailimg1">
+                <a ng-href="#/app/propertyDetailImage/{{property1.idproperty}}/0">
+                    <img height="253" class="col" ng-src="{{property1.image != null ? property1.image : 'img/items/property_add_photo.png'}}">
+                </a>
+            </div>
+
+            <div class="col thumbnailGaleri">
+                <a ng-href="#/app/propertyDetailImage/{{property2.idproperty}}/1">
+                    <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="{{property2.image != null ? property2.image : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-href="#/app/propertyDetailImage/{{property3.idproperty}}/2">
+                    <img height="126" class="col" ng-src="{{property3.image != null ? property3.image : 'img/items/property_add_photo.png'}}">
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-100" style="padding:0 8%">
+                <h4>{{propertydata.name}}</h4>
+                <p>{{ 'type' | translate }} {{propertydata.type}}</p>
+                <p> LB / LT : {{propertydata.lb}} / {{propertydata.lt}} m<sup>2</sup></p>
+
+                <table>
+                    <tr>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_bedroom.png"></td>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_bathroom.png"></td>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_garage.png"></td>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_kitchen.png"></td>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_diningroom.png"></td>
+                        <td style="padding:10px"><img width="25px" src="img/items/ic_livingroom.png"></td>
+                    </tr>
+                    <tr>
+                        <td>{{roomlist[0]}}</td>
+                        <td>{{roomlist[1]}}</td>
+                        <td>{{roomlist[2]}}</td>
+                        <td>{{roomlist[3]}}</td>
+                        <td>{{roomlist[4]}}</td>
+                        <td>{{roomlist[5]}}</td>
+                    </tr>
+                </table>
+
+                <h4>IDR {{propertydata.price | number:0 }}</h4>
+                <p>{{propertydata.description}}</p>
+            </div>
+        </div>
+
+        <div style="padding:1% 5%;" class="row sub-menu">
+            <div class="col col-50">
+                <a class="button button-positive" href="tel:{{ propertydata.agentphone }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0">
+                    {{ 'call_agent' | translate }}
+                </a>
+            </div>
+            <div class="col">
+                <a class="button button-positive" href="#/app/propertyEmail/{{propertydata.idproperty}}/{{propertydata.agentemail}}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0">
+                    {{ 'email_agent' | translate }}
+                </a>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_23-11-2016" default="compile.module.23-11-2016">
+  <dirname property="module.23-11-2016.basedir" file="${ant.file.module_23-11-2016}"/>
+  
+  <property name="module.jdk.home.23-11-2016" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.23-11-2016" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.23-11-2016" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.23-11-2016" value="-encoding UTF-8 -source 1.3 -target 1.3 ${compiler.args}"/>
+  
+  <property name="23-11-2016.output.dir" value="undefined"/>
+  <property name="23-11-2016.testoutput.dir" value="undefined"/>
+  
+  <path id="23-11-2016.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="23-11-2016.module.production.classpath"/>
+  
+  <path id="23-11-2016.runtime.production.module.classpath"/>
+  
+  <path id="23-11-2016.module.classpath"/>
+  
+  <path id="23-11-2016.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.23-11-2016">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.23-11-2016">
+    <patternset refid="excluded.from.module.23-11-2016"/>
+  </patternset>
+  
+  
+  <target name="compile.module.23-11-2016" depends="compile.module.23-11-2016.production,compile.module.23-11-2016.tests" description="Compile module 23-11-2016"/>
+  
+  <target name="compile.module.23-11-2016.production" depends="register.custom.compilers" description="Compile module 23-11-2016; production classes"/>
+  
+  <target name="compile.module.23-11-2016.tests" depends="register.custom.compilers,compile.module.23-11-2016.production" description="compile module 23-11-2016; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.23-11-2016" description="cleanup module">
+    <delete dir="${23-11-2016.output.dir}"/>
+    <delete dir="${23-11-2016.testoutput.dir}"/>
+  </target>
+</project>

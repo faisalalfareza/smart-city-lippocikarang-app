@@ -1,0 +1,80 @@
+<ion-view view-title="LippoCikarang.com" name="login-view">
+
+    <ion-content>
+        <div class="detailresident" style="color:#FFFFFF;background-color: #0a9dc7;height:auto;padding-bottom: 20%;padding-top: 15%;padding-left: 15%;">
+            <div class="row" style="height: 100%">
+                <div class="col col-50">
+                    <ui>{{ 'client_name' | translate }}</ui>
+                    <ul>{{ 'client_code' | translate }}</ul>
+                    <ul>{{ 'amount_to_be_paid' | translate }}</ul>
+
+                    <select ng-change="selectedsiteid(selected)" ng-model="selected" ng-options="site as site.SiteName for site in siteidop" style="margin-top:10%;width:100%;height:32px;padding-left:10px;border-radius:10px;border-color:2px solid #0c60ee; "></select>
+                </div>
+                <div class="col col-50">
+                    <ul>{{atributeres.Name | limitTo:10 }}</ul>
+                    <ul>{{atributeres.PsCode}}</ul>
+                    <ul>Rp.{{atributeres.BillingOutstandingBalance}},00</ul>
+
+                    <button style="min-height:32px;margin-top:10%;height:32px;background-color:#FFFFFF;border-radius:10px;color:#000;text-transform:uppercase;" ng-click="paynow()" class="button button-outline button-positive">
+                        <p style="justify-content:center;align-items:center;vertical-align:middle;margin-top:-6px">{{ 'pay_now' | translate }}</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="detailbilling">
+            <div class="row wiewpagercontrol">
+                <div class="col col-20" ng-click="previous()">
+                    <i style="size:18px;font-size: 48px;vertical-align: middle" class=" icon ion-android-arrow-dropleft"></i>
+                </div>
+                <div class="col col-60">
+                    <p ng-model='periodname' style="margin-top:5%;vertical-align: middle;font-size: 32px;align-content: center;text-align: center">
+                        {{periodname|limitTo:periodname.length - 4}}</p>
+                </div>
+                <div ng-click="next()" class="col col-20">
+                    <i style="size:18px;font-size: 48px;vertical-align: middle;float: right;" class=" icon ion-android-arrow-dropright"></i>
+                </div>
+            </div>
+
+            <ion-slide-box on-slide-changed="slidechange($index)" style="margin-bottom: 10%;margin-top: auto" show-pager="false">
+                <ion-slide ng-repeat="period in periodes" style="height: 75%">
+                    <div style="margin-top:-2%;width: 100%;height: 15%;background-color: #0a9dc7">
+                        <p class="col col-50" style="margin:0;font-size:12px;color: #FFFFFF">{{ 'description' | translate }}</p>
+                        <p class="col col-50" style="margin:0;margin-top: -8%;margin-left: auto;font-size:12px;color: #FFFFFF">{{ 'total_amount' | translate }}
+                        </p>
+                    </div>
+                    <ion-list style="margin-top: auto;padding-right:5%;padding-left:5%;">
+                        <ion-item ng-repeat="unit in period.Unit" style="padding: 0;border:none;border-bottom: solid 2px;border-bottom-color:#0c60ee;margin-left: 5%;margin-right: 5% ">
+                            <div style="font-size: 18px;" class="row">
+                                <div class="col col-30">
+                                    <ul>code name</ul>
+                                    <ul>code no</ul>
+                                </div>
+                                <div class="col col-30">
+                                    <ul>{{unit['@attributes'].UnitCode}}</ul>
+                                    <ul>{{unit['@attributes'].UnitNo}}</ul>
+                                </div>
+                                <div class="col col-30">
+                                    <ul style="font-size: 15px">Rp.{{unit['@attributes'].BillingOutstanding}}</ul>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                    <ion-item style="padding: 0;border:none;margin-left: 5%;margin-right: 5% ">
+                        <div style="font-size: 18px;" class="row">
+                            <div class="col col-30">
+                                <ul>{{ 'total_amount' | translate }}</ul>
+                            </div>
+                            <div class="col col-30">
+
+                            </div>
+                            <div class="col col-30">
+                                <ul style="font-size: 15px">{{period['@attributes'].TotalBillingOutstanding}}</ul>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+
+    </ion-content>
+</ion-view>

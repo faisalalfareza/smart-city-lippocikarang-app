@@ -1,0 +1,18 @@
+<ion-view view-title="World Clock">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item " ng-repeat="list in data">
+                <div class="row">
+                    <div class="col col-80">
+                        <h2 style="font-weight:600px;font-size:18px;">{{ list.city }} </h2>
+                        <h2 style="font-weight:400px;font-size:14px;">{{ list.timezone }}</h2>
+                        <p style="font-size:12px;">Today</p>
+                    </div>
+                    <div class="col col-20">
+                        <ds-widget-clock show-analog gmt-offset="list.gmtvalue"></ds-widget-clock>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

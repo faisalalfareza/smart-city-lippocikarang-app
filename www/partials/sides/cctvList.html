@@ -1,0 +1,9 @@
+<ion-view view-title="CCTV">
+    <ion-content class="padding">
+        <ion-list>
+           <ion-item ng-repeat="list in data" href="#/app/cctvDetail/{{$index}}">
+               <h2> {{list.name}} </h2>
+           </ion-item>
+       </ion-list>
+    </ion-content>
+</ion-view>

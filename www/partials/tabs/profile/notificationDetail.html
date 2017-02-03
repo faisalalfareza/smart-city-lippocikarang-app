@@ -1,0 +1,38 @@
+<ion-view view-title="{{'profile' | translate}}">
+	<ion-content ng-repeat="data in details">
+        <div class="row" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);background-color:#ecf0f1">
+            <div class="col col-10">
+				<a ng-click="goBack()"><img style="width:50%;height:auto;margin-top:1.2em;margin-left:0.5em;" src="img/ic_back.png"></a>
+            </div>
+            <div class="col col-70">
+                <h3 style="font-size:15px;font-weight:400;margin-top:0.5em;">{{data.title}}</h2>
+				<h3 style="font-size:12px;font-weight:400;color:#ABB7B7;margin-top:-1em;">
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 1"> JAN {{ data.createdate | limitTo : 2 : 8 }} </div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 2"> FEB {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 3"> MAR {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 4"> APR {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 5"> MEY {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 6"> JUN {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 7"> JUL {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 8"> AUG {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 9"> SEP {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 10"> OCT {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 11"> NOV {{ data.createdate | limitTo : 2 : 8 }}</div>
+						<div ng-if="(data.createdate | limitTo : 2 : 5)  == 12"> DES {{ data.createdate | limitTo : 2 : 8 }}</div>
+                </h3>
+            </div>
+            <div class="col col-20">
+                <fieldset class="ratingbtn postratingbtn" ng-if="(bookmarked == 'false')">
+                    <input type="radio" />
+                    <label style="transform:scale(1.2);vertical-align:middle;margin-top:0.5em;"></label>
+                </fieldset>            
+                <fieldset class="ratingbtn postratingbtn" ng-if="(bookmarked == 'true')" >
+                    <input type="radio" />
+                    <label style="transform:scale(1.2);vertical-align:middle;color:#f1c40f;margin-top:0.5em;"></label>
+                </fieldset>
+            </div>
+        </div>
+		<p style="padding:20px 20px 0px 20px;font-size:12px;">{{data.description}}</p>
+		<img src="{{data.image}}" style="width:100%;padding:10px 20px 20px 20px;">
+	</ion-content>
+</ion-view>

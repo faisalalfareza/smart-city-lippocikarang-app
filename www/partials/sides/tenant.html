@@ -1,0 +1,44 @@
+<ion-view view-title="{{subcategorys}}">
+    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
+        <div class="row">                   
+            <div class="col col-50">
+            
+            <span ng-show="filter == true">
+                <select ng-model="byCategory" class="dropdown-filter">
+                     <option value="">{{ 'category' | translate }}</option>
+                     <option value="">{{ 'category_all' | translate }}</option>
+                     <option value="{{ category.categoryValue }}" ng-repeat="category in categoryData" ng-click="sortBy('category.idcategory')">{{ category.categoryName }}</option>
+                </select>
+            </span>    
+
+            </div> 
+            <div class="col col-50">
+                <select ng-model="sortType" class="dropdown-filter">
+                    <option value="">{{ 'sort' | translate }}</option>
+                    <option value="longlat">{{ 'sort_distance' | translate }}</option>
+                    <option value="tenantsname">{{ 'sort_name' | translate }}</option>
+                    <option value="-rate">{{ 'sort_popularity' | translate }}</option>
+                </select>
+            </div>                           
+        </div>
+    </ion-bar>    
+    <ion-content style="margin-top:45px;" class="has-footer">
+        <ion-list>  
+            <ion-item class="item item-thumbnail-left" ng-repeat=" list in tenantdata | filter : byCategory | filter : search_page | orderBy : sortType " href="#/app/tenantDetail/{{list.idtenant}}">
+                <img src="
+                {{list.avatar != null ? list.avatar : (list.idcategory == 17 ? 'img/items/item_sport.png' : (list.idcategory == 19 ? 'img/items/item_art.png' : (list.idcategory == 16 ? 'img/items/item_events.png' : (list.idcategory == 18 || list.idcategory == 24 || list.idcategory == 26 ? 'img/items/item_leisure.png' : (list.idcategory == 20  || list.idcategory == 27 || list.idcategory == 28 || list.idcategory == 29 || list.idcategory == 30  ? 'img/items/item_beauty.png' : (list.idcategory == 35 ? 'img/items/item_western.png' : (list.idcategory == 31 ? 'img/items/item_fast_food.png' : (list.idcategory == 33 ? 'img/items/item_tradisional.png' : (list.idcategory == 32 ? 'img/items/item_japanese.png' : (list.idcategory == 37 ? 'img/items/item_bar.png' : (list.idcategory == 90 ? 'img/items/item_korean.png' : (list.idcategory == 36 ? 'img/items/item_desert.png' : (list.idcategory == 45 ? 'img/items/item_hotel.png' : (list.idcategory == 46 ? 'img/items/item_condominus.png' : (list.idcategory == 47 ? 'img/items/item_apartement.png' : (list.idcategory == 49 ? 'img/items/item_mart.png' : (list.idcategory == 50 || list.idcategory == 62 ? 'img/items/item_fashion.png' : (list.idcategory == 53 ? 'img/items/item_electronic.png' : (list.idcategory == 48 ? 'img/items/item_department_store.png' : (list.idcategory == 51 ? 'img/items/item_homeimprovment.png' :
+                    (list.idcategory == 52 ? 'img/items/item_book.png' : (list.idcategory == 54 ? 'img/items/item_automotif.png' : (list.idcategory == 65 ? 'img/items/item_education.png' : (list.idcategory == 69 ? 'img/items/item_health.png' : (list.idcategory == 106 ? 'img/items/item_transportation.png' : (list.idcategory == 75 ? 'img/items/item_travel.png' : (list.idcategory == 74 ? 'img/items/item_atm.png' : (list.idcategory == 77 ? 'img/items/item_insurance.png' :
+                    (list.idcategory == 73 ? 'img/items/item_property_agent.png' : (list.idcategory == 79 ? 'img/items/item_notaris.png' : (list.idcategory == 76 ? 'img/items/item_bank.png' : (list.idcategory == 82 ? 'img/items/item_industrie.png' : (list.idcategory == 78 ? 'img/items/item_gas_station.png' : 'img/items/tenant_add_photo.png')))))))))))))))))))))))))))))))))
+                }}
+                ">
+                <h2 style="font-weight:500;font-size:18px;"> {{list.tenantsname}} </h2>
+                <p> {{list.address}} </p>
+                <p> {{list.longlat | rounded:3}} km </p>
+            </ion-item>     
+        </ion-list> 
+
+        <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" on-infinite="loadMore()" distance="20%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

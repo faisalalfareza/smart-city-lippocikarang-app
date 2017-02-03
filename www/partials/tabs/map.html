@@ -1,0 +1,60 @@
+<ion-view title="{{'map' | translate}}" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content id="mapContainer" class="has-header" has-bouncing="false">
+    <div  ng-show="distance" class="row" style="width: 100%">
+      <div class="col col-50">
+        <table border="1">
+          <tr>
+            <td>
+              <img width="48" src="img/ic_distances.png">
+            </td>
+            <td>
+              <p style="vertical-align: middle">{{distance}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div style="border-left:solid thin;border-color: #0e0e0e;" class="col col-50">
+        <table>
+          <tr>
+            <td>
+              <img width="48" src="img/tenantDetail/ic_time.png">
+            </td>
+            <td>
+              <p style="vertical-align: middle;margin-top: -5%" ng-model="duration"  >{{duration}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div style="z-index:1;position: absolute;width: 100%">
+      
+    <input id="input" style="margin-top:10%;width:80%;margin-left:10%;border:3px solid #3498db;border-radius:5px;padding:20px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);" ng-model="search.input" type="text"
+            placeholder="{{ 'search_title'| translate }} ..."
+            ng-change="getPlacePredictions(search.input)" required />
+
+      <div ng-hide="listhide" style="width: 80%;margin-left: 10%" ng-show="predictions.length > 0"
+           class="row row-no-padding search-results">
+        <div class="col">
+          <div class="list location-results-list">
+            <a ng-repeat="prediction in predictions" class="item item-icon-left location-item"
+               ng-click="selectSearchResult(prediction)">
+              <i class="icon ion-location"></i>
+              <h3 class="location-name">{{prediction.terms[0].value}}</h3>
+              <span class="location-desc">{{prediction.description}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="z-index: 0" id="map"></div>
+    <div ng-hide="checkdesitenate()" ng-click="getdirection()"
+         style="width:15%;height:10%;position:absolute;z-index:2;border-radius: 100%;background-color: #FFFFFF;bottom: 15%;right: 10%">
+      <a
+        style=" margin-left: 18%;position:relative;top: calc(25% - 10px); text-align: center;vertical-align:middle;color: #0c60ee"
+        class="button button-icon icon ion-android-navigate"></a>
+    </div>
+  </ion-content>
+</ion-view>

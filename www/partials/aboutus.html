@@ -1,0 +1,107 @@
+<ion-view view-title="About Us">
+    <ion-content class="has-header has-footer">
+
+        <img style="max-width: 100%;with: auto;" src="img/aboutUs.jpg">
+        <div ng-repeat="d in data" class="padding">
+            <h4 style="color: #2980b9;">{{d.cityname}}</h4>
+            <div>
+                <div class="row">
+                    Area
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'category_city'| translate }} </div>
+                    <div class="col col-50"> {{d.cityarea}}(0000 sq mi) </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    {{ 'population'| translate }}
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'resident'| translate }} </div>
+                    <div class="col col-50"> {{d.residentpopulation}} people </div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'employment'| translate }} </div>
+                    <div class="col col-50"> {{d.employmentpopulation}} people </div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'jobs'| translate }} </div>
+                    <div class="col col-50"> {{d.jobspopulation}} Jobs</div>
+                </div>
+            </div>
+            <div>
+                <div class="row">{{ 'information'| translate }}</div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'jobs'| translate }} </div>
+                    <div class="col col-50"> {{d.jobsinformation}} Jobs</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'tree'| translate }} </div>
+                    <div class="col col-50"> {{d.treesinformation}} Trees</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'roads'| translate }} </div>
+                    <div class="col col-50"> {{d.roadinformation}} km</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'house'| translate }} </div>
+                    <div class="col col-50"> {{d.houseinformation}} units of build houses</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'shop_house'| translate }} </div>
+                    <div class="col col-50"> {{d.shophouseinformation}} units</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'school'| translate }} </div>
+                    <div class="col col-50"> {{d.schoollinformation}} School with</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'resident'| translate }} </div>
+                    <div class="col col-50"> {{d.internationalschoollinformation}} International Schools</div>
+                </div>
+                <div class="row">
+                    <div class="col col-10"> </div>
+                    <div class="col col-40"> {{ 'service_apartment'| translate }} </div>
+                    <div class="col col-50"> {{d.serviceapartmentinformation}} Industries</div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col col-50"> {{ 'time_zone'| translate }} </div>
+                    <div class="col col-50"> {{d.timezone}}</div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col col-50"> {{ 'area_code'| translate }} </div>
+                    <div class="col col-50"> {{d.areacode}}</div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col col-50"> {{ 'vehicle_registration'| translate }} </div>
+                    <div class="col col-50"> {{d.vehicleregistration}}</div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col col-25"> Website </div>
+                    <div class="col col-75"> <a href="{{d.website}}">{{d.website}}</a></div>
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

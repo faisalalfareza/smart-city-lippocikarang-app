@@ -1,0 +1,18 @@
+<ion-view view-title="{{'public_transportation' | translate}}">
+    <ion-content class="has-footer" style="margin-bottom:20%;">
+        <ion-list>
+            <ion-item class="item item-text-wrap" ng-repeat="list in data | filter : search_page | orderBy: '-publictransportcode' ">
+                <h2 style="font-weight:700;font-size:18px;color:#2980b9;margin-bottom:0.5em;"> {{list.publictransportcode}} </h2>
+                <h2 style="font-weight:400;font-size:14px;">Route :</h2>
+                <p style="padding: 0 10px 3px 0;font-size:75%;">{{list.route}}</p>
+            </ion-item>         
+        </ion-list>
+    </ion-content>
+    <ion-bar class="bar bar-subfooter bar-stable" style="border:0;outline:0;height:auto;">
+        <div class="row">                   
+            <p style="padding-left:10px;padding-right:10px;color:#95a5a6;font-size:80%;text-align:center">
+              {{'public_transportation_bottom' | translate}}
+           </p>          
+        </div>
+    </ion-bar>      
+</ion-view>
