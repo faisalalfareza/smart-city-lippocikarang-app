@@ -1444,6 +1444,14 @@ angular
 
         $ionicPlatform.ready(function() {
 
+            // Check for permissions to show local notifications permission to run!
+            // cordova.plugins.notification.local.hasPermission().then(function(granted) {
+            //   // cordova.plugins.notification.local.cancelAll();
+            //   if (!granted) {
+            //     cordova.plugins.notification.local.promptForPermission();
+            //   };
+            // });
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -1480,16 +1488,14 @@ angular
                             // console.log('Notif Aktif ..');
                             // console.log('playSound : ' + playSound);
                             cordova.plugins.notification.local.schedule({
-                                id: 2,
+                                id: 1,
                                 message: $filter('translate')('notification_push'),
                                 sound: playSound,
-                                autoCancel: true,
-                                badge: sum,
-                                data: { meetingId:"123#fg8" }
+                                badge: sum
                             });
 
                             cordova.plugins.notification.local.on("trigger", function (notification) {
-                                joinMeeting(notification.data.meetingId);
+                                console.log('Success with ' + notification);
                             });
                         } else {
                             console.log('Notif Nonaktif ..');
