@@ -12,7 +12,7 @@
     <access origin="*" />
     <allow-intent href="tel:*" />
     <allow-navigation href="*" />
-
+    <preference name="orientation" value="portrait" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -22,7 +22,6 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
-
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
         <param name="android-package" value="org.apache.cordova.NetworkManager" />
@@ -35,7 +34,6 @@
         <param name="ios-package" value="FacebookConnectPlugin" />
         <param name="onload" value="true" />
     </feature>
-
     <platform name="ios">
         <key>CFBundleDocumentTypes</key>
         <array>
@@ -139,7 +137,6 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-
     <platform name="android">
         <feature name="SocialSharing">
             <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
@@ -163,7 +160,6 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
-
     <plugin name="cordova-plugin-statusbar" spec="~2.2.1" />
     <plugin name="cordova-plugin-device" spec="~1.1.4" />
     <plugin name="cordova-plugin-console" spec="~1.0.5" />
@@ -182,8 +178,9 @@
     <plugin name="cordova-plugin-file-opener2" spec="~2.0.6" />
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" />
     <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.4.0">
-      <param name="APP_ID" value="217892791967144" />
-      <param name="APP_NAME" value="Livein_iOS" />
+        <param name="APP_ID" value="217892791967144" />
+        <param name="APP_NAME" value="Livein_iOS" />
     </gap:plugin>
     <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin" />
+    <plugin name="cordova-plugin-device-orientation" spec="~1.0.5" />
 </widget>

@@ -17,7 +17,10 @@ angular
                 $scope.datageneral = response;
                 var source = response;
 
+
                 var fileData = localStorage.added_file.split(',');
+                $scope.filedata = fileData;
+
 
                 var status = [];
                 source.forEach(function(itemlist, indexlist, arrlist) {

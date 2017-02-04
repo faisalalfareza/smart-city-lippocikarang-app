@@ -57,7 +57,8 @@
     "cordova-plugin-crosswalk-webview",
     "cordova-plugin-facebook4",
     "cordova-plugin-app-event",
-    "cordova-plugin-file-opener2"
+    "cordova-plugin-file-opener2",
+    "cordova-plugin-device-orientation"
   ],
   "cordovaPlatforms": []
 }

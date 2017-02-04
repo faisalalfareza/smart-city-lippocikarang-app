@@ -177,6 +177,15 @@ angular
                     }
                 }
             })
+            .state('app.cctvFull', {
+              url: "/cctvFull",
+              views: {
+                'menu-content': {
+                  templateUrl: "partials/sides/cctvFull.html",
+                  controller: "cctvFull"
+                }
+              }
+            })
             .state('app.forum', {
                 cache: false,
                 url: "/forum",
