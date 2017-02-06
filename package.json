@@ -58,7 +58,8 @@
     "cordova-plugin-facebook4",
     "cordova-plugin-app-event",
     "cordova-plugin-file-opener2",
-    "cordova-plugin-device-orientation"
+    "cordova-plugin-device-orientation",
+    "cordova-plugin-screen-orientation"
   ],
   "cordovaPlatforms": []
 }
