@@ -16,11 +16,10 @@ angular
             if (response != false) {
                 $scope.datageneral = response;
                 var source = response;
-
+                console.log(source);
 
                 var fileData = localStorage.added_file.split(',');
                 $scope.filedata = fileData;
-
 
                 var status = [];
                 source.forEach(function(itemlist, indexlist, arrlist) {
@@ -28,7 +27,8 @@ angular
                     if (arrlist[indexlist].filename === arrfile[indexfile]) {
                       $scope.file    = arrlist[indexlist].filename;
                       $scope.storage = arrfile[indexfile];
-                      status.push(filename + 'downloaded');
+                      source.push(status_file + ': ' + 'downloaded');
+                      //status.push(filename + 'downloaded');
                     };
                   });
                 });

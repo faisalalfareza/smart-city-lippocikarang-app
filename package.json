@@ -59,7 +59,9 @@
     "cordova-plugin-app-event",
     "cordova-plugin-file-opener2",
     "cordova-plugin-device-orientation",
-    "cordova-plugin-screen-orientation"
+    "cordova-plugin-screen-orientation",
+    "cordova-plugin-file-opener2@~2.0.6",
+    "cordova-plugin-device-orientation@~1.0.5"
   ],
   "cordovaPlatforms": []
 }

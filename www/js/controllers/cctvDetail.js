@@ -75,7 +75,7 @@ angular
             var gall = $stateParams.index;
             $scope.gall = gall;
 
-            $scope.listDetail = $scope.detail[gall].link;
+            //$scope.listDetail = $scope.detail[gall].link;
 
             var uri = "http://innodev.vnetcloud.com/cctv-client/?port=";
 
