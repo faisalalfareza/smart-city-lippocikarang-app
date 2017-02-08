@@ -1,23 +1,33 @@
 <ion-view view-title="{{propertydata.name}}" cache-view="false">
     <ion-nav-bar class="bar-positive nav-title-slide-ios7">
       <ion-nav-back-button class="button-icon">
-        <i class="ion-chevron-left"></i> 
+        <i class="ion-chevron-left"></i>
       </ion-nav-back-button>
     </ion-nav-bar>
     <ion-content class="has-footer">
         <div class="row thumbnailGaleri">
             <div class="col thumbnailimg1">
-                <a ng-href="#/app/propertyDetailImage/{{property1.idproperty}}/0">
+                <a ng-if="property1.image != null" ng-href="#/app/propertyDetailImage/{{property1.idproperty}}/0">
                     <img height="253" class="col" ng-src="{{property1.image != null ? property1.image : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-if="property1.image == null">
+                  <img height="253" class="col" ng-src="img/items/property_add_photo.png">
                 </a>
             </div>
 
             <div class="col thumbnailGaleri">
-                <a ng-href="#/app/propertyDetailImage/{{property2.idproperty}}/1">
+                <a ng-if="property2.image != null" ng-href="#/app/propertyDetailImage/{{property2.idproperty}}/1">
                     <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="{{property2.image != null ? property2.image : 'img/items/property_add_photo.png'}}">
                 </a>
-                <a ng-href="#/app/propertyDetailImage/{{property3.idproperty}}/2">
+                <a ng-if="property2.image == null">
+                  <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="img/items/property_add_photo.png">
+                </a>
+
+                <a ng-if="property3.image != null" ng-href="#/app/propertyDetailImage/{{property3.idproperty}}/2">
                     <img height="126" class="col" ng-src="{{property3.image != null ? property3.image : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-if="property3.image == null">
+                  <img height="126" class="col" ng-src="img/items/property_add_photo.png">
                 </a>
             </div>
         </div>

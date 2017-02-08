@@ -5,7 +5,7 @@
     </ion-nav-bar>
     <ion-content>
         <div>
-            <i class="ion-chevron-left" ng-click="myGoBack()"></i> 
+            <i class="ion-chevron-left" ng-click="myGoBack()"></i>
         </div>
         <!--tenant action-->
         <div class="row row-center rowaction" style="height:auto">
@@ -40,17 +40,27 @@
 
         <div class="row thumbnailGaleri">
             <div class="col thumbnailimg1">
-                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 0}}">
+                <a ng-if="img.avatar != null" ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 0}}">
                     <img height="253" class="col" ng-src="{{img.avatar != null ? img.avatar : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-if="img.avatar == null">
+                  <img height="253" class="col" ng-src="img/items/property_add_photo.png">
                 </a>
             </div>
 
             <div class="col thumbnailGaleri">
-                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 1}}">
+                <a ng-if="img1.avatar != null" ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 1}}">
                     <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="{{img1.avatar != null ? img1.avatar : 'img/items/property_add_photo.png'}}">
                 </a>
-                <a ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 2}}">
+                <a ng-if="img1.avatar == null">
+                  <img height="126" style="background-repeat:no-repeat;background-size: cover;background-attachment:fixed;" class="col" ng-src="img/items/property_add_photo.png">
+                </a>
+
+                <a ng-if="img2.avatar != null" ng-href="#/app/tenantDetailImage/{{img.idtenant}}/{{$index + 2}}">
                     <img height="126" class="col" ng-src="{{img2.avatar != null ? img2.avatar : 'img/items/property_add_photo.png'}}">
+                </a>
+                <a ng-if="img2.avatar == null">
+                  <img height="126" class="col" ng-src="img/items/property_add_photo.png">
                 </a>
             </div>
         </div>

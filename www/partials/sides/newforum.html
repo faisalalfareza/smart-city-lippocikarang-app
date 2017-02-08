@@ -16,14 +16,14 @@
     </ion-bar>
     <ion-content style="margin-top:20%;" class="has-footer has-header">
         <div class="contentTenant" style="margin-bottom:6%">
-            <form>
+            <form name="myform">
                 <label><h5>{{ 'discussion_title' | translate }}</h5></label>
                 <label class="item item-input">
-                    <input type="text" ng-model="data.title" required>
+                    <input name="title" type="text" ng-model="data.title" required>
                 </label>
                 <br>
                 <label class="item item-input text">
-                    <textarea type="text" ng-model="data.description" rows="10" style="margin-right:18px;" required></textarea>
+                    <textarea name="desc" type="text" ng-model="data.description" rows="10" style="margin-right:18px;" required></textarea>
                 </label>
                 <br>
                 <div ng-show="checking === false">
@@ -56,7 +56,7 @@
                 <br>
                 <div class="row">
                     <div class="col text-left">
-                        <button type="submit" ng-click="newforum(data)" class="button button-positive button-small" style="width:75px;margin-left:-5%;">{{ 'post' | translate }}</button>
+                        <button ng-disabled="myform.$invalid" type="submit" ng-click="newforum(data)" class="button button-positive button-small" style="width:75px;margin-left:-5%;">{{ 'post' | translate }}</button>
                     </div>
                     <div class="col text-right">
                         <a href="#/app/forum">

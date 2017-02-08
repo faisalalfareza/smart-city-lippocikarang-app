@@ -23,12 +23,11 @@
                 <div class="row">
                     <div class="col">
                         <label class="item item-input text">
-                            <textarea name="comment" placeholder="Comment" rows="10" ng-model="comment.desc" ng-required="true"></textarea>
+                            <textarea name="comment" placeholder="Comment" rows="10" ng-model="comment.desc" required></textarea>
                         </label>
-                        <span ng-show="myform.comment.$error.required"></span>
                         <br>
                         <div class="row">
-                            <button class="col-40 button button-positive" style="margin:0.8em;" type="submit">{{ 'post' | translate }}</button>
+                            <button class="col-40 button button-positive" style="margin:0.8em;" type="submit" ng-disabled="myform.$invalid">{{ 'post' | translate }}</button>
                             <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-40 button button-positive" type="submit">{{ 'cancel' | translate }}</button></a>
                         </div>
                     </div>

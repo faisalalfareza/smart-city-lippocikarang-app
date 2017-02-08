@@ -493,10 +493,10 @@ angular
             $scope.cmt.push({
                 comment: comment.desc
             })
-            comment.desc = ''
+            comment.desc = '';
             var forumComment = $scope.cmt[0].comment
 
-            if (forumComment != '') {
+            if (forumComment != '' || forumComment != ' ' || forumComment != null) {
                 $ionicLoading.show({ template: 'Loading...' })
                 ForumService.commentforum(forumComment,
                     function(response) {
@@ -519,6 +519,12 @@ angular
                         }
                         $ionicLoading.hide()
                     })
+            } else {
+              var alertPopup = $ionicPopup.alert({
+                title: $filter('translate')('forum_comment'),
+                template: $filter('translate')('comment_failed'),
+                cssClass: "alertPopup"
+              });
             }
         }
     }
