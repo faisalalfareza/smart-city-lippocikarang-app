@@ -1,21 +1,18 @@
-<<<<<<< HEAD
-<iframe src="http://ipcamlive.com/player/player.php?alias=5890190f50140" style="width: 520;height: 360;"></iframe>
-=======
 <ion-view view-title="CCTV">
   <ion-slide-box show-pager="false">
     <ion-slide>
       <div class="photoGallery" style="margin-top: 10vh;margin-bottom: 2vh;">
-        <h3 class="topTitle">Cibatu (Arah Maxxbox)</h3>
+        <h3 class="topTitle">{{name}}</h3>
         <iframe src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;"></iframe>
 
         <br>
         <div class="row" style="margin-top:13%;margin-bottom: 15%; position: absolute;">
-          <a class="col-50" ng-click="previous()"><i class="ion-chevron-left" style="color:blue;"></i></a>
-          <a class="col-50" ng-click="next()"><i class="ion-chevron-right" style="color:blue;"></i></a>
+          <a class="col-50" ng-click=""><i class="ion-chevron-left" style="color:blue;"></i></a>
+          <a class="col-50" ng-click=""><i class="ion-chevron-right" style="color:blue;"></i></a>
         </div>
         <center><div class="row" style="margin-top:30%;margin-bottom: 15%; position: absolute;">
         <div class="row">
-            <a class="col-3" ng-href="#/app/cctvFull"> <!--ng-click="playFull()"-->
+            <a class="col-3" ng-href="#/app/cctvFull/{index}"> <!--ng-click="playFull()"-->
                 <img src="img/cctv/icon_t_fullscreen.png" style="width:50%;height:auto; margin: 0;">
             </a>
             <a class="col-3">
@@ -49,4 +46,3 @@
     </ion-slide>
   </ion-slide-box>
 </ion-view>
->>>>>>> 4c8d210c24955ae39d2711aadebc1a58dcf0c82b

@@ -156,7 +156,7 @@ function entertaimentSportDetail($scope, $rootScope, $cordovaGeolocation, $state
 
     });
 
-    $scope.$on('$ionicView.beforeEnter', function() {
+    $scope.$on('$ionicView.beforeLeave', function() {
         console.log($scope.rating);
         if ($scope.rating != null || $scope.rating != undefined) {
             var confirmPopup = $ionicPopup.confirm({

@@ -100,7 +100,7 @@ angular
             confirmPopup.then(function (res) {
                 if (res) {
                     LoginService.logoutUser();
-                    $ionicLoading.show({ template: 'Logging Out ...', duration: 500 });
+                    $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
                     $state.go('login');
                 }
             });

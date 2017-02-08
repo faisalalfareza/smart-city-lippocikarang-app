@@ -3,7 +3,7 @@ angular
     .controller('cctvFull', cctvFull)
     .controller('cctvDetail', cctvDetail);
 
-    function cctvDetail($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, $ionicModal, cctv, $filter, $sce) {
+    function cctvDetail($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, $ionicHistory, $ionicModal, cctv, $filter, $sce) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         cctv.cctvList(function(response) {
             if (response != false) {
@@ -18,24 +18,34 @@ angular
 
                 if(gall == '0'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9990");
+                  $scope.name = 'Cibatu (Helipad)';
                 }else if(gall == '1'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9991");
+                  $scope.name = 'Cibatu (Arah Pintu Tol)';
                 }else if(gall == '2'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9992");
+                  $scope.name = 'Cibatu (Arah Maxxbox)';
                 }else if(gall == '3'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9993");
+                  $scope.name = 'Maxxbox , Orange Country';
                 }else if(gall == '4'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9994");
+                  $scope.name = 'Maxxbox , Orange Country';
                 }else if(gall == '5'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9995");
+                  $scope.name = 'Bunderan Cibodas (Arah Masuk Cluster)';
                 }else if(gall == '6'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9996");
+                  $scope.name = 'MG Mataram (Arah Deltamas)';
                 }else if(gall == '7'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9997");
+                  $scope.name = 'Bunderan Cibodas (Arah Jl. Mataram)';
                 }else if(gall == '8'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9998");
+                  $scope.name = 'MG Mataram (Arah Residential)';
                 }else if(gall == '9'){
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9999");
+                  $scope.name = 'MG Mataram (Arah OC)';
                 }
 
                 /*// Just play a video
@@ -68,7 +78,7 @@ angular
         };
     };
 
-      function cctvFull($scope, $ionicModal, $ionicSlideBoxDelegate, $timeout, $stateParams, cctv) {
+      function cctvFull($scope, $ionicModal,$ionicHistory, $ionicSlideBoxDelegate, $timeout, $stateParams, cctv) {
         cctv.cctvList(function(response) {
           if (response != false) {
             $scope.detail = response;
@@ -101,11 +111,24 @@ angular
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9999");
                 }
 
-              $timeout(function(){
-                  var videoUrl = uri + $scope.bahasa;
-                  window.plugins.streamingMedia.playVideo(videoUrl);
-              },1000);
+              var videoUrl = $scope.bahasa;
+
+              var options = {
+              bgColor: "#000",
+              //bgImage: "<SWEET_BACKGROUND_IMAGE>",
+              bgImageScale: "fit", // other valid values: "stretch"
+              initFullscreen: true, // true(default)/false iOS only
+              successCallback: function() {
+                console.log("Video was closed without error.");
+              },
+              errorCallback: function(errMsg) {
+                console.log("Error! " + errMsg);
+              },
+              orientation: 'landscape'
+            };
+            StreamingMedia(videoUrl, options);
+
+            //$scope.video = StreamingMedia.(videoUrl, options);
           }
         });
-        //$ionicHistory.goBack();
     };

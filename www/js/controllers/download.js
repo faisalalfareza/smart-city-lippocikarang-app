@@ -3,7 +3,7 @@ angular
     .controller('download', download)
     .controller('detaildownload', detaildownload);
 
-    function download($ionicSlideBoxDelegate,$localStorage,$ionicPlatform, $scope, $state, DownloadService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
+    function download($window,$ionicSlideBoxDelegate,$localStorage,$ionicPlatform, $scope, $state, DownloadService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         if (localStorage.getItem('added_file') === null) {
           var files = ['bams.pdf','zaki.pdf'];
           localStorage.setItem('added_file', files);
@@ -15,20 +15,22 @@ angular
         DownloadService.listdownloadgeneral(function(response) {
             if (response != false) {
                 $scope.datageneral = response;
-                var source = response;
 
+              $scope.openBrowser = function(item) {
+                var url = item.linkfile;
+                window.open(url, '_blank', 'location=no');
+              }
 
                 var fileData = localStorage.added_file.split(',');
                 $scope.filedata = fileData;
 
-
-                var status = [];
-                source.forEach(function(itemlist, indexlist, arrlist) {
+              $scope.datageneral.forEach(function(itemlist, indexlist, arrlist) {
                   fileData.forEach(function(itemfile, indexfile, arrfile) {
                     if (arrlist[indexlist].filename === arrfile[indexfile]) {
                       $scope.file    = arrlist[indexlist].filename;
                       $scope.storage = arrfile[indexfile];
-                      status.push(filename + 'downloaded');
+                      $scope.datageneral[indexlist].statusdownload = "downloaded";
+
                     };
                   });
                 });
@@ -39,7 +41,7 @@ angular
                     var targetPath = cordova.file.externalRootDirectory  + "Pictures/";
                 }
 
-                var targetDownload = targetPath + source;
+                //var targetDownload = targetPath + source;
                 //$scope.tesTes = targetPath + $scope.file;
                 //Check for the file.
                  /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
@@ -57,7 +59,7 @@ angular
                     // Retrieve
                     $scope.ls = localStorage.getItem(downloaded);
 
-                 $cordovaFile.checkFile(targetDownload)
+                 /*$cordovaFile.checkFile(targetDownload)
                     .then(function (success) {
                         // success
                         $scope.listGeneral = 'ada';
@@ -66,10 +68,10 @@ angular
                         // error
                         $scope.listGeneral = 'ndak';
                         alert('file tidak ada');
-                    });
+                    });*/
 
 
-                $scope.openPDF = function() {
+                /*$scope.openPDF = function() {
 
                     //
                     cordova.plugins.fileOpener2.open(
@@ -84,16 +86,7 @@ angular
                             }
                         }
                     );
-                    //
-                    /*$cordovaFileOpener2.open(
-                        targetDownload, // Any system location, you CAN'T use your appliaction assets folder
-                        'application/pdf'
-                    ).then(function() {
-                        console.log('Success');
-                    }, function(err) {
-                        console.log('An error occurred: ' + JSON.stringify(err));
-                    });*/
-                };
+                };*/
 
 
             } else {
@@ -108,16 +101,17 @@ angular
             if (response != false) {
                 $scope.dataproperty = response;
                 $scope.filePro = response[0].filename;
-                var sourcePro = response;
 
-                var fileData = localStorage.added_file.split(',');
-                sourcePro.forEach(function(itemlist, indexlist, arrlist) {
-                  fileData.forEach(function(itemfile, indexfile, arrfile) {
-                    if (arrlist[indexlist].filename == arrfile[indexfile]) {
-                      $scope.listPro = 'success';
-                    }
-                  });
+              var fileData = localStorage.added_file.split(',');
+              $scope.filedata = fileData;
+
+              $scope.dataproperty.forEach(function(itemlist, indexlist, arrlist) {
+                fileData.forEach(function(itemfile, indexfile, arrfile) {
+                  if (arrlist[indexlist].filename === arrfile[indexfile]) {
+                    $scope.dataproperty[indexlist].statusdownload = "downloaded";
+                  };
                 });
+              });
 
                 if (ionic.Platform.isIOS()) {
                     var targetPath = cordova.file.documentsDirectory;
@@ -125,7 +119,7 @@ angular
                     var targetPath = cordova.file.externalRootDirectory  + "Pictures/";
                 }
 
-                var targetDownload = targetPath + source;
+                //var targetDownload = targetPath + source;
                 //Check for the file.
 
                 /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
@@ -139,15 +133,6 @@ angular
                             console.log("Folder not created." + error);
                             });
                     });*/
-               $cordovaFile.checkFile(targetDownload)
-                    .then(function (success) {
-                        // success
-                        $scope.listPro = 'success';
-                        alert('ada file');
-                    }, function (error) {
-                        // error
-                        alert('tidak ada file');
-                    });
 
             } else {
                 $scope.dataproperty = [{ name: $filter('translate')('no_file_download') }];
@@ -220,7 +205,7 @@ angular
     }
 
 
-    function detaildownload($scope, $stateParams, $localStorage, DownloadService, $ionicLoading, $cordovaFileTransfer, $cordovaFile, $timeout, $cordovaFileOpener2, $ionicPlatform, $filter) {
+    function detaildownload($scope, $stateParams, $state, $localStorage, DownloadService, $ionicLoading, $cordovaFileTransfer, $cordovaFile, $timeout, $cordovaFileOpener2,$ionicPopup, $ionicPlatform, $window, $filter) {
         ionic.Platform.ready(function () {
         DownloadService.detdownload($stateParams.iddownload, function(response) {
             console.log($stateParams.iddownload);
@@ -302,11 +287,11 @@ angular
                               }
                             }
                           );
-
                         }, function(error) {
                             $scope.hasil = 'Error Download file';
                         }, function(progress) {
                             $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+
                         });
 
             } else {
