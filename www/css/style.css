@@ -406,8 +406,10 @@ w {
 
 .bar-custom>.bar,
 .bar.bar-custom {
-    border: 0;
-    outline: 0;
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none !important;
+    border-bottom: none !important;
     background-color: #0081c9;
     color: #fff;
 }
@@ -422,8 +424,10 @@ w {
 
 .tabs-custom>.tabs,
 .tabs.tabs-custom {
-    border: 0;
-    outline: 0;
+    border: 0px !important;
+    border-top-color: transparent !important;
+    background-image: none !important;
+    border-top: none !important;
     background-color: #0081c9;
     color: #fff;
 }
@@ -614,6 +618,13 @@ w {
     margin-top:-2%;
     height:32px;
     width:100%;
+}
+
+.bar-subheader {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none !important;
+    border-bottom: none !important;
 }
 
 p.bottomTitle {
