@@ -5,7 +5,7 @@
             <div class="col col-50">
                 <select ng-model="byCategory" class="dropdown-filter">
                     <option value="">{{ 'category_all' | translate }}</option>
-                    <option value="{{ category.categoryValue }}" ng-repeat="cat in categoryData" ng-click="sortBy('cat.idcategory')">{{ cat.categoryName }}</option>
+                    <option value="{{ cat.categoryValue }}" ng-repeat="cat in categoryData" ng-click="sortBy('cat.idcategory')">{{ cat.categoryName }}</option>
                 </select>
             </div>
             <div class="col col-50">
@@ -17,6 +17,7 @@
                 </select>
             </div>
         </div>
+
     </ion-bar>
     <ion-content style="margin-top:45px;">
         <ion-list>
