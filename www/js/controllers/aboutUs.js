@@ -11,6 +11,10 @@ angular
                 function(response) {
                     if (response != false) {
                         $scope.data = response;
+                        $scope.openBrowser = function(d) {
+                          var url = "http://www.lippo-cikarang.com/";
+                          window.open(url, '_blank', 'location=no');
+                        }
                     } else {
                         $scope.data = { name: $filter('translate')('failed_get_data') };
                     }

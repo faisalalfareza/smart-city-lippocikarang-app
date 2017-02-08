@@ -27,22 +27,14 @@
                         function(response) {
                             if (response[0].status == true) {
                                 $scope.users = response;
-                                //$state.go('app.main');
+                                $state.go('app.main');
                                 $ionicLoading.hide();
 
-                                var authPopup = $ionicPopup.confirm({
+                                $ionicPopup.alert({
                                     template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
                                     okText: $filter('translate')('okay'),
                                     okType: "button-stable",
                                     cssClass: "alertPopup"
-                                });
-                                authPopup.then(function(res) {
-                                    if (res) {
-                                        $state.go('app.main');
-                                        $window.location.reload();
-                                    } else {
-                                        console.log('cancel');
-                                    }
                                 });
 
                                 /*//$scope.showAlert = function() {

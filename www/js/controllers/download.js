@@ -15,94 +15,86 @@ angular
         DownloadService.listdownloadgeneral(function(response) {
             if (response != false) {
                 $scope.datageneral = response;
-<<<<<<< HEAD
 
               $scope.openBrowser = function(item) {
                 var url = item.linkfile;
                 window.open(url, '_blank', 'location=no');
               }
-=======
                 var source = response;
                 console.log(source);
->>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
 
                 var fileData = localStorage.added_file.split(',');
                 $scope.filedata = fileData;
 
-<<<<<<< HEAD
               $scope.datageneral.forEach(function(itemlist, indexlist, arrlist) {
-=======
                 var status = [];
-                source.forEach(function(itemlist, indexlist, arrlist) {
->>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
-                  fileData.forEach(function(itemfile, indexfile, arrfile) {
+                source.forEach(function (itemlist, indexlist, arrlist) {
+                  fileData.forEach(function (itemfile, indexfile, arrfile) {
                     if (arrlist[indexlist].filename === arrfile[indexfile]) {
-                      $scope.file    = arrlist[indexlist].filename;
+                      $scope.file = arrlist[indexlist].filename;
                       $scope.storage = arrfile[indexfile];
-<<<<<<< HEAD
                       $scope.datageneral[indexlist].statusdownload = "downloaded";
 
-=======
                       source.push(status_file + ': ' + 'downloaded');
                       //status.push(filename + 'downloaded');
->>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
-                    };
+                    }
+                    ;
                   });
                 });
 
                 if (ionic.Platform.isIOS()) {
-                    var targetPath =  cordova.file.documentsDirectory;
+                  var targetPath = cordova.file.documentsDirectory;
                 } else if (ionic.Platform.isAndroid()) {
-                    var targetPath = cordova.file.externalRootDirectory  + "Pictures/";
+                  var targetPath = cordova.file.externalRootDirectory + "Pictures/";
                 }
 
                 //var targetDownload = targetPath + source;
                 //$scope.tesTes = targetPath + $scope.file;
                 //Check for the file.
-                 /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
-                    .then(function (success) {
-                        // success
-                    }, function (error) {
-                        $cordovaFile.createDir(cordova.file.documentsDirectory , "LippoCikarang", false)
-                            .then(function (success) {
-                            console.log("Folder created" + success);
-                            }, function (error) {
-                            console.log("Folder not created." + error);
-                            });
-                    });*/
+                /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
+                 .then(function (success) {
+                 // success
+                 }, function (error) {
+                 $cordovaFile.createDir(cordova.file.documentsDirectory , "LippoCikarang", false)
+                 .then(function (success) {
+                 console.log("Folder created" + success);
+                 }, function (error) {
+                 console.log("Folder not created." + error);
+                 });
+                 });*/
 
-                    // Retrieve
-                    $scope.ls = localStorage.getItem(downloaded);
+                // Retrieve
+                $scope.ls = localStorage.getItem(downloaded);
 
-                 /*$cordovaFile.checkFile(targetDownload)
-                    .then(function (success) {
-                        // success
-                        $scope.listGeneral = 'ada';
-                        alert('hal 62 : dicek sudah');
-                    }, function (error) {
-                        // error
-                        $scope.listGeneral = 'ndak';
-                        alert('file tidak ada');
-                    });*/
+                /*$cordovaFile.checkFile(targetDownload)
+                 .then(function (success) {
+                 // success
+                 $scope.listGeneral = 'ada';
+                 alert('hal 62 : dicek sudah');
+                 }, function (error) {
+                 // error
+                 $scope.listGeneral = 'ndak';
+                 alert('file tidak ada');
+                 });*/
 
 
                 /*$scope.openPDF = function() {
 
-                    //
-                    cordova.plugins.fileOpener2.open(
-                        targetDownload, // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
-                        'application/pdf',
-                        {
-                            error : function(e) {
-                                alert('Error status: ' + e.status + ' - Error message: ' + e.message);
-                            },
-                            success : function () {
-                                alert('file opened successfully');
-                            }
-                        }
-                    );
-                };*/
-
+                 //
+                 cordova.plugins.fileOpener2.open(
+                 targetDownload, // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
+                 'application/pdf',
+                 {
+                 error : function(e) {
+                 alert('Error status: ' + e.status + ' - Error message: ' + e.message);
+                 },
+                 success : function () {
+                 alert('file opened successfully');
+                 }
+                 }
+                 );
+                 };*/
+              });
 
             } else {
                 $scope.datageneral = [{ name: $filter('translate')('no_file_download') }];

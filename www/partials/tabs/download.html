@@ -42,17 +42,10 @@
                 <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
                 <div style="margin-top:5%;">
                   <h2 style="font-size:13px;margin-bottom:-2% ">{{ item.title }}</h2>
-<<<<<<< HEAD
                   <a ng-if="item.statusdownload !== 'downloaded'" class="positive " ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px ">
                     {{ 'download2' | translate }}
                   </a>
                   <a ng-if="item.statusdownload === 'downloaded'" ng-click="openBrowser(item)" style="text-decoration:none;font-size:10px;color: grey;">
-=======
-                  <a ng-if="item.filename !== storage" class="positive " ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px ">
-                    {{ 'download2' | translate }}
-                  </a>
-                  <a ng-if="item.filename === storage" ng-click="cordova.InAppBrowser.open(item.linkfile, '_system', 'location=yes');" style="text-decoration:none;font-size:10px;color: grey;">
->>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
                     {{ 'downloaded' | translate }}
                   </a>
                 </div>
