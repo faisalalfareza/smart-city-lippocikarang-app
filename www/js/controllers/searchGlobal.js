@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('searchGlobal', searchGlobal);
 
-    function searchGlobal($scope, $rootScope, $window, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPopup, $location, $state, $stateParams, searchService, $filter) {
+    function searchGlobal($scope, $timeout, $rootScope, $window, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPopup, $location, $state, $stateParams, searchService, $filter) {
         $rootScope.searchKeyword = $stateParams.name;
         $scope.cari = searchService;
         //gallery
@@ -69,13 +69,13 @@ angular
         //tenants
         searchService.searchingTenants($stateParams.name, function(response) {
             if (response != false) {
-                $scope.detailTenants = response;
-                $scope.lengthTenants = $scope.detailTenants.length;
-                $scope.name = $stateParams.name;
-                $scope.page = 1;
-
-                console.log($scope.detailTenants.length);
-
+                $timeout(function(){ 
+                    $scope.detailTenants = response;
+                    $scope.lengthTenants = $scope.detailTenants.length;
+                    $scope.name = $stateParams.name;
+                    $scope.page = 1;
+                },1000);
+                
             } else {
                 console.log('error');
             }

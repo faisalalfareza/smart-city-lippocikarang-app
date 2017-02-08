@@ -22,12 +22,16 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
+<<<<<<< HEAD
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.InAppBrowser" />
     </feature>
+=======
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+>>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
         <param name="android-package" value="org.apache.cordova.NetworkManager" />

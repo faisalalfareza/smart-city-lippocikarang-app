@@ -1,4 +1,8 @@
-<div view-title="Forum" class="modal transparent image-modal">
+<ion-view view-title="Forum">
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button class="button-clear" ng-click="myGoBack()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
         <div class="row">
             <div class="col col-50">
@@ -10,25 +14,26 @@
             </div>
         </div>
     </ion-bar>
-    <div class="itemModal transparent" style="margin-top:30%;">
-        <div style="background-color:#808080;">
+    <ion-content class="itemModal transparent" style="margin-top:30%;">
+        <div style="background-color:#DCDCDC;">
             <center>
                 <h3>{{ 'comment' | translate }}</h3>
             </center>
-            <form ng-submit="sending(comment)" ng-controller="forumComment">
+            <form name="myform" ng-submit="sending(comment)" ng-controller="forumComment">
                 <div class="row">
                     <div class="col">
                         <label class="item item-input text">
                             <textarea name="comment" placeholder="Comment" rows="10" ng-model="comment.desc" ng-required="true"></textarea>
                         </label>
+                        <span ng-show="myform.comment.$error.required"></span>
                         <br>
                         <div class="row">
-                            <button class="col-50 button button-positive" type="submit">{{ 'post' | translate }}</button>
-                            <a href="#/app/forumdetail/{{detail[0].idforums}}" class="col-50 button button-positive" type="submit">{{ 'cancel' | translate }}</button></a>
+                            <button class="col-40 button button-positive" style="margin:0.8em;" type="submit">{{ 'post' | translate }}</button>
+                            <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-40 button button-positive" type="submit">{{ 'cancel' | translate }}</button></a>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-</div>
+    </ion-content>
+</ion-view>

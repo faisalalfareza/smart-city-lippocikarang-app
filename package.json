@@ -59,9 +59,14 @@
     "cordova-plugin-file-opener2",
     "cordova-plugin-device-orientation",
     "cordova-plugin-screen-orientation",
+<<<<<<< HEAD
     "cordova-plugin-streaming-media",
     "cordova-plugin-inappbrowser",
     "twitter-connect-plugin"
+=======
+    "cordova-plugin-file-opener2@~2.0.6",
+    "cordova-plugin-device-orientation@~1.0.5"
+>>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
   ],
   "cordovaPlatforms": []
 }

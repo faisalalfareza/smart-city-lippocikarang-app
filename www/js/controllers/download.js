@@ -15,22 +15,37 @@ angular
         DownloadService.listdownloadgeneral(function(response) {
             if (response != false) {
                 $scope.datageneral = response;
+<<<<<<< HEAD
 
               $scope.openBrowser = function(item) {
                 var url = item.linkfile;
                 window.open(url, '_blank', 'location=no');
               }
+=======
+                var source = response;
+                console.log(source);
+>>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
 
                 var fileData = localStorage.added_file.split(',');
                 $scope.filedata = fileData;
 
+<<<<<<< HEAD
               $scope.datageneral.forEach(function(itemlist, indexlist, arrlist) {
+=======
+                var status = [];
+                source.forEach(function(itemlist, indexlist, arrlist) {
+>>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
                   fileData.forEach(function(itemfile, indexfile, arrfile) {
                     if (arrlist[indexlist].filename === arrfile[indexfile]) {
                       $scope.file    = arrlist[indexlist].filename;
                       $scope.storage = arrfile[indexfile];
+<<<<<<< HEAD
                       $scope.datageneral[indexlist].statusdownload = "downloaded";
 
+=======
+                      source.push(status_file + ': ' + 'downloaded');
+                      //status.push(filename + 'downloaded');
+>>>>>>> 321c14dd3d1f5a2b0d2bd75b10e15575f0ce685d
                     };
                   });
                 });

@@ -91,7 +91,10 @@ angular
         };
     }
 
-    function propertyDetail($scope, $stateParams, $ionicSlideBoxDelegate, PropertyService, $ionicLoading, $filter) {
+    function propertyDetail($scope, $timeout, $stateParams, $ionicSlideBoxDelegate, PropertyService, $ionicLoading, $filter) {
+        $scope.next = next;
+        $scope.previous = previous;
+
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
         PropertyService.retriveGetProperty($stateParams.idproperty, function(response) {
             if (response != false) {
@@ -142,6 +145,14 @@ angular
         });
         $scope.slideChanged = function() {
             $ionicSlideBoxDelegate.update();
+        };
+
+        function next() {
+            $ionicSlideBoxDelegate.next();
+        };
+
+        function previous() {
+            $ionicSlideBoxDelegate.previous();
         };
     }
 

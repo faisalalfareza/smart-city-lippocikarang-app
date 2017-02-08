@@ -1,4 +1,8 @@
-<ion-view view-title="{{categoryname}}">
+<ion-view view-title="Forum" >
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button class="button-clear" ng-click="myGoBack()">
+        </ion-nav-back-button>
+    </ion-nav-bar>
     <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
         <div class="row">
             <div class="col col-50">
@@ -10,7 +14,7 @@
             </div>
         </div>
     </ion-bar>
-    <ion-content style="margin-top:45px;">
+    <ion-content style="margin-top:45px;" class="has-footer" has-footer="true">
         <div class="contentTenant" style="margin-bottom:6%">
             <div class="row">
                 <div class="col col-75">

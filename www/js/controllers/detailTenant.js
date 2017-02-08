@@ -543,7 +543,7 @@ function entertaimentSportDetail($scope, $rootScope, $cordovaGeolocation, $state
 }
 
 
-function entertaimentSportDetailImage($scope, $stateParams, $location, $ionicSlideBoxDelegate, $ionicLoading, TenantService) {
+function entertaimentSportDetailImage($timeout,$scope, $stateParams, $location, $ionicSlideBoxDelegate, $ionicLoading, TenantService) {
     //$ionicLoading.show({ template: 'Loading ...' });
 
     TenantService.retriveGetTenantImage($stateParams.idtenant, function(response) {
