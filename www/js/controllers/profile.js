@@ -11,7 +11,7 @@ angular
     function elapsed() {
         return function (date) {
             if (!date) return;
-                
+
                 var time = Date.parse(date.replace(' ', 'T'));
                 timeNow = new Date().getTime();
                 difference = timeNow - time;
@@ -20,17 +20,17 @@ angular
                 hours = Math.floor(minutes / 60);
                 days = Math.floor(hours / 24);
 
-            if (days > 1) 
+            if (days > 1)
                 return days + " days";
-            
-            if (hours > 1) 
+
+            if (hours > 1)
                 return hours + " h";
-             
-            if (minutes > 1) 
+
+            if (minutes > 1)
                 return minutes + " m";
 
                 return "a few seconds ago";
-            
+
         }
     }
 
@@ -158,7 +158,7 @@ angular
                             template: $filter('translate')('remove_favorite_success'),
                             duration: 5000
                         });
-                        listnotifService();                  
+                        listnotifService();
                     } else {
                         $ionicLoading.show({
                             template: $filter('translate')('remove_favorite_failed'),
@@ -240,7 +240,7 @@ angular
 
                 results = dat.idnotif;
                 $scope.idku = results;
-                
+
                 Notification.updateNotif(results, function (response) {
                     if (response != false) {
                         $ionicLoading.show({
@@ -252,7 +252,7 @@ angular
                         $ionicLoading.show({
                             template: $filter('translate')('msg_update_failed'),
                             duration: 5000
-                        });                    
+                        });
                         listnotifService();
                     }
                 });
@@ -337,7 +337,7 @@ angular
                 var avatarupdate = user.avatar;
                 // user.avatar avatar lama
             } else {
-                var url = "http://innodev.vnetcloud.com/LiveInWeb/assets/img/upload_file_avatar.php";
+                var url = encodeURI("http://innodev.vnetcloud.com/LiveInWeb/assets/img/upload_file_avatar.php");
                 var targetPath = $scope.pathForImage($scope.image); // File for Upload
 
                 var options = {
@@ -353,6 +353,44 @@ angular
                         // $scope.showAlert('Success', 'Image upload finished.');
                         console.log("Image upload finished");
                     });
+
+                /*
+                  alert("Upload File: " + targetPath);
+
+                  function win(r) {
+                    alert("Code = " + r.responseCode);
+                    alert("Response = " + r.response);
+                    alert("Sent = " + r.bytesSent);
+                  }
+
+                  function fail(error) {
+                    alert("upload error source " + error.source);
+                    alert("upload error target " + error.target);
+                  }
+
+                  var uri = encodeURI(url);
+
+                  var options = new FileUploadOptions();
+                  options.fileKey     = "file";
+                  options.mimeType    = "text/plain";
+                  options.fileName    = filename;
+                  options.chunkedMode = false;
+                  options.params      = { 'fileName': filename };
+
+                  var headers = {
+                    'from': 'ios-app'
+                  };
+                  options.headers = headers;
+                  var ft = new FileTransfer();
+
+                  ft.upload(targetPath, uri, win, fail, options).then(function (result) {
+                    // $scope.showAlert('Success', 'Image upload finished.');
+                    console.log("Image upload finished");
+                    alert('bisa keupload coy')
+                  });
+
+              */
+
                 var avatarupdate = "http://innodev.vnetcloud.com/LiveInWeb/assets/img/account/" + filename;
                 // var avatarupdate = "http://192.168.0.13/jihan/uploads/" + filename;
             }
@@ -400,25 +438,33 @@ angular
 
         // The rest of the app comes in here
         // Present Actionsheet for switch beteen Camera / Library
-        $scope.loadImage = function () {
-            var options = {
-                title: $filter('translate')('select_image_source'),
-                buttonLabels: [$filter('translate')('load_from_library'), $filter('translate')('use_camera')],
-                addCancelButtonWithLabel: $filter('translate')('cancel'),
-                androidEnableCancelButton: true,
+          $scope.loadImage = function () {
+            var callback = function(buttonIndex) {
+              setTimeout(function() {
+                alert('button index clicked: ' + buttonIndex);
+              });
             };
-            $cordovaActionSheet.show(options).then(function (btnIndex) {
-                var type = null;
-                if (btnIndex === 1) {
-                    type = Camera.PictureSourceType.PHOTOLIBRARY;
-                } else if (btnIndex === 2) {
-                    type = Camera.PictureSourceType.CAMERA;
-                }
-                if (type !== null) {
-                    $scope.selectPicture(type);
-                }
-            });
-        };
+
+            var options = {
+              title: $filter('translate')('select_image_source'),
+              buttonLabels: [$filter('translate')('load_from_library'), $filter('translate')('use_camera')],
+              addCancelButtonWithLabel: $filter('translate')('cancel'),
+              androidEnableCancelButton: true,
+              winphoneEnableCancelButton: true,
+              destructiveButtonLast: true
+            };
+             $cordovaActionSheet.show(options, callback).then(function (btnIndex) {
+             var type = null;
+             if (btnIndex === 1) {
+             type = Camera.PictureSourceType.PHOTOLIBRARY;
+             } else if (btnIndex === 2) {
+             type = Camera.PictureSourceType.CAMERA;
+             }
+             if (type !== null) {
+             $scope.selectPicture(type);
+             }
+             });
+          };
 
         $scope.selectPicture = function (sourceType) {
             var options = {
@@ -431,7 +477,7 @@ angular
             $cordovaCamera.getPicture(options).then(function (imagePath) {
                 // Grab the file name of the photo in the temporary directory
                 var currentName = imagePath.replace(/^.*[\\\/]/, '');
-
+                alert(currentName);
                 //Create a new name for the photo
                 var d = new Date(),
                     n = d.getTime(),
@@ -451,6 +497,7 @@ angular
                             $cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName)
                                 .then(function (success) {
                                     $scope.image = newFileName;
+
                                 }, function (error) {
                                     $scope.showAlert('Error', error.exception);
                                 });
@@ -488,7 +535,7 @@ angular
     function myhistory($scope, $stateParams, $localStorage, $ionicLoading, HistoryService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
         $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
-        
+
         HistoryService.listHistory($stateParams.idaccount, function (response) {
             if (response != false) {
                 $scope.data = response;
