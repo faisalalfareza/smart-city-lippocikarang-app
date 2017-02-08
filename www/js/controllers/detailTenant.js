@@ -4,11 +4,13 @@ angular
     .controller('tenantMap', tenantMap)
     .controller('sportDetailImage', entertaimentSportDetailImage);
 
-function entertaimentSportDetail($scope, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
+function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
 
     $scope.MapClick = gotoMap;
     $scope.Bookmark = setbookmark;
-
+    $scope.myGoBack = function() {
+        $ionicHistory.goBack();
+    };
     TenantService.retriveGetTenant($stateParams.idtenant, function(response) {
         if (response != false) {
 
