@@ -4,7 +4,7 @@
             <li style="padding:22px">
                 <div ng-if="Tr == 'en'" class="moreDivParent">
                     <div class="row" ng-click="klikLang()">
-                        <img class="col-5" style="width:1.5em;" src="img/rounded_flag_ina.png">
+                        <img class="col-5" style="width:1.5em;height: 1.5em;" src="img/rounded_flag_ina.png">
                         <div class="col-15"></div>
                         <div class="col-75" style="margin-left: 3em;">
                             <p>{{'BUTTON_TEXT_EN' | translate}}</p>
@@ -26,7 +26,7 @@
                 </div>
                 <div ng-if="Tr == 'ina'" class="moreDivParent">
                     <div class="row" ng-click="klikLang()">
-                        <img class="col-5" style="height: 1.5em;" src="img/rounded_flag_ina.png">
+                        <img class="col-5" style="height: 1.5em;width: 1.5em;" src="img/rounded_flag_ina.png">
                         <div class="col-15"></div>
                         <div class="col-75" style="margin-left: 3em;">
                             <p>{{'BUTTON_TEXT_DE' | translate}}</p>
@@ -52,7 +52,7 @@
             <li class="item item-toggle">
                 <div class="row">
                     <div class="col col-20">
-                        <img src="img/ic_notification.png" width="50px"> 
+                        <img src="img/ic_notification.png" width="50px">
                     </div>
                     <div class="col col-80">
                         <p style="font-size:17px; padding-left:20px">{{ 'notification' | translate }}</p>
@@ -70,7 +70,7 @@
             <li class="item item-toggle">
                 <div class="row">
                     <div class="col col-20">
-                        <img src="img/ic_sound.png" width="50px"> 
+                        <img src="img/ic_sound.png" width="50px">
                     </div>
                     <div class="col col-80">
                         <p style="font-size:17px; padding-left:20px">{{ 'sound' | translate }}</p>
@@ -85,6 +85,6 @@
                 </div>
             </li>
         </ul>
-    
+
     </ion-content>
 </ion-view>
