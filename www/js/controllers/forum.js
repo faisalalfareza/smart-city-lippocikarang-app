@@ -49,7 +49,6 @@ angular
         ForumService.listforum($stateParams.status, function(response) {
             if (response != false) {
                 $scope.data = response
-                console.log($scope.data);
             } else {
                 $scope.data = [{ name: $filter('translate')('no_property') }]
             }
@@ -57,9 +56,13 @@ angular
         })
     }
 
-    function forumdetail($scope, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
+    function forumdetail($scope,  $ionicHistory, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet, $cordovaImagePicker) {
         $scope.account = $localStorage.currentUser.data[0].idaccount
+
+        $scope.myGoBack = function() {
+            $ionicHistory.goBack();
+        };
 
         ForumService.forumdetail(function(response) {
             if (response != false) {
@@ -67,6 +70,7 @@ angular
                     $scope.detail = value[0]
                 })
                 $scope.detail = response.detail[0]
+                $scope.title = $scope.detail.title;
                 $scope.comment = response.comment
                 $scope.galleryforums = response.galleryforums
             } else {
@@ -374,12 +378,14 @@ angular
     }
 
     function topic($timeout, $scope, $state, ForumService, $ionicLoading, $location,
-        $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $ionicPopup, $cordovaActionSheet, $cordovaImagePicker) {
+        $cordovaCamera, $cordovaFile, $ionicHistory, $cordovaFileTransfer, $cordovaDevice, $ionicPopup, $cordovaActionSheet, $cordovaImagePicker) {
         $scope.newforum = newForum;
         $scope.images = [];
         $scope.checking = false;
         $scope.gambar = [];
-
+        $scope.myGoBack = function() {
+            $ionicHistory.goBack();
+        };
         function newForum(data) {
 
             // $ionicLoading.show({ template: 'Loading...' })
@@ -467,6 +473,9 @@ angular
     }
 
     function forumComment($scope, $state, $stateParams,$window, $ionicHistory, $ionicPopup, $location, ForumService, $ionicLoading, $filter) {
+        $scope.myGoBack = function() {
+            $ionicHistory.goBack();
+        };
         ForumService.forumdetail(function(response) {
             if (response != false) {
                 angular.forEach(response.detail, function(value, key) {
