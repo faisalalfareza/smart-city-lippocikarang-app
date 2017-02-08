@@ -98,7 +98,7 @@
             <div>
                 <div class="row">
                     <div class="col col-25"> Website </div>
-                    <div class="col col-75"> <a href="{{d.website}}">{{d.website}}</a></div>
+                    <div class="col col-75"> <a ng-click="cordova.InAppBrowser.open(d.website, '_system', 'location=yes');">{{d.website}}</a></div>
                 </div>
             </div>
 

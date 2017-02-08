@@ -2,8 +2,10 @@ angular
   .module('livein')
   .controller('invitefriend', invitefriend);
 
-  function invitefriend($scope, $cordovaSocialSharing, $cordovaInAppBrowser) {
-
+  function invitefriend($scope, $ionicHistory, $cordovaSocialSharing, $cordovaInAppBrowser) {
+    $scope.myGoBack = function() {
+            $ionicHistory.goBack();
+        };
     $scope.sharefacebook = sharefacebook;
     $scope.sharemessage = sharemessage;
     $scope.sharewhatsapp = sharewhatsapp;

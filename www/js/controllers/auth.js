@@ -2,7 +2,7 @@
         .module('livein')
         .controller('login', login);
 
-        function login($scope, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, $filter) {
+        function login($scope, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, $filter) {
             $scope.data = {};
             $scope.credentials = loginManualService;
             $scope.facebook_auth = facebookAuth;
@@ -27,14 +27,32 @@
                         function(response) {
                             if (response[0].status == true) {
                                 $scope.users = response;
-                                $state.go('app.main');
+                                //$state.go('app.main');
                                 $ionicLoading.hide();
+
+                                var authPopup = $ionicPopup.confirm({
+                                    template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
+                                    okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
+                                    cssClass: "alertPopup"
+                                });
+                                authPopup.then(function(res) {
+                                    if (res) {
+                                        $state.go('app.main');
+                                        $window.location.reload();
+                                    } else {
+                                        console.log('cancel');
+                                    }
+                                });
+
+                                /*//$scope.showAlert = function() {
                                 var alertPopup = $ionicPopup.alert({
                                     template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
                                     okText: $filter('translate')('okay'),
                                     okType: "button-stable",
                                     cssClass: "alertPopup"
                                 });
+                                //}*/
                             } else {
                                 $ionicLoading.show({
                                     template: response[0].messages,
