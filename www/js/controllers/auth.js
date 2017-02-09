@@ -2,7 +2,7 @@
         .module('livein')
         .controller('login', login);
 
-        function login($scope, $ionicModal, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, $filter) {
+        function login($scope, $ionicModal, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter) {
             $scope.data = {};
             $scope.credentials = loginManualService;
             $scope.facebook_auth = facebookAuth;
@@ -57,6 +57,9 @@
             }
 
             function AdsAfterLogin() {
+              AdvertiseService.listAds(function(response) {
+                    var list = response;
+                    console.log('list -> ' + list);
 
                     $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
                         scope: $scope,
@@ -65,17 +68,16 @@
                         $scope.adsAfterLogin = loginAds;
 
                         setTimeout(function() {
-                          $scope.adsAfterLogin.show(); 
+                          $scope.adsAfterLogin.show();
+                          $scope.size = "fullmodal"; 
                         }, 2500);
 
                     }).finally(function() { 
                         $scope.closeAds = function() {
                             $scope.adsAfterLogin.hide();
                         };           
-                    });
-
-                        
-                      
+                    }); 
+              });  
             }               
 
             // Facebook Auth

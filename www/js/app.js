@@ -1504,17 +1504,15 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
                 PushNotifications();
 
                 // Push advertise with timeout
-                /*
                 setTimeout(function() {
-                    clearInterval(pushTime);
-                    var stylesTpl="<style> .sizing { height:" + 30 + "%; } </style>"; 
-                    angular.element(document).find(".itemModal.advertisement").append(stylesTpl);                    
+                    clearInterval(pushTime);                  
                     PushAdvertise();
+
                     //$('.itemModal.advertisement').css("height", "30%");
                     //angular.element(document.querySelector('.itemModal.advertisement')).css("height", "30%");
                     //angular.element(document.querySelector("#sizing"))[0].style.height = "30%";
+
                 }, 2500);
-                */
 
             }
         }, 5000);
@@ -1558,8 +1556,8 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
 
         function PushAdvertise() {
             AdvertiseService.listAds(function(response) {
-                var list = response;
-                console.log('listAds : ' + list);
+                // var list = response;
+                // console.log(list);
 
                 $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
                     id: 1,
