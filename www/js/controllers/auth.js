@@ -65,17 +65,15 @@
                         $scope.adsAfterLogin = loginAds;
 
                         setTimeout(function() {
-                          $scope.adsAfterLogin.show(); 
+                          $scope.adsAfterLogin.show();
+                          $scope.size = "fullmodal"; 
                         }, 2500);
 
                     }).finally(function() { 
                         $scope.closeAds = function() {
                             $scope.adsAfterLogin.hide();
                         };           
-                    });
-
-                        
-                      
+                    });   
             }               
 
             // Facebook Auth

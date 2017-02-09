@@ -1,11 +1,9 @@
 <div class="modal transparent image-modal advertisement">
 
-    <div id="sizing" class="itemModal advertisement">
+    <div id="sizing" class="itemModal advertisement {{size}}">
         <button class="button button-icon icon ion-ios-close" ng-click="closeAds()" style="position:absolute;z-index:3;color:rgba(236, 240, 241, 0.3);right:0;"></button>
         <ion-slide-box on-slide-changed="slideChanged(index)" auto-play="true" does-continue="true" slide-interval="2000" show-pager="false" style="padding:0;">
-            <ion-slide style="padding:0;"> <img ng-src="img/1.png"> </ion-slide>
-            <ion-slide style="padding:0;"> <img ng-src="img/2.png"> </ion-slide>
-            <ion-slide style="padding:0;"> <img ng-src="img/3.png"> </ion-slide>
+            <ion-slide style="padding:0;"> <img ng-src="img/ads.jpg"> </ion-slide>
         </ion-slide-box>
     </div>
 

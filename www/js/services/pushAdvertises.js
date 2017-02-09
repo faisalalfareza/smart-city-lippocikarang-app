@@ -14,16 +14,17 @@ angular
 
             var req = {
                     method: 'GET',
-                    headers: headers,
                     url: 'http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100'
                 }
 
             $http(req)
                 .success(function(response) {
-                    callback(response);
+                    callback(true);
+                    console.log(true);
                 })
                 .error(function() {
                     callback(false);
+                    console.log(false);
                 });
         }        
 
