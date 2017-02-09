@@ -78,7 +78,7 @@ angular
         };
     };
 
-      function cctvFull($scope, $ionicModal,$ionicHistory, $ionicSlideBoxDelegate, $timeout, $stateParams, cctv) {
+      function cctvFull($scope, $ionicModal , $sce,$ionicHistory, $ionicSlideBoxDelegate, $timeout, $stateParams, cctv) {
         cctv.cctvList(function(response) {
           if (response != false) {
             $scope.detail = response;
@@ -111,7 +111,7 @@ angular
                   $scope.bahasa = $sce.trustAsResourceUrl(uri + "9999");
                 }
 
-              var videoUrl = $scope.bahasa;
+              /*var videoUrl = $scope.bahasa;
 
               var options = {
               bgColor: "#000",
@@ -126,7 +126,7 @@ angular
               },
               orientation: 'landscape'
             };
-            StreamingMedia(videoUrl, options);
+            StreamingMedia(videoUrl, options);*/
 
             //$scope.video = StreamingMedia.(videoUrl, options);
           }
