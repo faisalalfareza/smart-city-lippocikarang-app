@@ -1,8 +1,8 @@
 <ion-view view-title="CCTV">
   <ion-slide-box show-pager="false">
     <ion-slide>
-      <ion-content has-header="true" has-footer="true" overflow-scroll="true">
-      <div class="photoGallery" style="margin-top: 10vh;margin-bottom: 2vh;">
+      <ion-content overflow-scroll="true">
+      <div class="photoGallery" style="margin-top: 5vh;margin-bottom: 2vh;">
         <h3 class="topTitle">{{name}}</h3>
         <iframe src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;" allowfullscreen></iframe>
 
@@ -15,7 +15,7 @@
         <center><div class="row" style="margin-top:21%;margin-bottom: 15%; position: absolute;">
         <div class="row">
           <div class = "col-25">
-            <a ng-href="#/app/cctvFull/{index}"> <!--ng-click="playFull()"-->
+            <a ng-href="#/app/cctvFull/{{port}}"> <!--ng-click="playFull()"-->
                 <img src="img/cctv/icon_t_fullscreen.png" style="width:50%;height:auto; margin: 0;">
             </a>
           </div>

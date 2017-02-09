@@ -6,6 +6,7 @@ angular
 
     // Called to navigate to the main app
     $ionicPlatform.ready(function () {
+      screen.lockOrientation('portrait');
       if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
           cordova.plugins.diagnostic.isLocationEnabled(function (enabled) {
           if(enabled == true){
