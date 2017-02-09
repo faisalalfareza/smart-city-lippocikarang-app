@@ -1500,12 +1500,12 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
         var pushTime = setInterval(function() {
             if ($localStorage.currentUser != null) {
 
-                // Push Notifications 
+                // Push Notifications
                 PushNotifications();
 
                 // Push advertise with timeout
                 setTimeout(function() {
-                    clearInterval(pushTime);                  
+                    clearInterval(pushTime);
                     PushAdvertise();
 
                     //$('.itemModal.advertisement').css("height", "30%");
@@ -1556,8 +1556,7 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
 
         function PushAdvertise() {
             AdvertiseService.listAds(function(response) {
-                // var list = response;
-                // console.log(list);
+                var list = response;
 
                 $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
                     id: 1,
@@ -1569,9 +1568,12 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
                     inherit: true
                 }).then(function(advertise) {
                     $rootScope.adsModal = advertise;
+                    $rootScope.listAds = list;
+                    console.log($rootScope.listAds);
                     $rootScope.$broadcast('adsModal:showModal');
+                    $rootScope.size = "fullmodal";
                 }).finally(function() {
-                    $rootScope.$broadcast('loading:hide');           
+                    $rootScope.$broadcast('loading:hide');
                 });
 
                 $rootScope.closeAds = function() {
@@ -1594,13 +1596,13 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
                         console.log('Hiding adsModal');
                         $rootScope.adsModal.hide();
                     }
-                });  
+                });
 
                 $rootScope.$on('$destroy', function() {
                     console.log('Destroy adsModal');
                     $rootScope.adsModal.remove();
-                });                              
-                  
+                });
+
             });
         }
 

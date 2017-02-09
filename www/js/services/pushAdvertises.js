@@ -4,7 +4,7 @@ angular
 
     function AdvertiseService($http) {
         var service = {};
-        
+
         service.listAds = listAds;
 
         return service;
@@ -15,16 +15,15 @@ angular
                     method: "GET",
                     url: rqs
                 }
-     
+
             $http(req)
                 .success(function(response) {
-                    console.log(response);
-                    callback(true);
+                    callback(response);
                 })
                 .error(function(response) {
                     console.log(response);
                     callback(false);
                 });
-        }        
+        }
 
     }
