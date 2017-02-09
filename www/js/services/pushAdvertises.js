@@ -4,27 +4,26 @@ angular
 
     function AdvertiseService($http) {
         var service = {};
+        
         service.listAds = listAds;
+
         return service;
 
         function listAds(callback) {
-            var headers = {
-                'Access-Control-Allow-Origin' : '*'
-            };
-
+            var rqs = "http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100";
             var req = {
-                    method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100'
+                    method: "GET",
+                    url: rqs
                 }
-
+     
             $http(req)
                 .success(function(response) {
+                    console.log(response);
                     callback(true);
-                    console.log(true);
                 })
-                .error(function() {
+                .error(function(response) {
+                    console.log(response);
                     callback(false);
-                    console.log(false);
                 });
         }        
 
