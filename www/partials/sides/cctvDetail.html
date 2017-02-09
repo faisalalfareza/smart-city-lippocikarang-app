@@ -1,4 +1,8 @@
-<ion-view view-title="CCTV">
+<ion-view cache-view="false" view-title="CCTV">
+  <ion-nav-bar class="bar bar-positive bar-custom" style="background-color: #0081c9;">
+    <ion-nav-back-button class="button-clear" ng-click="myGoBack()">
+    </ion-nav-back-button>
+  </ion-nav-bar>
   <ion-slide-box show-pager="false">
     <ion-slide>
       <ion-content overflow-scroll="true">
@@ -8,9 +12,11 @@
 
         <br>
         <div class="row" style="margin-top:8%;margin-bottom: 15%; position: absolute;">
-          <a class="col-20" ng-click=""><i class="ion-chevron-left" style="color:blue;"></i></a>
+          <a ng-if="gall != min" class="col-20" ng-href="#/app/cctvDetail/{{gall - (1)}}"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall == min" class="col-20"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
           <a class="col-60"></a>
-          <a class="col-20" ng-click=""><i class="ion-chevron-right" style="color:blue;"></i></a>
+          <a ng-if="gall != max" class="col-20" ng-href="#/app/cctvDetail/{{gall - (-1)}}"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall == max" class="col-20"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
         </div>
         <center><div class="row" style="margin-top:21%;margin-bottom: 15%; position: absolute;">
         <div class="row">

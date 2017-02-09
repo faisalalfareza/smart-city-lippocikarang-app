@@ -3,14 +3,19 @@ angular
     .controller('cctvFull', cctvFull)
     .controller('cctvDetail', cctvDetail);
 
-    function cctvDetail($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, $ionicHistory, $ionicModal, cctv, $filter, $sce) {
+    function cctvDetail($scope, $state, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, $ionicHistory, $ionicModal, cctv, $filter, $sce) {
       //alert('Orientation is ' + JSON.stringify(screen.orientation));
+      $scope.myGoBack = function() {
+        $state.go('app.cctvList');
+      };
       $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         cctv.cctvList(function(response) {
             if (response != false) {
                 $scope.detail = response;
                 var gall = $stateParams.index;
                 $scope.gall = gall;
+                $scope.max = 9;
+                $scope.min = 0;
 
                 //$scope.listDetail = $scope.detail[gall].link;
 
