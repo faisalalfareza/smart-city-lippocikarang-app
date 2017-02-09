@@ -23,8 +23,8 @@ function currency($scope, currencyService, $ionicLoading, $localStorage, $filter
 
     $scope.flag = [
         'img/currency/flag_of_australia.png',
-        'img/currency/flag_of_brazil.png',
         'img/currency/flag_of_bulgaria.png',
+        'img/currency/flag_of_brazil.png',
         'img/currency/flag_of_canada.png',
         'img/currency/flag_of_switzerland.png',
         'img/currency/flag_of_china.png',
@@ -152,8 +152,11 @@ function currency($scope, currencyService, $ionicLoading, $localStorage, $filter
             'index': $scope.selectedItems,
             'flag1': $scope.flag[$scope.selectedItems[0]],
             'rate1': $scope.rate[$scope.selectedItems[0]],
+            'cur1': $scope.currency[$scope.selectedItems[0]],
             'flag2': $scope.flag[$scope.selectedItems[1]],
-            'rate2': $scope.rate[$scope.selectedItems[1]]
+            'rate2': $scope.rate[$scope.selectedItems[1]],
+            'cur2': $scope.currency[$scope.selectedItems[1]]
+
 
         }
         $localStorage.currency = { currency: currencymain };
