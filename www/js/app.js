@@ -1439,7 +1439,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
 }
 
-function run($ionicPlatform, $rootScope, $timeout, $location, $filter, $localStorage, ngFB, $cordovaLocalNotification, NotifAccountService) {
+function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filter, $localStorage, ngFB, $cordovaLocalNotification, NotifAccountService, AdvertiseService) {
 
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
@@ -1497,10 +1497,25 @@ function run($ionicPlatform, $rootScope, $timeout, $location, $filter, $localSto
         }
 
         // Push Notification
-
-        setInterval(function() {
+        var pushTime = setInterval(function() {
             if ($localStorage.currentUser != null) {
+
+                // Push Notifications 
                 PushNotifications();
+
+                // Push advertise with timeout
+                /*
+                setTimeout(function() {
+                    clearInterval(pushTime);
+                    var stylesTpl="<style> .sizing { height:" + 30 + "%; } </style>"; 
+                    angular.element(document).find(".itemModal.advertisement").append(stylesTpl);                    
+                    PushAdvertise();
+                    //$('.itemModal.advertisement').css("height", "30%");
+                    //angular.element(document.querySelector('.itemModal.advertisement')).css("height", "30%");
+                    //angular.element(document.querySelector("#sizing"))[0].style.height = "30%";
+                }, 2500);
+                */
+
             }
         }, 5000);
 
@@ -1538,6 +1553,56 @@ function run($ionicPlatform, $rootScope, $timeout, $location, $filter, $localSto
                     console.log('Tidak ada notif baru ..');
                 }
 
+            });
+        }
+
+        function PushAdvertise() {
+            AdvertiseService.listAds(function(response) {
+                var list = response;
+                console.log('listAds : ' + list);
+
+                $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
+                    id: 1,
+                    scope: $rootScope,
+                    animation: 'slide-in-up',
+                    backdropClickToClose: true,
+                    showBackdrop: true,
+                    notify: true,
+                    inherit: true
+                }).then(function(advertise) {
+                    $rootScope.adsModal = advertise;
+                    $rootScope.$broadcast('adsModal:showModal');
+                }).finally(function() {
+                    $rootScope.$broadcast('loading:hide');           
+                });
+
+                $rootScope.closeAds = function() {
+                    $rootScope.$broadcast('adsModal:hideModal');
+                };
+
+                $rootScope.$on('adsModal:showModal', function() {
+                    if(!$rootScope.adsModal) {
+                        console.log('adsModal is not yet defined');
+                    } else {
+                        console.log('Attempting to show adsModal');
+                        $rootScope.adsModal.show();
+                    }
+                });
+
+                $rootScope.$on('adsModal:hideModal', function() {
+                    if(!$rootScope.adsModal) {
+                        console.log('Cannot hide adsModal');
+                    } else {
+                        console.log('Hiding adsModal');
+                        $rootScope.adsModal.hide();
+                    }
+                });  
+
+                $rootScope.$on('$destroy', function() {
+                    console.log('Destroy adsModal');
+                    $rootScope.adsModal.remove();
+                });                              
+                  
             });
         }
 

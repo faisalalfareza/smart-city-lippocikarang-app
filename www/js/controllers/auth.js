@@ -2,7 +2,7 @@
         .module('livein')
         .controller('login', login);
 
-        function login($scope, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, $filter) {
+        function login($scope, $ionicModal, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, $filter) {
             $scope.data = {};
             $scope.credentials = loginManualService;
             $scope.facebook_auth = facebookAuth;
@@ -14,7 +14,7 @@
             function initController() {
                 // reset login status
                 LoginService.logoutUser();
-            };
+            };         
 
             // Login By Credentials
             function loginManualService(data) {
@@ -36,15 +36,9 @@
                                     okType: "button-stable",
                                     cssClass: "alertPopup"
                                 });
+              
+                                AdsAfterLogin();
 
-                                /*//$scope.showAlert = function() {
-                                var alertPopup = $ionicPopup.alert({
-                                    template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
-                                    okText: $filter('translate')('okay'),
-                                    okType: "button-stable",
-                                    cssClass: "alertPopup"
-                                });
-                                //}*/
                             } else {
                                 $ionicLoading.show({
                                     template: response[0].messages,
@@ -61,6 +55,28 @@
                 }
 
             }
+
+            function AdsAfterLogin() {
+
+                    $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
+                        scope: $scope,
+                        animation: 'slide-in-up'
+                    }).then(function(loginAds) {
+                        $scope.adsAfterLogin = loginAds;
+
+                        setTimeout(function() {
+                          $scope.adsAfterLogin.show(); 
+                        }, 2500);
+
+                    }).finally(function() { 
+                        $scope.closeAds = function() {
+                            $scope.adsAfterLogin.hide();
+                        };           
+                    });
+
+                        
+                      
+            }               
 
             // Facebook Auth
             function facebookAuth() {
@@ -294,7 +310,6 @@
 
           function getloginfacebook () {
 
-
             facebookConnectPlugin.login(["public_profile", "email", "user_birthday"], function onSucces(result) {
 
               facebookConnectPlugin.api("me" + "/?fields=id,email,gender,birthday,name", null,
@@ -316,8 +331,5 @@
               });
             });
           }
-
-
-
 
         }
