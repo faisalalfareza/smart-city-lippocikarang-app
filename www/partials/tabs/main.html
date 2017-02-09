@@ -1,4 +1,4 @@
-<ion-view view-title="LippoCikarang.com" style="background-color:#ecf0f1" cache-view="false">
+<ion-view view-title="{{'app_name' | translate}}" style="background-color:#ecf0f1" cache-view="false">
     <ion-content>
 
         <div class="row" ng-controller="weather" style="position:relative;background-color:#fff;align-items:center;height:2.5em">
@@ -69,7 +69,7 @@
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col col-50">
                 <a class="button button-assertive" ng-click="openTalkto()" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0">
-                    <img src="img/talkToUs/icon_talktous.png" style="width:23%">
+                    <img src="img/talkToUs/icon_talktous.png" style="width:20%;padding-right:5%;">
                     <strong>Talk</strong>toUs
                 </a>
             </div>
@@ -78,7 +78,7 @@
                     <strong>{{'discount' | translate}}</strong>{{'coupon' | translate}}
                 </a>
             </div>
-        </div>
+        </div>      
 
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col" ng-click="gotocurrency()" ng-controller="currencymain" style="background-color:#fff;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border-radius: 15px">
@@ -123,7 +123,7 @@
 
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col" style="display:flex;align-items:flex-end">
-                <p style="font-size:small;margin-bottom:5%">LippoCikarang.com</p>
+                <p style="font-size:small;margin-bottom:5%">{{'app_name' | translate}}</p>
             </div>
             <div class="col">
                 <img ng-click="gotoyoutbe()" src="img/youtube_main.png" style="width:22%">

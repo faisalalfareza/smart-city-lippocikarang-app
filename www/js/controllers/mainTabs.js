@@ -23,32 +23,33 @@ angular
             $ionicLoading.hide();
         });
 
+        //modal talkToUs 
         $ionicModal.fromTemplateUrl('partials/sides/talktoUs.html', {
             scope: $scope
         }).then(function(modal) {
             $scope.modal = modal;
         });
-
-        $ionicModal.fromTemplateUrl('partials/sides/whatsNewModal.html', {
-            scope: $scope
-        }).then(function(modalSlider) {
-            $scope.modalSlider = modalSlider;
-        });
-
+        
         $scope.openTalkto = function(index) {
             $scope.modal.show();
-        };
-
-        $scope.openModal = function(list) {
-            $scope.list = list;
-            $scope.modalSlider.show();
         };
 
         $scope.closeModal = function() {
             $scope.modal.hide();
             $scope.modalSlider.hide();
         };
+        
+        //modal slider on main
+        $ionicModal.fromTemplateUrl('partials/sides/whatsNewModal.html', {
+            scope: $scope
+        }).then(function(modalSlider) {
+            $scope.modalSlider = modalSlider;
+        });
 
+        $scope.openModal = function(list) {
+            $scope.list = list;
+            $scope.modalSlider.show();
+        };
 
         $scope.closeModalSlider = function() {
             $scope.modalSlider.hide();
