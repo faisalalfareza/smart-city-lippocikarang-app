@@ -1,7 +1,42 @@
-<ion-view view-title="CCTV">
-  <ion-content overflow-scroll="true">
-    <iframe src="{{bahasa}}" style="border: 0; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%" allowfullscreen></iframe>
+<ion-view hide-nav-bar="true" cache-view="false" hide-tabs>
+  <ion-content>
+      <div align="left" style="position: absolute;margin-left: -17em;margin-top: 2em;margin-bottom:2em;" class="row responsive-md">
+        <div align="center" style="position: relative;">
+          <div class="col-100">
+            <a>
+              <img src="img/cctv/icon_f_fullscreen.png" style="width:7%;height:auto; margin: 0;">
+            </a>
+          </div>
+          <div class="col-100">
+            <h3 style="font-size:10px;color:white;">Full Screen</h3>
+          </div>
+          <div class="col-100">
+            <a ng-click="potraitTheater()"> <!--ng-click="playFull()"-->
+              <img src="img/cctv/icon_f_theater.png" style="width:7%;height:auto; margin: 0;">
+            </a>
+          </div>
+          <div class="col-100">
+            <h3 style="font-size:10px;color:white;">Theater</h3>
+          </div>
+          <div class="col-100">
+            <a ng-click="potraitMulti()"> <!--ng-click="playFull()"-->
+              <img src="img/cctv/icon_t_multi.png" style="width:7%;height:auto; margin: 0;">
+            </a>
+          </div>
+          <div class="col-100">
+            <h3 style="font-size:10px;color:white;">Multi</h3>
+          </div>
+          <div class="col-100">
+            <a ng-click="potrait()" > <!-- ng-href="#/app/cctvList" ng-click="playFull()"-->
+              <img src="img/cctv/icon_t_list.png" style="width:7%;height:auto; margin: 0;">
+            </a>
+          </div>
+          <div class="col-100">
+            <h3 style="font-size:10px;color:white;">List</h3>
+          </div>
+        </div>
+      </div>
+
+    <iframe src="{{port}}" style="margin:0;width: 100vw;height: 100vh;" allowfullscreen></iframe>
   </ion-content>
 </ion-view>
-<ion-content>
-</ion-content>

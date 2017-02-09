@@ -179,7 +179,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvFull', {
-            url: "/cctvFull/{index}",
+            url: "/cctvFull/:port",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/cctvFull.html",
@@ -1467,7 +1467,7 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
     });
 
     $rootScope.$on("$ionicView.beforeEnter", function() {
-        if ($location.path() == "/app/bus" || $location.path().substr(0, 17) == "/app/tenantDetail") {
+        if ($location.path() == "/app/bus" || $location.path().substr(0, 17) == "/app/tenantDetail" || $location.path().substr(0, 13) == "/app/cctvFull") {
             $rootScope.tab = false;
         } else {
             $rootScope.tab = true;
