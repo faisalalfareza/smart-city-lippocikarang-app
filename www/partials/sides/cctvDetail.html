@@ -1,48 +1,59 @@
 <ion-view view-title="CCTV">
   <ion-slide-box show-pager="false">
     <ion-slide>
+      <ion-content has-header="true" has-footer="true" overflow-scroll="true">
       <div class="photoGallery" style="margin-top: 10vh;margin-bottom: 2vh;">
         <h3 class="topTitle">{{name}}</h3>
-        <iframe src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;"></iframe>
+        <iframe src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;" allowfullscreen></iframe>
 
         <br>
-        <div class="row" style="margin-top:13%;margin-bottom: 15%; position: absolute;">
-          <a class="col-50" ng-click=""><i class="ion-chevron-left" style="color:blue;"></i></a>
-          <a class="col-50" ng-click=""><i class="ion-chevron-right" style="color:blue;"></i></a>
+        <div class="row" style="margin-top:8%;margin-bottom: 15%; position: absolute;">
+          <a class="col-20" ng-click=""><i class="ion-chevron-left" style="color:blue;"></i></a>
+          <a class="col-60"></a>
+          <a class="col-20" ng-click=""><i class="ion-chevron-right" style="color:blue;"></i></a>
         </div>
-        <center><div class="row" style="margin-top:30%;margin-bottom: 15%; position: absolute;">
+        <center><div class="row" style="margin-top:21%;margin-bottom: 15%; position: absolute;">
         <div class="row">
-            <a class="col-3" ng-href="#/app/cctvFull/{index}"> <!--ng-click="playFull()"-->
+          <div class = "col-25">
+            <a ng-href="#/app/cctvFull/{index}"> <!--ng-click="playFull()"-->
                 <img src="img/cctv/icon_t_fullscreen.png" style="width:50%;height:auto; margin: 0;">
             </a>
-            <a class="col-3">
-                <img src="img/cctv/icon_t_theater.png" style="width:50%;height:auto; margin: 0;">
+          </div>
+          <div class = "col-25">
+            <a ng-href="#/app/cctvDetail"> <!--ng-click="playFull()"-->
+              <img src="img/cctv/icon_t_theater.png" style="width:50%;height:auto; margin: 0;">
             </a>
-            <a class="col-3">
-                <img src="img/cctv/icon_t_multi.png" style="width:50%;height:auto; margin: 0;">
+          </div>
+          <div class = "col-25">
+            <a ng-href="#/app/cctvMulti"> <!--ng-click="playFull()"-->
+              <img src="img/cctv/icon_t_multi.png" style="width:50%;height:auto; margin: 0;">
             </a>
-            <a ng-href="#/app/cctvList" class="col-3">
-                <img src="img/cctv/icon_t_list.png" style="width:50%;height:auto; margin: 0;">
+          </div>
+          <div class = "col-25">
+            <a ng-href="#/app/cctvList"> <!--ng-click="playFull()"-->
+              <img src="img/cctv/icon_t_list.png" style="width:50%;height:auto; margin: 0;">
             </a>
+          </div>
         </div>
         </div></center>
-        <center><div class="row" style="margin-top:40%;margin-bottom: 10%; position: absolute;">
+        <center><div class="row" style="margin-top:35%;margin-bottom: 10%; position: absolute;">
         <div class="row">
-          <div class="col-3">
-                <h3 style="font-size:10px;margin-right:2.2em;margin-left:2.2em;margin-top:1em;">Full Screen</h3>
+          <div class="col-25">
+                <h3 style="font-size:10px;">Full Screen</h3>
             </div>
-          <div class="col-3">
-                <h3 style="font-size:10px;margin-right:2.2em;margin-left:3em;margin-top:1em;">Theater</h3>
+          <div class="col-25">
+                <h3 style="font-size:10px;">Theater</h3>
             </div>
-          <div class="col-3">
-                <h3 style="font-size:10px;margin-right:2.2em;margin-left:4.2em;margin-top:1em;">Multi</h3>
+          <div class="col-25">
+                <h3 style="font-size:10px;">Multi</h3>
             </div>
-          <div class="col-3">
-                <h3 style="font-size:10px;margin-right:2.2em;margin-left:5.4em;margin-top:1em;">List</h3>
+          <div class="col-25">
+                <h3 style="font-size:10px;">List</h3>
             </div>
           </div>
           </div></center>
       </div>
+      </ion-content>
     </ion-slide>
   </ion-slide-box>
 </ion-view>

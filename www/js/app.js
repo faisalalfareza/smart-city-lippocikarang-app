@@ -187,6 +187,14 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.cctvMulti', {
+          url: "/cctvMulti",
+          views: {
+            'menu-content': {
+              templateUrl: "partials/sides/cctvMulti.html"
+            }
+          }
+        })
         .state('app.forum', {
             cache: false,
             url: "/forum",

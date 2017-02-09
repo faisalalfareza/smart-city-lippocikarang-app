@@ -83,13 +83,13 @@
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col" ng-click="gotocurrency()" ng-controller="currencymain" style="background-color:#fff;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border-radius: 15px">
                 <div ng-if="currate == null" class="row">
-                   <div class="col col-50">
-                       <p style="font-size:12px"> -- -- -- </p>
-                   </div>
-                   <div class="col col-50">
-                       <img src="img/ic_settings.png" style="width:15%;float:right;">
-                   </div>
-               </div>
+                    <div class="col col-50">
+                        <p style="font-size:12px"> -- -- -- </p>
+                    </div>
+                    <div class="col col-50">
+                        <img src="img/ic_settings.png" style="width:15%;float:right;">
+                    </div>
+                </div>
                 <div class="row" ng-if="currate == null">
                     <div class="col col-50">
                         <img width="32" style="margin-top: 12%" ng-src="" src="img/currency/flag_of_australia.png">
@@ -101,21 +101,21 @@
                     </div>
                 </div>
                 <div ng-if="currate != null" class="row">
-                   <div class="col col-70">
-                       <p style="font-size:12px"> {{ currate.time | date:'yyyy-MM-dd HH:mm:ss'}} </p>
-                   </div>
-                   <div class="col col-30">
-                       <img src="img/ic_settings.png" style="width:15%;float:right;">
-                   </div>
-               </div>  
+                    <div class="col col-70">
+                        <p style="font-size:12px"> {{ currate.time | date:'yyyy-MM-dd HH:mm:ss'}} </p>
+                    </div>
+                    <div class="col col-30">
+                        <img src="img/ic_settings.png" style="width:15%;float:right;">
+                    </div>
+                </div>
                 <div ng-if="currate != null" class="row">
                     <div class="col col-50">
                         <img width="32" style="margin-top: 12%" ng-src="{{currate.flag1}}" src="img/currency/flag_of_australia.png">
-                        <i style="vertical-align: middle;font-size: 12px">{{currate.rate1 *10000| limitTo:5}}</i>
+                        <i style="vertical-align: middle;font-size: 12px">{{currate.rate1 *10000| limitTo:5}} {{currate.cur1}}</i>
                     </div>
                     <div class="col col-50">
                         <img width="32" style="margin-top: 12%" ng-src="{{currate.flag2}}" src="img/currency/flag_of_australia.png">
-                        <i style="vertical-align: middle;font-size: 12px">{{currate.rate2 *10000|limitTo:5}}</i>
+                        <i style="vertical-align: middle;font-size: 12px">{{currate.rate2 *10000|limitTo:5}}  {{currate.cur2}}</i>
                     </div>
                 </div>
             </div>
