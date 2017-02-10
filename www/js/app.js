@@ -172,7 +172,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         .state('app.cctvDetail', {
             url: "/cctvDetail/{index}",
             views: {
-                'menu-content': {
+                'main-content': {
                     templateUrl: "partials/sides/cctvDetail.html",
                     controller: "cctvDetail"
                 }
@@ -181,7 +181,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         .state('app.cctvFull', {
             url: "/cctvFull/:port",
             views: {
-                'menu-content': {
+                'main-content': {
                     templateUrl: "partials/sides/cctvFull.html",
                     controller: "cctvFull"
                 }
@@ -190,7 +190,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         .state('app.cctvMulti', {
           url: "/cctvMulti",
           views: {
-            'menu-content': {
+            'main-content': {
               templateUrl: "partials/sides/cctvMulti.html"
             }
           }
@@ -622,6 +622,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             address: 'Address',
             apartment: 'Apartments',
             with: 'with',
+            orange_county: 'Orange County',
             are_resident: 'Are you a resident? Create your account with registered email address in our database to enjoy special feature',
             are_alreadyaccount: 'Already have an account ?',
             art: 'Art & Culture',
@@ -662,6 +663,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dining: 'Dining',
             coupon: 'Coupon',
             discount: 'Discount',
+            Kupon: 'Discount',
             download: 'Downloads',
             download_more: 'Download for more',
             ebilling: 'eBilling',
@@ -672,6 +674,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             email_agent: 'Email Agent',
             entertaiment: 'Entertaiment',
             events: 'Events',
+            Acara: 'Events',
             eyewear: 'Eyewear',
             fastfood: 'Fast Food',
             forgot_password: 'Forgot password ?',
@@ -788,6 +791,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             public_transportation: 'Public Transportation',
             public_transportation_bottom: 'Public Transportation which is entering Beverli area and Ventura, Lippo Cikarang only untill 9.00 WIB',
             rate_title: 'Tenant Rate',
+            rate_this_tenant: 'Rate this tenant',
             rate_dialog: 'Are you sure want to rate this tenant ?',
             rate_text: 'Rate this place',
             recommended: 'Recommended',
@@ -829,6 +833,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             signout: 'Sign Out',
             signup: 'Sign Up',
             signup_lippo: 'Sign up for LippoCikarang.com',
+            lippo_cikarang: 'Lippo Cikarang',
             skip: 'Skip',
             skin_care: 'Skin Care',
             sound_info: 'Activate notiﬁcation sound',
@@ -893,6 +898,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             unit: 'Units',
             apartment: 'Apartment',
             kavling: 'Kavling',
+            cinema: 'Cinema',
             commercial: 'Commercial',
             industry: 'Industry',
 
@@ -940,11 +946,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             must_check_term: 'You Must Check Terms of Service',
             category: 'Category',
             category_property: 'Property',
+            property: 'Property',
             category_events: 'Events',
             category_competition: 'Competition',
+            competition: 'Competition',
             category_city: 'City',
+            city: 'City',
             category_discount: 'Discount',
             general: 'General',
+            Umum: 'General',
             download2: 'Download',
             no_file_download: 'There are no file download',
             no_category: 'There are no category',
@@ -1038,6 +1048,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             address: 'Alamat',
             apartment: 'Apartemen',
             with: 'dengan',
+            orange_county: 'Orange County',
             are_resident: 'Apakah Anda seorang warga ? Daftarkan alamat email di database kami untuk menikmati ﬁtur khusus',
             are_alreadyaccount: 'Telah memiliki akun ? ',
             art: 'Seni & Budaya',
@@ -1082,6 +1093,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             westren_food: 'Barat',
             coupon: 'Diskon',
             discount: 'Kupon',
+            Kupon: 'Kupon',
             download: 'Unduhan',
             download_more: 'Unduh',
             ebilling: 'eBilling',
@@ -1092,6 +1104,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             email_agent: 'Email Agen',
             entertaiment: 'Hiburan',
             events: 'Acara',
+            Acara: 'Acara',
             eyewear: 'Kacamata',
             fastfood: 'Cepat Saji',
             fashion: 'Fashion',
@@ -1202,13 +1215,14 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             type: 'Tipe',
             property_agents: 'Agen Properti',
             property_market: 'Pasar Properti',
-            property_start: 'Applikasi ini menawarakan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.Temukan properti impian Anda.',
+            property_start: 'Aplikasi ini menawarakan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.Temukan properti impian Anda.',
             pscode: 'PSCODE',
             pscode_correct: 'PsCode Benar',
             public_services: 'Pelayanan Publik',
             public_transportation: 'Transportasi Umum',
             public_transportation_bottom: 'Transportasi umum yang memasuki Beverly dan Ventura , Lippo Cikarang hanya sampai 09.00 WIB',
             rate_title: 'Rating Penyewa',
+            rate_this_tenant: 'Nilai tempat ini',
             rate_dialog: 'Apakah Anda yakin ingin menilai penyewa ini ?',
             rate_text: 'Nilai tempat ini',
             recommended: 'Rekomendasi',
@@ -1252,6 +1266,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             signout: 'Keluar',
             signup: 'Daftar',
             signup_lippo: 'Daftar ke LuppoCikarang.com',
+            lippo_cikarang: 'Lippo Cikarang',
             skip: 'Lewati',
             skin_care: 'Skin Care',
             sound_info: 'Nyalakan suara',
@@ -1310,6 +1325,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             apartment_property: 'Apartemen',
             kavling_property: 'Kavling',
             commercial_property: 'Komersial',
+            cinema: 'Bioskop',
+            commercial: 'Komersial',
             industry_property: 'Industri',
             //Sort Property
             sort_harga: 'Harga(Rendah-Tinggi)',
@@ -1355,11 +1372,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             must_check_term: 'You Must Check Terms of Service',
             category: 'Kategori',
             category_property: 'Properti',
+            property: 'Properti',
             category_events: 'Acara',
             category_competition: 'Kompetisi',
+            competition: 'Kompetisi',
             category_city: 'Kota',
+            city: 'Kota',
             category_discount: 'Diskon',
             general: 'Umum',
+            Umum: 'Umum',
             download2: 'Unduh',
             no_file_download: 'Tidak ada file yang diunduh',
             are_you_download: 'Apakah Anda ingin mengunduh file ini?',
@@ -1453,7 +1474,7 @@ function run($ionicPlatform, $ionicModal, $rootScope, $timeout, $location, $filt
     $rootScope.$on("$ionicView.beforeEnter", function() {
         var myEl = angular.element(document.querySelector('#sidemenu-con'));
 
-        if ($location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
+        if ($location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
             $location.path() == "/app/currency" || $location.path() == "/app/profile" || $location.path() == "/app/history" ||
             $location.path().substr(0, 14) == "/app/myhistory" || $location.path() == "/app/editprofile" || $location.path() == "/app/listbookmark" ||
             $location.path() == "/app/listbookmark" || $location.path() == "/app/notification" || $location.path().substr(0, 23) == "/app/notificationDetail" ||

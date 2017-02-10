@@ -24,7 +24,7 @@
               <div class="col col-50">
                 <select ng-model="byCategory" class="dropdown-filter">
                   <option value="">{{ 'category' | translate }}</option>
-                  <option ng-repeat="cat in gencategory | filter : {level : '!' +1}" ng-click="sortBy('cat.idcategory')">{{ cat.categoryname }}</option>
+                  <option value="{{ cat.categoryValue }}" ng-repeat="cat in categoryData" ng-click="sortBy('cat.idcategory')">{{ cat.categoryName }}</option>
                 </select>
               </div>
               <div class="col col-50">
@@ -64,7 +64,7 @@
               <div class="col col-50">
                 <select ng-model="byCategory" class="dropdown-filter">
                   <option value="">{{ 'category_all' | translate }}</option>
-                  <option ng-repeat="cat in procategory | filter : {level : '!' +1}" ng-click="sortBy('cat.idcategory')">{{ cat.categoryname }}</option>
+                  <option value="{{ cat.categoryValue }}" ng-repeat="cat in proCategoryData" ng-click="sortBy('cat.idcategory')">{{ cat.categoryName }}</option>
                 </select>
               </div>
               <div class="col col-50">

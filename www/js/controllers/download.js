@@ -16,6 +16,8 @@ angular
             if (response != false) {
                 $scope.datageneral = response;
 
+                
+
               $scope.openBrowser = function(item) {
                 var url = item.linkfile;
                 window.open(url, '_blank', 'location=no');
@@ -151,6 +153,24 @@ angular
             if (response != false) {
                 var sum = response.length;
                 $scope.gencategory = response;
+                //
+                $scope.categoryData = [];
+                var a = 0;
+                angular.forEach($scope.gencategory, function() {
+                    var b = a++;
+                    var list = $scope.gencategory;
+                    var data = list[b];
+
+                    var categoryname = data.categoryname;
+                    var categoryKey = categoryname.toLowerCase('');
+                    categoryKey = categoryKey.replace(/ +|&/g, '_');
+
+                    $scope.categoryData.push({
+                        'categoryValue': categoryname,
+                        'categoryName': $filter('translate')(categoryKey)
+                    });
+                });
+
             } else {
                 $scope.gencategory = [{ name: $filter('translate')('no_category') }];
             }
@@ -161,6 +181,25 @@ angular
             if (response != false) {
                 var sum = response.length;
                 $scope.procategory = response;
+                //
+                 $scope.proCategoryData = [];
+                var a = 0;
+                angular.forEach($scope.procategory, function() {
+                    var b = a++;
+                    var list = $scope.procategory;
+                    var data = list[b];
+
+                    var categoryname = data.categoryname;
+                    var categoryKey = categoryname.toLowerCase('');
+                    categoryKey = categoryKey.replace(/ +|&/g, '_');
+
+                    $scope.proCategoryData.push({
+                        'categoryValue': categoryname,
+                        'categoryName': $filter('translate')(categoryKey)
+                    });
+                    console.log('iniloooo 200' + $scope.proCategoryData);
+                });
+
             } else {
                 $scope.procategory = [{ name: $filter('translate')('no_category') }];
             }
