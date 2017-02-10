@@ -27,7 +27,7 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
         
         $scope.categorytenant = texcategory($scope.tenantdata.idcategory);
         $scope.tenantname = $scope.tenantdata.name;
-        console.log($scope.tenantname);
+        console.log($scope.categorytenant);
     });
 
 

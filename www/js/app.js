@@ -1032,6 +1032,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             BUTTON_TEXT_DE: 'Indonesia'
         })
         .translations('ina', {
+            ds1: 'DS1',
+            ds2: 'DS2',
+            ds3: 'DS3',
+            ds4: 'DS4',
+            ds5: 'DS5',
+            ds6: 'DS6',
             app_name: 'LippoCikarang.com',
             sound: 'Suara',
             loading: 'Memuat',
