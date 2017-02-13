@@ -1027,6 +1027,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             westren_food: 'Western',
             shopping: 'Shopping',
             gallery: 'Gallery',
+            load_from_library: 'Load From Library',
             //button
             BUTTON_TEXT_EN: 'English',
             BUTTON_TEXT_DE: 'Indonesia'
@@ -1447,6 +1448,9 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             connect: 'Terhubung \n dengan Kami',
             affiliates: 'Afiliasi',
             featured: 'Fitur',
+            load_from_library: 'Ambil Dari Perpustakaan',
+            use_camera: 'Gunakan Kamera',
+            select_image_source:'Pilih Sumber Gambar',
             //button
             BUTTON_TEXT_EN: 'Inggris',
             BUTTON_TEXT_DE: 'Indonesia'
