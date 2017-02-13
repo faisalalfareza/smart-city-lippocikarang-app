@@ -27,7 +27,7 @@
                     function(response) {
                           if (response[0].status == true) {
                               $scope.users = response;
-                              $location.path('/app/main');
+                              $state.go('app.main');
                               $ionicLoading.hide();
                               var alert = $ionicPopup.alert({
                                 template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
