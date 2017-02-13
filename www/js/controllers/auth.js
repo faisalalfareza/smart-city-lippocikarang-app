@@ -162,6 +162,20 @@
                 console.log(result);
                 alert(JSON.stringify(result));
                 console.log('Twitter handle :'+result.userName);
+                if(result.email == undefined || result.email == ""){
+
+                  var alertPopup = $ionicPopup.alert({
+                    template: "Sorry i cant get email from your twitter to validation regrestation",
+                    okText: $filter('translate')('okay'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
+
+                  });
+
+
+                }else {
+                  senddatauser(result,"facebook")
+                }
               }, function(error) {
                 console.log('Error retrieving user profile');
                 console.log(error);
