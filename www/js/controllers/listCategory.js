@@ -53,6 +53,7 @@ angular
                         });
                         //$scope.list = $filter('translate')(categoryname);                        
                     });
+                    console.log($scope.categoryData);
                 } else {
                     $scope.categorys = [{ name: $filter('translate')('no_user') }];
                 }

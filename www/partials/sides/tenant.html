@@ -7,7 +7,7 @@
                 <select ng-model="byCategory" class="dropdown-filter">
                      <option value="">{{ 'category' | translate }}</option>
                      <option value="">{{ 'category_all' | translate }}</option>
-                     <option value="{{ category.categoryValue }}" ng-repeat="category in categoryData" ng-click="sortBy('category.idcategory')">{{ category.categoryName }}</option>
+                     <option value="{{ category.categoryName }}" ng-repeat="category in categoryData | orderBy:'categoryValue'" ng-click="sortBy('category.idcategory')">{{ category.categoryValue }}</option>
                 </select>
             </span>    
 

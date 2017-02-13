@@ -24,9 +24,10 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
 
         //rate tenant
         $scope.rateValue = $scope.tenantdata.rating;
+        
         $scope.categorytenant = texcategory($scope.tenantdata.idcategory);
         $scope.tenantname = $scope.tenantdata.name;
-        console.log($scope.tenantname);
+        console.log($scope.categorytenant);
     });
 
 
@@ -218,319 +219,319 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
     function texcategory(idcategory) {
 
         if (angular.equals(idcategory, "16")) {
-            parent_category = "entertaiment";
-            child_category = "events";
+            parent_category = $filter('translate')('entertaiment');
+            child_category = $filter('translate')('events');
         }
         //sport
         if (angular.equals(idcategory, "17")) {
-            parent_category = "entertaiment";
-            child_category = "sport";
+            parent_category = $filter('translate')('entertaiment');
+            child_category = $filter('translate')('sport');
         }
         //child sport
         if (angular.equals(idcategory, "21")) {
-            parent_category = "sport";
-            child_category = "gym";
+            parent_category = $filter('translate')('sport');
+            child_category = $filter('translate')('gym');
         }
         if (angular.equals(idcategory, "22")) {
-            parent_category = "sport";
-            child_category = "outdoor sports";
+            parent_category = $filter('translate')('sport');
+            child_category = $filter('translate')('outdoor_sports');
         }
         if (angular.equals(idcategory, "23")) {
-            parent_category = "sport";
-            child_category = "indoor_sports";
+            parent_category = $filter('translate')('sport');
+            child_category = $filter('translate')('indoor_sports');
         }
         if (angular.equals(idcategory, "104")) {
-            parent_category = "sport";
-            child_category = "recreational sites";
+            parent_category = $filter('translate')('sport');
+            child_category = $filter('translate')('recreational_sites');
         }
         if (angular.equals(idcategory, "105")) {
-            parent_category = "sport";
-            child_category = "golfing";
+            parent_category = $filter('translate')('sport');
+            child_category = $filter('translate')('golfing');
         }
         //leisure
         if (angular.equals(idcategory, "18")) {
-            parent_category = "entertaiment";
-            child_category = "leisure";
+            parent_category = $filter('translate')('entertaiment');
+            child_category = $filter('translate')('leisure');
         }
         // child leisure
         if (angular.equals(idcategory, "24")) {
-            parent_category = "leisure";
-            child_category = "cinema";
+            parent_category = $filter('translate')('leisure');
+            child_category = $filter('translate')('cinema');
         }
         if (angular.equals(idcategory, "25")) {
-            parent_category = "leisure";
-            child_category = "karaoke";
+            parent_category = $filter('translate')('leisure');
+            child_category = $filter('translate')('karaoke');
         }
         if (angular.equals(idcategory, "26")) {
-            parent_category = "leisure";
-            child_category = "games";
+            parent_category = $filter('translate')('leisure');
+            child_category = $filter('translate')('games');
         }
         //art
         if (angular.equals(idcategory, "19")) {
-            parent_category = "Entertaiment";
-            child_category = "art";
+            parent_category = $filter('translate')('entertaiment');
+            child_category = $filter('translate')('art');
         }
         //beauty
         if (angular.equals(idcategory, "20")) {
-            parent_category = "Entertaiment";
-            child_category = "Beauty";
+            parent_category = $filter('translate')('entertaiment');
+            child_category = $filter('translate')('beauty');
         }
         //child beauty
         if (angular.equals(idcategory, "27")) {
-            parent_category = "Beauty";
-            child_category = "Salon";
+            parent_category = $filter('translate')('beauty');
+            child_category = $filter('translate')('salon');
         }
         if (angular.equals(idcategory, "28")) {
-            parent_category = "Beauty";
-            child_category = "Skin_care";
+            parent_category = $filter('translate')('beauty');
+            child_category = $filter('translate')('skin_care');
         }
         if (angular.equals(idcategory, "29")) {
-            parent_category = "Beauty";
-            child_category = "cosmetic";
+            parent_category = $filter('translate')('beauty');
+            child_category = $filter('translate')('cosmetic');
         }
         if (angular.equals(idcategory, "30")) {
-            parent_category = "Beauty";
-            child_category = "Spa Treatment";
+            parent_category = $filter('translate')('beauty');
+            child_category = $filter('translate')('spa___treatment');
         }
         //dining
         //fast food
         if (angular.equals(idcategory, "31")) {
-            parent_category = "Dining";
-            child_category = "Fastfood";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('fastfood');
         }
         //japanese
         if (angular.equals(idcategory, "32")) {
-            parent_category = "Dining";
-            child_category = "Japanese";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('japanese');
         }
         //traditional
         if (angular.equals(idcategory, "33")) {
-            parent_category = "Dining";
-            child_category = "Traditional";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('traditional');
         }
         //chinese
         if (angular.equals(idcategory, "34")) {
-            parent_category = "Dining";
-            child_category = "Chinese";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('chinese');
         }
         //western
         if (angular.equals(idcategory, "35")) {
-            parent_category = "Dining";
-            child_category = "Western";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('westren_food');
         }
         //bakery
         if (angular.equals(idcategory, "36")) {
-            parent_category = "Dining";
-            child_category = "Bakery";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('bakery');
         }
         //cafe
         if (angular.equals(idcategory, "37")) {
-            parent_category = "Dining";
-            child_category = "Bar Cafe Club";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('bar_cafe_club');
         }
         //korean
         if (angular.equals(idcategory, "90")) {
-            parent_category = "Dining";
-            child_category = "Korean";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('korean');
         }
         //oth_dining
         if (angular.equals(idcategory, "38")) {
-            parent_category = "Dining";
-            child_category = "Others";
+            parent_category = $filter('translate')('dining');
+            child_category = $filter('translate')('others');
         }
         //accomodation
         //hotel
         if (angular.equals(idcategory, "45")) {
-            parent_category = "Accomodation";
-            child_category = "Hotel";
+            parent_category = $filter('translate')('accomodation');
+            child_category = $filter('translate')('hotel');
         }
         //condominiums
         if (angular.equals(idcategory, "46")) {
-            parent_category = "Accomodation";
-            child_category = "Condomminiums";
+            parent_category = $filter('translate')('accomodation');
+            child_category = $filter('translate')('condominiums');
         }
         //apartment
         if (angular.equals(idcategory, "47")) {
-            parent_category = "Accomodation";
-            child_category = "Apartement";
+            parent_category = $filter('translate')('accomodation');
+            child_category = $filter('translate')('apartment_property');
         }
         //shopping
         //department
         if (angular.equals(idcategory, "48")) {
-            parent_category = "Shopping";
-            child_category = "Departement Store";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('deparment_store');
         }
         //mart
         if (angular.equals(idcategory, "49")) {
-            parent_category = "Shopping";
-            child_category = "Mart";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('mart');
         }
         //child mart
         if (angular.equals(idcategory, "55")) {
-            parent_category = "Mart";
-            child_category = "Super Market";
+            parent_category = $filter('translate')('mart');
+            child_category = $filter('translate')('supermarket');
         }
         if (angular.equals(idcategory, "56")) {
-            parent_category = "Mart";
-            child_category = "MiniMaket";
+            parent_category = $filter('translate')('mart');
+            child_category = $filter('translate')('minimarket');
         }
         //fashion
         if (angular.equals(idcategory, "50")) {
-            parent_category = "Shopping";
-            child_category = "Fashion";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('fashion');
         }
         //child fashion
         if (angular.equals(idcategory, "57")) {
-            parent_category = "Fashion";
-            child_category = "Batik";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('Batik');
         }
         if (angular.equals(idcategory, "58")) {
-            parent_category = "Fashion";
-            child_category = "Clothes";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('clothes');
         }
         if (angular.equals(idcategory, "59")) {
-            parent_category = "Fashion";
-            child_category = "Shoes";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('shoes');
         }
         if (angular.equals(idcategory, "60")) {
-            parent_category = "Fashion";
-            child_category = "Accesoris Toys";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('accessories___toys');
         }
         if (angular.equals(idcategory, "61")) {
-            parent_category = "Fashion";
-            child_category = "Sport";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('sport');
         }
         if (angular.equals(idcategory, "62")) {
-            parent_category = "Fashion";
-            child_category = "Eyewear";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('eyewear');
         }
         if (angular.equals(idcategory, "63")) {
-            parent_category = "Fashion";
-            child_category = "Jewelry";
+            parent_category = $filter('translate')('fashion');
+            child_category = $filter('translate')('jewelry');
         }
         //home
         if (angular.equals(idcategory, "51")) {
-            parent_category = "Shopping";
-            child_category = "Home Improvment";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('home_improvement');
         }
         //book
         if (angular.equals(idcategory, "52")) {
-            parent_category = "Shopping";
-            child_category = "Booke Stationety";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('book_stationety');
         }
         //electronic
         if (angular.equals(idcategory, "53")) {
-            parent_category = "Shopping";
-            child_category = "Electronic";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('electronic');
         }
         //automotive
         if (angular.equals(idcategory, "54")) {
-            parent_category = "Shopping";
-            child_category = "Automotive";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('automotive');
         }
         //other
         if (angular.equals(idcategory, "64")) {
-            parent_category = "Shopping";
-            child_category = "Others";
+            parent_category = $filter('translate')('shopping');
+            child_category = $filter('translate')('others');
         }
         //education
         if (angular.equals(idcategory, "66")) {
-            parent_category = "Education";
-            child_category = "School";
+            parent_category = $filter('translate')('education');
+            child_category = $filter('translate')('school');
         }
         if (angular.equals(idcategory, "67")) {
-            parent_category = "Education";
-            child_category = "Tutor";
+            parent_category = $filter('translate')('education');
+            child_category = $filter('translate')('tutor');
         }
         if (angular.equals(idcategory, "68")) {
-            parent_category = "Education";
-            child_category = "Music";
+            parent_category = $filter('translate')('education');
+            child_category = $filter('translate')('music');
         }
         //health care
         if (angular.equals(idcategory, "70")) {
-            parent_category = "Health Care";
-            child_category = "helath";
+            parent_category = $filter('translate')('health_care');
+            child_category = $filter('translate')('health');
         }
         if (angular.equals(idcategory, "71")) {
-            parent_category = "Health Care";
-            child_category = "Hospital";
+            parent_category = $filter('translate')('health_care');
+            child_category = $filter('translate')('hospital');
         }
         //public service
         //property
         if (angular.equals(idcategory, "73")) {
-            parent_category = "Public Services";
-            child_category = "Property Agent";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('property_agents');
         }
         //atm
         if (angular.equals(idcategory, "74")) {
-            parent_category = "Public Services";
-            child_category = "ATM Gallery";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('atm_gallery');
         }
         //tour
         if (angular.equals(idcategory, "75")) {
-            parent_category = "Public Services";
-            child_category = "Tour Travel";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('tour_travel');
         }
         //bank
         if (angular.equals(idcategory, "76")) {
-            parent_category = "Public Services";
-            child_category = "Bank";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('bank');
         }
         //insurance
         if (angular.equals(idcategory, "77")) {
-            parent_category = "Public Services";
-            child_category = "Insurance";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('insurance');
         }
         //gas
         if (angular.equals(idcategory, "78")) {
-            parent_category = "Public Services";
-            child_category = "SPBU";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('spbu');
         }
         //others
         if (angular.equals(idcategory, "80")) {
-            parent_category = "Public Services";
-            child_category = "Others";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('others');
         }
         //workshop
         if (angular.equals(idcategory, "81")) {
-            parent_category = "Public Services";
-            child_category = "workshop Services";
+            parent_category = $filter('translate')('public_services');
+            child_category = $filter('translate')('workshop_services');
         }
         //industry
         //DS1
         if (angular.equals(idcategory, "96")) {
-            parent_category = "Industrie";
+            parent_category = $filter('translate')('industries');
             child_category = "DS1";
         }
         //DS2
         if (angular.equals(idcategory, "97")) {
-            parent_category = "Industrie";
+            parent_category = $filter('translate')('industries');
             child_category = "DS2";
         }
         //DS3
         if (angular.equals(idcategory, "98")) {
-            parent_category = "Industrie";
+            parent_category = $filter('translate')('industries');
             child_category = "DS3";
         }
         //DS5
         if (angular.equals(idcategory, "100")) {
-            parent_category = "Industrie";
+            parent_category = $filter('translate')('industries');
             child_category = "DS5";
         }
         //DS6
         if (angular.equals(idcategory, "101")) {
-            parent_category = "Industrie";
+            parent_category = $filter('translate')('industries');
             child_category = "DS6";
         }
         //newton
         if (angular.equals(idcategory, "102")) {
-            parent_category = "Industrie";
-            child_category = "Newton Techno Park";
+            parent_category = $filter('translate')('industries');
+            child_category = $filter('translate')('newton_techno_park');
         }
         //transportation
         if (angular.equals(idcategory, "106")) {
-            parent_category = "Transportation";
-            child_category = "Rental Cars";
+            parent_category = $filter('translate')('transportation');
+            child_category = $filter('translate')('rental_cars');
         }
 
         return parent_category + ", " + child_category;
