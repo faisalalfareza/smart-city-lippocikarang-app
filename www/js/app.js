@@ -6,6 +6,8 @@ angular
 
 function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider) {
 
+    var api_link = "http://innodev.vnetcloud.com/LiveIn/api/";
+
     // Identify app
     $ionicAppProvider.identify({
         // The App ID (from apps.ionic.io) for the server
@@ -188,12 +190,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvMulti', {
-          url: "/cctvMulti",
-          views: {
-            'main-content': {
-              templateUrl: "partials/sides/cctvMulti.html"
+            url: "/cctvMulti",
+            views: {
+                'main-content': {
+                    templateUrl: "partials/sides/cctvMulti.html"
+                }
             }
-          }
         })
         .state('app.forum', {
             cache: false,
@@ -602,6 +604,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
     //translate
     $translateProvider.translations('en', {
+            apilink: api_link,
             app_name: 'LippoCikarang.com', //{{'app_name' | translate}}
             openDrawer: 'Open Drawer',
             closeDrawer: 'Close Drawer',
@@ -1030,12 +1033,13 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             shopping: 'Shopping',
             gallery: 'Gallery',
             load_from_library: 'Load From Library',
-            of:' of ',
+            of: ' of ',
             //button
             BUTTON_TEXT_EN: 'English',
             BUTTON_TEXT_DE: 'Indonesia'
         })
         .translations('ina', {
+            apilink: api_link,
             ds1: 'DS1',
             ds2: 'DS2',
             ds3: 'DS3',
@@ -1455,8 +1459,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             featured: 'Fitur',
             load_from_library: 'Ambil Dari Perpustakaan',
             use_camera: 'Gunakan Kamera',
-            select_image_source:'Pilih Sumber Gambar',
-            of:' dari ',
+            select_image_source: 'Pilih Sumber Gambar',
+            of: ' dari ',
             //button
             BUTTON_TEXT_EN: 'Inggris',
             BUTTON_TEXT_DE: 'Indonesia'
@@ -1587,8 +1591,7 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
                 if (sum > 0) {
                     console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
-                }
-                else {
+                } else {
                     console.log('Tidak ada ads baru ..');
                 }
             });
