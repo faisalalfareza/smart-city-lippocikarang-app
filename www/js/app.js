@@ -181,7 +181,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         .state('app.cctvFull', {
             url: "/cctvFull/:port",
             views: {
-                'main-content': {
+                'menu-content': {
                     templateUrl: "partials/sides/cctvFull.html",
                     controller: "cctvFull"
                 }
