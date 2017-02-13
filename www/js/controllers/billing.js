@@ -6,42 +6,49 @@ angular
     .controller('loginBilling', LoginBilling)
     .controller('getbillingCtrl', getbillingCtrl)
     .controller('transactionBilling', transactionBilling)
+    .controller('paymentovo', paymentovo)
     .controller('payment', payment);
 
-    function LoginBilling($rootScope, $scope, $state, billingServices, $ionicLoading, $ionicPopup, $filter) {
+    function LoginBilling($rootScope, $scope, $state, billingServices, $ionicLoading, $ionicPopup, $filter,$cordovaNetwork) {
 
         $scope.loginbilling = function(email) {
-            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+
+
+          // /if($cordovaNetwork.isOnline()) {
+
+
+            $ionicLoading.show({template: $filter('translate')('loading') + "..."});
             $rootScope.emailres = email;
 
-            billingServices.loginBillingServices(email, function(response) {
-                if (response != false) {
-                    $scope.data = response.data;
-                    console.log(response)
-                    if ($scope.data != undefined) {
-                        $ionicLoading.show({
-                            template: $filter('translate')('pscode_correct'),
-                            duration: 2000
-                        });
-                        getdata(response);
-                        $state.go('app.billing');
-                    } else {
-                        $ionicLoading.hide();
-                        var alertPopup = $ionicPopup.alert({
-                            title: $filter('translate')('login_failed'),
-                            template: $filter('translate')('check_email'),
-                            okText: $filter('translate')('try_again'),
-                            cssClass: "alertPopup"
-                        });
-
-                    }
-                    $scope.data = response;
+            billingServices.loginBillingServices(email, function (response) {
+              if (response != false) {
+                $scope.data = response.data;
+                console.log(response)
+                if ($scope.data != undefined) {
+                  $ionicLoading.show({
+                    template: $filter('translate')('pscode_correct'),
+                    duration: 2000
+                  });
+                  getdata(response);
+                  $state.go('app.billing');
                 } else {
-                    $ionicLoading.hide;
-                    console.log(response)
+                  $ionicLoading.hide();
+                  var alertPopup = $ionicPopup.alert({
+                    title: $filter('translate')('login_failed'),
+                    template: $filter('translate')('check_email'),
+                    okText: $filter('translate')('try_again'),
+                    cssClass: "alertPopup"
+                  });
+
                 }
+                $scope.data = response;
+              } else {
+                $ionicLoading.hide;
+                console.log(response)
+              }
 
             });
+
 
 
         }
@@ -168,7 +175,7 @@ angular
             console.log($scope.type_payment);
             console.log($scope.checkterm);
 
-            if (type_payment == undefined) {
+            if (type_payment == undefined ) {
                 var alertPopup = $ionicPopup.alert({
                     title: $filter('translate')('failed'),
                     template: $filter('translate')('must_choose_1'),
@@ -180,8 +187,10 @@ angular
 
                 console.log(type_payment);
                 $rootScope.type_payment = type_payment;
-                $state.go('app.transaction');
-                
+                if (type_payment.match('ovo payment')) {
+                  $state.go('app.ovo_payment');
+                }
+
             }
 
         }
@@ -212,5 +221,9 @@ angular
 
         console.log($scope.url);
 
+
+    }
+
+    function paymentovo() {
 
     }
