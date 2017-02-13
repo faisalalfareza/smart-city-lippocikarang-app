@@ -632,7 +632,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             bank: 'Bank',
             bar_cafe_club: 'Bar/Cafe/Club',
             beauty: 'Beauty',
-            book_stationety: 'Book & Stationety',
+            book_stationety: 'Book & Stationary',
             bookmarked: 'Bookmarked',
             success_bookmark: 'Success Bookmark',
             btn_lets_go: 'Let\'s Go',
