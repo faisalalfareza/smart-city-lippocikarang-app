@@ -3,8 +3,9 @@ angular
     .controller('cctvFull', cctvFull)
     .controller('cctvDetail', cctvDetail);
 
-    function cctvDetail($scope, $state, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, $ionicHistory, $ionicModal, cctv, $filter, $sce) {
+    function cctvDetail($scope, $state, $ionicLoading, $ionicNavBarDelegate, $ionicSlideBoxDelegate, $stateParams, $ionicHistory, $ionicModal, cctv, $filter, $sce) {
       //alert('Orientation is ' + JSON.stringify(screen.orientation));
+      $ionicNavBarDelegate.showBackButton(false);
       $scope.myGoBack = function() {
         $state.go('app.cctvList');
       };

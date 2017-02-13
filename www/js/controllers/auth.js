@@ -2,7 +2,7 @@
         .module('livein')
         .controller('login', login);
 
-        function login($scope, $ionicModal, $window, $location, $cordovaOauth, $localStorage, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter) {
+        function login($scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
           $scope.data = {};
           $scope.credentials = loginManualService;
           $scope.facebook_auth = facebookAuth;
@@ -22,22 +22,23 @@
                   $ionicLoading.show({ template: $filter('translate')('loginmessage') + "...", duration: 2000 });
 
                   LoginService.loginUser(
-                      data.email,
-                      data.password,
-                      function(response) {
+                    data.email,
+                    data.password,
+                    function(response) {
                           if (response[0].status == true) {
                               $scope.users = response;
-                              $state.go('app.main');
+                              $location.path('/app/main');
                               $ionicLoading.hide();
-
-                              $ionicPopup.alert({
-                                  template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
-                                  okText: $filter('translate')('okay'),
-                                  okType: "button-stable",
-                                  cssClass: "alertPopup"
+                              var alert = $ionicPopup.alert({
+                                template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
+                                okText: $filter('translate')('okay'),
+                                okType: "button-stable",
+                                cssClass: "alertPopup"
                               });
 
-                              AdsAfterLogin();
+                              // setTimeout(function() {
+                              AdvertiseService.AdsLogin();
+                              // }, 2500);
 
                           } else {
                               $ionicLoading.show({
@@ -45,8 +46,9 @@
                                   duration: 2000
                               });
                           }
-                      }
-                  )
+
+                    });
+
               } else {
                   $ionicLoading.show({
                       template: $filter('translate')('enter_credential'),
@@ -135,27 +137,36 @@
               // $cordovaOauth.twitter(api_key, api_secret).then(function(result) {
               //   console.log(result);
               // });
-              window.socialAuth.isTwitterAvailable(function success(result) {
-                window.socialAuth.returnTwitterAccounts(function success(data) {
-                  alert(JSON.stringify(data));
-                  window.socialAuth.performTwitterReverseAuthentication(function success(succes) {
-                    alert(JSON.stringify(succes))
 
-                  }, function error(dataerror) {
-
-                    alert(JSON.stringify(dataerror))
-
-
-                  }, data[0])
-
-                }, function error(failed) {
-                  alert(JSON.stringify(failed));
-                })
-
-              }, function error(error) {alert(JSON.stringify(error))});
+              TwitterConnect.login(
+                function(result) {
+                  console.log('Successful login!');
+                  console.log(result);
+                  getdatausertwitter();
+                }, function(error) {
+                  console.log('Error logging in');
+                  console.log(error);
+                }
+              );
+              console.log("udah masuk ready")
+            },function error(error) {alert(JSON.stringify(error))});
 
 
-            })
+          }
+
+          function getdatausertwitter () {
+
+            TwitterConnect.showUser(
+              function(result) {
+                console.log('User Profile:');
+                console.log(result);
+                alert(JSON.stringify(result));
+                console.log('Twitter handle :'+result.userName);
+              }, function(error) {
+                console.log('Error retrieving user profile');
+                console.log(error);
+              }
+            );
 
           }
 
@@ -187,7 +198,12 @@
 
                       });
 
-                      AdsAfterLogin();
+                      alertPopup.then(function (res) {
+                        if (res) {
+                          AdvertiseService.AdsLogin();
+                        }
+                      });
+
                       console.log("false")
 
                     } else if (response[0].status == true) {
@@ -238,10 +254,16 @@
                         okText: $filter('translate')('okay'),
                         okType: "button-stable",
                         cssClass: "alertPopup"
-
                       });
 
-                      AdsAfterLogin();
+                      alertPopup.then(function (res) {
+                        if (res) {
+                          LoginService.logoutUser();
+                          $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
+                          $state.go('login');
+                        }
+                      });
+
                       console.log("false")
 
                     } else if (response[0].status == true) {
@@ -272,31 +294,6 @@
                 });
 
             }
-          }
-
-          function AdsAfterLogin() {
-            AdvertiseService.listAds(function(response) {
-              var list = response;
-
-              $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-              }).then(function(loginAds) {
-                $scope.adsAfterLogin = loginAds;
-
-                setTimeout(function() {
-                  $scope.adsAfterLogin.show();
-                  $scope.size = "fullmodal";
-                  $scope.listAds = list;
-                  console.log($scope.listAds);
-                }, 2500);
-
-              }).finally(function() {
-                $scope.closeAds = function() {
-                  $scope.adsAfterLogin.hide();
-                };
-              });
-            });
           }
 
 

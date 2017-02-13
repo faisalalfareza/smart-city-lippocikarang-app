@@ -17,19 +17,16 @@ angular
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: 'action=' + 'login' +
-                '&email='+email+
-                '&password='+password
+                data: 'action=login' + '&email=' + email + '&password=' + password
             }
 
             $http(req)
                 .success(function(response) {
                     if(response[0].status != false) {
                         $localStorage.currentUser = { data : response };
+                        console.log(response[0]);
                     }
-
                     callback(response);
-
                 })
                 .error(function(response) {
                     callback(response);

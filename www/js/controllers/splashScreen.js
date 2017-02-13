@@ -2,11 +2,11 @@ angular
   .module('livein')
   .controller('splashScreen', splashScreen);
 
-  function splashScreen($scope, $state, $filter, $localStorage, $cordovaLocalNotification, ionicToast, $ionicPlatform, $ionicSlideBoxDelegate, $ionicPopup) {
+  function splashScreen($scope, $state, $filter, $localStorage, ionicToast, $ionicPlatform, $ionicPopup, AdvertiseService) {
 
     // Called to navigate to the main app
     $ionicPlatform.ready(function () {
-      screen.lockOrientation('portrait');
+      //screen.lockOrientation('portrait');
       if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
           cordova.plugins.diagnostic.isLocationEnabled(function (enabled) {
           if(enabled == true){
@@ -39,12 +39,9 @@ angular
     });
 
     $ionicPlatform.ready(function (){
-
       navigator.geolocation.getCurrentPosition(function (pos) { });
 
-
     });
-
 
     $scope.startApp = function () {
       console.log(JSON.stringify($localStorage.currentUser));
@@ -52,6 +49,7 @@ angular
         $state.go('login');
       } else {
         $state.go('app.main');
+        AdvertiseService.AdsOpen();
       }
     };
 
@@ -59,4 +57,5 @@ angular
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
     };
+
   }

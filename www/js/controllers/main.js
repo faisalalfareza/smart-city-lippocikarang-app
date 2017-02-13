@@ -133,9 +133,9 @@ angular
 
         $scope.$on("$ionicView.beforeEnter", function() {
             if ($location.path().substr(0, 11) == "/app/search" || $location.path().substr(0, 19) == "/app/propertysearch" ||
-                $location.path() == "/app/history" || 
-                $location.path().substr(0, 14) == "/app/myhistory" || 
-                $location.path() == "/app/profile" || 
+                $location.path() == "/app/history" ||
+                $location.path().substr(0, 14) == "/app/myhistory" ||
+                $location.path() == "/app/profile" ||
                 $location.path() == "/app/map" ||
                 $location.path() == "/app/more" ||
                 $location.path() == "/app/editprofile" ||
@@ -173,22 +173,17 @@ angular
     }
 
     function weather($scope, $cordovaGeolocation, $filter, $localStorage, mainService) {
-           navigator.geolocation.getCurrentPosition(function (pos) {
-                lat = pos.coords.latitude
-                long = pos.coords.longitude
-                    //set to service
-                console.log('lat : ' + lat + " long : " + long)
-                // alert('lat : ' + lat + " long : " + lon);
-           weatherservice($scope, $filter, lat, long)
-           });
-
-      
+       navigator.geolocation.getCurrentPosition(function (pos) {
+            lat = pos.coords.latitude
+            long = pos.coords.longitude
+            weatherservice($scope, $filter, lat, long)
+       });
 
         function weatherservice($scope, $filter, lat, long) {
             mainService.reqweather(lat, long, function(weatherresponse) {
 
                 if (weatherresponse != false) {
-                    console.log(weatherresponse);
+                    //console.log(weatherresponse);
                     $scope.data_weather = {
                         temp: parseInt(weatherresponse.main.temp - 273.15),
                         icon: parseInt($filter('filter')(weatherresponse.weather, function(d) {
@@ -197,11 +192,9 @@ angular
                     }
                 } else {
                     console.log(error.message);
-
                 }
 
             });
-
 
             function geticonweather(dt, id, sunrise, sunset) {
                 if (id == 800) {

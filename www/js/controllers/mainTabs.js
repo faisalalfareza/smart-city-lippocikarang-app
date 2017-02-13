@@ -23,13 +23,13 @@ angular
             $ionicLoading.hide();
         });
 
-        //modal talkToUs 
+        //modal talkToUs
         $ionicModal.fromTemplateUrl('partials/sides/talktoUs.html', {
             scope: $scope
         }).then(function(modal) {
             $scope.modal = modal;
         });
-        
+
         $scope.openTalkto = function(index) {
             $scope.modal.show();
         };
@@ -38,7 +38,7 @@ angular
             $scope.modal.hide();
             $scope.modalSlider.hide();
         };
-        
+
         //modal slider on main
         $ionicModal.fromTemplateUrl('partials/sides/whatsNewModal.html', {
             scope: $scope
@@ -66,9 +66,6 @@ angular
         // Execute action on remove modal
         $scope.$on('modal.removed', function() {
             // Execute action
-        });
-        $scope.$on('modal.shown', function() {
-            console.log('Modal is shown!');
         });
 
         // Called each time the slide changes

@@ -9,7 +9,6 @@ angular
         $scope.google_auth = google_auth;
         $scope.twitter_auth = twitter_auth;
 
-
         function registerManualService(user) {
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             console.log(user);
