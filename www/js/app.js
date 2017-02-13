@@ -179,7 +179,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvFull', {
-            cache: false,
             url: "/cctvFull/:port",
             views: {
                 'main-content': {
