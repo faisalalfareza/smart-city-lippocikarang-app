@@ -1256,7 +1256,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             vehicle_registration: 'Daftar Kendaraan',
             shop: 'Toko',
             salon: 'Salon',
-            service_apartment: 'Apartemen',
+            service_apartment: 'Layanan Apartemen',
             save: 'Simpan',
             save_profile: 'Simpan Profil',
             school: 'Sekolah',
