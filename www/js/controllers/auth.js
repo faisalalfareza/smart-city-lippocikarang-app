@@ -1,4 +1,4 @@
-    angular
+angular
         .module('livein')
         .controller('login', login);
 
