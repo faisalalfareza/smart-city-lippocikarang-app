@@ -1476,7 +1476,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
 }
 
-function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService) {
+function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
 
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
@@ -1539,6 +1539,7 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
 
                 // Push Notifications
                 PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);
@@ -1576,6 +1577,20 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
                     console.log('Tidak ada notif baru ..');
                 }
 
+            });
+        }
+
+        function PushAdvertise() {
+            AdvertiseService.AdsWhenNew(function(response) {
+                var sum = response;
+
+                if (sum > 0) {
+                    console.log('Anda memiliki ' + sum + ' ads baru..');
+                    AdvertiseService.AdsOpen();
+                }
+                else {
+                    console.log('Tidak ada ads baru ..');
+                }
             });
         }
 
