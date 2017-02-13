@@ -179,6 +179,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvFull', {
+            cache: false,
             url: "/cctvFull/:port",
             views: {
                 'main-content': {
@@ -663,6 +664,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dining: 'Dining',
             coupon: 'Coupon',
             discount: 'Discount',
+            discount_coupon: 'Discount Coupon',
             Kupon: 'Discount',
             download: 'Downloads',
             download_more: 'Download for more',
@@ -711,6 +713,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             indoor_sports: 'Indoor Sports',
             industry: 'Industrial Directory',
             industries: 'Industries',
+            unit: ' unit',
             insurance: 'Insurance',
             invitation_msg: 'Share with your friends',
             invite_friend: 'Invite Friend',
@@ -1028,6 +1031,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             shopping: 'Shopping',
             gallery: 'Gallery',
             load_from_library: 'Load From Library',
+            of:' of ',
             //button
             BUTTON_TEXT_EN: 'English',
             BUTTON_TEXT_DE: 'Indonesia'
@@ -1100,6 +1104,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             westren_food: 'Barat',
             coupon: 'Diskon',
             discount: 'Kupon',
+            discount_coupon: 'Diskon Kupon',
             Kupon: 'Kupon',
             download: 'Unduhan',
             download_more: 'Unduh',
@@ -1149,6 +1154,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             indoor_sports: 'Dalam Ruangan',
             industry: 'Petunjuk Industrial',
             industries: 'Industri',
+            unit: ' unit',
             insurance: 'Asuransi',
             invitation_msg: 'Berbagi dengan teman anda',
             invite_friend: 'Undang Teman',
@@ -1176,7 +1182,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             more: 'Lainnya',
             currency: 'Mata Uang',
             language: 'Bahasa',
-            success_language: 'Anda telah memilih ',
+            success_language: 'Anda memilih Bahasa ',
             minimarket: 'Minimarket',
             msg_deleted: 'Terhapus',
             msg_marked: 'Tertandai',
@@ -1256,7 +1262,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             vehicle_registration: 'Daftar Kendaraan',
             shop: 'Toko',
             salon: 'Salon',
-            service_apartment: 'Apartemen',
+            service_apartment: 'Layanan Apartemen',
             save: 'Simpan',
             save_profile: 'Simpan Profil',
             school: 'Sekolah',
@@ -1451,6 +1457,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             load_from_library: 'Ambil Dari Perpustakaan',
             use_camera: 'Gunakan Kamera',
             select_image_source:'Pilih Sumber Gambar',
+            of:' dari ',
             //button
             BUTTON_TEXT_EN: 'Inggris',
             BUTTON_TEXT_DE: 'Indonesia'

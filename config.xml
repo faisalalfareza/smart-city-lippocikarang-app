@@ -22,8 +22,8 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
-  <preference name="TwitterConsumerKey" value="LuAov6upYoyXnv9MT8UegwiOX" />
-  <preference name="TwitterConsumerSecret" value="uSpxUyRaFj5NH6I7WgUzEJMsqMRQYTeUpSRlFEgtiOIQfdc22V" />
+    <preference name="TwitterConsumerKey" value="LuAov6upYoyXnv9MT8UegwiOX" />
+    <preference name="TwitterConsumerSecret" value="uSpxUyRaFj5NH6I7WgUzEJMsqMRQYTeUpSRlFEgtiOIQfdc22V" />
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
@@ -206,7 +206,6 @@
     <plugin name="cordova-plugin-image-picker" spec="~1.1.1">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
-    <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
     <plugin name="cordova-plugin-googleplus" spec="~5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.683716271520-acb1b36o862aotvbdh0d6gooolkn0ar8" />
     </plugin>
@@ -214,5 +213,5 @@
         <variable name="APP_ID" value="217892791967144" />
         <variable name="APP_NAME" value="Livein_iOS" />
     </plugin>
+    <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
 </widget>
-
