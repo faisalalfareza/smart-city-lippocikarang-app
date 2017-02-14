@@ -588,6 +588,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.ovo_payment', {
+           url: "/paymentovo",
+           views: {
+             'menu-content': {
+              templateUrl: "partials/sides/payment_ovo.html",
+              controller: 'paymentovo'
+           }
+         }
+       })
         .state('app.publictransportation', {
             url: "/publictransportation",
             views: {

@@ -1,0 +1,23 @@
+<ion-view view-title="eBilling">
+  <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+    <div style="text-align: center" class="row">
+      <h4 class="col" align="center" style="padding: 0;color: #2980b9;vertical-align: middle">OVO loyalty payment</h4>
+    </div>
+  </ion-bar>
+  <ion-content class="has-footer padding" style="padding: 50px" overflow-scroll="true">
+
+    <div style="align-content: center;">
+      <img src="img/billing/ovo_logo.png" style="align-content: center;
+    width: 180px;margin: auto;display: block;top: 0;left: 0;right: 0;bottom: 0;">
+    </div>
+
+    <label style="margin-top:15%;border: solid 1px;border-color:#0a9dc7 " class="item item-input">
+      <input ng-model="phone" type="text" placeholder="Phone Number">
+    </label>
+
+    <button type="submit" ng-click="loginbilling(email)" style="margin-top:15%;border-radius:34px;text-transform:uppercase;font-size:13px;" class="button button-full button-positive">
+      Submit
+    </button>
+
+  </ion-content>
+</ion-view>
