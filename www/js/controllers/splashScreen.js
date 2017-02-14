@@ -44,7 +44,7 @@ angular
     });
 
     $scope.startApp = function () {
-      console.log(JSON.stringify($localStorage.currentUser));
+
       if (!$localStorage.currentUser) {
         $state.go('login');
       } else {

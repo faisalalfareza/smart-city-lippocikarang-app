@@ -36,9 +36,9 @@ angular
                                 cssClass: "alertPopup"
                               });
 
-                              // setTimeout(function() {
-                              AdvertiseService.AdsLogin();
-                              // }, 2500);
+                              setTimeout(function() {
+                                AdvertiseService.AdsLogin();
+                              }, 2500);
 
                           } else {
                               $ionicLoading.show({
