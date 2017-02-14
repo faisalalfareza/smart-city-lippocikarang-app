@@ -249,6 +249,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     /* start : navigation tabs */
 
     .state('app.main', {
+            cache: true,
             url: "/main",
             views: {
                 'main-content': {

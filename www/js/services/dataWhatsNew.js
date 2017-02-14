@@ -12,6 +12,7 @@ angular
         function getDataWhatsNew(callback) {
             var req = {
                     method: 'GET',
+                    cache: true,
                     url: 'http://innodev.vnetcloud.com/LiveIn/api/News/?action=listnews&pagenumber=1&pagesize=1000'
                 }
 
