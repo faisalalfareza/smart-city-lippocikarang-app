@@ -25,6 +25,7 @@ angular
                             title: $filter('translate')('registration_success'),
                             template: $filter('translate')('activate_account'),
                             okText: $filter('translate')('yes'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         });
                         $location.path('/login');
@@ -33,6 +34,7 @@ angular
                             title: $filter('translate')('registration_failed'),
                             template: $filter('translate')('email_exist'),
                             okText: $filter('translate')('yes'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
                         $location.path('/register');

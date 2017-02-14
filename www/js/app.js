@@ -6,6 +6,8 @@ angular
 
 function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider) {
 
+    var api_link = "http://innodev.vnetcloud.com/LiveIn/api/";
+
     // Identify app
     $ionicAppProvider.identify({
         // The App ID (from apps.ionic.io) for the server
@@ -188,12 +190,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvMulti', {
-          url: "/cctvMulti",
-          views: {
-            'main-content': {
-              templateUrl: "partials/sides/cctvMulti.html"
+            url: "/cctvMulti",
+            views: {
+                'main-content': {
+                    templateUrl: "partials/sides/cctvMulti.html"
+                }
             }
-          }
         })
         .state('app.forum', {
             cache: false,
@@ -247,6 +249,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     /* start : navigation tabs */
 
     .state('app.main', {
+            cache: true,
             url: "/main",
             views: {
                 'main-content': {
@@ -611,6 +614,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
     //translate
     $translateProvider.translations('en', {
+            apilink: api_link,
             app_name: 'LippoCikarang.com', //{{'app_name' | translate}}
             openDrawer: 'Open Drawer',
             closeDrawer: 'Close Drawer',
@@ -650,7 +654,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             send_email: 'Send Email',
             call_agent: 'Call Agent',
             call_center: 'Call Center',
-            call_center_html: '<![CDATA[ <b>Call</b>Center ]]>',
+            call_center_html: '<b>Call</b>Center',
             cancel: 'Cancel',
             cctv: 'CCTV',
             chinese: 'Chinese',
@@ -884,7 +888,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             workshop_services: 'Workshop Services',
             world_clock: 'World Clock',
             yes: 'Yes',
-            btn_discount_coupon: '<![CDATA[ <b>Discount</b>Coupon ]]>',
+            btn_discount_coupon: '<b>Discount</b>Coupon',
             welcome_dialog: 'You are registered \n as',
             okay: 'Okay',
             about_us: 'About Us',
@@ -1039,12 +1043,13 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             shopping: 'Shopping',
             gallery: 'Gallery',
             load_from_library: 'Load From Library',
-            of:' of ',
+            of: ' of ',
             //button
             BUTTON_TEXT_EN: 'English',
             BUTTON_TEXT_DE: 'Indonesia'
         })
         .translations('ina', {
+            apilink: api_link,
             ds1: 'DS1',
             ds2: 'DS2',
             ds3: 'DS3',
@@ -1089,7 +1094,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             send_email: 'Kirim Email',
             call_agent: 'Hubungi Agen',
             call_center: 'Pusat Bantuan',
-            call_center_html: '<![CDATA[ <b>Pusat</b>Panggilan ]]>',
+            call_center_html: '<b>Pusat</b>Panggilan',
             cancel: 'Batal',
             cctv: 'CCTV',
             chinese: 'China',
@@ -1326,7 +1331,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             workshop_services: 'Bengkel',
             world_clock: 'Jam Dunia',
             yes: 'Ya',
-            btn_discount_coupon: '<![CDATA[ <b>Kupon</b>Diskon ]]>',
+            btn_discount_coupon: '<b>Kupon</b>Diskon',
             welcome_dialog: 'Anda terdaftar sebagai ',
             okay: 'Oke',
             about_us: 'Tentang kami',
@@ -1464,8 +1469,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             featured: 'Fitur',
             load_from_library: 'Ambil Dari Perpustakaan',
             use_camera: 'Gunakan Kamera',
-            select_image_source:'Pilih Sumber Gambar',
-            of:' dari ',
+            select_image_source: 'Pilih Sumber Gambar',
+            of: ' dari ',
             //button
             BUTTON_TEXT_EN: 'Inggris',
             BUTTON_TEXT_DE: 'Indonesia'
@@ -1596,8 +1601,7 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
                 if (sum > 0) {
                     console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
-                }
-                else {
+                } else {
                     console.log('Tidak ada ads baru ..');
                 }
             });

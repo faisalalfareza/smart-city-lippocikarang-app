@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var connect = require('gulp-connect');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
@@ -11,7 +12,19 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('connect', function() {
+  connect.server({
+    livereload: true,
+    port: 35729
+  });
+});
+
+gulp.task('reload', function(){
+    gulp.src('./dist/**/*.*')
+    .pipe(connect.reload());
+});
+
+gulp.task('default', ['connect', 'watch', 'sass']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -28,6 +41,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(['./dist/**/*.*'], ['reload']);
 });
 
 gulp.task('install', ['git-check'], function() {
