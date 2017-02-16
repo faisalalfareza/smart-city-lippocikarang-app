@@ -158,6 +158,8 @@ angular
         });
 
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
+        $scope.privilege = $localStorage.currentUser.data[0].privilege;
+        console.log($scope.privilege);
 
         //goto currency
         $scope.gotocurrency = function() {
