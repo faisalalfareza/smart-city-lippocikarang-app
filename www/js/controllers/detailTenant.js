@@ -5,6 +5,9 @@ angular
     .controller('sportDetailImage', entertaimentSportDetailImage);
 
 function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = true;
+    });
 
     $scope.MapClick = gotoMap;
     $scope.Bookmark = setbookmark;
