@@ -24,7 +24,6 @@ function LoginService($http, $localStorage, $filter) {
             .success(function(response) {
                 if (response[0].status != false) {
                     $localStorage.currentUser = { data: response };
-                    console.log(response[0]);
                 }
                 callback(response);
             })

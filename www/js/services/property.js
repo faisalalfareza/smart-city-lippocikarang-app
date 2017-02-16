@@ -2,8 +2,9 @@ angular
     .module('livein')
     .service('PropertyService', PropertyService)
 
-    function PropertyService($http, $localStorage, $stateParams) {
+    function PropertyService($http, $localStorage, $stateParams, $filter) {
         var service = {};
+
         service.listproperty = listproperty;
         service.retriveGetProperty = retriveGetProperty;
         service.emailProperty = emailProperty;
@@ -16,7 +17,7 @@ angular
         function listproperty(status, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Property/?action=listbycategory&idcategory=39&pagenumber=1&pagesize=1000&status='+status+'&idaccount='+$localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Property/?action=listbycategory&idcategory=39&pagenumber=1&pagesize=1000&status='+status+'&idaccount='+$localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -30,7 +31,7 @@ angular
         function propertycategory(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Category?action=listallchild&idcategory=39'
+                url: $filter('translate')('apilink') + 'api/Category?action=listallchild&idcategory=39'
             }
             $http(req)
                 .success(function (response) {
@@ -44,7 +45,7 @@ angular
         function retriveGetProperty(idproperty, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Property/?action=retrieve_get&idproperty='+idproperty
+                url: $filter('translate')('apilink') + 'api/Property/?action=retrieve_get&idproperty='+idproperty
             }
             $http(req)
                 .success(function (response) {
@@ -58,7 +59,7 @@ angular
         function emailProperty(bodyemail,callback) {
            var req = {
                method: 'POST',
-               url: 'https://innodev.vnetcloud.com/liveinpayment/sendemail',
+               url: $filter('translate')('apilinkpayment') + 'sendemail',
                headers: {
                    'Content-Type': 'application/json'
                },
@@ -81,7 +82,7 @@ angular
         function insertBookmarkProperty(idproperty, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Bookmark/',
+                url: $filter('translate')('apilink') + 'api/Bookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -101,7 +102,7 @@ angular
         function deleteBookmarkProperty(idbookmark, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Bookmark/',
+                url: $filter('translate')('apilink') + 'api/Bookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },

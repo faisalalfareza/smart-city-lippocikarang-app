@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('registerService', registerService);
 
-    function registerService($http) {
+    function registerService($http, $filter) {
         var service = {};
 
         service.registerManualService = registerManualService;
@@ -14,7 +14,7 @@ angular
         function registerManualService(fullname, gender, phone, email, password, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -26,11 +26,10 @@ angular
                 '&email=' + email +
                 '&password=' + password
             }
-            console.log(req);
+
             $http(req)
                 .success(function (response) {
                     callback(response);
-                    console.log(JSON.stringify(response));
                 })
                 .error(function () {
                     callback(false);

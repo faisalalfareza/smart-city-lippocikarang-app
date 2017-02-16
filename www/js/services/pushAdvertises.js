@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('AdvertiseService', AdvertiseService);
 
-    function AdvertiseService($http, $ionicModal, $rootScope, $localStorage) {
+    function AdvertiseService($http, $ionicModal, $rootScope, $localStorage, $filter) {
         var service = {};
 
         service.AdsLogin = AdsLogin;
@@ -14,7 +14,7 @@ angular
         function AdsLogin(callback) {
             var req = {
                     method: "GET",
-                    url: "http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
+                    url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
                 }
 
             var promise = $http(req)
@@ -77,7 +77,7 @@ angular
         function AdsOpen(callback) {
           var req = {
             method: "GET",
-            url: "http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
+            url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
           }
 
           $http(req)
@@ -92,7 +92,7 @@ angular
         function AdsWhenNew(callback) {
           var req = {
             method: "GET",
-            url: "http://innodev.vnetcloud.com/LiveIn/api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
+            url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
           }
 
           $http(req)
