@@ -40,11 +40,11 @@ angular
                             });
 
                             getStatus.then(function (res) {
-                              if (res) {                          
+                              if (res) {
                                 AdvertiseService.AdsLogin();
                               }
                             });
- 
+
                         }
 
                     } else {
@@ -167,12 +167,12 @@ angular
         function(result) {
           console.log('User Profile:');
           console.log(result);
-          alert(JSON.stringify(result));
+          // alert(JSON.stringify(result));
           console.log('Twitter handle :'+result.userName);
           if(result.email == undefined || result.email == ""){
 
             var alertPopup = $ionicPopup.alert({
-              template: "Sorry i cant get email from your twitter to validation regrestation",
+              template: "Sorry, we can’t fetch your email for registration",
               okText: $filter('translate')('okay'),
               okType: "button-stable",
               cssClass: "alertPopup"
