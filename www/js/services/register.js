@@ -26,11 +26,10 @@ angular
                 '&email=' + email +
                 '&password=' + password
             }
-            console.log(req);
+
             $http(req)
                 .success(function (response) {
                     callback(response);
-                    console.log(JSON.stringify(response));
                 })
                 .error(function () {
                     callback(false);

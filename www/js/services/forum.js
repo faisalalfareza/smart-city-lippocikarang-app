@@ -22,6 +22,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Forums/?action=listforums&pagesize=10000&pagenumber=1'
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -36,6 +37,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -60,6 +62,7 @@ angular
                     '&viewer=1'
 
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -85,6 +88,7 @@ angular
                     '&createdate=' + createdate +
                     '&idforums=' + idforums
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -104,6 +108,7 @@ angular
                 data: 'action=' + 'delete_forums' +
                     '&idforums=' + idforums
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -123,6 +128,7 @@ angular
                 data: 'action=' + 'delete_galleryforums' +
                     '&idgalleryforums=' + idgallery
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -143,6 +149,7 @@ angular
                     '&idforums=' + idforum +
                     '&avatar=' + avatar
             }
+
             $http(req)
                 .success(function(response) {
                     callback(response);
@@ -164,7 +171,7 @@ angular
                         '&idforums=' + $stateParams.idforum +
                         '&comment=' + forumComment
                 }
-                // console.log(req);
+
             $http(req)
                 .success(function(response) {
                     callback(response);

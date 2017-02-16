@@ -36,7 +36,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
-            console.log(req);
+ 
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -56,7 +56,7 @@ angular
                 data: 'action=' + 'delete_notif' +
                 '&idnotif=' + results
             }
-            console.log(req);
+ 
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -77,7 +77,7 @@ angular
                 '&idnotif=' + results +
                 '&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
-            console.log(req);
+   
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -129,7 +129,7 @@ angular
 
     }
 
-    function EditProfileService($http) {
+    function EditProfileService($http, $filter) {
         var service = {};
         service.editprofile = editprofile;
         return service;
@@ -137,7 +137,7 @@ angular
         function editprofile(idaccount, gender, phone, dateofbirth, fullname, address, avatar, pscode, privilege, password, email, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -154,7 +154,7 @@ angular
                 '&password=' + password +
                 '&email=' + email
             }
-            console.log(req);
+       
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -165,7 +165,7 @@ angular
         }
     }
 
-    function ProfileService($http, $localStorage) {
+    function ProfileService($http, $localStorage, $filter) {
         var service = {};
         service.retrievegetaccount = retrievegetaccount;
         return service;
@@ -173,7 +173,7 @@ angular
         function retrievegetaccount(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/?action=retrieve_get&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Account/?action=retrieve_get&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -185,7 +185,7 @@ angular
         }
     }
 
-    function HistoryService($http) {
+    function HistoryService($http, $filter) {
         var service = {};
         service.listHistory = listHistory;
         return service;
@@ -193,7 +193,7 @@ angular
         function listHistory(idaccount, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
             }
 
             $http(req)

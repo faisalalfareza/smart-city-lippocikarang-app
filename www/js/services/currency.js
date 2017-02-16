@@ -12,7 +12,7 @@ angular
         method: 'GET',
           url: 'http://api.fixer.io/latest?base=IDR'
       }
-      console.log(req);
+
       $http(req)
         .success(function (response) {
           callback(response);

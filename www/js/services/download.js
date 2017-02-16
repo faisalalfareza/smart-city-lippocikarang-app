@@ -2,7 +2,6 @@ angular
     .module('livein')
     .service('DownloadService', DownloadService)
 
-
     function DownloadService($http, $localStorage, $state, $filter) {
         var service = {};
         
@@ -19,6 +18,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Download/?action=listdownload&pagesize=1000&pagenumber=1&idcategory=92'
             }
+            
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -35,6 +35,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Download/?action=listdownload&pagesize=1000&pagenumber=1&idcategory=93'
             }
+
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -51,6 +52,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Download/?action=retrieve_get&iddownload=' + iddownload
             }
+
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -67,6 +69,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Category?action=listallchild&idcategory=92'
             }
+
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -81,6 +84,7 @@ angular
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Category?action=listallchild&idcategory=93'
             }
+
             $http(req)
                 .success(function (response) {
                     callback(response);

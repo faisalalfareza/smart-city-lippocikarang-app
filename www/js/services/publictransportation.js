@@ -21,7 +21,5 @@ angular
                 .error(function () {
                     callback(false);
                 });
-
-            console.log("masuk yaa");
         }
     }

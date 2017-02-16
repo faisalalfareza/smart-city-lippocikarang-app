@@ -16,8 +16,6 @@ angular
     else
     {
       dfd.resolve(predictions);
-      console.log(dfd)
-      console.log(predictions)
     }
   });
 
