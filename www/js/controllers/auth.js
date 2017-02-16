@@ -176,10 +176,7 @@ angular
               okText: $filter('translate')('okay'),
               okType: "button-stable",
               cssClass: "alertPopup"
-
             });
-
-
           }else {
             senddatauser(result,"facebook")
           }
