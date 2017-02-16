@@ -216,7 +216,6 @@ angular
                   okText: $filter('translate')('okay'),
                   okType: "button-stable",
                   cssClass: "alertPopup"
-
                 });
 
                 alertPopup.then(function (res) {
@@ -279,9 +278,7 @@ angular
 
                 alertPopup.then(function (res) {
                   if (res) {
-                    LoginService.logoutUser();
-                    $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
-                    $state.go('login');
+                    AdvertiseService.AdsLogin();
                   }
                 });
 

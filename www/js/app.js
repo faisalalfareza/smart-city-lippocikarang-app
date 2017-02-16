@@ -6,7 +6,8 @@ angular
 
 function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider) {
 
-    var api_link = "http://innodev.vnetcloud.com/LiveIn/api/";
+    var api_link = "http://innodev.vnetcloud.com/LiveIn/";
+    var api_link_payment = "http://innodev.vnetcloud.com/liveinpayment/";
 
     // Identify app
     $ionicAppProvider.identify({
@@ -615,6 +616,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     //translate
     $translateProvider.translations('en', {
             apilink: api_link,
+            apilinkpayment: api_link_payment,
             app_name: 'LippoCikarang.com', //{{'app_name' | translate}}
             openDrawer: 'Open Drawer',
             closeDrawer: 'Close Drawer',
@@ -1050,6 +1052,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         })
         .translations('ina', {
             apilink: api_link,
+            apilinkpayment: api_link_payment,
             ds1: 'DS1',
             ds2: 'DS2',
             ds3: 'DS3',
