@@ -70,7 +70,7 @@ angular
 
     }
 
-    function getbillingCtrl($scope,$filter, $rootScope, billingServices, $ionicLoading, $ionicPopup, $ionicSlideBoxDelegate, $state) {
+    function getbillingCtrl($scope,$cordovaNetwork,$filter, $rootScope, billingServices, $ionicLoading, $ionicPopup, $ionicSlideBoxDelegate, $state) {
 
         console.log($rootScope.datasite);
 
@@ -107,27 +107,39 @@ angular
 
 
         $scope.paynow = function() {
+
+          if($cordovaNetwork.getNetwork() != Connection.NONE) {
             $rootScope.unitno = [];
             $rootScope.datares = $scope.atributeres;
 
-            angular.forEach($scope.periodes, function(value, key) {
-                angular.forEach(value.Unit, function(valueunit, keyunit) {
-                    $scope.unitno.push(valueunit['@attributes'].UnitNo)
-                })
+            angular.forEach($scope.periodes, function (value, key) {
+              angular.forEach(value.Unit, function (valueunit, keyunit) {
+                $scope.unitno.push(valueunit['@attributes'].UnitNo)
+              })
 
             })
 
             console.log($scope.unitno);
             $rootScope.unitnofilter = [];
             $rootScope.attributpayment = $scope.atributeres;
-            $scope.unitno.filter(function(item, index, inputArray) {
-                var taek = inputArray.indexOf(item) == index;
-                if (taek == true) {
-                    $rootScope.unitnofilter = $rootScope.unitnofilter + item + ',';
-                }
+            $scope.unitno.filter(function (item, index, inputArray) {
+              var taek = inputArray.indexOf(item) == index;
+              if (taek == true) {
+                $rootScope.unitnofilter = $rootScope.unitnofilter + item + ',';
+              }
             });
 
             $state.go('app.payment');
+          }else {
+
+            var alertPopup = $ionicPopup.alert({
+              title: $filter('translate')('failed'),
+              template: "check your connection",
+              okText: $filter('translate')('okay'),
+              cssClass: "alertPopup"
+            });
+
+          }
         }
 
         function getdatabilling() {
@@ -169,11 +181,12 @@ angular
 
         $scope.unitno = $rootScope.unitnofilter;
         $scope.atribute = $rootScope.attributpayment;
+        alert(JSON.stringify($rootScope.attributpayment));
 
 
-        $scope.select_type = function(type_payment) {
-            console.log($scope.type_payment);
-            console.log($scope.checkterm);
+        $scope.select_type = function(type_payment,checkterm) {
+            console.log(type_payment);
+            console.log(checkterm);
 
             if (type_payment == undefined ) {
                 var alertPopup = $ionicPopup.alert({
@@ -183,13 +196,33 @@ angular
                     cssClass: "alertPopup"
                 });
 
-            } else {
+            } else if (checkterm == false || checkterm == undefined){
+              var alertPopup = $ionicPopup.alert({
+                title: $filter('translate')('failed'),
+                template: "you must check term of services",
+                okText: $filter('translate')('okay'),
+                cssClass: "alertPopup"
+              });
+
+            }else {
+
+              if($cordovaNetwork.getNetwork() != Connection.NONE) {
 
                 console.log(type_payment);
                 $rootScope.type_payment = type_payment;
                 if (type_payment.match('ovo payment')) {
                   $state.go('app.ovo_payment');
                 }
+              }else {
+
+                var alertPopup = $ionicPopup.alert({
+                  title: $filter('translate')('failed'),
+                  template: "check your connection",
+                  okText: $filter('translate')('okay'),
+                  cssClass: "alertPopup"
+                });
+
+              }
 
             }
 
@@ -224,6 +257,80 @@ angular
 
     }
 
-    function paymentovo() {
+    function paymentovo($rootScope,$cordovaNetwork,billingServices,$state) {
+
+      alert(JSON.stringify($rootScope.attributpayment));
+
+      $scope.submtpayment = function (phone) {
+
+
+        if($cordovaNetwork.getNetwork() != Connection.NONE) {
+          billingServices.ovopaymet_service(
+            $rootScope.attributpayment.Name,
+            $rootScope.emailres,
+            $rootScope.attributpayment.SiteID,
+            rootScope.attributpayment.BillingOutstandingBalance,
+            phone,getdataresponse
+          )
+
+        }
+
+      getdataresponse = function (response) {
+
+          if(response != false){
+            status = response.status;
+
+            if(status == '200' || status == 200){
+
+              message = "Status : "+status +  "\n" +
+                        "transcation id : " + response.transaction_id + "\n" +
+                        "message : "+ response.message + "\n"+
+                        "Check your notification ovo";
+              showalertpopup(message,200);
+
+            } else if(status == '103' || status == 103) {
+
+              message = "Status : " + status + "\n" +
+                        "message : " + response.message;
+              showalertpopup(message,103);
+
+            }else if (status == 500 || status == '500'){
+
+
+              message = "Status : " + status + "\n" +
+                        "Error Id : " + response.ErrorID + "\n" +
+                        "Error Code : " + response.ErrorCode + "\n" +
+                        "Error Message : "+response.ErrorMessage + "\n" +
+                        "Message : "+ response.message;
+
+              showalertpopup(message,500);
+
+
+
+
+            }
+
+          }
+
+      }
+
+      function showalertpopup(message,status) {
+
+        var alertPopup = $ionicPopup.alert({
+          title: "Payment Status",
+          template: message,
+          okText: $filter('translate')('okay'),
+          cssClass: "alertPopup"
+        });
+
+        alertPopup.then(function(res) {
+          if (status == 200 || status == 103){
+            $state.go(app.loginbilling);
+          }else
+            console.log('Thank you for not eating my delicious ice cream cone');
+        });
+      }
+
+      }
 
     }

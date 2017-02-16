@@ -13,7 +13,7 @@ angular
     $scope.shareemail = shareemail;
     $scope.sharelinkedin = sharelinkedin;
     $scope.sharetwitter = sharetwitter;
-    
+
     function sharefacebook() {
       $cordovaSocialSharing
         .shareViaFacebook('Silahkan download aplikasi LippoCikarang', null, 'http://www.lippo-cikarang.com')
@@ -56,7 +56,7 @@ angular
 
     function shareemail() {
       $cordovaSocialSharing
-        .shareViaEmail("Silahkan download aplikasi LippoCikarang http://www.lippo-cikarang.com/en", "LippocCkarang", ['yayan.yayan98@gmail.com', ""], ['janur.salnian98@gmail.com', ""], ['janur.salnian98@gmail.com', ""], null)
+        .shareViaEmail("Silahkan download aplikasi LippoCikarang http://www.lippo-cikarang.com/en", "LippocCkarang", ['', ""], ['', ""], [' ', ""], null)
         .then(function (result) {
           // Success!
         }, function (err) {
