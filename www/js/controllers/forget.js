@@ -30,7 +30,7 @@ angular
                                 if (response != false) {
                                     $scope.detail = response;
                                     var myPopup = $ionicPopup.show({
-                                            template: '<input type="number" style="text-align:center;font-weight:bold;" ng-model="data.code"><br>' +
+                                            template: '<input type="number" style="text-align:center;font-weight:bold;border:2px solid #3498db;" placeholder="Code" ng-model="data.code" required><br>' +
                                                 '<a ng-click="resendPassword()" style="text-align:center" class="col">' + $filter('translate')('resend_code') + '</a>',
                                             title: $filter('translate')('send_code'),
                                             scope: $scope,
@@ -64,6 +64,7 @@ angular
 
                                     myPopup.then(function(res) {
                                         if(res) {
+                                            alert('Ready to Change');
                                             ForgetPasswordService.checkCode(
                                                 idaccount,
                                                 $scope.data.code,
