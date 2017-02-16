@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('ForgetPasswordService', ForgetPasswordService);
 
-    function ForgetPasswordService($http, $localStorage) {
+    function ForgetPasswordService($http, $localStorage, $filter) {
         var service = {};
 
         service.forgetPassword = forgetPassword;
@@ -15,7 +15,7 @@ angular
         function changePassword(idaccount, password, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -36,7 +36,7 @@ angular
         function checkCode(idaccount, codeConfirm, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -57,7 +57,7 @@ angular
         function genCode(idaccount, type, contact, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -79,7 +79,7 @@ angular
         function forgetPassword(contact, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },

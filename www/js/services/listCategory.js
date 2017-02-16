@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('TenantService', TenantService);
 
-    function TenantService($http, $localStorage) {
+    function TenantService($http, $localStorage, $filter) {
         var service = {};
 
         service.listAllChild = listAllChild;
@@ -17,7 +17,7 @@ angular
         function listAllChild(idcategory, callback) {
             var req = {
                     method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Category?action=listallchild&idcategory='+idcategory
+                    url: $filter('translate')('apilink') + 'api/Category?action=listallchild&idcategory='+idcategory
                 }
 
             $http(req)
@@ -32,7 +32,7 @@ angular
         function listTenant(idcategory, callback) {
             var req = {
                     method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Tenant/?action=listbycategory&idcategory='+idcategory+'&pagenumber=1&pagesize=1000'
+                    url: $filter('translate')('apilink') + 'api/Tenant/?action=listbycategory&idcategory='+idcategory+'&pagenumber=1&pagesize=1000'
                 }
 
             $http(req)
@@ -47,7 +47,7 @@ angular
         function listRecomendedTenant(idcategory, callback) {
             var req = {
                     method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Tenant/?action=listcategoryfilterbyrecommended&idcategory='+idcategory+'&idaccount='+$localStorage.currentUser.data[0].idaccount+'&pagenumber=1&pagesize=1000&keyword=%%'
+                    url: $filter('translate')('apilink') + 'api/Tenant/?action=listcategoryfilterbyrecommended&idcategory='+idcategory+'&idaccount='+$localStorage.currentUser.data[0].idaccount+'&pagenumber=1&pagesize=1000&keyword=%%'
                 }
 
             $http(req)
@@ -62,7 +62,7 @@ angular
         function retriveGetTenant(idtenant, callback) {
             var req = {
                     method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Tenant/?action=retrieve_get&idtenant='+idtenant
+                    url: $filter('translate')('apilink') + 'api/Tenant/?action=retrieve_get&idtenant='+idtenant
                 }
 
             $http(req)
@@ -77,7 +77,7 @@ angular
         function retriveGetTenantImage(idtenant, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Gallerytenant/?action=listgallery&pagenumber=1&pagesize=1000'+idtenant
+                url: $filter('translate')('apilink') + 'api/Gallerytenant/?action=listgallery&pagenumber=1&pagesize=1000'+idtenant
             }
 
             $http(req)
@@ -92,7 +92,7 @@ angular
         function filterByCategory(idcategory, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Category?action=listallchild&idcategory='+idcategory
+                url: $filter('translate')('apilink') + 'api/Category?action=listallchild&idcategory='+idcategory
             }
 
             $http(req)

@@ -2,8 +2,9 @@ angular
     .module('livein')
     .service('ForumService', ForumService)
 
-    function ForumService($http, $localStorage, $stateParams) {
+    function ForumService($http, $localStorage, $stateParams, $filter) {
         var service = {};
+        
         service.listforum = listforum;
         service.forumdetail = forumdetail;
         service.newforum = newtopic;
@@ -13,12 +14,13 @@ angular
         service.commentforum = commentforum;
         service.deleteGallery = deleteGallery;
         service.insertGallery = insertGallery;
+
         return service;
 
         function listforum(status, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Forums/?action=listforums&pagesize=10000&pagenumber=1'
+                url: $filter('translate')('apilink') + 'api/Forums/?action=listforums&pagesize=10000&pagenumber=1'
             }
             $http(req)
                 .success(function(response) {
@@ -32,7 +34,7 @@ angular
         function forumdetail(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum
+                url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum
             }
             $http(req)
                 .success(function(response) {
@@ -46,7 +48,7 @@ angular
         function newtopic(title, description, image, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Forums/',
+                url: $filter('translate')('apilink') + 'api/Forums/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -71,7 +73,7 @@ angular
 
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Forums/',
+                url: $filter('translate')('apilink') + 'api/Forums/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -95,7 +97,7 @@ angular
         function deleteforum(idforums, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Forums/',
+                url: $filter('translate')('apilink') + 'api/Forums/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -114,7 +116,7 @@ angular
         function deleteGallery(idgallery, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Galleryforums/',
+                url: $filter('translate')('apilink') + 'api/Galleryforums/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -133,7 +135,7 @@ angular
         function insertGallery(idforum, avatar, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Galleryforums/',
+                url: $filter('translate')('apilink') + 'api/Galleryforums/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -153,7 +155,7 @@ angular
         function commentforum(forumComment, callback) {
             var req = {
                     method: 'POST',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Comment/',
+                    url: $filter('translate')('apilink') + 'api/Comment/',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },

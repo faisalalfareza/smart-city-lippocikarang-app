@@ -5,20 +5,22 @@ angular
     .service('ProfileService', ProfileService)
     .service('HistoryService', HistoryService);
 
-    function Notification($http, $localStorage, $stateParams) {
+    function Notification($http, $localStorage, $stateParams, $filter) {
         var service = {};
+
         service.listnotif = listnotif;
         service.deleteNotif = deleteNotif;
         service.detailNotif = detailNotif;
         service.updateNotif = updateNotif;
         service.insertBookmarkNotif = insertBookmarkNotif;
         service.deleteBookmarkNotif = deleteBookmarkNotif;
+
         return service;
 
         function listnotif(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -32,7 +34,7 @@ angular
         function detailNotif(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             console.log(req);
             $http(req)
@@ -47,7 +49,7 @@ angular
         function deleteNotif(results, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/',
+                url: $filter('translate')('apilink') + 'api/Notif/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -67,7 +69,7 @@ angular
         function updateNotif(results, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/',
+                url: $filter('translate')('apilink') + 'api/Notif/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -88,7 +90,7 @@ angular
         function insertBookmarkNotif(idnotif, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notifbookmark/',
+                url: $filter('translate')('apilink') + 'api/Notifbookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -108,7 +110,7 @@ angular
         function deleteBookmarkNotif(idnotifbookmark, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notifbookmark/',
+                url: $filter('translate')('apilink') + 'api/Notifbookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },

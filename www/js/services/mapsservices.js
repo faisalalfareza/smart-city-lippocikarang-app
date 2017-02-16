@@ -5,6 +5,7 @@ angular
 
   function distanceduration() {
     var service = {};
+
     service.reqdistance = reqdistance;
 
     return service
@@ -21,11 +22,7 @@ angular
       }, function (response) {
         console.log(response)
         callback(response)
-
-
-
       });
-
     }
 
   }

@@ -1,6 +1,3 @@
-/**
- * Created by Lenovo on 02/12/2016.
- */
 angular
   .module('livein')
   .service('currencyService', CurrencyService);
