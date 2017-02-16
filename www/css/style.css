@@ -1295,3 +1295,7 @@ iframe {
 .transparent {
   background: transparent !important;
 }
+
+.popup-body {
+    font-size: 1.2em;
+}
