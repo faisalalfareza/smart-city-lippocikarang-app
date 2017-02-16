@@ -1,32 +1,30 @@
 <ion-view view-title="{{'tenant_map'| translate}}" class="maplayout">
   <ion-content  class="has-header" has-bouncing="false">
 
-  <div ng-show="mencret" class="row" style="width:100%">
+  <div ng-show="mencret" class="row" style="width:100%;padding:0">
 
     <div class="col col-50">
       <table border="1">
       <tr>
         <td>
-          <img width="48" src="img/ic_distances.png">
+          <img style="display:block;margin: auto;top: 0; left: 0;right: 0;bottom: 0;" width="50%"  src="img/ic_distances.png">
         </td>
         <td>
-          <p style="vertical-align:middle" >{{mencret}}</p>
+          <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;" >{{mencret}}</p>
         </td>
       </tr>
       </table>
     </div>
 
     <div class="col col-50" style="border-left:solid thin;border-color:#0e0e0e">
-      <table>
-        <tr>
-          <td>
-            <img width="48" src="img/tenantDetail/ic_time.png">
-          </td>
-          <td>
-            <p style="vertical-align: middle">{{telek}}</p>
-          </td>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col col-50">
+            <img style="display:block;margin: auto;top: 0; left: 0;right: 0;bottom: 0;" width="50%" src="img/tenantDetail/ic_time.png">
+        </div>
+        <div class="col col-50">
+            <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;">{{telek}}</p>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -3,34 +3,35 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content id="mapContainer" class="has-header" has-bouncing="false">
-    <div  ng-show="distance" class="row" style="width: 100%">
+    <div ng-show="distance"   class="row" style="width: 100%">
       <div class="col col-50">
-        <table border="1">
-          <tr>
-            <td>
-              <img width="48" src="img/ic_distances.png">
-            </td>
-            <td>
-              <p style="vertical-align: middle">{{distance}}</p>
-            </td>
-          </tr>
-        </table>
+          <div class="row">
+            <div class=" col col-50" style="align-content: center">
+              <img width="50%" style="display:block;margin: auto;top: 0; left: 0;right: 0;bottom: 0;" src="img/ic_distances.png">
+            </div>
+            <div class=" col col-50" style="align-content: center">
+
+              <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;" ng-model="duration"  >  {{distance}}12312</p>
+              </div>
+          </div>
+
       </div>
       <div style="border-left:solid thin;border-color: #0e0e0e;" class="col col-50">
-        <table>
-          <tr>
-            <td>
-              <img width="48" src="img/tenantDetail/ic_time.png">
-            </td>
-            <td>
-              <p style="vertical-align: middle;margin-top: -5%" ng-model="duration"  >{{duration}}</p>
-            </td>
-          </tr>
-        </table>
+        <div class="row">
+          <div class=" col col-50" style="align-content: center">
+
+              <img width="50%" style=" margin: auto;top: 0; left: 0;right: 0;bottom: 0; float: right" src="img/tenantDetail/ic_time.png">
+          </div>
+          <div class=" col col-50" style="align-content: center">
+
+              <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;" ng-model="duration"  >{{duration}}</p>
+          </div>
+        </div>
+
       </div>
     </div>
     <div style="z-index:1;position: absolute;width: 100%">
-      
+
     <input id="input" style="margin-top:10%;width:80%;margin-left:10%;border:3px solid #3498db;border-radius:5px;padding:20px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);" ng-model="search.input" type="text"
             placeholder="{{ 'search_title'| translate }} ..."
             ng-change="getPlacePredictions(search.input)" required />
