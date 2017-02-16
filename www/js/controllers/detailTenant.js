@@ -96,16 +96,27 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
                 if (response != false) {
 
                     if (response[0].status == true) {
-                        $ionicLoading.show({ template: $filter('translate')('bookmarked'), duration: 5000 });
+                        //$ionicLoading.show({ template: $filter('translate')('bookmarked'), duration: 10000 });
+                        //alert( $filter('translate')('bookmarked'));
+                        var alertPopup = $ionicPopup.alert({
+                            //title: 'Don\'t eat that!',
+                            template: $filter('translate')('bookmarked'), duration: 10000
+                        });
+
                     } else {
-                        $ionicLoading.show({ template: response[0].message, duration: 5000 });
+                        //$ionicLoading.show({ template: response[0].message, duration: 10000 });
+                        //alert($filter('translate')('bookmarked'));
+                        var alertPopup = $ionicPopup.alert({
+                            //title: 'Don\'t eat that!',
+                            template: response[0].message, duration: 10000
+                        });
                     }
                     $ionicLoading.hide();
 
                 } else {
                     $ionicLoading.show({
                         template: $filter('translate')('post_rating_success'),
-                        duration: 5000
+                        duration: 10000
                     });
                 }
                 $ionicLoading.hide();
