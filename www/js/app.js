@@ -1361,7 +1361,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             sign_start: 'Daftar dan mulai menjelajah',
             signout: 'Keluar',
             signup: 'Daftar',
-            signup_lippo: 'Daftar ke LuppoCikarang.com',
+            signup_lippo: 'Daftar ke LippoCikarang.com',
             lippo_cikarang: 'Lippo Cikarang',
             skip: 'Lewati',
             skin_care: 'Skin Care',

@@ -12,18 +12,15 @@ angular
         function forgetPassword(detail) {
             $scope.data = {};
             console.log(detail.contact);
-            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             ForgetPasswordService.forgetPassword(
                 detail.contact,
                 function(response) {
                     if (response != false) {
                         $scope.detail = response;
-                        console.log(response);
                         $rootScope.dataContact = response[0];
                         $rootScope.idaccount = response[0].idaccount;
                         var idaccount = $rootScope.idaccount;
                         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-
 
                         ForgetPasswordService.genCode(
                             response[0].idaccount,
@@ -32,17 +29,15 @@ angular
                             function(response) {
                                 if (response != false) {
                                     $scope.detail = response;
-                                    console.log(response);
                                     var myPopup = $ionicPopup.show({
-                                            template: '<input type="number" ng-model="data.code"><br>' +
+                                            template: '<input type="number" style="text-align:center;font-weight:bold;" ng-model="data.code"><br>' +
                                                 '<a ng-click="resendPassword()" style="text-align:center" class="col">' + $filter('translate')('resend_code') + '</a>',
                                             title: $filter('translate')('send_code'),
                                             scope: $scope,
-                                            buttons: [
-                                                { text: $filter('translate')('cancel') },
-                                                {
-                                                    text: $filter('translate')('verify'),
-                                                    type: 'button-positive'
+                                            buttons: [{ 
+                                                text: $filter('translate')('cancel') 
+                                            }, {
+                                                    text: $filter('translate')('verify')
                                                 }
                                             ]
                                         },
@@ -55,46 +50,44 @@ angular
                                                 function(response) {
                                                     if (response != false) {
                                                         $scope.detail = response;
-                                                        console.log(response);
                                                     } else {
                                                         var alertPopup = $ionicPopup.alert({
                                                             title: $filter('translate')('cannot_send_code'),
                                                             okText: $filter('translate')('okay'),
+                                                            okType: "button-stable",
                                                             cssClass: "alertPopup"
-                                                        }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
+                                                        }); 
                                                     }
                                                 });
                                         }
                                     );
 
                                     myPopup.then(function(res) {
-                                        console.log($scope.data.code);
-                                        console.log(idaccount);
-
-                                        ForgetPasswordService.checkCode(
-                                            idaccount,
-                                            $scope.data.code,
-                                            function(response) {
-                                                if (response != false) {
-                                                    console.log(response);
-                                                    console.log(idaccount);
-                                                    $rootScope.idaccount = idaccount;
-                                                    $state.go('reset');
-                                                } else {
-                                                    $ionicLoading.show({
-                                                        template: $filter('translate')('number_not_valid'),
-                                                        duration: 3000
-                                                    });
-                                                }
-                                            });
+                                        if(res) {
+                                            ForgetPasswordService.checkCode(
+                                                idaccount,
+                                                $scope.data.code,
+                                                function(response) {
+                                                    if (response != false) {
+                                                        $rootScope.idaccount = idaccount;
+                                                        $state.go('reset');
+                                                    } else {
+                                                        $ionicLoading.show({
+                                                            template: $filter('translate')('number_not_valid'),
+                                                            duration: 3000
+                                                        });
+                                                    }
+                                                });
+                                        }
                                     });
 
                                 } else {
                                     var alertPopup = $ionicPopup.alert({
                                         title: $filter('translate')('cannot_send_code'),
                                         okText: $filter('translate')('okay'),
+                                        okType: "button-stable",
                                         cssClass: "alertPopup"
-                                    }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
+                                    }); 
                                 }
                             });
                     } else {
@@ -102,7 +95,7 @@ angular
                             title: $filter('translate')('email_not_exist'),
                             okText: $filter('translate')('okay'),
                             cssClass: "alertPopup"
-                        }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
+                        }); 
                     }
                     $ionicLoading.hide();
                 });
