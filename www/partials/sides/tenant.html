@@ -1,4 +1,4 @@
-<ion-view view-title="{{subcategorys}}">
+<ion-view view-title="{{catName}}">
     <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
         <div class="row">                   
             <div class="col col-50">
@@ -7,7 +7,7 @@
                 <select ng-model="byCategory" class="dropdown-filter">
                      <option value="">{{ 'category' | translate }}</option>
                      <option value="">{{ 'category_all' | translate }}</option>
-                     <option value="{{ category.categoryName }}" ng-repeat="category in categoryData | orderBy:'categoryValue'" ng-click="sortBy('category.idcategory')">{{ category.categoryValue }}</option>
+                     <option value="{{ category.categoryName }}" ng-repeat="category in categoryData | orderBy:'categoryValue'" ng-click="sortBy('category.idcategory')">{{ category.categoryName }}</option>
                 </select>
             </span>    
 
