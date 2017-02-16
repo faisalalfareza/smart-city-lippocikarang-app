@@ -5,20 +5,22 @@ angular
     .service('ProfileService', ProfileService)
     .service('HistoryService', HistoryService);
 
-    function Notification($http, $localStorage, $stateParams) {
+    function Notification($http, $localStorage, $stateParams, $filter) {
         var service = {};
+
         service.listnotif = listnotif;
         service.deleteNotif = deleteNotif;
         service.detailNotif = detailNotif;
         service.updateNotif = updateNotif;
         service.insertBookmarkNotif = insertBookmarkNotif;
         service.deleteBookmarkNotif = deleteBookmarkNotif;
+
         return service;
 
         function listnotif(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -32,9 +34,9 @@ angular
         function detailNotif(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
-            console.log(req);
+ 
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -47,14 +49,14 @@ angular
         function deleteNotif(results, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/',
+                url: $filter('translate')('apilink') + 'api/Notif/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 data: 'action=' + 'delete_notif' +
                 '&idnotif=' + results
             }
-            console.log(req);
+ 
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -67,7 +69,7 @@ angular
         function updateNotif(results, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/',
+                url: $filter('translate')('apilink') + 'api/Notif/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -75,7 +77,7 @@ angular
                 '&idnotif=' + results +
                 '&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
-            console.log(req);
+   
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -88,7 +90,7 @@ angular
         function insertBookmarkNotif(idnotif, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notifbookmark/',
+                url: $filter('translate')('apilink') + 'api/Notifbookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -108,7 +110,7 @@ angular
         function deleteBookmarkNotif(idnotifbookmark, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Notifbookmark/',
+                url: $filter('translate')('apilink') + 'api/Notifbookmark/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -127,7 +129,7 @@ angular
 
     }
 
-    function EditProfileService($http) {
+    function EditProfileService($http, $filter) {
         var service = {};
         service.editprofile = editprofile;
         return service;
@@ -135,7 +137,7 @@ angular
         function editprofile(idaccount, gender, phone, dateofbirth, fullname, address, avatar, pscode, privilege, password, email, callback) {
             var req = {
                 method: 'POST',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/',
+                url: $filter('translate')('apilink') + 'api/Account/',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -152,7 +154,7 @@ angular
                 '&password=' + password +
                 '&email=' + email
             }
-            console.log(req);
+       
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -163,7 +165,7 @@ angular
         }
     }
 
-    function ProfileService($http, $localStorage) {
+    function ProfileService($http, $localStorage, $filter) {
         var service = {};
         service.retrievegetaccount = retrievegetaccount;
         return service;
@@ -171,7 +173,7 @@ angular
         function retrievegetaccount(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Account/?action=retrieve_get&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Account/?action=retrieve_get&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -183,7 +185,7 @@ angular
         }
     }
 
-    function HistoryService($http) {
+    function HistoryService($http, $filter) {
         var service = {};
         service.listHistory = listHistory;
         return service;
@@ -191,7 +193,7 @@ angular
         function listHistory(idaccount, callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
             }
 
             $http(req)

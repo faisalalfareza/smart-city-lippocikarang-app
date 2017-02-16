@@ -1,10 +1,10 @@
-
 angular
   .module('livein')
   .service('distanceduration', distanceduration);
 
   function distanceduration() {
     var service = {};
+
     service.reqdistance = reqdistance;
 
     return service
@@ -19,13 +19,8 @@ angular
         avoidHighways: false,
         avoidTolls: false
       }, function (response) {
-        console.log(response)
         callback(response)
-
-
-
       });
-
     }
 
   }

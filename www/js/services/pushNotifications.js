@@ -3,7 +3,7 @@ angular
     .service('PushNotificationService', PushNotificationService)
     .service('NotifAccountService', NotifAccountService);
 
-    function PushNotificationService($q, $ionicUser, $ionicPush) {
+    function PushNotificationService($q, $ionicUser, $ionicPush, $filter) {
         var PushNotificationService = this;
 
         PushNotificationService.identifyUser = function() {
@@ -45,7 +45,7 @@ angular
 
     }
 
-    function NotifAccountService($http, $localStorage) {
+    function NotifAccountService($http, $localStorage, $filter) {
         var service = {};
         service.countNotif = countNotif;
         return service; 
@@ -53,7 +53,7 @@ angular
         function countNotif(callback) {
             var req = {
                     method: 'GET',
-                    url: 'http://innodev.vnetcloud.com/LiveIn/api/Notif/?action=count_notif&idaccount='+$localStorage.currentUser.data[0].idaccount
+                    url: $filter('translate')('apilink') + 'api/Notif/?action=count_notif&idaccount='+$localStorage.currentUser.data[0].idaccount
                 }
      
             $http(req)

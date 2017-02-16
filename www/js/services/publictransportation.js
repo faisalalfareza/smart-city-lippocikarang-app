@@ -2,15 +2,17 @@ angular
     .module('livein')
     .service('publictransportationService', publictransportationService);
 
-    function publictransportationService($http) {
+    function publictransportationService($http, $filter) {
         var service = {};
+
         service.listpublictransport = listpublictransport;
+
         return service;
 
         function listpublictransport(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/Publictransportation/?action=list&idcity=1&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/Publictransportation/?action=list&idcity=1&pagenumber=1&pagesize=1000'
             }
             $http(req)
                 .success(function (response) {
@@ -19,7 +21,5 @@ angular
                 .error(function () {
                     callback(false);
                 });
-
-            console.log("masuk yaa");
         }
     }

@@ -291,6 +291,7 @@ w {
 }
 
 .img1 {
+    position: relative;
     background-image: url("../img/1.png");
     background-size: cover;
     background-attachment: fixed;
@@ -300,6 +301,7 @@ w {
 }
 
 .img2 {
+    position: relative;
     background-image: url("../img/2.png");
     background-size: cover;
     background-attachment: inherit;
@@ -309,6 +311,7 @@ w {
 }
 
 .img3 {
+    position: relative;
     background-image: url("../img/3.png");
     background-size: cover;
     background-attachment: fixed;
@@ -371,27 +374,25 @@ w {
 }
 
 .splashScreen {
-    margin-top: 20%;
+    position: absolute;
+    text-align: center;
+    top: 5em;
+    left: 2.5em;
+    right: 2.5em;
 }
 
 .splashScreen2 {
-    margin-top: 5%;
-    margin-left: 5%;
+    position: absolute;
     text-align: left;
+    top: 2.5em;
+    left: 2em;
 }
 
 .splashScreen3 {
-    margin-top: 30%;
-    margin-left: 35%;
-    margin-right: 5%;
+    position: absolute;
+    top: 2.5em;
+    right: 2em;
 }
-
-.splashScreen3_1 {
-    margin-top: 0;
-    margin-left: 30%;
-    text-align: left;
-}
-
 
 /* End SplashScreen */
 

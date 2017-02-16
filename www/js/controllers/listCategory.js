@@ -23,9 +23,35 @@ angular
                      var id =  $stateParams.idcategory;
                      if(id==17 || id==18 || id==20 || id==50 || id==65 || id==69 || id==82 || id==82){
                          $scope.subcategorys = response[0].parentname;
+                         console.log('subcat 26 : ' + $scope.subcategorys);
+                            $scope.categoryData = [];
+                            var categoryKey = $scope.subcategorys.toLowerCase('');
+                            categoryKey = $scope.subcategorys.replace(/ +|&/g, '_');
+
+                            $scope.categoryData.push({
+                                'categoryValue': $scope.subcategorys,
+                                'categoryName': $filter('translate')(categoryKey)
+                            });
+
+                            $scope.catName = $scope.categoryData[0].categoryName;
+                            console.log('allo ini catDat : ' + JSON.stringify($scope.categoryData));  
+                            console.log($scope.catName);
                      }
                      else {
-                          $scope.subcategorys = response[0].categoryname;                    
+                          $scope.subcategorys = response[0].categoryname;
+                          console.log('subcat 30 : ' + $scope.subcategorys);    
+                            $scope.categoryData = [];
+                            var categoryKey = $scope.subcategorys.toLowerCase('');
+                            categoryKey = $scope.subcategorys.replace(/ +|&/g, '_');
+
+                            $scope.categoryData.push({
+                                'categoryValue': $scope.subcategorys,
+                                'categoryName': $filter('translate')(categoryKey)
+                            });
+                            
+                            $scope.catName = $scope.categoryData[0].categoryName;
+                            console.log('allo ini catDat : ' + JSON.stringify($scope.categoryData));  
+                            console.log($scope.catName);
                      }
                 }            
             });
@@ -158,7 +184,7 @@ angular
 
     function categoryRecomended($scope, $cordovaGeolocation, $stateParams, TenantService, $ionicLoading, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
-        $scope.categoryname = "Recomended";
+        $scope.categoryname = $filter('translate')('recommended');
 
         listRecomendedTenant();
 

@@ -1,6 +1,3 @@
-/**
- * Created by Lenovo on 23/11/2016.
- */
 angular
   .module('livein')
   .service('mainService', mainService);

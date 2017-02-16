@@ -13,7 +13,7 @@ function LoginService($http, $localStorage, $filter) {
     function loginUser(email, password, callback) {
         var req = {
             method: 'POST',
-            url: $filter('translate')('apilink') + 'Account/',
+            url: $filter('translate')('apilink') + 'api/Account/',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -24,7 +24,6 @@ function LoginService($http, $localStorage, $filter) {
             .success(function(response) {
                 if (response[0].status != false) {
                     $localStorage.currentUser = { data: response };
-                    console.log(response[0]);
                 }
                 callback(response);
             })

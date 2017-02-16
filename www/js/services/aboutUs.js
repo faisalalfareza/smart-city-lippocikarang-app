@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('AboutUsService', AboutUsService);
 
-    function AboutUsService($http) {
+    function AboutUsService($http, $filter) {
         var service = {};
         service.aboutus = aboutus;
         return service;
@@ -10,13 +10,13 @@ angular
         function aboutus(callback) {
             var req = {
                 method: 'GET',
-                url: 'http://innodev.vnetcloud.com/LiveIn/api/City/?action=select_datacity&idcity=1'
+                url: $filter('translate')('apilink') + 'api/City/?action=select_datacity&idcity=1'
             }
             $http(req)
-                .success(function (response) {
+                .success(function(response) {
                     callback(response);
                 })
-                .error(function () {
+                .error(function() {
                     callback(false);
                 });
         }
