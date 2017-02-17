@@ -10,7 +10,7 @@ angular
     service.ovopaymet_service = ovopayment;
 
     return service;
-    
+
     function loginBillingServices(email, callback) {
       console.log(email);
       var req = {
@@ -70,7 +70,7 @@ angular
 
       var req = {
         method: 'POST',
-        url: 'http://innodev.vnetcloud.com/liveinpayment/getbilling',
+        url: 'http://innodev.vnetcloud.com/liveinpayment/payment',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -78,13 +78,15 @@ angular
           "name": name,
           "email": email,
           "siteid": siteId,
-          "orgId": amount,
+          "orgid": 1,
           "paymenttype": 3,
-          "amount": amount,
-          "ovoId": ovoid,
+          "amount": 100,
+          "ovoid": ovoid,
         }
       }
 
+
+      console.log(JSON.stringify(req));
       $http(req)
         .success(function (response) {
           console.log(response)
