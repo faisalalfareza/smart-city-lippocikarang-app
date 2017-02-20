@@ -2,7 +2,7 @@ angular
   .module('livein')
   .controller('login', login);
 
-  function login($scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
+  function login($window ,$scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
     $scope.data = {};
     $scope.credentials = loginManualService;
     $scope.facebook_auth = facebookAuth;
@@ -43,10 +43,9 @@ angular
                               if (res) {
                                 AdvertiseService.AdsLogin();
                               }
+                              $window.location.reload();
                             });
-
                         }
-
                     } else {
                         $ionicLoading.show({
                             template: response[0].messages,

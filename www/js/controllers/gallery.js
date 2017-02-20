@@ -23,7 +23,7 @@ angular
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         listGallery.getlistGallery(function(response) {
-            $timeout(function(){                
+            $timeout(function(){           
                 var gall = $stateParams.index;
                 if (response != false) {
                     $scope.image = response;
@@ -33,7 +33,8 @@ angular
                 } else {
                     $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
                 }
-            }, 1000);
+                $ionicSlideBoxDelegate.update();
+            }, 5000);
         $ionicLoading.hide();
         });
 

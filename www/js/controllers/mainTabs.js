@@ -12,7 +12,7 @@ angular
                 } else {
                     $scope.news = [{ name: $filter('translate')('no_news') }];
                 }
-            }, 1);
+            }, 1000);
         });
         talktoUs.getTalktoUs(function(response) {
             if (response != false) {
