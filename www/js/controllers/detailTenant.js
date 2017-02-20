@@ -4,7 +4,7 @@ angular
     .controller('tenantMap', tenantMap)
     .controller('sportDetailImage', entertaimentSportDetailImage);
 
-function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
+function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
     });
@@ -93,6 +93,7 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
             $scope.tenantdata.idtenant,
             $scope.fullname = $localStorage.currentUser.data[0].idaccount,
             function(response) {
+                $timeout(function(){
                 if (response != false) {
 
                     if (response[0].status == true) {
@@ -108,7 +109,7 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
                         //alert($filter('translate')('bookmarked'));
                         var alertPopup = $ionicPopup.alert({
                             //title: 'Don\'t eat that!',
-                            template: response[0].message, duration: 10000
+                            template: $filter('translate')('all_bookmarked'), duration: 10000
                         });
                     }
                     $ionicLoading.hide();
@@ -120,6 +121,8 @@ function entertaimentSportDetail($scope, $ionicHistory, $rootScope, $cordovaGeol
                     });
                 }
                 $ionicLoading.hide();
+                
+            },1000);
             });
 
     }
