@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('mainTabs', mainTabs);
 
-    function mainTabs($scope, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
+    function mainTabs($scope, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         dataWhatsNew.getDataWhatsNew(function(response) {
             setTimeout(function() {

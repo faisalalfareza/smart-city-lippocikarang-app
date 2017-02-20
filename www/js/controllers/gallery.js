@@ -30,10 +30,10 @@ angular
                     
                     $scope.gall = gall;
                     console.log($scope.gall);
+                    $ionicSlideBoxDelegate.update();
                 } else {
                     $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
                 }
-                $ionicSlideBoxDelegate.update();
             }, 5000);
         $ionicLoading.hide();
         });

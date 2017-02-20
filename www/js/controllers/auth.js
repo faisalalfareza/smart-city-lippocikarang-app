@@ -28,7 +28,6 @@ angular
                     if (response[0].status == true) {
                         $scope.users = response;
                         $state.go('app.main');
-
                         if($location.path() == "/app/main") {
 
                             $ionicLoading.hide();
@@ -43,7 +42,6 @@ angular
                               if (res) {
                                 AdvertiseService.AdsLogin();
                               }
-                              $window.location.reload();
                             });
                         }
                     } else {

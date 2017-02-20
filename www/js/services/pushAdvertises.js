@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('AdvertiseService', AdvertiseService);
 
-    function AdvertiseService($http, $ionicModal, $rootScope, $localStorage, $filter) {
+    function AdvertiseService($http, $ionicModal,$window, $rootScope, $localStorage, $filter) {
         var service = {};
 
         service.AdsLogin = AdsLogin;
@@ -38,6 +38,7 @@ angular
 
                       $rootScope.closeAds = function() {
                         $rootScope.$broadcast('adsModal:hideModal');
+                        $window.location.reload();
                       };
 
                     });
@@ -66,6 +67,7 @@ angular
                     $rootScope.$on('$destroy', function() {
                       console.log('Destroy adsOpen');
                       $rootScope.adsModal.remove();
+                      $window.location.reload();
                     });
 
                 })
@@ -114,6 +116,7 @@ angular
 
               $rootScope.closeAds = function() {
                 $rootScope.$broadcast('adsModal:hideModal');
+                $window.location.reload();
               };
 
             });
