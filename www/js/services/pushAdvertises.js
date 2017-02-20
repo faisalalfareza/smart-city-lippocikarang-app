@@ -87,33 +87,7 @@ angular
             .error(function(response) {
               console.log(response);
             });
-        }
-
-        function AdsWhenNew(callback) {
-          var req = {
-            method: "GET",
-            url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
-          }
-
-          $http(req)
-            .success(function(response) {
-                if ($localStorage.adsBefore != null) {
-                    console.log('Ads response : ' + response.length);
-                    console.log('Ads localstr : ' + $localStorage.adsBefore.sum);
-                    var count = response.length - $localStorage.adsBefore.sum;
-                    console.log('Ads count : ' + count);
-
-                    $localStorage.adsBefore = { sum : response.length };
-                    callback(count);
-                }
-                else {
-                    $localStorage.adsBefore = { sum : response.length };
-                }
-            })
-            .error(function(response) {
-              callback(response);
-            });
-        }        
+        }       
 
         function smallAds(result) {
             var list = result;
@@ -131,6 +105,12 @@ angular
               $rootScope.$broadcast('adsModal:showModal');
 
             }).finally(function() {
+
+              $rootScope.getFull = function(idadvertise) {
+                // var screen = angular.element(document.querySelector('.itemModal.advertisement'));
+                // screen.css('height', '100%');
+                $rootScope.size = "fullmodal";
+              };
 
               $rootScope.closeAds = function() {
                 $rootScope.$broadcast('adsModal:hideModal');
@@ -164,5 +144,31 @@ angular
               $rootScope.adsModal.remove();
             });
         }
+
+        function AdsWhenNew(callback) {
+          var req = {
+            method: "GET",
+            url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
+          }
+
+          $http(req)
+            .success(function(response) {
+                if ($localStorage.adsBefore != null) {
+                    console.log('Ads response : ' + response.length);
+                    console.log('Ads localstr : ' + $localStorage.adsBefore.sum);
+                    var count = response.length - $localStorage.adsBefore.sum;
+                    console.log('Ads count : ' + count);
+
+                    $localStorage.adsBefore = { sum : response.length };
+                    callback(count);
+                }
+                else {
+                    $localStorage.adsBefore = { sum : response.length };
+                }
+            })
+            .error(function(response) {
+              callback(response);
+            });
+        }         
 
     }
