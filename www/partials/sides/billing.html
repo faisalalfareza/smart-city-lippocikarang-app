@@ -1,7 +1,7 @@
 <ion-view view-title="eBilling">
 
     <ion-content>
-        <div class="detailresident" style="color:#FFFFFF;background-color: #0a9dc7;height:auto;padding-bottom: 20%;padding-top: 15%;padding-left: 15%;">
+        <div class="detailresident" style="color:#FFFFFF;background-color: #0a9dc7;height:auto;padding-bottom: 10%;padding-top: 15%;padding-left: 11%;">
             <div class="row" style="height: 100%">
                 <div class="col col-50">
                     <ui>{{ 'client_name' | translate }}</ui>
@@ -22,16 +22,16 @@
             </div>
         </div>
         <div class="detailbilling">
-            <div class="row wiewpagercontrol">
+            <div class="row wiewpagercontrol" style="height: 42px">
                 <div class="col col-20" ng-click="previous()">
-                    <i style="size:18px;font-size: 48px;vertical-align: middle" class=" icon ion-android-arrow-dropleft"></i>
+                    <i style="size:18px;font-size: 30px;vertical-align: middle" class=" icon ion-android-arrow-dropleft"></i>
                 </div>
                 <div class="col col-60">
-                    <p ng-model='periodname' style="margin-top:5%;vertical-align: middle;font-size: 32px;align-content: center;text-align: center">
+                    <p ng-model='periodname' style="margin-top:5%;vertical-align: middle;font-size: 25px;align-content: center;text-align: center">
                         {{periodname|limitTo:periodname.length - 4}}</p>
                 </div>
                 <div ng-click="next()" class="col col-20">
-                    <i style="size:18px;font-size: 48px;vertical-align: middle;float: right;" class=" icon ion-android-arrow-dropright"></i>
+                    <i style="size:18px;font-size: 30px;vertical-align: middle;float: right;" class=" icon ion-android-arrow-dropright"></i>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                     </div>
                     <ion-list style="margin-top: auto;padding-right:5%;padding-left:5%;">
                         <ion-item ng-repeat="unit in period.Unit" style="padding: 0;border:none;border-bottom: solid 2px;border-bottom-color:#0c60ee;margin-left: 5%;margin-right: 5% ">
-                            <div style="font-size: 18px;" class="row">
+                            <div style="font-size: 12px;" class="row">
                                 <div class="col col-30">
                                     <ul>code name</ul>
                                     <ul>code no</ul>
@@ -54,13 +54,13 @@
                                     <ul>{{unit['@attributes'].UnitNo}}</ul>
                                 </div>
                                 <div class="col col-30">
-                                    <ul style="font-size: 15px">Rp.{{unit['@attributes'].BillingOutstanding}}</ul>
+                                    <ul style="font-size: 12px">Rp.{{unit['@attributes'].BillingOutstanding}}</ul>
                                 </div>
                             </div>
                         </ion-item>
                     </ion-list>
-                    <ion-item style="padding: 0;border:none;margin-left: 5%;margin-right: 5% ">
-                        <div style="font-size: 18px;" class="row">
+                    <ion-item style="padding: 0;border:none;margin-left: 5%;margin-right: 5%;font-size: 12px ">
+                        <div style="font-size: 12px;" class="row">
                             <div class="col col-30">
                                 <ul>{{ 'total_amount' | translate }}</ul>
                             </div>
@@ -68,7 +68,7 @@
 
                             </div>
                             <div class="col col-30">
-                                <ul style="font-size: 15px">{{period['@attributes'].TotalBillingOutstanding}}</ul>
+                                <ul style="font-size: 12px">{{period['@attributes'].TotalBillingOutstanding}}</ul>
                             </div>
                         </div>
                     </ion-item>

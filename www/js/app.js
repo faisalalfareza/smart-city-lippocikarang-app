@@ -1664,7 +1664,6 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
                             sound: playSound,
                             badge: sum
                         });
-
                         cordova.plugins.notification.local.on("trigger", function(notification) {
                             console.log('Success with ' + notification);
                         });
@@ -1674,7 +1673,6 @@ function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB
                 } else {
                     console.log('Tidak ada notif baru ..');
                 }
-
             });
         }
 

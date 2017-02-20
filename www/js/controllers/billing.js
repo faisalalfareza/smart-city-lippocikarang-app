@@ -177,7 +177,7 @@ angular
 
     }
 
-    function payment($scope, $rootScope, $state, $ionicPopup, $filter) {
+    function payment($scope,$cordovaNetwork,$rootScope, $state, $ionicPopup, $filter) {
 
         $scope.unitno = $rootScope.unitnofilter;
         $scope.atribute = $rootScope.attributpayment;
@@ -257,28 +257,41 @@ angular
 
     }
 
-    function paymentovo($rootScope,$cordovaNetwork,billingServices,$state) {
+    function paymentovo( $ionicPopup,$scope,$rootScope,$cordovaNetwork,billingServices,$state, $ionicLoading) {
 
-      alert(JSON.stringify($rootScope.attributpayment));
 
       $scope.submtpayment = function (phone) {
 
 
         if($cordovaNetwork.getNetwork() != Connection.NONE) {
+
+           $ionicLoading.show({
+                 template: 'Loading...',
+               })
+
           billingServices.ovopaymet_service(
             $rootScope.attributpayment.Name,
             $rootScope.emailres,
             $rootScope.attributpayment.SiteID,
-            rootScope.attributpayment.BillingOutstandingBalance,
+            $rootScope.attributpayment.BillingOutstandingBalance,
             phone,getdataresponse
           )
 
-        }
+        }   else {
 
-      getdataresponse = function (response) {
+
+          var alertPopup = $ionicPopup.alert({
+            title: $filter('translate')('failed'),
+            template: "check your connection",
+            okText: $filter('translate')('okay'),
+            cssClass: "alertPopup"
+          });
+        }
+        function getdataresponse (response) {
 
           if(response != false){
             status = response.status;
+            alert(JSON.stringify(response))
 
             if(status == '200' || status == 200){
 
@@ -316,16 +329,18 @@ angular
 
       function showalertpopup(message,status) {
 
+        $ionicLoading.hide();
+
         var alertPopup = $ionicPopup.alert({
           title: "Payment Status",
           template: message,
-          okText: $filter('translate')('okay'),
+          okText: "oke",
           cssClass: "alertPopup"
         });
 
         alertPopup.then(function(res) {
-          if (status == 200 || status == 103){
-            $state.go(app.loginbilling);
+          if (status == 200 || status == 103 || status == 500){
+            $state.go("app.loginbilling");
           }else
             console.log('Thank you for not eating my delicious ice cream cone');
         });
