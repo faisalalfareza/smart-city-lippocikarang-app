@@ -58,6 +58,9 @@ function currency($scope, currencyService, $ionicLoading, $localStorage, $filter
 
 
     currencyService.currencylist(function(response) {
+      $ionicLoading.show({
+        template: 'Loading...',
+      })
         if (response != false) {
 
             $scope.itemrate = response.rates;

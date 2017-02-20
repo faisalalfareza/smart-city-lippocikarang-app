@@ -259,13 +259,6 @@ angular
 
     function paymentovo( $ionicPopup,$scope,$rootScope,$cordovaNetwork,billingServices,$state, $ionicLoading) {
 
-      alert(JSON.stringify($rootScope.attributpayment));
-
-
-
-
-
-
 
       $scope.submtpayment = function (phone) {
 

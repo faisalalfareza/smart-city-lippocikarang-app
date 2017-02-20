@@ -80,7 +80,7 @@ angular
           "siteid": siteId,
           "orgid": 1,
           "paymenttype": 3,
-          "amount": 100,
+          "amount": amount,
           "ovoid": ovoid,
         }
       }
