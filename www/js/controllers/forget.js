@@ -38,7 +38,7 @@ angular
                                                 text: $filter('translate')('cancel') 
                                             }, {
                                                     text: $filter('translate')('verify'),
-                                                    type: 'button-positive'
+                                                    type: 'button-stable'
                                                 }
                                             ]
                                         },
@@ -64,20 +64,23 @@ angular
                                     );
 
                                     myPopup.then(function(res) {
-                                        ForgetPasswordService.checkCode(
-                                            idaccount,
-                                            $scope.data.code,
-                                            function(response) {
-                                                if (response != false) {
-                                                    $rootScope.idaccount = idaccount;
-                                                    $state.go('reset');
-                                                } else {
-                                                    $ionicLoading.show({
-                                                        template: $filter('translate')('number_not_valid'),
-                                                        duration: 3000
-                                                    });
-                                                }
-                                            });
+                                        console.log(res);
+                                        if(res) {
+                                            ForgetPasswordService.checkCode(
+                                                idaccount,
+                                                $scope.data.code,
+                                                function(response) {
+                                                    if (response != false) {
+                                                        $state.go('reset');
+                                                        $rootScope.idaccount = idaccount;
+                                                    } else {
+                                                        $ionicLoading.show({
+                                                            template: $filter('translate')('number_not_valid'),
+                                                            duration: 3000
+                                                        });
+                                                    }
+                                                });
+                                        }
                                     });
 
                                 } else {
