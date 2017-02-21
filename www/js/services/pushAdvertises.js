@@ -38,7 +38,6 @@ angular
 
                       $rootScope.closeAds = function() {
                         $rootScope.$broadcast('adsModal:hideModal');
-                        $window.location.reload();
                       };
 
                     });
