@@ -44,20 +44,30 @@ angular
                 $scope.data = response;
                 $scope.name = $stateParams.name;
 
-                    $scope.citygallery = response.citygallery;
-                    $scope.listCgCount = response.citygallery[0].count;
+                    if (response.citygallery != null) {
+                        $scope.citygallery = response.citygallery;
+                        $scope.listCgCount = response.citygallery[0].count;
+                    }
 
-                    $scope.disc = response.discountcoupon;
-                    $scope.listDcCount = response.discountcoupon[0].count;
+                    if (response.discountcoupon != null) {
+                        $scope.disc = response.discountcoupon;
+                        $scope.listDcCount = response.discountcoupon[0].count;
+                    }
 
-                    $scope.news = response.news;
-                    $scope.listNewsCount = response.news[0].count;
+                    if (response.news != null) {
+                        $scope.news = response.news;
+                        $scope.listNewsCount = response.news[0].count;
+                    }
 
-                    $scope.property = response.property;
-                    $scope.listProCount = response.property[0].count;
+                    if (response.property != null) {
+                        $scope.property = response.property;
+                        $scope.listProCount = response.property[0].count;
+                    }
 
-                    $scope.tenants = response.tenants;
-                    $scope.listTenCount = response.tenants[0].count;
+                    if (response.tenants != null) {
+                        $scope.tenants = response.tenants;
+                        $scope.listTenCount = response.tenants[0].count;
+                    }
 
             } else {
                 console.log('error');
