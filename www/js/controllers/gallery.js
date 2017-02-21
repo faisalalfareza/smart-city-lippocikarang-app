@@ -34,7 +34,7 @@ angular
                 } else {
                     $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
                 }
-            }, 5000);
+            }, 1000);
         $ionicLoading.hide();
         });
 
