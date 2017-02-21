@@ -8,7 +8,11 @@ angular
     function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading) {
 
         //drawer - side menu
-        $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
+        $scope.showPrivillage, $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
+
+        $scope.fullname = $localStorage.currentUser.data[0].fullname;      
+        $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
+
         $scope.showEntertaiment = function() {
             $scope.subEntertaiment == true ? $scope.subEntertaiment = false : $scope.subEntertaiment = true;
             $scope.subDining = false;
@@ -127,7 +131,6 @@ angular
         $scope.navbarAct = function() {
             $scope.navbar = true;
             $scope.searchbar = false;
-
             $rootScope.search_page = "";
         };
 
@@ -152,14 +155,9 @@ angular
             } else {
                 $scope.navbar = true;
                 $scope.searchbar = false;
-
                 $rootScope.search_page = "";
             }
         });
-
-        $scope.fullname = $localStorage.currentUser.data[0].fullname;
-        $scope.privilege = $localStorage.currentUser.data[0].privilege;
-        console.log($scope.privilege);
 
         //goto currency
         $scope.gotocurrency = function() {
@@ -168,8 +166,6 @@ angular
 
         $scope.gotoyoutbe = function() {
             window.open("https://www.youtube.com/watch?v=h-DvHNnlFrs", '_system', 'location=yes')
-
-
         }
 
     }

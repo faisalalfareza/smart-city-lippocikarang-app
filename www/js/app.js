@@ -57,6 +57,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
     .state('app', {
             url: "/app",
+            cache: false,
             abstract: true,
             templateUrl: "templates/menu.html",
             controller: 'app'
@@ -249,7 +250,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     /* end : side menu */
     /* start : navigation tabs */
 
-    .state('app.main', {
+        .state('app.main', {
             cache: true,
             url: "/main",
             views: {
