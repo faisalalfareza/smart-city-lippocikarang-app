@@ -8,7 +8,7 @@ angular
 function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLoading, $localStorage, $filter) {
 
     $scope.wakut = new Date();
-    $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
+    $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
     $scope.rate = [];
     $scope.selected = []
     $scope.currency = [];
@@ -59,9 +59,9 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
 
 
     currencyService.currencylist(function(response) {
-      $ionicLoading.show({
-        template: 'Loading...',
-      })
+        $ionicLoading.show({
+            template: 'Loading...',
+        })
         if (response != false) {
             itm = response.rates;
             $scope.itemrate = itm;
@@ -78,19 +78,22 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
                 $scope.currency.push(halo);
                 $scope.rate.push(key);
             });
-            settocalc();
+            if ($scope.currency)
+                $scope.settocalc();
+
 
         } else {
             $scope.data = false;
         }
         $ionicLoading.hide();
     });
+
     $scope.checkChanged = function(item) {
         if (item.winner) $scope.checked++;
         else $scope.checked--;
     }
 
-    function settocalc() {
+    $scope.settocalc = function() {
         console.log($scope.rate)
         $scope.cur1 = $scope.currency[1];
         $scope.cur2 = $scope.currency[2];
@@ -102,11 +105,20 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
 
 
     $scope.calculator = function() {
-        console.log($scope.curtext1)
+        console.log($scope.cur1)
         ratepat = $scope.cur1;
         console.log($scope.cur2)
 
-        $scope.curtext2 = $scope.curtext1 / $scope.cur2;
+        $scope.curtext2 = ($scope.curtext1 * ratepat) / $scope.cur2;
+
+    }
+
+    $scope.calculator_2 = function() {
+        console.log($scope.cur1)
+        ratepat = $scope.cur2;
+        console.log($scope.cur2)
+
+        $scope.curtext1 = ($scope.curtext2 * ratepat) / $scope.cur1;
 
     }
     $scope.tesslected = function($index, selected) {
@@ -181,9 +193,22 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
 
     }
 
-    $scope.maxCheck = function($index) {
+    $scope.tesdata = function(cur) {
 
+        console.log($scope.cur1)
+        ratepat = $scope.cur1;
+        console.log($scope.cur2)
 
+        $scope.curtext2 = ($scope.curtext1 * cur) / $scope.cur2;
+    }
+
+    $scope.tesdata2 = function(cur) {
+
+        console.log($scope.cur1)
+        ratepat = $scope.cur1;
+        console.log($scope.cur2)
+
+        $scope.curtext1 = ($scope.curtext2 * cur) / $scope.cur1;
 
     }
 
