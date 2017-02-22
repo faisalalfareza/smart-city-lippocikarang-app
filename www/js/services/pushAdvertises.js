@@ -107,8 +107,9 @@ angular
             }).finally(function() {
 
               $rootScope.getFull = function(idadvertise) {
-                // var screen = angular.element(document.querySelector('.itemModal.advertisement'));
+                var screen = angular.element(document.querySelector('.itemModal.advertisement'));
                 // screen.css('height', '100%');
+                // screen.css('top', '0');
                 $rootScope.size = "fullmodal";
               };
 

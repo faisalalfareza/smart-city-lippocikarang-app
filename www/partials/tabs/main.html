@@ -110,11 +110,11 @@
                 </div>
                 <div ng-if="currate != null" class="row">
                     <div class="col col-50">
-                        <img width="32" style="margin-top: 12%" ng-src="{{currate.flag1}}" src="img/currency/flag_of_australia.png">
-                        <i style="vertical-align: middle;font-size: 12px">{{currate.rate1 *10000| limitTo:5}} {{currate.cur1}}</i>
+                        <img width="32"  ng-src="{{currate.flag1}}" src="img/currency/flag_of_australia.png">
+                        <i style="vertical-align:middle;font-size:12px;">{{currate.rate1 *10000| limitTo:5}} {{currate.cur1}}</i>
                     </div>
                     <div class="col col-50">
-                        <img width="32" style="margin-top: 12%" ng-src="{{currate.flag2}}" src="img/currency/flag_of_australia.png">
+                        <img width="32" ng-src="{{currate.flag2}}" src="img/currency/flag_of_australia.png">
                         <i style="vertical-align: middle;font-size: 12px">{{currate.rate2 *10000|limitTo:5}}  {{currate.cur2}}</i>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
 
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col" style="display:flex;align-items:flex-end">
-                <p style="font-size:small;margin-bottom:5%">{{'app_name' | translate}}</p>
+                <p style="font-size:12px;margin-bottom:5%">{{'app_name' | translate}}</p>
             </div>
             <div class="col">
                 <img ng-click="gotoyoutbe()" src="img/youtube_main.png" style="width:22%">
