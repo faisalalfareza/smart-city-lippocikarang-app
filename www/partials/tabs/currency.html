@@ -1,5 +1,5 @@
 <ion-view view-title="{{'currency' | translate}}">
-    <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
+    <ion-bar class="bar bar-subheader" style="border:0;outline:0;background-color:#ecf0f1;">
         <div class="row">
             <div class="col col-50">
                 <i>{{date}} {{time | date:'HH:mm'}}</i>
@@ -9,7 +9,7 @@
             </div>
         </div>
     </ion-bar>
-    <ion-content style="margin-top:45px; height: 40%">
+    <ion-content style="margin-top:45px;height:40%">
         <ion-list class="currency">
             <ion-item class="item" style="border-width: 0; padding: 0" ng-repeat="list in itemrate">
                 <div class="row">
@@ -33,16 +33,14 @@
         </ion-list>
     </ion-content>
 
-    <div class="row" style="margin-top:100%;background-color:#D9D9D9">
-        <div class="col col-100" style="margin-top:20px">
-            <p>Calculator</p>
-        </div>
+    <div class="row" style="margin-top:100%;background-color:#ecf0f1">
+        <p style="padding:15px 15px 0px 15px;font-weight:700;font-size:12px">Calculator</p>
     </div>
 
     <div class="row calculator_currency">
-        <div class="col col-40" style="margin-left:auto;margin-right:auto">
+        <div class="col col-40" style="margin-left:auto;margin-right:auto;">
             <div class="row">
-                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;border:none; bottom: 0; vertical-align: bottom; " ng-model="cur1" ng-options="key as value for (value,key) in itemrate"></select>
+                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;vertical-align:middle;" ng-model="cur1" ng-options="key as value for (value,key) in itemrate"></select>
             </div>
             <div class="row" style="margin-top:0">
                 <label class="item item-input" style="border-radius: 0 0 10px 10px;border-top: 1px solid #0D6DB6;">
@@ -52,7 +50,7 @@
         </div>
         <div class="col col-40" style="margin-left:auto;margin-right:auto">
             <div class="row">
-                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;border:none; bottom: 0; vertical-align: bottom; " ng-model="cur2" ng-options="key as value for (value,key) in itemrate"></select>
+                <select style="width:100%;height:45px;border-radius:10px 10px 0 0;border:0;bottom: 0; vertical-align: bottom; " ng-model="cur2" ng-options="key as value for (value,key) in itemrate"></select>
             </div>
             <div class="row" style="margin-top:0">
                 <label class="item item-input" style="border-radius: 0 0 10px 10px;border-top: 1px solid #0D6DB6;">
