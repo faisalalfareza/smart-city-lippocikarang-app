@@ -2,7 +2,7 @@ angular
   .module('livein')
   .controller('login', login);
 
-  function login($scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
+  function login($window ,$scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
     $scope.data = {};
     $scope.credentials = loginManualService;
     $scope.facebook_auth = facebookAuth;
@@ -28,7 +28,6 @@ angular
                     if (response[0].status == true) {
                         $scope.users = response;
                         $state.go('app.main');
-
                         if($location.path() == "/app/main") {
 
                             $ionicLoading.hide();
@@ -44,9 +43,7 @@ angular
                                 AdvertiseService.AdsLogin();
                               }
                             });
-
                         }
-
                     } else {
                         $ionicLoading.show({
                             template: response[0].messages,

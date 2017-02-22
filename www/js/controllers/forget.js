@@ -34,54 +34,35 @@ angular
                                                 '<a ng-click="resendPassword()" style="text-align:center" class="col">' + $filter('translate')('resend_code') + '</a>',
                                             title: $filter('translate')('send_code'),
                                             scope: $scope,
-                                            buttons: [{ 
-                                                text: $filter('translate')('cancel') 
-                                            }, {
+                                            buttons: [
+                                                { text: $filter('translate')('cancel') }, 
+                                                {
                                                     text: $filter('translate')('verify'),
-                                                    type: 'button-stable'
+                                                    onTap: function(res) {
+                                                                if($scope.data.code!=null) {
+                                                                    ForgetPasswordService.checkCode(
+                                                                        idaccount,
+                                                                        $scope.data.code,
+                                                                        function(response) {
+                                                                            if (response != false) {
+                                                                                $rootScope.idaccount = idaccount;
+                                                                                $state.go('reset');
+                                                                            } else {
+                                                                                $ionicLoading.show({
+                                                                                    template: $filter('translate')('number_not_valid'),
+                                                                                    duration: 3000
+                                                                                });
+                                                                            }
+                                                                        }
+                                                                    );
+                                                                } else {
+                                                                    //avoid the bug result in console
+                                                                    myPopup.show();
+                                                                }
+                                                            }
                                                 }
                                             ]
-                                        },
-                                        $scope,
-                                        function(myPopup) {
-                                            ForgetPasswordService.genCode(
-                                                $rootScope.dataContact.idaccount,
-                                                $rootScope.dataContact.type,
-                                                $rootScope.dataContact.contact,
-                                                function(response) {
-                                                    if (response != false) {
-                                                        $scope.detail = response;
-                                                    } else {
-                                                        var alertPopup = $ionicPopup.alert({
-                                                            title: $filter('translate')('cannot_send_code'),
-                                                            okText: $filter('translate')('okay'),
-                                                            okType: "button-stable",
-                                                            cssClass: "alertPopup"
-                                                        }); 
-                                                    }
-                                                });
-                                        }
-                                    );
-
-                                    myPopup.then(function(res) {
-                                        console.log(res);
-                                        if(res) {
-                                            ForgetPasswordService.checkCode(
-                                                idaccount,
-                                                $scope.data.code,
-                                                function(response) {
-                                                    if (response != false) {
-                                                        $state.go('reset');
-                                                        $rootScope.idaccount = idaccount;
-                                                    } else {
-                                                        $ionicLoading.show({
-                                                            template: $filter('translate')('number_not_valid'),
-                                                            duration: 3000
-                                                        });
-                                                    }
-                                                });
-                                        }
-                                    });
+                                        });
 
                                 } else {
                                     var alertPopup = $ionicPopup.alert({

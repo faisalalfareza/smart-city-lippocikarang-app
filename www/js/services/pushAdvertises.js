@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('AdvertiseService', AdvertiseService);
 
-    function AdvertiseService($http, $ionicModal, $rootScope, $localStorage, $filter) {
+    function AdvertiseService($http, $ionicModal,$window, $rootScope, $localStorage, $filter) {
         var service = {};
 
         service.AdsLogin = AdsLogin;
@@ -11,69 +11,73 @@ angular
 
         return service;
 
+        //advertise when user success login
         function AdsLogin(callback) {
             var req = {
                     method: "GET",
                     url: $filter('translate')('apilink') + "api/Advertise/?action=listadvertise&pagenumber=1&pagesize=100"
                 }
 
-            var promise = $http(req)
+            $http(req)
                 .success(function(response) {
-
-                    var list = response;
-
-                    $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
-
-                      id: 2,
-                      scope: $rootScope,
-                      animation: 'slide-in-up',
-                      backdropClickToClose: false
-
-                    }).then(function(advertise) {
-
-                      $rootScope.adsModal = advertise;
-                      $rootScope.$broadcast('adsModal:showModal');
-
-                    }).finally(function() {
-
-                      $rootScope.closeAds = function() {
-                        $rootScope.$broadcast('adsModal:hideModal');
-                      };
-
-                    });
-
-                    $rootScope.$on('adsModal:showModal', function() {
-                      if(!$rootScope.adsModal) {
-                        console.log('adsOpen is not yet defined');
-                      } else {
-                        console.log('Attempting to show adsOpen');
-
-                        $rootScope.listAds = list;
-                        $rootScope.adsModal.show();
-                        $rootScope.size = "fullmodal";
-                      }
-                    });
-
-                    $rootScope.$on('adsModal:hideModal', function() {
-                      if(!$rootScope.adsModal) {
-                        console.log('Cannot hide adsOpen');
-                      } else {
-                        console.log('Hiding adsOpen');
-                        $rootScope.adsModal.hide();
-                      }
-                    });
-
-                    $rootScope.$on('$destroy', function() {
-                      console.log('Destroy adsOpen');
-                      $rootScope.adsModal.remove();
-                    });
-
+                    fullAds(response);
                 })
                 .error(function(response) {
                     console.log(response);
                 });
-        }
+        }  
 
+        function fullAds(result) {
+          var list = result;
+
+          $ionicModal.fromTemplateUrl('partials/sides/advertisePopup.html', {
+
+            id: 2,
+            scope: $rootScope,
+            animation: 'slide-in-up',
+            backdropClickToClose: false
+
+          }).then(function(advertise) {
+
+            $rootScope.adsModal = advertise;
+            $rootScope.$broadcast('adsModal:showModal');
+
+          }).finally(function() {         
+
+            $rootScope.closeAds = function() {
+              $rootScope.$broadcast('adsModal:hideModal');s
+            };
+
+          });
+
+          $rootScope.$on('adsModal:showModal', function() {
+            if(!$rootScope.adsModal) {
+              console.log('adsOpen is not yet defined');
+            } else {
+              console.log('Attempting to show adsOpen');
+
+              $rootScope.listAds = list;
+              $rootScope.adsModal.show();
+              $rootScope.size = "fullmodal";
+            }
+          });
+
+          $rootScope.$on('adsModal:hideModal', function() {
+            if(!$rootScope.adsModal) {
+              console.log('Cannot hide adsOpen');
+            } else {
+              console.log('Hiding adsOpen');
+              $rootScope.adsModal.hide();
+            }
+          });
+
+          $rootScope.$on('$destroy', function() {
+            console.log('Destroy adsOpen');
+            $rootScope.adsModal.remove();
+          });          
+        }   
+
+        //advertise when app is open
         function AdsOpen(callback) {
           var req = {
             method: "GET",
@@ -89,6 +93,7 @@ angular
             });
         }       
 
+        //templates for small advertise
         function smallAds(result) {
             var list = result;
 
@@ -106,15 +111,19 @@ angular
 
             }).finally(function() {
 
-              $rootScope.getFull = function(idadvertise) {
-                var screen = angular.element(document.querySelector('.itemModal.advertisement'));
-                // screen.css('height', '100%');
-                // screen.css('top', '0');
-                $rootScope.size = "fullmodal";
+              $rootScope.slideChanged = function(index) {
+                  $rootScope.slideIndex = index;
+                  $rootScope.getFull = function() {
+                    // var screen = angular.element(document.querySelector('.itemModal.advertisement'));
+                    // screen.css('height', '100%');
+                    $rootScope.size = "fullmodal";
+                    console.log('index : ' + $rootScope.slideIndex);
+                  };
               };
 
               $rootScope.closeAds = function() {
                 $rootScope.$broadcast('adsModal:hideModal');
+                
               };
 
             });
@@ -146,6 +155,7 @@ angular
             });
         }
 
+        //advertise display when has the new advertise
         function AdsWhenNew(callback) {
           var req = {
             method: "GET",

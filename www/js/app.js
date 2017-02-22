@@ -57,6 +57,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
     .state('app', {
             url: "/app",
+            cache: false,
             abstract: true,
             templateUrl: "templates/menu.html",
             controller: 'app'
@@ -249,7 +250,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     /* end : side menu */
     /* start : navigation tabs */
 
-    .state('app.main', {
+        .state('app.main', {
             cache: true,
             url: "/main",
             views: {
@@ -658,6 +659,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             book_stationety: 'Book & Stationery',
             Book___Stationery: 'Book & Stationery',
             bookmarked: 'Bookmarked',
+            all_bookmarked: 'Already Bookmarked',
             success_bookmark: 'Success Bookmark',
             btn_lets_go: 'Let\'s Go',
             bus: 'Bus',
@@ -835,6 +837,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             rate_title: 'Tenant Rate',
             rate_this_tenant: 'Rate this tenant',
             tenant: 'Tenants',
+            tenant_gallery: 'Gallery Tenant',
             rate_dialog: 'Are you sure want to rate this tenant ?',
             rate_text: 'Rate this place',
             recommended: 'Recommended',
@@ -937,6 +940,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             population: 'Population',
             sort_popularity: 'Popularity',
             category_all: 'All',
+            accessories___toys: 'Accessories & Toys',
             accessories_toys: 'Accessories & Toys',
             //child property
             house_property: 'House',
@@ -984,7 +988,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             description: 'Description',
             cant_acces_billing: 'I can\'t access my biling',
             payment: 'Payment',
-            confirm_payment: '<![CDATA[Are you sure to pay your<br><b>Resident eBilling</b><br>on your mobile apps?]]>',
+            confirm_payment: 'Are you sure to pay your<br><b>Resident eBilling</b><br>on your mobile apps?',
             hint_email_phone: 'Email or mobile phone',
             let_acces_billing: 'Let me access my billing',
             pay_now: 'Pay Now',
@@ -1047,6 +1051,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             female: 'Female',
             fashion: 'Fashion',
             Fashion_ : 'Fashion',
+            fashion_ : 'Fashion',
             Batik: 'Batik',
 
             post_topic_success: 'Post topic success',
@@ -1139,6 +1144,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             book_stationety: 'Buku & Alat Tulis',
             Book___Stationery: 'Buku & Alat Tulis',
             bookmarked: 'Tertandai',
+            all_bookmarked: 'Sudah Tertandai',
             bookmark: 'Tandai',
             btn_lets_go: 'Mulai',
             bus: 'Bis',
@@ -1166,8 +1172,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             deparment_store: 'Pusat Perbelanjaan',
             Department_Store: 'Pusat Perbelanjaan',
             dialog_signout: 'Apakah anda yakin \n ingin keluar dari akun ini?',
-            dialog_success_upgrade: '<![CDATA[Email Anda Telah Terdaftar, <br/> <b>Selamat</b> <br/>Sekarang anda sudah<br/>menjadi warga]]>',
-            dialog_fail_upgrade: '<![CDATA[Maaf, email tidak dapat terdaftar, <br/> Silahkan menghubungi Customer Service <br/>untuk mendaftarkan email anda]]>',
+            dialog_success_upgrade: 'Email Anda Telah Terdaftar, <br/> <b>Selamat</b> <br/>Sekarang anda sudah<br/>menjadi warga',
+            dialog_fail_upgrade: 'Maaf, email tidak dapat terdaftar, <br/> Silahkan menghubungi Customer Service <br/>untuk mendaftarkan email anda',
             dining: 'Kuliner',
             westren_food: 'Barat',
             WESTREN_FOOD: 'Barat',
@@ -1192,6 +1198,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             fastfood: 'Cepat Saji',
             fashion: 'Fashion',
             Fashion_ : 'Fashion',
+            fashion_ : 'Fashion',
             forgot_password: 'Lupa Sandi ?',
             forgot_password_placeholder: 'Email atau nomor telepon',
             forum: 'Forum',
@@ -1323,6 +1330,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             rate_title: 'Rating Penyewa',
             rate_this_tenant: 'Nilai tempat ini',
             tenant: 'Penyewa',
+            tenant_gallery: 'Galeri Tenant', 
             rate_dialog: 'Apakah Anda yakin ingin menilai penyewa ini ?',
             rate_text: 'Nilai tempat ini',
             recommended: 'Rekomendasi',
@@ -1466,7 +1474,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             description: 'Deskripsi',
             cant_acces_billing: 'Tidak dapat membuka tagihan',
             payment: 'Pembayaran',
-            confirm_payment: '<![CDATA[Apakah Anda yakin akan membayar<br><b>Tagihan Perumahan</b><br>pada aplikasi Anda?]]>',
+            confirm_payment: 'Apakah Anda yakin akan membayar<br><b>Tagihan Perumahan</b><br>pada aplikasi Anda?',
             hint_email_phone: 'Email or Nomer Ponsel',
             let_acces_billing: 'Melihat Tagihan',
             pay_now: 'Bayar',

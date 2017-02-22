@@ -19,6 +19,7 @@ angular
 
         function listAllChild() {
             TenantService.listAllChild($stateParams.idcategory, function(response) {
+                $timeout(function(){
                 if (response != false) {
                      var id =  $stateParams.idcategory;
                      if(id==17 || id==18 || id==20 || id==50 || id==65 || id==69 || id==82 || id==82){
@@ -53,7 +54,8 @@ angular
                             console.log('allo ini catDat : ' + JSON.stringify($scope.categoryData));  
                             console.log($scope.catName);
                      }
-                }            
+                }
+                }, 1000);            
             });
         }
 
