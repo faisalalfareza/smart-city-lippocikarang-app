@@ -455,7 +455,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.notification', {
-            cache: false,
             url: "/notification",
             views: {
                 'profile-content': {
@@ -465,7 +464,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.notificationDetail', {
-            cache: false,
             url: "/notificationDetail/:idnotif/:bookmarked",
             views: {
                 'profile-content': {
