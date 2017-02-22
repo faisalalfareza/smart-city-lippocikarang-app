@@ -476,6 +476,7 @@ angular
         $scope.myGoBack = function() {
             $ionicHistory.goBack();
         };
+
         ForumService.forumdetail(function(response) {
             if (response != false) {
                 angular.forEach(response.detail, function(value, key) {
@@ -483,6 +484,11 @@ angular
                 })
                 $scope.detail = response.detail
                 $scope.comment = response.comment
+                //layer bottom
+                $scope.detailB = response.detail[0]
+                $scope.titleB = $scope.detail.title;
+                $scope.commentB = response.comment
+                $scope.galleryforumsB = response.galleryforums
             } else {
                 $scope.data = { name: $filter('translate')('failed_get_data') }
             }
