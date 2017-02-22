@@ -952,6 +952,22 @@ whatsnew-image {
     margin-right: 10%;
 }
 
+.contentComment {
+    margin-top:3em;
+    background-color:lightgray;
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-right: 10%;
+}
+
+.contentCommentHe {
+    background-color: white transparent;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-right: 8%;
+}
+
 .contentTenant fieldset {
     padding: 0 !important;
 }
