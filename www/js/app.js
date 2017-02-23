@@ -1422,7 +1422,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             about_us: 'Tentang kami',
             terms: 'SYARAT & KETENTUAN',
             privacy: 'KEBIJAKAN PRIVASI',
-            rate: 'RATE KAMI DI APPSTORE',
+            rate: 'NILAI KAMI',
             emergency_call: 'Panggilan Darurat',
             sort: 'Atur',
             sort_distance: 'Jarak',
@@ -1579,11 +1579,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 }
 
 function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-    $timeout(function() {
-        $ionicSlideBoxDelegate.update();
-    }, 50);
-    });
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
             $location.path('/app/search/' + value);

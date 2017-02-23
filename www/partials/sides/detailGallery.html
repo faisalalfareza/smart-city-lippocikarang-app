@@ -1,5 +1,5 @@
 <ion-view view-title="{{'gallery' | translate}}" ng-controller="detailGallery">
-     <ion-slide-box on-slide-changed="slideChanged()" ng-init="updateSlider()" show-pager="false" active-slide="gall">
+     <ion-slide-box ng-if="gall" on-slide-changed="slideChanged()" show-pager="false" active-slide="gall">
            <ion-slide ng-repeat="data in image">
                    <div class="photoGallery scroll" style="position: relative;">
                         <ion-content overflow-scroll="true">

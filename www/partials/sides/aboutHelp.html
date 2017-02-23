@@ -4,9 +4,11 @@
             <center style="margin-top:3em"><img style="width: 40%;height: 40%;" src="img/logo.png"></center>
             <center><iframe overflow-scroll="false" style="width: 85%;height: 37em;overflow-y: hidden" src="{{tentangLink}}"></iframe></center>
             <hr>
-            <center style="margin-top:1em"><a class="button button-positive" ng-click="openTerms()" style="width:80%;height:10%;border-radius:20px;">{{ 'terms' | translate }}</a></center>
+            <center style="margin-top:1em"><a class="button" ng-click="openTerms()" style="background-color: lightgrey;width:80%;height:10%;border-radius:20px;">{{ 'terms' | translate }}</a></center>
             <br>
-            <center><a class="button button-positive" ng-click="openPrivacy()" style="width:80%;height:10%;border-radius:20px;">{{ 'privacy' | translate }}</a></center>
+            <center><a class="button" ng-click="openPrivacy()" style="background-color: lightgrey;width:80%;height:10%;border-radius:20px;">{{ 'privacy' | translate }}</a></center>
+            <br>
+            <center><a class="button" ng-click="openBrowser('https://itunes.apple.com/id/genre/ios/id36?mt=8', '_system', 'location=yes')" style="background-color: lightgrey;width:80%;height:10%;border-radius:20px;">{{ 'rate' | translate }}</a></center>
         </ion-scroll>
     </ion-content>
 </ion-view>

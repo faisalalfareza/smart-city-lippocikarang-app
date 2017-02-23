@@ -5,7 +5,7 @@ angular
     .module('livein')
     .controller('currency', currency)
 
-function currency($scope, currencyService, $ionicLoading, $localStorage, $filter) {
+function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLoading, $localStorage, $filter) {
 
     $scope.wakut = new Date();
     $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
@@ -167,6 +167,9 @@ function currency($scope, currencyService, $ionicLoading, $localStorage, $filter
             template: $filter('translate')('succes_set_to_main'),
             duration: 2000
         });
+        /*he.then(function(res) {
+            $window.location.reload();
+        });*/
 
     }
 
