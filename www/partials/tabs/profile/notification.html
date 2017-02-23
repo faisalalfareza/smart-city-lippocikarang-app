@@ -1,4 +1,4 @@
-<ion-view view-title="{{'profile' | translate}}">
+<ion-view view-title="{{'profile' | translate}}" can-swipe-back="false">
     <ion-bar class="bar bar-subheader bar-positive" style="border:0;outline:0;background-color:#3498db">
         <div class="row">
             <div class="col col-10">
@@ -8,7 +8,7 @@
                 <h2 style="font-size:18px;color:white">{{ 'my_notification' | translate }}</h2>
             </div>
             <div class="col col-20 checknotif">
-                <p style="font-size:16px;color:white;margin-left:1em;" ng-if="check_box === false || check_box === undefined">{{ 'edit' | translate }}</p>
+                <p style="font-size:16px;color:white;margin-left:-0.3em;" ng-if="check_box === false || check_box === undefined">{{ 'edit' | translate }}</p>
                 <p style="font-size:16px;color:white" ng-if="check_box === true">{{ 'cancel' | translate }}</p><input type="checkbox" ng-model="check_box" style="width: 3em;height: 3em;margin-top: -2.4em;" />
             </div>
         </div>

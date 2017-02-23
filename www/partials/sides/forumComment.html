@@ -1,8 +1,8 @@
 <ion-view view-title="{{ 'forum' | translate }}">
-    <ion-nav-bar class="bar-positive">
+    <ion-header-bar class="bar-positive" style="background-color: #0081c9;">
         <ion-nav-back-button class="button-clear" ng-click="myGoBack()">
         </ion-nav-back-button>
-    </ion-nav-bar>
+    </ion-header-bar>
     <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0;">
         <div class="row">
             <div class="col col-50">
@@ -14,16 +14,62 @@
             </div>
         </div>
     </ion-bar>
-    <ion-content class="itemModal transparent" style="margin-top:30%;">
-        <div style="background-color:#DCDCDC;">
+    <ion-content style="margin-top:1.3em;" class="has-footer" has-footer="true">
+        <div class="contentCommentHe" style="margin-top:1em;position: relative;" >
+            <div class="row">
+                <div class="col col-75">
+                    <h5>
+                        <p>{{detailB.fullname}}</p>
+                    </h5>
+                    <p style="font-size:12px;">Post on {{detailB.createdate.replace(" ","T") | date:"MMMM y h:mm a"}}</p>
+                </div>
+                <div class="col col-25 row-center" ng-if="account == detailB.idaccount">
+                    <a class="" ng-click="openModal(1)">
+                    {{ 'edit' | translate }}
+                    </a>
+                </div>
+            </div>
+
+            <h4 style="color: #2980b9; ">{{detailB.title | uppercase}}</h4>
+            <p>{{detailB.description}}</p>
+            <img ng-repeat="gallery in galleryforumsB" style="width: 30%; padding-right: 5%;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+            </br>
+            <a href="#/app/forumComment/{{ detailB.idforums }}">
+                <button class="button button-positive ">{{ 'post_a_comment' | translate }}</button>
+            </a>
+            
+        </div>
+        <div style="width:100vw;height: 100vh;background-color: rgba(0,0,0, 0.7);z-index: 3;position: absolute;top: 0;">
+            <!-- modal -->
+            <div class="contentComment">
+                <center>
+                    <h3>{{ 'comment' | translate }}</h3>
+                </center>
+                <form name="myform" ng-submit="sending(comment)" ng-controller="forumComment">
+                    <div class="row">
+                        <div class="col">
+                            <label class="item item-input text" style="width:80vw;text-align: center;`">
+                                <textarea name="comment" placeholder="Comment" rows="15" ng-model="comment.desc" required></textarea>
+                            </label>
+                            <br>
+                            <div class="row">
+                                <button class="col-40 button button-positive" style="margin:0.8em;" type="submit" ng-disabled="myform.$invalid">{{ 'post' | translate }}</button>
+                                <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-40 button button-positive" type="submit">{{ 'cancel' | translate }}</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- <div class="contentComment">
             <center>
                 <h3>{{ 'comment' | translate }}</h3>
             </center>
             <form name="myform" ng-submit="sending(comment)" ng-controller="forumComment">
                 <div class="row">
                     <div class="col">
-                        <label class="item item-input text">
-                            <textarea name="comment" placeholder="Comment" rows="10" ng-model="comment.desc" required></textarea>
+                        <label class="item item-input text" style="width:19em;margin-left:0.5em;margin-right:0.5em;">
+                            <textarea name="comment" placeholder="Comment" rows="15" ng-model="comment.desc" required></textarea>
                         </label>
                         <br>
                         <div class="row">
@@ -33,6 +79,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div> -->
+        
     </ion-content>
 </ion-view>

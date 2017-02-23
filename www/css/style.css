@@ -531,8 +531,8 @@ w {
 }
 
 .itemModal.advertisement.smallmodal {
-    top: 21em;
-    height: 20%;
+    top: 90%;
+    height: 11%;
 }
 
 .itemModal.advertisement.fullmodal img {
@@ -947,9 +947,23 @@ whatsnew-image {
 /*tenant detail*/
 
 .contentTenant {
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.contentComment {
+        margin-top: 4em;
+    background-color: lightgray;
+    position: absolute;
+    align-content: center;
+    margin-left: 8.5%;
+    margin-right: 8.5%;
+}
+
+.contentCommentHe {
+    background-color: white transparent;
+    margin-left: 7%;
+    margin-right: 7%;
 }
 
 .contentTenant fieldset {

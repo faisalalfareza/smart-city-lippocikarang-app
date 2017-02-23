@@ -45,7 +45,7 @@ angular
           }).finally(function() {         
 
             $rootScope.closeAds = function() {
-              $rootScope.$broadcast('adsModal:hideModal');s
+              $rootScope.$broadcast('adsModal:hideModal');
             };
 
           });

@@ -63,7 +63,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             controller: 'app'
         })
         .state('app.category', {
-            cache: false,
             url: "/category/:idcategory",
             views: {
                 'menu-content': {
@@ -73,7 +72,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.recomended', {
-            cache: false,
             url: "/recomended/:idcategory",
             views: {
                 'menu-content': {
@@ -83,7 +81,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.tenant', {
-            cache: false,
             url: "/tenantDetail/:idtenant",
             views: {
                 'menu-content': {
@@ -343,7 +340,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.history', {
-            cache: false,
             url: "/history",
             views: {
                 'profile-content': {
@@ -455,7 +451,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.notification', {
-            cache: false,
             url: "/notification",
             views: {
                 'profile-content': {
@@ -465,7 +460,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.notificationDetail', {
-            cache: false,
             url: "/notificationDetail/:idnotif/:bookmarked",
             views: {
                 'profile-content': {
