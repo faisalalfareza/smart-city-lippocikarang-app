@@ -531,7 +531,11 @@ w {
 }
 
 .itemModal.advertisement.smallmodal {
+<<<<<<< HEAD
     top: 85%;
+=======
+    top: 80%;
+>>>>>>> 9cfa1c90b817173a84c5e2cd020941593f1bd239
     height: 11%;
 }
 
@@ -544,9 +548,19 @@ w {
 }
 
 .itemModal.advertisement.smallmodal img {
+<<<<<<< HEAD
+=======
     width: auto;
     height: 100%;
+>>>>>>> 3454ed4e1133bbc4323e1bbffd0ec3de748b54b3
     border-radius: 10px;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
