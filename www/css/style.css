@@ -544,6 +544,11 @@ w {
 }
 
 .itemModal.advertisement.smallmodal img {
+<<<<<<< HEAD
+=======
+    width: auto;
+    height: 100%;
+>>>>>>> 3454ed4e1133bbc4323e1bbffd0ec3de748b54b3
     border-radius: 10px;
     height: 100%;
     max-width: 100%;
