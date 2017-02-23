@@ -544,7 +544,7 @@ w {
 }
 
 .itemModal.advertisement.smallmodal img {
-    width: 100%;
+    width: auto;
     height: 100%;
     border-radius: 10px;
     transform: translateZ(0);

@@ -1,11 +1,11 @@
 <ion-view view-title="{{'gallery' | translate}}" ng-controller="detailGallery">
-     <ion-slide-box on-slide-changed="slideChanged()" show-pager="false" active-slide="gall">
+     <ion-slide-box on-slide-changed="slideChanged()" ng-init="updateSlider()" show-pager="false" active-slide="gall">
            <ion-slide ng-repeat="data in image">
                    <div class="photoGallery scroll" style="position: relative;">
                         <ion-content overflow-scroll="true">
                         <img ng-src="{{data.avatar}}" class="square" style="margin-top: 10%;"/>
                         <div class="row" style="margin-top:30%;margin-bottom: 30%; position: absolute;">
-                          <p class="bottomNumber col-12" style="position: absolute;margin-bottom: 10%;margin-top: 17%;">{{data.idcitygallery}} {{'of' | translate}} 13</p>
+                          <p class="bottomNumber col-12" style="position: absolute;margin-bottom: 10%;margin-top: 17%;">{{data.number}} {{'of' | translate}} {{len}}</p>
                           <p class="bottomTitle col-12" style="position: absolute;margin-bottom: 15%;margin-top: 13%;">{{data.title}}</p>
                         </div>
                         <br>

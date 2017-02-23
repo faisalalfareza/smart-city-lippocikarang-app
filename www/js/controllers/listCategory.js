@@ -10,7 +10,7 @@ angular
         }
     }
 
-    function category($scope, $cordovaGeolocation, $stateParams, TenantService, $ionicLoading, $filter) {
+    function category($scope, $cordovaGeolocation,$timeout, $stateParams, TenantService, $ionicLoading, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
 
         listTenant();
