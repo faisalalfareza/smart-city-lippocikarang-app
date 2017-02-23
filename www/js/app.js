@@ -1,6 +1,7 @@
 angular
     .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push'])
     .directive('ngEnter', ngEnter)
+    .directive('repeatDone', repeatDone)
     .config(config)
     .run(run)
 
@@ -117,6 +118,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.detailGallery', {
+            cache: false,
             url: "/detailGallery/{index}",
             views: {
                 'menu-content': {
@@ -1576,8 +1578,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
 }
 
-function run($ionicPlatform, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
-
+function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    $timeout(function() {
+        $ionicSlideBoxDelegate.update();
+    }, 50);
+    });
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
             $location.path('/app/search/' + value);
@@ -1723,5 +1729,13 @@ function ngEnter() {
                 event.preventDefault();
             }
         });
+    }
+}
+
+function repeatDone() {
+    return function(scope, element, attrs) {
+        if(scope.$last){
+            scope.$eval(attrs.repeatDone);
+        }
     }
 }
