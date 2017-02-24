@@ -33,8 +33,6 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
         console.log($scope.categorytenant);
     });
 
-
-
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position) {
         $rootScope.lat = position.coords.latitude
@@ -44,7 +42,6 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
         //set to service
         $scope.distance = calculatdistance(lat, long);
         console.log($scope.distance);
-
     });
 
     function calculatdistance(lat, long) {
@@ -101,15 +98,19 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
                         //alert( $filter('translate')('bookmarked'));
                         var alertPopup = $ionicPopup.alert({
                             //title: 'Don\'t eat that!',
-                            template: $filter('translate')('bookmarked'), duration: 10000
+                            template: $filter('translate')('bookmarked'), 
+                            okType: "button-stable",
+                            cssClass: "alertPopup",
+                            duration: 10000
                         });
 
                     } else {
-                        //$ionicLoading.show({ template: response[0].message, duration: 10000 });
-                        //alert($filter('translate')('bookmarked'));
                         var alertPopup = $ionicPopup.alert({
                             //title: 'Don\'t eat that!',
-                            template: $filter('translate')('all_bookmarked'), duration: 10000
+                            template: $filter('translate')('all_bookmarked'), 
+                            okType: "button-stable",
+                            cssClass: "alertPopup",
+                            duration: 10000
                         });
                     }
                     $ionicLoading.hide();
@@ -136,13 +137,13 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
             var alertPopup = $ionicPopup.alert({
                 title: $filter('translate')('action_review') + ' Tenant',
                 template: $filter('translate')('no_review_tenant'),
+                okType: "button-stable",
                 cssClass: "alertPopup"
             });
 
         }
 
     }
-
 
     TenantService.retriveGetTenantImage($stateParams.idtenant, function(response) {
         if (response != false) {
@@ -194,9 +195,6 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
                 }
             });
         }
-
-
-
     });
 
     function rateTenantService() {
@@ -226,11 +224,8 @@ function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $c
     };
 
     $scope.inputrate = function(rate) {
-
         $scope.rating = rate;
-
         console.log($scope.rating);
-
     }
 
     function texcategory(idcategory) {
@@ -605,25 +600,12 @@ function entertaimentSportDetailImage($timeout,$scope, $stateParams, $location, 
 
 function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
 
-
     //get location
-
-
-
-
     $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
     $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
     getduration();
 
-
-
-
-
-    //get distance
-
-
     //load map
-
     $scope.$on('$ionicView.loaded', function() {
         console.log("map page loaded - should only see me once???");
     })
@@ -651,7 +633,6 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             $scope.loadGLoadertenant(); //then load maps, then load the map
         }
     });
-
 
     function loadMap() {
         var mapOptions = {
@@ -699,7 +680,6 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
     }
 
     //get distance and duration
-
     function getduration() {
         service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
@@ -715,16 +695,9 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
 
             $scope.mencret = element.distance.text;
             $scope.telek = element.duration.text;
-
-
             console.log('jarak = ' + $scope.mencret + "  duration" + $scope.telek);
-
-
         });
-
-
     }
-
 
     $scope.loadGLoadertenant = function() {
         if (!window.google || !window.google.loader) {
@@ -743,6 +716,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             }
         }
     };
+    
     $scope.loadGMapstenant = function() {
         if (window.google && window.google.loader && window.google.maps === undefined) {
             console.log("loading gmaps");

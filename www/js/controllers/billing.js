@@ -181,7 +181,7 @@ angular
 
         $scope.unitno = $rootScope.unitnofilter;
         $scope.atribute = $rootScope.attributpayment;
-        alert(JSON.stringify($rootScope.attributpayment));
+        // alert(JSON.stringify($rootScope.attributpayment));
 
 
         $scope.select_type = function(type_payment,checkterm) {
@@ -291,29 +291,29 @@ angular
 
           if(response != false){
             status = response.status;
-            alert(JSON.stringify(response))
+            // alert(JSON.stringify(response))
 
             if(status == '200' || status == 200){
 
-              message = "Status : "+status +  "\n" +
-                        "transcation id : " + response.transaction_id + "\n" +
-                        "message : "+ response.message + "\n"+
+              message = "Status : "+status +  '</br>' +
+                        "transcation id : " + response.transaction_id + '</br>' +
+                        "message : "+ response.message + '</br>'+
                         "Check your notification ovo";
               showalertpopup(message,200);
 
             } else if(status == '103' || status == 103) {
 
-              message = "Status : " + status + "\n" +
+              message = "Status : " + status + '</br>'  +
                         "message : " + response.message;
               showalertpopup(message,103);
 
             }else if (status == 500 || status == '500'){
 
 
-              message = "Status : " + status + "\n" +
-                        "Error Id : " + response.ErrorID + "\n" +
-                        "Error Code : " + response.ErrorCode + "\n" +
-                        "Error Message : "+response.ErrorMessage + "\n" +
+              message = "Status : " + status + '</br>' +
+                        "Error Id : " + response.ErrorID + '</br>' +
+                        "Error Code : " + response.ErrorCode + '</br>' +
+                        "Error Message : "+response.ErrorMessage + '</br>' +
                         "Message : "+ response.message;
 
               showalertpopup(message,500);
