@@ -453,6 +453,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.notification', {
+            cache: false,
             url: "/notification",
             views: {
                 'profile-content': {
