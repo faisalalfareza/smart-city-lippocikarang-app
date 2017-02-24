@@ -399,6 +399,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.download', {
+            cache: false,
             url: "/download",
             views: {
                 'download-content': {
@@ -1599,7 +1600,7 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
             $location.path().substr(0, 14) == "/app/myhistory" || $location.path() == "/app/editprofile" || $location.path() == "/app/listbookmark" ||
             $location.path() == "/app/listbookmark" || $location.path() == "/app/notification" || $location.path().substr(0, 23) == "/app/notificationDetail" ||
             $location.path() == "/app/map" || $location.path() == "/app/download" || $location.path().substr(0, 19) == "/app/downloadDetail" ||
-            $location.path() == "/app/more" || $location.path() == "/app/inivitefriend") {
+            $location.path() == "/app/more" || $location.path() == "/app/inivitefriend" || $location.path() == "/app/tenantDetail/:idtenant") {
             myEl.attr('nav-view', 'cached');
         } else {
             myEl.attr('nav-view', 'active');
