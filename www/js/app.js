@@ -1422,7 +1422,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             about_us: 'Tentang kami',
             terms: 'SYARAT & KETENTUAN',
             privacy: 'KEBIJAKAN PRIVASI',
-            rate: 'RATE KAMI DI APPSTORE',
+            rate: 'NILAI KAMI',
             emergency_call: 'Panggilan Darurat',
             sort: 'Atur',
             sort_distance: 'Jarak',

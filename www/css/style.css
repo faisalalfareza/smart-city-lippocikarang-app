@@ -531,7 +531,11 @@ w {
 }
 
 .itemModal.advertisement.smallmodal {
+<<<<<<< HEAD
+    top: 85%;
+=======
     top: 80%;
+>>>>>>> 9cfa1c90b817173a84c5e2cd020941593f1bd239
     height: 11%;
 }
 
