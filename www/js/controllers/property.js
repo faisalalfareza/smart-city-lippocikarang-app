@@ -162,7 +162,7 @@ angular
                 angular.forEach(response.detail, function(value, key) {
                     $scope.propertydata = value;
                 });
-                console.log($scope.propertydata);
+                console.log('ini propert data : ' ,$scope.propertydata);
             } else {
                 $scope.propertydata = [{ name: $filter('translate')('no_property') }];
             }

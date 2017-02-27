@@ -1,17 +1,23 @@
 <ion-view view-title="Email">
-    <ion-content class="padding comment-page">
+    <ion-content class="padding comment-page has-footer">
         <div class="row">
-            <img class="item-avatar" ng-if="!propertydata.avatar" src="propertydata.avatar">
-            <p>{{propertydata.agentname}}</p>
+            <div ng-if="propertydata.agentavatar == '' || propertydata.agentavatar == null">
+                    <img ng-src="img/defaultavatar.png" style="width: 75px; height: 75px; border-radius: 50%; margin: 20px 0 0 0">
+            </div>
+            <div ng-if="propertydata.agentavatar != '' && propertydata.agentavatar != null">
+                <img ng-src="{{propertydata.agentavatar}}" style="width: 75px; height:75px; border-radius: 50%; margin: 20px 0 0 0">
+            </div>
+            <p style="margin-top:3em;margin-left:1em;">{{propertydata.agentname}}</p>
         </div>
-        <form ng-submit="sending(email)" ng-controller="sendEmail">
+        <form ng-submit="sending(email)" ng-controller="sendEmail" style="margin-top:1em;">
             <div class="row">
                 <div class="col">
                     <label class="item item-input text">
                     <textarea name="description" placeholder="Description*" rows="20" ng-model="email.desc" ng-required="true"></textarea>
                 </label>
                     <br>
-                    <button class="button button-positive" type="submit">{{ 'send_email' | translate }}</button>
+                    <center><button style="border-radius: 30px;" class="button button-positive" type="submit">{{ 'send_email' | translate }}</button></center>
+                    <center><img ng-src="img/reality.png" style="margin-top:2em;width: 75px; height:auto"></center>
                 </div>
             </div>
         </form>
