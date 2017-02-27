@@ -1643,8 +1643,8 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                PushNotifications();
-                PushAdvertise();
+                // PushNotifications();
+                // PushAdvertise();
 
             }
         }, 5000);

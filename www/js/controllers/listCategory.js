@@ -10,16 +10,17 @@ angular
         }
     }
 
-    function category($scope, $cordovaGeolocation,$timeout, $stateParams, TenantService, $ionicLoading, $filter) {
-        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
-
+    function category($scope,$timeout, $cordovaGeolocation,$timeout, $stateParams, TenantService, $ionicLoading, $filter) {
+        //$timeout(function(){
+        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 2000 });
+        
         listTenant();
         listAllChild();
         filterByCategory();
 
         function listAllChild() {
             TenantService.listAllChild($stateParams.idcategory, function(response) {
-                $timeout(function(){
+                //$timeout(function(){
                 if (response != false) {
                      var id =  $stateParams.idcategory;
                      if(id==17 || id==18 || id==20 || id==50 || id==65 || id==69 || id==82 || id==82){
@@ -33,10 +34,17 @@ angular
                                 'categoryValue': $scope.subcategorys,
                                 'categoryName': $filter('translate')(categoryKey)
                             });
-
+                            
                             $scope.catName = $scope.categoryData[0].categoryName;
-                            console.log('allo ini catDat : ' + JSON.stringify($scope.categoryData));  
-                            console.log($scope.catName);
+                            if($scope.categoryData != null){
+                                $timeout(function(){
+                                    $scope.ini = $scope.categoryData;
+                                },0);
+                            } else {
+                                $timeout(function(){
+                                    $scope.ini = $scope.categoryData;
+                                },1000);
+                            }
                      }
                      else {
                           $scope.subcategorys = response[0].categoryname;
@@ -55,12 +63,13 @@ angular
                             console.log($scope.catName);
                      }
                 }
-                }, 1000);            
+                //}, 1000);            
             });
         }
 
         function filterByCategory() {
             TenantService.filterByCategory($stateParams.idcategory, function(response) {
+                $timeout(function(){
                 if (response != false) {
                     $scope.categorys = response;
                     //
@@ -79,17 +88,27 @@ angular
                             'categoryValue': categoryname,
                             'categoryName': $filter('translate')(categoryKey)
                         });
+                        if($scope.categoryData != null){
+                                $timeout(function(){
+                                    $scope.ini = $scope.categoryData;
+                                },0);
+                            } else {
+                                $timeout(function(){
+                                    $scope.ini = $scope.categoryData;
+                                },1000);
+                            }
                         //$scope.list = $filter('translate')(categoryname);                        
                     });
-                    console.log($scope.categoryData);
                 } else {
                     $scope.categorys = [{ name: $filter('translate')('no_user') }];
                 }
+                }, 1000);  
             });
         }
 
         function listTenant() {
             TenantService.listTenant($stateParams.idcategory, function(response) {
+                $timeout(function(){
                 if (response != false) {
 
                     var id = $stateParams.idcategory;
@@ -151,13 +170,15 @@ angular
                     $scope.data = [{ name: $filter('translate')('no_user') }];
                 }
                 $ionicLoading.hide();
+            }, 1000);
+            
             });
         }
-
+    
         var posOptions = { timeout: 10000, enableHighAccuracy: true };
         $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position) {
-            $scope.lat = position.coords.latitude;
-            $scope.long = position.coords.longitude;
+                $scope.lat = position.coords.latitude;
+                $scope.long = position.coords.longitude;
         });
 
         calculatdistance = function(longlat) {
@@ -181,7 +202,7 @@ angular
         function deg2rad(deg) {
             return deg * (Math.PI / 180);
         }
-
+       // }, 1000); 
     }
 
     function categoryRecomended($scope, $cordovaGeolocation, $stateParams, TenantService, $ionicLoading, $filter) {
@@ -247,6 +268,7 @@ angular
                 $ionicLoading.hide();
 
             });
+            
         }
 
         var posOptions = { timeout: 10000, enableHighAccuracy: true };
@@ -276,5 +298,5 @@ angular
         function deg2rad(deg) {
             return deg * (Math.PI / 180);
         }
-
+        
     }
