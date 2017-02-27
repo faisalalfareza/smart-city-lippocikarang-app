@@ -46,7 +46,7 @@ angular
     });
 
     $scope.startApp = function () {
-      $scope.buttonDisabled = true;
+      $scope.buttonDisabled = false;
 
       if (!$localStorage.currentUser) {
 
