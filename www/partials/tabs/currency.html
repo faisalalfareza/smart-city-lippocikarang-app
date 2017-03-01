@@ -11,13 +11,13 @@
     </ion-bar>
     <ion-content style="margin-top:45px;height:40%">
         <ion-list class="currency">
-            <ion-item class="item" style="border-width: 0; padding: 0" ng-repeat="list in itemrate">
+            <ion-item class="item" style="border-width: 0; padding: 0" ng-repeat="list in currency">
                 <div class="row">
                     <div class="col col-20">
                         <img width="48" style="vertical-align: middle" ng-src="{{flag[$index]}}">
                     </div>
                     <div class="col col-20" style="margin-left: -3%; vertical-align: middle">
-                        <h6 style="vertical-align: middle;">{{list * 10000 | limitTo:5}} {{currency[$index]}}</h6>
+                        <h6 style="vertical-align: middle;">{{list * 10000 | limitTo:5}} {{rate[$index]}}</h6>
                     </div>
                     <div class="col col-25" style="padding: 0">
                         <h5 align="center" style="vertical-align: middle">{{name[$index]}}</h5>

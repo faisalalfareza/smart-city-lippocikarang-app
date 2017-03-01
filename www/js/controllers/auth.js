@@ -91,7 +91,7 @@ angular
       }, function onError(error) {
         var alertPopup = $ionicPopup.alert({
           title: 'Facebook Login Failed ..',
-          template: JSON.stringify(error),
+          template: $filter('translate')('user_cancelled'),
           okText: $filter('translate')('okay'),
           okType: "button-stable",
           cssClass: "alertPopup"

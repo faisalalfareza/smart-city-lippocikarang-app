@@ -16,12 +16,13 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
     $scope.limit = 4;
     $scope.checked = 0;
     $scope.name = [
-        'Austarlia', 'Bulgaria', 'brazil', 'Canada', 'Swiss', 'China', 'Czech', 'Denmark', 'England',
-        'HongKong', 'Croatian ', 'Hungaria', 'Israel', 'India', 'Japan', 'South Korea', 'Mexico', 'Malaysia', 'Norwegian', 'New Zealand', 'Philippine ', 'Poland', 'Romania', 'Rusia', 'Swedish',
-        'Singapura', 'Thai', 'Turky', 'Usa', 'South Africa', 'Euro'
+        'Indonesia','Australia', 'Bulgaria', 'Brazil', 'Canada', 'Switzerland', 'China', 'Czech', 'Denmark', 'United Kingdom',
+        'Hong Kong', 'Croatia', 'Hungary', 'Israel', 'India', 'Japan', 'South Korea', 'Mexico', 'Malaysia', 'Norway', 'New Zealand', 'Philippines', 'Poland', 'Romania', 'Russia', 'Sweden',
+        'Singapore', 'Thailand', 'Turkey', 'United States', 'South Africa', 'Europe'
     ];
 
     $scope.flag = [
+        'img/currency/flag_of_indonesia.png',
         'img/currency/flag_of_australia.png',
         'img/currency/flag_of_bulgaria.png',
         'img/currency/flag_of_brazil.png',
@@ -62,13 +63,20 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
         template: 'Loading...',
       })
         if (response != false) {
+            itm = response.rates;
+            $scope.itemrate = itm;
 
-            $scope.itemrate = response.rates;
+            //add idrs
+            $scope.rate.push("IDR");
+            $scope.currency.push("10.000");
+            
+            console.log($scope.itemrate);
             $scope.date = response.date;
             $scope.time = new Date();
+            
             angular.forEach($scope.itemrate, function(halo, key) {
-                $scope.rate.push(halo);
-                $scope.currency.push(key);
+                $scope.currency.push(halo);
+                $scope.rate.push(key);
             });
             settocalc();
 
@@ -154,11 +162,11 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
             'time': $scope.wakut,
             'index': $scope.selectedItems,
             'flag1': $scope.flag[$scope.selectedItems[0]],
-            'rate1': $scope.rate[$scope.selectedItems[0]],
-            'cur1': $scope.currency[$scope.selectedItems[0]],
+            'cur1': $scope.rate[$scope.selectedItems[0]],
+            'rate1': $scope.currency[$scope.selectedItems[0]],
             'flag2': $scope.flag[$scope.selectedItems[1]],
-            'rate2': $scope.rate[$scope.selectedItems[1]],
-            'cur2': $scope.currency[$scope.selectedItems[1]]
+            'cur2': $scope.rate[$scope.selectedItems[1]],
+            'rate2': $scope.currency[$scope.selectedItems[1]]
 
 
         }
