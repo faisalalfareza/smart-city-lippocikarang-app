@@ -1,7 +1,7 @@
 angular
     .module('livein')
     .controller('register', register)
-
+    
     function register($scope, $ionicLoading, $ionicPopup, $location, $state, registerService, $filter) {
         $scope.registerManual = registerManualService;
         $scope.registerGooglePlus = registerGooglePlus;
@@ -10,37 +10,46 @@ angular
         $scope.twitter_auth = twitter_auth;
 
         function registerManualService(user) {
-            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-            console.log(user);
-            registerService.registerManualService(
-                user.fullname,
-                user.gender,
-                user.phone,
-                user.email,
-                user.password,
-                function(response) {
-                    if (response != false) {
-                        console.log(response);
-                        var alertPopup = $ionicPopup.alert({
-                            title: $filter('translate')('registration_success'),
-                            template: $filter('translate')('activate_account'),
-                            okText: $filter('translate')('yes'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
-                        $location.path('/login');
-                    } else {
-                        var alertPopup = $ionicPopup.alert({
-                            title: $filter('translate')('registration_failed'),
-                            template: $filter('translate')('email_exist'),
-                            okText: $filter('translate')('yes'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
-                        $location.path('/register');
-                    }
-                    $ionicLoading.hide();
+            if(user.confpassword == user.password) {
+                $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+
+                registerService.registerManualService(
+                    user.fullname,
+                    user.gender,
+                    user.phone,
+                    user.email,
+                    user.password,
+                    function(response) {
+                        if (response != false) {
+                            var alertPopup = $ionicPopup.alert({
+                                title: $filter('translate')('registration_success'),
+                                template: $filter('translate')('activate_account'),
+                                okText: $filter('translate')('yes'),
+                                okType: "button-stable",
+                                cssClass: "alertPopup"
+                            });
+                            $location.path('/login');
+                        } else {
+                            var alertPopup = $ionicPopup.alert({
+                                title: $filter('translate')('registration_failed'),
+                                template: $filter('translate')('email_exist'),
+                                okText: $filter('translate')('yes'),
+                                okType: "button-stable",
+                                cssClass: "alertPopup"
+                            }); //tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
+                            $location.path('/register');
+                        }
+                        $ionicLoading.hide();
+                    });
+
+            } else {
+                var alertPopup = $ionicPopup.alert({
+                    template: 'Confirm Password Not Match',
+                    okText: $filter('translate')('yes'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
                 });
+            }
         };
 
         function registerGooglePlus() {
@@ -65,9 +74,6 @@ angular
                 }
             );
         };
-
-
-        // sosmed auth
 
         //with twitter
         function twitter_auth() {
