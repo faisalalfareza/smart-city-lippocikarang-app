@@ -2,11 +2,9 @@ angular
     .module('livein')
     .controller('cctv', cctv);
 
-    function cctv($scope, $ionicLoading, $state, cctv, $filter) {
-        cctvList();
-
-        function cctvList() {
-            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+    function cctv($scope , $window,$location,$route,$timeout, $ionicLoading, $state, cctv, $filter) {
+                 //$ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+      $timeout(function () {
             cctv.cctvList(
                 function(response) {
                     if (response != false) {
@@ -14,7 +12,7 @@ angular
                     } else {
                         $scope.data = { name: $filter('translate')('failed_get_data') };
                     }
-                    $ionicLoading.hide();
+                    //$ionicLoading.hide();
                 });
-        };
+      },100);
     }
