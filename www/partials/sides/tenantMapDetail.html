@@ -1,33 +1,33 @@
 <ion-view view-title="{{'tenant_map'| translate}}" class="maplayout">
-  <ion-content  class="has-header" has-bouncing="false">
+    <ion-content class="has-header" has-bouncing="false">
 
-  <div ng-show="mencret" class="row" style="width:100%;padding:0">
+        <div ng-show="mencret" class="row" style="width:100%;padding:0">
 
-    <div class="col col-50" style="width:100%;border-right:0.25px solid #0e0e0e;">
-      <div class="row">
-        <div class="col col-50" style="align-content:left">
-          <img style="display:block;left:0;" width="50%" src="img/ic_distances.png">
+            <div class="col col-50" style="width:100%;border-right:0.25px solid #0e0e0e;">
+                <div class="row">
+                    <div class="col-25" style="align-content:left">
+                        <img style="display:block;left:0;" width="100%" src="img/ic_distances.png">
+                    </div>
+                    <div class="col" style="align-content:left">
+                        <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{mencret}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-50" style="width:100%;border-left:0.25px solid #0e0e0e;">
+                <div class="row">
+                    <div class="col-25" style="align-content:left;width:auto;">
+                        <img style="display:block;left:0;;display: block;left: 0;top: 10px;" width="100%" src="img/tenantDetail/ic_time.png">
+                    </div>
+                    <div class="col" style="align-content:left;width:auto;">
+                        <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{telek}}</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col col-50" style="align-content:left">
-          <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{mencret}}</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="col col-50" style="width:100%;border-left:0.25px solid #0e0e0e;">
-      <div class="row">
-        <div class="col" style="align-content:left;width:auto;">
-            <img style="display:block;left:0;" width="50%" src="img/tenantDetail/ic_time.png">
-        </div>
-        <div class="col" style="align-content:left;width:auto;">
-            <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{telek}}</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div id="map" data-tap-disabled="true"></div>
-  </ion-content>
+        <div id="map" data-tap-disabled="true"></div>
+    </ion-content>
 
 </ion-view>
