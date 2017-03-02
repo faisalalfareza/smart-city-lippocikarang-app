@@ -567,6 +567,7 @@ function entertaimentSportDetailImage($timeout,$scope, $stateParams, $location, 
             $scope.results = [];
 
             $scope.gall = $stateParams.index;
+            $scope.dari = $scope.results;
 
             $scope.gallery = response;
             var a = 0;
@@ -580,6 +581,15 @@ function entertaimentSportDetailImage($timeout,$scope, $stateParams, $location, 
                     $scope.results.push(images[b]);
                 }
             })
+
+            var keys = Object.keys($scope.results);
+            $scope.len = keys.length;
+
+            var i = 1;
+            $scope.results.forEach(function(itemfile, indexfile, arrfile) {
+                $scope.results[indexfile].number = i++;
+            });
+            console.log('image e bor :', $scope.results);
         } else {
             $.data = { name: $filter('translate')('failed_get_data') };
         }

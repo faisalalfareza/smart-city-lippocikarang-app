@@ -56,7 +56,7 @@ angular
 
     function shareemail() {
       $cordovaSocialSharing
-        .shareViaEmail("Silahkan download aplikasi LippoCikarang http://www.lippo-cikarang.com/en", "LippocCkarang", ['', ""], ['', ""], [' ', ""], null)
+        .shareViaEmail("Silahkan download aplikasi LippoCikarang http://www.lippo-cikarang.com/en", "LippoCikarang", ['', ""], ['', ""], [' ', ""], null)
         .then(function (result) {
           // Success!
         }, function (err) {
