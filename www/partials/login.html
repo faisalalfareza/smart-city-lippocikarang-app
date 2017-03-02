@@ -1,5 +1,5 @@
 <ion-view view-title="{{'app_name' | translate}}" name="login-view" class="bg-login">
-    <ion-content class="padding" style="padding: 50px" overflow-scroll="true">
+    <ion-content class="padding" style="padding:35px" overflow-scroll="true">
 
         <div class="col" style="text-align:center">
             <img src="img/lippo-cikarang.png" style="width:130px;">
@@ -16,7 +16,7 @@
                 </label>
             </div>
             <a class="col" ui-sref="forget" style="color:#fff;text-decoration:none;letter-spacing:1px;text-align:center">{{ 'forgot_password' | translate }}</a>
-            <button type="submit" ng-click="credentials(data)" class="button button-block button-positive" style="border-radius:15px;background-color:#1a67b2;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">{{ 'login' | translate }}</button>
+            <button type="submit" ng-click="credentials(data)" class="button button-block" style="border-radius:15px;background-color:#1a67b2;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border:0;outline:0;color:white;">{{ 'login' | translate }}</button>
         </form>
 
         <div class="col" style="text-align:center">
@@ -34,7 +34,7 @@
 
         <div class="col" style="text-align:center">
             <p style="color:#fff;letter-spacing:1px;">{{ 'create_account'| translate }}</p>
-            <button class="button button-block button-positive" ui-sref="register" style="border-radius:15px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">{{ 'signup'| translate }}</button>
+            <button class="button button-block" ui-sref="register" style="border-radius:15px;background-color:#0D6DB6;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border:0;outline:0;color:white;">{{ 'signup'| translate }}</button>
 
             <p style="color:#fff;letter-spacing:1px;">{{ 'signup_lippo'| translate }}</p>
             <p style="color:#C5EFF7;letter-spacing:1px;font-size:13px;">{{ 'are_resident'| translate }}</p>
