@@ -62,9 +62,9 @@ table tr th {
     text-align: center;
 }
 
-input:invalid {
+/* input:invalid {
     border: 1px solid red;
-}
+} */
 
 #map {
     width: 100%;

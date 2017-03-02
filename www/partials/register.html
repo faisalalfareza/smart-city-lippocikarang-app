@@ -8,26 +8,26 @@
         <form ng-submit="registerManual(user)">
             <div class="list list-inset" style="background-color:transparent">
                 <label class="item item-input">
-                    <input type="text" placeholder="Fullname" ng-model="user.fullname" required>
+                    <input type="text" placeholder="{{ 'hint_fullname'| translate }}" ng-model="user.fullname" required>
                 </label>
                 <label class="item item-input" style="margin-top:1%">
-                    <select ng-model="user.gender" required style="width:100%;margin:0;padding:7px;border:0;">
-                        <option selected>{{ 'gender'| translate }}</option>
-                        <option ng-value="M">{{ 'male'| translate }}</option>
-                        <option ng-value="F">{{ 'female'| translate }}</option>
+                    <select style="width: 110%; height: 5vh; margin-left: 0px; color: darkgrey; border: 0px;font-weight:400;" ng-model="user.gender" required style="width:100%;margin:0;padding:0;border:0;">
+                        <option value="">{{ 'gender'| translate }}</option>
+                        <option value="M">{{ 'male'| translate }}</option>
+                        <option value="F">{{ 'female'| translate }}</option>
                     </select>
                 </label>
                 <label class="item item-input" style="margin-top:1%">
-                    <input type="tel" placeholder="Phone" ng-model="user.phone" required>
+                    <input type="tel" placeholder="{{ 'hint_phone'| translate }}" ng-model="user.phone" required>
                 </label>
                 <label class="item item-input" style="margin-top:1%">
-                    <input type="email" placeholder="Email" ng-model="user.email" required>
+                    <input type="email" placeholder="{{ 'hint_email'| translate }}" ng-model="user.email" required>
                 </label>
                 <label class="item item-input" style="margin-top:1%">
-                    <input type="password" placeholder="Password" ng-model="user.password" required>
+                    <input type="password" placeholder="{{ 'hint_password'| translate }}" ng-model="user.password" required>
                 </label>
                 <label class="item item-input" style="margin-top:1%">
-                    <input type="password" placeholder="Confirm Password" ng-model="user.confpassword" required>
+                    <input type="password" placeholder="{{ 'hint_confirm_password'| translate }}" ng-model="user.confpassword" required>
                 </label>
                 <center>
                     <select style="margin-top:3%;width:auto;height:32px;border-radius:10px;padding:7px;text-align:center">
@@ -53,7 +53,7 @@
                 </div>
 
                 <button class="button button-outline button-full button-positive" type="submit" style="border:3px solid #fff;color:#fff;font-weight:bold;border-radius:15px;text-transform:uppercase">{{ 'start_now'| translate }}</button>
-                
+
                 <div class="col" style="text-align:center">
                     <p style="color:#C5EFF7;letter-spacing:1px;font-size:13px;">{{ 'are_alreadyaccount'| translate }} <a style="text-decoration:none" ui-sref="login">{{ 'login'| translate }}</a></p>
                 </div>
