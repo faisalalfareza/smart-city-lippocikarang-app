@@ -1546,7 +1546,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             exchange_rate: 'Nilai Tukar',
             korean: 'Korea',
             Korean_Food: 'Korea',
-            dialog_title_gps: 'Ijinkan"Lippo Cikarang.Com"\n untuk mengakses lokasi \n anda selama menggunakan \n aplikasi?',
+            dialog_title_gps: 'Ijinkan "Lippo Cikarang.Com" \n untuk mengakses lokasi \n anda selama menggunakan \n aplikasi?',
             dialog_content_gps: 'Aktifkan layanan lokasi untuk menjelajahi tempat-tempat terdekat',
             allow: 'Ijinkan',
             dont_allow: 'Tidak',

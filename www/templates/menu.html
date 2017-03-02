@@ -58,14 +58,14 @@
         </ion-header-bar>
         <ion-content class="has-expanded-header">
             <ion-list>
-                <ion-item nav-clear menu-close href="#/app/aboutUs">{{ 'about_us'| translate }}</ion-item>
-                <ion-item nav-clear menu-close href="#/app/whatsNew">{{'what_new' | translate}}</ion-item>
-                <ion-item nav-clear menu-close href="#/app/property">{{ 'property_market'| translate }}</ion-item>
+                <ion-item class="item-resident" nav-clear menu-close href="#/app/aboutUs">{{ 'about_us'| translate }}</ion-item>
+                <ion-item class="item-resident" nav-clear menu-close href="#/app/whatsNew">{{'what_new' | translate}}</ion-item>
+                <ion-item class="item-resident" nav-clear menu-close href="#/app/property">{{ 'property_market'| translate }}</ion-item>
                 <div ng-show="showPrivillage">
-                  <ion-item nav-clear nav-clear ng-click="showResident()" style="border-top:1px solid;">{{ 'resident'| translate }}</ion-item>
+                  <ion-item class="item-resident" nav-clear nav-clear ng-click="showResident()" style="border-top:1px solid;">{{ 'resident'| translate }}</ion-item>
                   <div class="row sub-menu" ng-show="subResident">
                       <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
-                          <ion-item href="#/app/loginbilling" class="sub item-stable" nav-clear menu-close href="">
+                          <ion-item class="sub item-stable" nav-clear menu-close href="#/app/loginbilling">
                               <p>{{ 'ebilling'| translate }} </p>
                           </ion-item>
                           <ion-item class="sub item-stable" nav-clear menu-close href="#/app/forum">
@@ -81,7 +81,7 @@
                 </div>
 
                 <!-- Start : Entertaiment -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showEntertaiment()">
+                <ion-item class="item-custom" nav-clear ng-click="showEntertaiment()">
                     <img src="img/side-menu/entertainment.png" width="20px" height="20px"> &nbsp; {{ 'entertaiment'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subEntertaiment">
@@ -113,7 +113,7 @@
                 </div>
                 <!-- End : Entertaiment -->
                 <!-- Start : Dining -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showDining()">
+                <ion-item class="item-custom" nav-clear ng-click="showDining()">
                     <img src="img/side-menu/dining.png" width="20px" height="20px"> &nbsp; {{ 'dining'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subDining">
@@ -151,7 +151,7 @@
                 </div>
                 <!-- End : Dining -->
                 <!-- Start : Accomodation -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showAccomodation()">
+                <ion-item class="item-custom" nav-clear ng-click="showAccomodation()">
                     <img src="img/side-menu/accomodation.png" width="20px" height="20px"> &nbsp; {{ 'accomodation'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subAccomodation">
@@ -174,7 +174,7 @@
                 </div>
                 <!-- End : Accomodation -->
                 <!-- Start : Shopping -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showShopping()">
+                <ion-item class="item-custom" nav-clear ng-click="showShopping()">
                     <img src="img/side-menu/shopping.png" width="20px" height="20px"> &nbsp; {{ 'shopping'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subShopping">
@@ -212,17 +212,17 @@
                 </div>
                 <!-- End : Shopping -->
                 <!-- Start : Education -->
-                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/65">
+                <ion-item class="item-custom" nav-clear menu-close href="#/app/category/65">
                     <img src="img/side-menu/education.png" width="20px" height="20px"> &nbsp; {{ 'education'| translate }}
                 </ion-item>
                 <!-- End : Education -->
                 <!-- Start : Health Care -->
-                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/69">
+                <ion-item class="item-custom" nav-clear menu-close href="#/app/category/69">
                     <img src="img/side-menu/health_care.png" width="20px" height="20px"> &nbsp; {{ 'health_care'| translate }}
                 </ion-item>
                 <!-- End : Health Care -->
                 <!-- Start : Transportation -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showTransportation()">
+                <ion-item class="item-custom" nav-clear ng-click="showTransportation()">
                     <img src="img/side-menu/transportation.png" width="20px" height="20px"> &nbsp; {{ 'transportation'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subTransportation">
@@ -245,7 +245,7 @@
                 </div>
                 <!-- End : Transportation -->
                 <!-- Start : Public Services -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showPublicServ()">
+                <ion-item class="item-custom" nav-clear ng-click="showPublicServ()">
                     <img src="img/side-menu/public_services.png" width="20px" height="20px"> &nbsp; {{ 'public_services'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subPublicServ">
@@ -283,17 +283,17 @@
                 </div>
                 <!-- End : Public Services -->
                 <!-- Start : Industrial Directory -->
-                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/category/82">
+                <ion-item class="item-custom" nav-clear menu-close href="#/app/category/82">
                     <img src="img/side-menu/industrial_directory.png" width="20px" height="20px"> &nbsp; {{ 'industry'| translate }}
                 </ion-item>
                 <!-- End : Industrial Directory -->
                 <!-- Start : Photo Gallery -->
-                <ion-item class="item-positive item-custom" nav-clear menu-close href="#/app/gallery">
+                <ion-item class="item-custom" nav-clear menu-close href="#/app/gallery">
                     <img src="img/side-menu/gallery.png" width="20px" height="20px"> &nbsp; {{ 'photo_gallery'| translate }}
                 </ion-item>
                 <!-- End : Photo Gallery -->
                 <!-- Start : Help -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showHelp()">
+                <ion-item class="item-custom" nav-clear ng-click="showHelp()">
                     <img src="img/side-menu/help.png" width="20px" height="20px"> &nbsp; {{ 'help'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subHelp">
@@ -310,7 +310,7 @@
                 </div>
                 <!-- End : Help -->
                 <!-- Start : Useful Information -->
-                <ion-item class="item-positive item-custom" nav-clear ng-click="showInformation()">
+                <ion-item class="item-custom" nav-clear ng-click="showInformation()">
                     <img src="img/side-menu/useful_information.png" width="20px" height="20px"> &nbsp; {{ 'useful_information'| translate }}
                 </ion-item>
                 <div class="row sub-menu" ng-show="subInformation">
