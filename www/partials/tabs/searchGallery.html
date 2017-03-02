@@ -1,9 +1,9 @@
-<ion-view view-title="Search : {{$root.searchKeyword}}">
+<ion-view view-title="{{ 'search_title'| translate }} : {{$root.searchKeyword}}">
     <ion-content>
         <ion-list ng-if="listCgCount">
             <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none">
                 <div class="row">
-                    <p align="left" class="col-50" style="margin:0">City Gallery {{ listCount }}</p>
+                    <p align="left" class="col-50" style="margin:0">{{'city_gallery' | translate}} {{ listCount }}</p>
                 </div>
             </a>
             <div class="container" ng-repeat="listGall in detailGallery" ng-if="name">
