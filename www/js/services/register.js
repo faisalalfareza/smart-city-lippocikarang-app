@@ -13,25 +13,25 @@ function registerService($http, $filter) {
 
     function registerManualService(fullname, gender, phone, email, password, callback) {
         var req = {
-            method: 'POST',
-            url: $filter('translate')('apilink') + 'api/Account/',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'action=' + 'register' +
-                '&privilege=' + 'visitor' +
-                '&fullname=' + fullname +
-                '&gender=' + gender +
-                '&phone=' + phone +
-                '&email=' + email +
-                '&password=' + password
-        }
-        alert(JSON.stringify(req));
+                method: 'POST',
+                url: $filter('translate')('apilink') + 'api/Account/',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'action=' + 'register' +
+                    '&privilege=' + 'visitor' +
+                    '&fullname=' + fullname +
+                    '&gender=' + gender +
+                    '&phone=' + phone +
+                    '&email=' + email +
+                    '&password=' + password
+            }
+            //  alert(JSON.stringify(req));
 
         $http(req)
             .success(function(response) {
                 callback(response);
-                alert(JSON.stringify(response));
+                //   alert(JSON.stringify(response));
             })
             .error(function() {
                 callback(false);

@@ -27,7 +27,7 @@ function login($window, $scope, LoginService, $ionicPopup, $ionicLoading, $state
                 function(response) {
                     if (response[0].status == true) {
 
-                        alert(JSON.stringify(response));
+                        // alert(JSON.stringify(response));
                         $scope.users = response;
                         $state.go('app.main');
                         if ($location.path() == "/app/main") {
