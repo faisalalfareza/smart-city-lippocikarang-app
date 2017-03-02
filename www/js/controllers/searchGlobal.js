@@ -7,36 +7,52 @@ angular
         $scope.cari = searchService;
         //gallery
 
-        $scope.next = function() {
+        $scope.next = next;
+        $scope.previous = previous;
+        $scope.updateSlider = function () {
+            $ionicSlideBoxDelegate.update(); //or just return the function
+        }
+
+        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+        searchService.searchingGallery($stateParams.name, function(response) {        
+            $timeout(function(){           
+                var gall = $stateParams.index;
+                if (response != false) {
+                    $scope.name = $stateParams.name;
+                    $scope.listCount = Object.keys(response).length;
+                    $scope.detailGallery = response;
+                    
+                    var keys = Object.keys($scope.detailGallery);
+                    $scope.len = keys.length;
+                    
+                    $scope.gall = gall;
+                    console.log($scope.gall);
+                    $ionicSlideBoxDelegate.update();
+                    //
+                    var i = 1;
+                    $scope.detailGallery.forEach(function(itemfile, indexfile, arrfile) {
+                        $scope.detailGallery[indexfile].number = i++;
+                    });
+                    console.log('image e bor :', $scope.image);
+                    
+                } else {
+                    $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
+                }
+            }, 1000);
+        $ionicLoading.hide();
+        });
+
+        function next() {
             $ionicSlideBoxDelegate.next();
         };
 
-        $scope.previous = function() {
+        function previous() {
             $ionicSlideBoxDelegate.previous();
         };
 
-        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-        searchService.searchingGallery($stateParams.name, function(response) {
+        $scope.slideChanged = function() {
             $ionicSlideBoxDelegate.update();
-            $scope.gallPict = $stateParams.index;
-
-            setTimeout(function() {
-                $scope.gallPict = $stateParams.index;
-            }, 1);
-
-            if (response != false) {
-                $ionicSlideBoxDelegate.update();
-                $scope.listCount = Object.keys(response).length;
-                $scope.detailGallery = response;
-                $scope.name = $stateParams.name;
-                //var gall = $stateParams.index;      
-            } else {
-                //$window.location.reload();
-                console.log('error');
-            }
-            $ionicLoading.hide();
-
-        });
+        };
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         searchService.searching($stateParams.name, function(response) {
@@ -158,12 +174,12 @@ angular
         };
 
         $scope.closeModalSlider = function() {
-            $scope.modalSlider.hide();
+            $scope.modalNews.hide();
         };
 
         // Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function() {
-            $scope.modalSlider.remove();
+            $scope.modalNews.remove();
         });
         // Execute action on hide modal
         $scope.$on('modalSlider.hide', function() {
