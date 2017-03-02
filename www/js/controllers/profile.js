@@ -413,6 +413,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_success'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         });
                         dataProfile();
@@ -420,6 +421,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_failed'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         });
                         dataProfile();
@@ -432,6 +434,7 @@ angular
             var alertPopup = $ionicPopup.alert({
                 title: title,
                 template: msg,
+                okType: "button-stable",
                 cssClass: "alertPopup"
             });
         };
