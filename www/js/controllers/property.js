@@ -171,65 +171,30 @@ angular
 
     function sendEmail($scope, $state, $stateParams, $location, PropertyService, $ionicPopup, $ionicLoading, $filter) {
         $scope.getRandomSpan = Math.floor((Math.random()*14532));
-        console.log($scope.getRandomSpan);/*
-
-        //convert
-        $scope.fontsize = 50;
-
-        $scope.drawCanvas = function () {
-
-            var canvas = el[0];
-            var context = canvas.getContext("2d");
-
-            context.font = scope.fontsize + "px  Impact";
-            context.fillStyle = 'white';
-            context.strokeStyle = 'black';
-            var x = canvas.width / 2;
-            var y = canvas.height / 6;
-            context.textAlign = 'center';
-            context.fillText($scope.getRandomSpan.toUpperCase(), x, y);
-            context.lineWidth = 2;
-            context.strokeText($scope.getRandomSpan.toUpperCase(), x, y);
-          
-        }*/
-        
         var memeSize = 200;
         var canvas = document.getElementById('memecanvas');
         ctx = canvas.getContext('2d');
 
 
         // Set the text style to that to which we are accustomed
-
-
-
         canvas.width = 200;
-        canvas.height = 50;
+        canvas.height = 40;
 
         //  Grab the nodes
         var img = document.getElementById('start-image');
         var topText = document.getElementById('top-text');
-        var bottomText = document.getElementById('bottom-text');
 
         // When the image has loaded...
         img.onload = function() {
             drawMeme()
         }  
 
-       /* topText.elem('keydown', drawMeme)
-        topText.elem('keyup', drawMeme)
-        topText.elem('change', drawMeme)
-
-        bottomText.elem('keydown', drawMeme)
-        bottomText.addEventLielemstener('keyup', drawMeme)
-        bottomText.elem('change', drawMeme)*/
-
         function drawMeme() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.drawImage(img, 0, 0, memeSize, memeSize);
-
             ctx.lineWidth  = 4;
-            ctx.font = '20pt sans-serif';
+            ctx.font = '30pt sans-serif';
             ctx.strokeStyle = 'black';
             ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
@@ -241,14 +206,6 @@ angular
             y = 0;
 
             wrapText(ctx, text1, x, y, 200, 28, false);
-
-            ctx.textBaseline = 'bottom';
-            var text2 = document.getElementById('bottom-text').value;
-            text2 = text2.toUpperCase();
-            y = canvas.height;
-
-            wrapText(ctx, text2, x, y, 300, 28, true);
-
         }
 
         function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
@@ -277,7 +234,7 @@ angular
             lines[pushMethod](line);
 
             for (var k in lines) {
-            context.strokeText(lines[k], x, y + lineHeight * k);
+            //context.strokeText(lines[k], x, y + lineHeight * k);
             context.fillText(lines[k], x, y + lineHeight * k);
             }
 
