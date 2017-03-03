@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngRoute', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
@@ -164,7 +164,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvList', {
-          //cache:false,
             url: "/cctvList",
             views: {
                 'menu-content': {
@@ -174,7 +173,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvDetail', {
-            //cache:false,
             url: "/cctvDetail/{index}",
             views: {
                 'main-content': {
@@ -184,8 +182,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvFull', {
-          cache: false,
-            url: "/cctvFull/:gall",
+            url: "/cctvFull/:port",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/cctvFull.html",
@@ -197,8 +194,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             url: "/cctvMulti",
             views: {
                 'main-content': {
-                    templateUrl: "partials/sides/cctvMulti.html",
-                    controller: "cctvDetail"
+                    templateUrl: "partials/sides/cctvMulti.html"
                 }
             }
         })
@@ -1346,7 +1342,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             rate_title: 'Rating Penyewa',
             rate_this_tenant: 'Nilai tempat ini',
             tenant: 'Penyewa',
-            tenant_gallery: 'Galeri Tenant',
+            tenant_gallery: 'Galeri Tenant', 
             rate_dialog: 'Apakah Anda yakin ingin menilai penyewa ini ?',
             rate_text: 'Nilai tempat ini',
             recommended: 'Rekomendasi',
@@ -1614,7 +1610,7 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
     $rootScope.$on("$ionicView.beforeEnter", function() {
         var myEl = angular.element(document.querySelector('#sidemenu-con'));
 
-        if ($location.path() == "/app/cctvDetail" || $location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
+        if ($location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
             $location.path() == "/app/currency" || $location.path() == "/app/profile" || $location.path() == "/app/history" ||
             $location.path().substr(0, 14) == "/app/myhistory" || $location.path() == "/app/editprofile" || $location.path() == "/app/listbookmark" ||
             $location.path() == "/app/listbookmark" || $location.path() == "/app/notification" || $location.path().substr(0, 23) == "/app/notificationDetail" ||

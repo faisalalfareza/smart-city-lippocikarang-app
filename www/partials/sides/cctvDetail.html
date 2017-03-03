@@ -1,43 +1,38 @@
 <ion-view cache-view="false" view-title="CCTV">
-  <ion-nav-buttons side="left">
-    <button class="button button-icon button-clear ion-navicon"
-            menu-toggle="left">
-    </button>
-  </ion-nav-buttons>
   <ion-slide-box show-pager="false">
     <ion-slide>
       <ion-content overflow-scroll="true">
       <div class="photoGallery" style="margin-top: 5vh;margin-bottom: 2vh;">
         <h3 class="topTitle">{{name}}</h3>
-        <iframe ng-if="bahasa" src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;" allowfullscreen></iframe>
+        <iframe src="{{bahasa}}" style="margin-top: 2vh;width: 100vw;height: 40vh;" allowfullscreen></iframe>
 
         <br>
         <div class="row" style="margin-top:8%;margin-bottom: 15%; position: absolute;">
-          <a ng-if="gall != min && gall" class="col-20" ng-href="#/app/cctvDetail/{{gall - (1)}}"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
-          <a ng-if="gall == min && gall" class="col-20"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall != min" class="col-20" ng-href="#/app/cctvDetail/{{gall - (1)}}"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall == min" class="col-20"><i class="fa fa-caret-left" style="font-size:32px;color:#0081c9;"></i></a>
           <a class="col-60"></a>
-          <a ng-if="gall != max && gall" class="col-20" ng-href="#/app/cctvDetail/{{gall - (-1)}}"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
-          <a ng-if="gall == max && gall" class="col-20"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall != max" class="col-20" ng-href="#/app/cctvDetail/{{gall - (-1)}}"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
+          <a ng-if="gall == max" class="col-20"><i class="fa fa-caret-right" style="font-size:32px;color:#0081c9;"></i></a>
         </div>
         <center><div class="row" style="margin-top:21%;margin-bottom: 15%; position: absolute;">
         <div class="row">
           <div class = "col-25">
-            <a ng-if="gall" ng-href="#/app/cctvFull/{{gall}}"> <!--ng-click="playFull()"-->
+            <a ng-href="#/app/cctvFull/{{port}}"> <!--ng-click="playFull()"-->
                 <img src="img/cctv/icon_t_fullscreen.png" style="width:50%;height:auto; margin: 0;">
             </a>
           </div>
           <div class = "col-25">
-            <a> <!--ng-click="playFull()"-->
+            <a ng-href="#/app/cctvDetail"> <!--ng-click="playFull()"-->
               <img src="img/cctv/icon_t_theater.png" style="width:50%;height:auto; margin: 0;">
             </a>
           </div>
           <div class = "col-25">
-            <a ng-if="bahasa" ng-href="#/app/cctvMulti"> <!--ng-click="playFull()"-->
+            <a ng-href="#/app/cctvMulti"> <!--ng-click="playFull()"-->
               <img src="img/cctv/icon_t_multi.png" style="width:50%;height:auto; margin: 0;">
             </a>
           </div>
           <div class = "col-25">
-            <a ng-if="bahasa" ng-href="#/app/cctvList"> <!--ng-click="playFull()"-->
+            <a ng-href="#/app/cctvList"> <!--ng-click="playFull()"-->
               <img src="img/cctv/icon_t_list.png" style="width:50%;height:auto; margin: 0;">
             </a>
           </div>
