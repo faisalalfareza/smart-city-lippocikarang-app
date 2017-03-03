@@ -53,9 +53,7 @@ angular
       } else {
 
         $state.go('app.main');
-        if($location.path() == "/app/main") {
-          AdvertiseService.AdsOpen();   
-        }
+        AdvertiseService.AdsOpen();   
 
       }
     };
