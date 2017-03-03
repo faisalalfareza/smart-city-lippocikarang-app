@@ -4,7 +4,7 @@
         <i class="ion-chevron-left"></i>
       </ion-nav-back-button>
     </ion-nav-bar>
-    <ion-content class="has-footer">
+    <ion-content class="has-footer" style="margin-bottom:15px">
         <div class="row thumbnailGaleri">
             <div class="col thumbnailimg1">
                 <a ng-if="property1.image != null" ng-href="#/app/propertyDetailImage/{{property1.idproperty}}/0">
@@ -64,12 +64,12 @@
 
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col col-50">
-                <a class="button button-positive" href="tel:{{ propertydata.agentphone }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0">
+                <a class="button" href="tel:{{ propertydata.agentphone }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;background-color:#0D6DB6;border:0;outline:0;color:white;">
                     {{ 'call_agent' | translate }}
                 </a>
             </div>
             <div class="col">
-                <a class="button button-positive" href="#/app/propertyEmail/{{propertydata.idproperty}}/{{propertydata.agentemail}}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0">
+                <a class="button" href="#/app/propertyEmail/{{propertydata.idproperty}}/{{propertydata.agentemail}}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;background-color:#0D6DB6;border:0;outline:0;color:white;">
                     {{ 'email_agent' | translate }}
                 </a>
             </div>

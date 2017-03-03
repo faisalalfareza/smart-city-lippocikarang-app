@@ -1638,13 +1638,10 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
 
     $ionicPlatform.ready(function() {
 
-        // Check for permissions to show local notifications permission to run!
-        // cordova.plugins.notification.local.hasPermission().then(function(granted) {
-        //   // cordova.plugins.notification.local.cancelAll();
-        //   if (!granted) {
-        //     cordova.plugins.notification.local.promptForPermission();
-        //   };
-        // });
+        cordova.plugins.notification.local.add({
+            title: 'LippoCikarang.com',
+            every: 'minute'
+        });
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -1662,8 +1659,8 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                // PushNotifications();
-                // PushAdvertise();
+                PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);
@@ -1684,9 +1681,7 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
                         // console.log('Notif Aktif ..');
                         // console.log('playSound : ' + playSound);
                         cordova.plugins.notification.local.schedule({
-                            id: 1,
                             title: $filter('translate')('notification_push'),
-                            // message: $filter('translate')('notification_push'),
                             sound: playSound,
                             badge: sum
                         });
