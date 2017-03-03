@@ -95,6 +95,10 @@ angular
         $scope.next = next;
         $scope.previous = previous;
 
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            viewData.enableBack = true;
+        });
+
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
         PropertyService.retriveGetProperty($stateParams.idproperty, function(response) {
             if (response != false) {
@@ -134,6 +138,15 @@ angular
                 $scope.gall = gall;
                 
                 $scope.propertygallery = response.gallery;
+
+                var keys = Object.keys($scope.propertygallery);
+                $scope.len = keys.length;
+
+                var i = 1;
+                $scope.propertygallery.forEach(function(itemfile, indexfile, arrfile) {
+                    $scope.propertygallery[indexfile].number = i++;
+                });
+
                 $scope.property1 = response.gallery[0];
                 $scope.property2 = response.gallery[1];
                 $scope.property3 = response.gallery[2];
