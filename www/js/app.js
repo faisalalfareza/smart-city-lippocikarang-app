@@ -1634,11 +1634,6 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
 
     $ionicPlatform.ready(function() {
 
-        cordova.plugins.notification.local.add({
-            title: 'LippoCikarang.com',
-            every: 'minute'
-        });
-
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
