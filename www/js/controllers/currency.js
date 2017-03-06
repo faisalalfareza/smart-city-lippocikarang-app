@@ -4,8 +4,9 @@
 angular
     .module('livein')
     .controller('currency', currency)
+    .controller('currency_home', currency_home)
 
-function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLoading, $localStorage, $filter) {
+function currency($scope, $window, $state, $ionicHistory, currencyService, $ionicLoading, $localStorage, $filter) {
 
     $scope.wakut = new Date();
     $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
@@ -16,7 +17,7 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
     $scope.limit = 4;
     $scope.checked = 0;
     $scope.name = [
-        'Indonesia','Australia', 'Bulgaria', 'Brazil', 'Canada', 'Switzerland', 'China', 'Czech', 'Denmark', 'United Kingdom',
+        'Indonesia', 'Australia', 'Bulgaria', 'Brazil', 'Canada', 'Switzerland', 'China', 'Czech', 'Denmark', 'United Kingdom',
         'Hong Kong', 'Croatia', 'Hungary', 'Israel', 'India', 'Japan', 'South Korea', 'Mexico', 'Malaysia', 'Norway', 'New Zealand', 'Philippines', 'Poland', 'Romania', 'Russia', 'Sweden',
         'Singapore', 'Thailand', 'Turkey', 'United States', 'South Africa', 'Europe'
     ];
@@ -69,11 +70,11 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
             //add idrs
             $scope.rate.push("IDR");
             $scope.currency.push("10.000");
-            
+
             console.log($scope.itemrate);
             $scope.date = response.date;
             $scope.time = new Date();
-            
+
             angular.forEach($scope.itemrate, function(halo, key) {
                 $scope.currency.push(halo);
                 $scope.rate.push(key);
@@ -179,8 +180,6 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
             'flag2': $scope.flag[$scope.selectedItems[1]],
             'cur2': $scope.rate[$scope.selectedItems[1]],
             'rate2': $scope.currency[$scope.selectedItems[1]]
-
-
         }
         $localStorage.currency = { currency: currencymain };
         $ionicLoading.show({
@@ -213,3 +212,145 @@ function currency($scope,$window,$state, $ionicHistory,currencyService, $ionicLo
     }
 
 }
+
+
+function currency_home($scope, $timeout, $window, $state, $ionicHistory, currencyService, $ionicLoading, $localStorage, $filter) {
+
+
+
+
+    $scope.wakut = new Date();
+    $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+    $scope.rate = [];
+    $scope.selected = []
+    $scope.currency = [];
+    $scope.arrayselected = [];
+    $scope.limit = 4;
+    $scope.checked = 0;
+    $scope.name = [
+        'Indonesia', 'Australia', 'Bulgaria', 'Brazil', 'Canada', 'Switzerland', 'China', 'Czech', 'Denmark', 'United Kingdom',
+        'Hong Kong', 'Croatia', 'Hungary', 'Israel', 'India', 'Japan', 'South Korea', 'Mexico', 'Malaysia', 'Norway', 'New Zealand', 'Philippines', 'Poland', 'Romania', 'Russia', 'Sweden',
+        'Singapore', 'Thailand', 'Turkey', 'United States', 'South Africa', 'Europe'
+    ];
+
+    $scope.flag = [
+        'img/currency/flag_of_indonesia.png',
+        'img/currency/flag_of_australia.png',
+        'img/currency/flag_of_bulgaria.png',
+        'img/currency/flag_of_brazil.png',
+        'img/currency/flag_of_canada.png',
+        'img/currency/flag_of_switzerland.png',
+        'img/currency/flag_of_china.png',
+        'img/currency/flag_of_czech_republic.png',
+        'img/currency/flag_of_denmark.png',
+        'img/currency/flag_of_united_kingdom.png',
+        'img/currency/flag_of_hongkong.jpg',
+        'img/currency/flag_of_croatia.png',
+        'img/currency/flag_of_hungary.png',
+        'img/currency/flag_of_israel.png',
+        'img/currency/flag_of_india.png',
+        'img/currency/flag_of_japan.png',
+        'img/currency/flag_of_korea_south.png',
+        'img/currency/flag_of_mexico.png',
+        'img/currency/flag_of_malaysia.png',
+        'img/currency/flag_of_norway.png',
+        'img/currency/flag_of_new_zealand.png',
+        'img/currency/flag_of_philippines.png',
+        'img/currency/flag_of_poland.png',
+        'img/currency/flag_of_romania.png',
+        'img/currency/flag_of_russia.png',
+        'img/currency/flag_of_sweden.png',
+        'img/currency/flag_of_singapore.png',
+        'img/currency/flag_of_thailand.png',
+        'img/currency/flag_of_turkey.png',
+        'img/currency/flag_of_united_states_of_america.png',
+        'img/currency/flag_of_south_africa.png',
+        'img/currency/flag_of_euro.GIF',
+
+    ]
+
+
+    currencyService.currencylist(function(response) {
+
+        if (response != false) {
+            itm = response.rates;
+            $scope.itemrate = itm;
+
+            //add idrs
+            $scope.rate.push("IDR");
+            $scope.currency.push("10.000");
+
+            console.log($scope.itemrate);
+            $scope.date = response.date;
+            $scope.time = new Date();
+
+            angular.forEach($scope.itemrate, function(halo, key) {
+                $scope.currency.push(halo);
+                $scope.rate.push(key);
+            });
+
+
+            $scope.settomain();
+            set_localstorage();
+
+        } else {
+            $scope.data = false;
+        }
+        $ionicLoading.hide();
+    });
+
+
+    $scope.settomain = function settomain() {
+
+        console.log($localStorage.currency.currency)
+        try {
+
+            $scope.getfromlocal = $localStorage.currency.currency;
+            console.log($scope.getfromlocal.index)
+            var currency_in_main = {
+                'time': $scope.wakut,
+                'index': $scope.getfromlocal.index,
+                'flag1': $scope.flag[$scope.getfromlocal.index[0]],
+                'cur1': $scope.rate[$scope.getfromlocal.index[0]],
+                'rate1': $scope.currency[$scope.getfromlocal.index[0]],
+                'flag2': $scope.flag[$scope.getfromlocal.index[1]],
+                'cur2': $scope.rate[$scope.getfromlocal.index[1]],
+                'rate2': $scope.currency[$scope.getfromlocal.index[1]]
+            }
+            $scope.currate = currency_in_main;
+
+        } catch (e) {
+            var currency_in_main = {
+                'time': $scope.wakut,
+                'index': [0, 1],
+                'flag1': $scope.flag[0],
+                'cur1': $scope.rate[0],
+                'rate1': $scope.currency[0],
+                'flag2': $scope.flag[1],
+                'cur2': $scope.rate[1],
+                'rate2': $scope.currency[1]
+            }
+            $scope.currate = currency_in_main;
+        }
+
+
+
+    }
+
+    function set_localstorage() {
+
+        var currency_list = {
+            currency_nilai: $scope.currency,
+            rate_: $scope.rate
+        }
+
+        $localStorage.currency_list = { currency_list: currency_list };
+    }
+}
+
+
+// $timeout(function() {
+//     // When $http promise returns and user is authorized, then allow.
+//     $scope.currate = currency_in_main;
+//     console.log($scope.currate);
+// }, 4000);
