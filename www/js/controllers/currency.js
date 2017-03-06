@@ -302,7 +302,6 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
 
     $scope.settomain = function settomain() {
 
-        console.log($localStorage.currency.currency)
         try {
 
             $scope.getfromlocal = $localStorage.currency.currency;
@@ -318,6 +317,7 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
                 'rate2': $scope.currency[$scope.getfromlocal.index[1]]
             }
             $scope.currate = currency_in_main;
+            $localStorage.currency = { currency: $scope.currate };
 
         } catch (e) {
             var currency_in_main = {
@@ -331,6 +331,7 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
                 'rate2': $scope.currency[1]
             }
             $scope.currate = currency_in_main;
+            $localStorage.currency = { currency: $scope.currate };
         }
 
 

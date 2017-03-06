@@ -1,11 +1,10 @@
 <ion-view view-title="{{'gallery' | translate}}">
-    <ion-content class="blue">
-	    <ion-list>
-	    	<div collection-repeat="image in images | filter:search_page" collection-item-height="23%" collection-item-width="33%">
-	            <a ng-href="#/app/detailGallery/{{$index}}">
-	              <img src="{{image.avatar}}" class="homeGallery" >
-	            </a>
-        	</div>
+    <ion-content style="padding-left :-2%" class="blue">
+        <ion-list>
+            <div style="margin:1%" collection-repeat="image in images | filter:search_page" collection-item-height="21%" collection-item-width="32.8%" <a ng-href="#/app/detailGallery/{{$index}}">
+                <img style="height: 98%;width: 98%;" src="{{image.avatar}}" class="homeGallery">
+                </a>
+            </div>
         </ion-list>
     </ion-content>
     <ion-footer-bar></ion-footer-bar>
