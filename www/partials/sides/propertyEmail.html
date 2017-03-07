@@ -1,5 +1,5 @@
 <ion-view view-title="Email">
-    <ion-content class="padding comment-page has-footer">
+    <ion-content class="padding comment-page has-footer" style="margin-bottom:15px">
         <div class="row">
             <div ng-if="propertydata.agentavatar == '' || propertydata.agentavatar == null">
                     <img ng-src="img/defaultavatar.png" style="width: 75px; height: 75px; border-radius: 50%; margin: 20px 0 0 0">
@@ -13,10 +13,20 @@
             <div class="row">
                 <div class="col">
                     <label class="item item-input text">
-                    <textarea name="description" placeholder="Description*" rows="20" ng-model="email.desc" ng-required="true"></textarea>
-                </label>
+                        <textarea name="description" placeholder="Description*" rows="20" ng-model="email.desc" ng-required="true"></textarea>
+                    </label>
                     <br>
-                    <center><button style="border-radius: 30px;" class="button button-positive" type="submit">{{ 'send_email' | translate }}</button></center>
+                        <input type='hidden' value='{{getRandomSpan}}' id='top-text' />
+                    <img style="position:absolute;width: 100px;height: 50px;background-color: #387ef5;" ng-hide="true" id="start-image" src="img/white.png" alt=""/>
+                    <center><canvas id="memecanvas" style="background-color: #387ef5;">
+                            Sorry, canvas not supported
+                    </canvas></center>
+                    <br>
+                    <label class="item item-input text">
+                        <textarea name="captcha" placeholder="Captcha" rows="1" style="width: 50%;" ng-model="email.cap" ng-required="true"></textarea>
+                    </label>
+                    <br>
+                    <center><button style="border-radius: 30px;" class="button" type="submit" style="background-color:#0D6DB6;border:0;outline:0;color:white;">{{ 'send_email' | translate }}</button></center>
                     <center><img ng-src="img/reality.png" style="margin-top:2em;width: 75px; height:auto"></center>
                 </div>
             </div>

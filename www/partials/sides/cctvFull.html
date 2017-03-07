@@ -1,5 +1,5 @@
 <ion-view hide-nav-bar="true" hide-tabs>
-  <ion-content">
+  <ion-content>
       <div align="left" style="position: absolute;margin-left: -17em;margin-top: 2em;margin-bottom:2em;" class="row responsive-md">
         <div align="center" style="position: relative;">
           <div class="col-100">
@@ -11,7 +11,7 @@
             <h3 style="font-size:10px;color:white;">Full Screen</h3>
           </div>
           <div class="col-100">
-            <a href="#/app/cctvDetail/{{gall}}"> <!--ng-click="playFull()"-->
+            <a ng-click="potraitTheater()"> <!--ng-click="playFull()"-->
               <img src="img/cctv/icon_f_theater.png" style="width:7%;height:auto; margin: 0;">
             </a>
           </div>
@@ -19,7 +19,7 @@
             <h3 style="font-size:10px;color:white;">Theater</h3>
           </div>
           <div class="col-100">
-            <a ng-href="#/app/cctvMulti"> <!--ng-click="playFull()"-->
+            <a ng-click="potraitMulti()"> <!--ng-click="playFull()"-->
               <img src="img/cctv/icon_t_multi.png" style="width:7%;height:auto; margin: 0;">
             </a>
           </div>
@@ -27,7 +27,7 @@
             <h3 style="font-size:10px;color:white;">Multi</h3>
           </div>
           <div class="col-100">
-            <a ng-click="listPindah()" > <!-- ng-href="#/app/cctvList" ng-click="playFull()"-->
+            <a ng-click="potrait()" > <!-- ng-href="#/app/cctvList" ng-click="playFull()"-->
               <img src="img/cctv/icon_t_list.png" style="width:7%;height:auto; margin: 0;">
             </a>
           </div>
@@ -36,6 +36,7 @@
           </div>
         </div>
       </div>
-    <iframe ng-if="bahasa" src="{{bahasa}}" style="width: 100vw;height: 100vh;" allowfullscreen></iframe>
+
+    <iframe src="{{port}}" style="margin:0;width: 100vw;height: 100vh;" allowfullscreen></iframe>
   </ion-content>
 </ion-view>

@@ -2,11 +2,11 @@ angular
   .module('livein')
   .controller('splashScreen', splashScreen);
 
-  function splashScreen($scope, $state, $filter, $localStorage, $location, ionicToast, $ionicPlatform, $ionicPopup, AdvertiseService) {
+  function splashScreen($scope, $rootScope, $state, $filter, $localStorage, $location, ionicToast, $ionicPlatform, $ionicPopup, AdvertiseService) {
+    $rootScope.buttonDisabled = false;
 
     // Called to navigate to the main app
     $ionicPlatform.ready(function () {
-      $scope.buttonDisabled = false;
 
       //screen.lockOrientation('portrait');
       if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()) {
@@ -14,10 +14,8 @@ angular
           if(enabled == true){
             ionicToast.show( $filter('translate')('gps_on') , 'bottom', false, 5000);
             cordova.plugins.notification.local.schedule({
-                id: 1,
-                message: $filter('translate')('gps_set'),
-                sound: playSound,
-                autoCancel: true
+                id: 2,
+                title: $filter('translate')('gps_set')
             });
           }
           if (enabled == false) {
@@ -46,7 +44,7 @@ angular
     });
 
     $scope.startApp = function () {
-      $scope.buttonDisabled = false;
+      $rootScope.buttonDisabled = true;
 
       if (!$localStorage.currentUser) {
 

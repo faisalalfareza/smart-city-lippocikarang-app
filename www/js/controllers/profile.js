@@ -34,11 +34,12 @@ angular
         }
     }
 
-    function profile($scope, $state, $localStorage, $filter, $ionicPopup, $ionicLoading, LoginService, Notification, ProfileService, $window) {
+    function profile($scope, $rootScope, $state, $localStorage, $filter, $ionicPopup, $ionicLoading, LoginService, Notification, ProfileService, $window) {
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         $scope.logoutConfirm = logoutConfirm;
 
         countnotif();
+
         function countnotif() {
             Notification.listnotif(
                 function (response) {
@@ -72,7 +73,9 @@ angular
                     $ionicLoading.hide();
                 });
         }
+
         retrievegetaccount();
+
         function retrievegetaccount() {
             ProfileService.retrievegetaccount(
                 function (response) {
@@ -100,6 +103,7 @@ angular
             confirmPopup.then(function (res) {
                 if (res) {
                     LoginService.logoutUser();
+                    $rootScope.buttonDisabled = false;
                     $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
                     $state.go('login');
                 }
@@ -413,6 +417,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_success'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         });
                         dataProfile();
@@ -420,6 +425,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_failed'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         });
                         dataProfile();
@@ -432,6 +438,7 @@ angular
             var alertPopup = $ionicPopup.alert({
                 title: title,
                 template: msg,
+                okType: "button-stable",
                 cssClass: "alertPopup"
             });
         };

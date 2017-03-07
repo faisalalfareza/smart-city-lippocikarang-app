@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngRoute', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
@@ -164,7 +164,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvList', {
-          //cache:false,
             url: "/cctvList",
             views: {
                 'menu-content': {
@@ -174,7 +173,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvDetail', {
-            //cache:false,
             url: "/cctvDetail/{index}",
             views: {
                 'main-content': {
@@ -184,8 +182,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.cctvFull', {
-          cache: false,
-            url: "/cctvFull/:gall",
+            url: "/cctvFull/:port",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/cctvFull.html",
@@ -197,8 +194,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             url: "/cctvMulti",
             views: {
                 'main-content': {
-                    templateUrl: "partials/sides/cctvMulti.html",
-                    controller: "cctvDetail"
+                    templateUrl: "partials/sides/cctvMulti.html"
                 }
             }
         })
@@ -1050,7 +1046,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             exchange_rate: 'Exchange Rates',
             korean: 'Korean',
             Korean_Food: 'Korean Food',
-            dialog_title_gps: '<b>Allow "Lippo Cikarang.Com"\n to access your location while \n you use the app ?</b>',
+            dialog_title_gps: '<b>Allow "LippoCikarang.com"\n to access your location while \n you use the app ?</b>',
             dialog_content_gps: 'Enable location service to explore spots \n near by',
             allow: 'Allow',
             dont_allow: 'Don\'t Allow',
@@ -1346,7 +1342,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             rate_title: 'Rating Penyewa',
             rate_this_tenant: 'Nilai tempat ini',
             tenant: 'Penyewa',
-            tenant_gallery: 'Galeri Tenant',
+            tenant_gallery: 'Galeri Tenant', 
             rate_dialog: 'Apakah Anda yakin ingin menilai penyewa ini ?',
             rate_text: 'Nilai tempat ini',
             recommended: 'Rekomendasi',
@@ -1548,7 +1544,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             exchange_rate: 'Nilai Tukar',
             korean: 'Korea',
             Korean_Food: 'Korea',
-            dialog_title_gps: 'Ijinkan "Lippo Cikarang.Com" \n untuk mengakses lokasi \n anda selama menggunakan \n aplikasi?',
+            dialog_title_gps: 'Ijinkan "LippoCikarang.com" \n untuk mengakses lokasi \n anda selama menggunakan \n aplikasi?',
             dialog_content_gps: 'Aktifkan layanan lokasi untuk menjelajahi tempat-tempat terdekat',
             allow: 'Ijinkan',
             dont_allow: 'Tidak',
@@ -1602,6 +1598,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 }
 
 function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
+
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
             $location.path('/app/search/' + value);
@@ -1614,7 +1611,7 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
     $rootScope.$on("$ionicView.beforeEnter", function() {
         var myEl = angular.element(document.querySelector('#sidemenu-con'));
 
-        if ($location.path() == "/app/cctvDetail" || $location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
+        if ($location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
             $location.path() == "/app/currency" || $location.path() == "/app/profile" || $location.path() == "/app/history" ||
             $location.path().substr(0, 14) == "/app/myhistory" || $location.path() == "/app/editprofile" || $location.path() == "/app/listbookmark" ||
             $location.path() == "/app/listbookmark" || $location.path() == "/app/notification" || $location.path().substr(0, 23) == "/app/notificationDetail" ||
@@ -1638,13 +1635,9 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
 
     $ionicPlatform.ready(function() {
 
-        // Check for permissions to show local notifications permission to run!
-        // cordova.plugins.notification.local.hasPermission().then(function(granted) {
-        //   // cordova.plugins.notification.local.cancelAll();
-        //   if (!granted) {
-        //     cordova.plugins.notification.local.promptForPermission();
-        //   };
-        // });
+        // cordova.plugins.notification.local.clearAll(function() {
+        //     alert("clearAll Done!");
+        // }); 
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -1662,8 +1655,8 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                // PushNotifications();
-                // PushAdvertise();
+                PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);
@@ -1684,9 +1677,7 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
                         // console.log('Notif Aktif ..');
                         // console.log('playSound : ' + playSound);
                         cordova.plugins.notification.local.schedule({
-                            id: 1,
                             title: $filter('translate')('notification_push'),
-                            // message: $filter('translate')('notification_push'),
                             sound: playSound,
                             badge: sum
                         });
