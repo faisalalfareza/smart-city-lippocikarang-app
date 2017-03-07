@@ -34,13 +34,13 @@
                     <div class="col col-25 ">
                         <h5 style="font-weight: 300; ">PSCode</h5>
                     </div>
-                    <div class="col col-75 "><input class="input-profile " style="background-color: transparent;border-color:transparent;;width:100%" type="text " value="{{data.pscode}} " ng-model="data.pscode " readonly></div>
+                    <div class="col col-75 "><input class="input-profile " style="background-color: transparent;border-color:transparent;width:100%;padding-top:3%;" type="text " value="{{data.pscode}} " ng-model="data.pscode " readonly></div>
                 </div>
                 <div class="row ">
                     <div class="col col-25 ">
                         <h5 style="font-weight: 300; ">Email</h5>
                     </div>
-                    <div class="col col-75 "><input class="input-profile " style="background-color:transparent;border-color:transparent;width:100%" type="text " value="{{data.email}} " ng-model="data.email " readonly></div>
+                    <div class="col col-75 "><input class="input-profile " style="background-color:transparent;border-color:transparent;width:100%;padding-top:3%;" type="text " value="{{data.email}} " ng-model="data.email " readonly></div>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                         <h5 style="font-weight: 300; ">{{ 'name' | translate }}</h5>
                     </div>
                     <div class="col col-75 ">
-                        <input class="input-profile " style="padding-top:6px;background-color: transparent;border-color:transparent;
+                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.fullname}} " ng-model="data.fullname " ng-readonly="isRead " focus-me="true ">
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         <!--<input class="input-profile " style="background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.gender}} "
                             ng-model="data.gender " ng-readonly="isRead ">-->
-                        <select style="padding-top:6px;" ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
+                        <select style="margin-top:3%;" ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
                                 <option value="M " ng-selected="data.gender=='M' " ng-readonly="isRead ">{{ 'male' | translate }}</option>
                                 <option value="F " ng-selected="data.gender=='F' " ng-readonly="isRead ">{{ 'female' | translate }}</option>
                         </select>
@@ -82,7 +82,7 @@
                         <h5 style="font-weight: 300; ">{{ 'address' | translate }}</h5>
                     </div>
                     <div class="col col-75 ">
-                        <input class="input-profile " style="padding-top:6px;background-color: transparent;border-color:transparent;
+                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.address}} " ng-model="data.address " ng-readonly="isRead ">
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         <h5 style="font-weight: 300; ">{{ 'phone' | translate }}</h5>
                     </div>
                     <div class="col col-75 ">
-                        <input class="input-profile " style="padding-top:6px;background-color: transparent;border-color:transparent;
+                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.phone}} " ng-model="data.phone " ng-readonly="isRead ">
                     </div>
                 </div>
