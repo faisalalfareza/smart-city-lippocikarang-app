@@ -774,9 +774,12 @@ p.info {
     padding: 0.5em;
 }
 
-.talktoUs table tr td,
 .talktoUsRed table tr td {
-    padding: 5px;
+    padding: 0px 10px;
+}
+
+.talktoUs table tr td {
+    padding: 0px 12px;
 }
 
 
@@ -1180,14 +1183,22 @@ progress[value]::-webkit-progress-value::after {
 }
 
 .r1 {
-    width: 30px;
-    height: 30px;
+    width:auto;
+    height: 1.9em;
+}
+
+.talktoUsRed .row1 {
+    margin: 0 !important;
 }
 
 .row2 {
     color: blue;
     font-size: 50%;
     margin: 2em;
+}
+
+.talktoUs .row2 {
+    margin: 0 !important;
 }
 
 .loader:before {
