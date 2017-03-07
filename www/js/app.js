@@ -1598,6 +1598,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 }
 
 function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
+
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
             $location.path('/app/search/' + value);
@@ -1633,6 +1634,10 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
     });
 
     $ionicPlatform.ready(function() {
+
+        // cordova.plugins.notification.local.clearAll(function() {
+        //     alert("clearAll Done!");
+        // }); 
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
