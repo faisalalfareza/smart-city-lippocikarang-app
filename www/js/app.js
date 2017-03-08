@@ -1597,7 +1597,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
 }
 
-function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
+function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
 
     $rootScope.search = function(value) {
         if ($location.path() == "/app/main") {
@@ -1634,6 +1634,10 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
     });
 
     $ionicPlatform.ready(function() {
+
+        cordova.plugins.notification.local.clearAll(function(){
+            console.log("LocalNotificationPlugin: ClearAll callback a success.");
+        });
 
         // cordova.plugins.notification.local.clearAll(function() {
         //     alert("clearAll Done!");
@@ -1674,6 +1678,14 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
                 if (sum > 0) {
                     console.log('Anda memiliki ' + sum + ' notif baru..');
                     if ($localStorage.notifPush.status != false) {
+
+                        var alertPopup = $ionicPopup.alert({
+                            template: $filter('translate')('notification_push'),
+                            okText: $filter('translate')('okay'),
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+
                         // console.log('Notif Aktif ..');
                         // console.log('playSound : ' + playSound);
                         cordova.plugins.notification.local.schedule({
@@ -1682,13 +1694,13 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
                             badge: sum
                         });
                         cordova.plugins.notification.local.on("trigger", function(notification) {
-                            console.log('Success with ' + notification);
+                            //console.log('Success with ' + notification);
                         });
                     } else {
-                        console.log('Notif Nonaktif ..');
+                        //console.log('Notif Nonaktif ..');
                     }
                 } else {
-                    console.log('Tidak ada notif baru ..');
+                    //console.log('Tidak ada notif baru ..');
                 }
             });
         }
@@ -1698,10 +1710,10 @@ function run($ionicPlatform,$timeout, $rootScope, $location, $filter, $localStor
                 var sum = response;
 
                 if (sum > 0) {
-                    console.log('Anda memiliki ' + sum + ' ads baru..');
+                    //console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
-                    console.log('Tidak ada ads baru ..');
+                    //console.log('Tidak ada ads baru ..');
                 }
             });
         }

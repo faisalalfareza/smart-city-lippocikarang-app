@@ -231,10 +231,10 @@ angular
           $http(req)
             .success(function(response) {
                 if ($localStorage.adsBefore != null) {
-                    console.log('Ads response : ' + response.length);
-                    console.log('Ads localstr : ' + $localStorage.adsBefore.sum);
+                    //console.log('Ads response : ' + response.length);
+                    //console.log('Ads localstr : ' + $localStorage.adsBefore.sum);
                     var count = response.length - $localStorage.adsBefore.sum;
-                    console.log('Ads count : ' + count);
+                    //console.log('Ads count : ' + count);
 
                     $localStorage.adsBefore = { sum : response.length };
                     callback(count);
