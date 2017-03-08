@@ -1635,9 +1635,9 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     $ionicPlatform.ready(function() {
 
-        cordova.plugins.notification.local.clearAll(function(){
-            console.log("LocalNotificationPlugin: ClearAll callback a success.");
-        });
+        // cordova.plugins.notification.local.clearAll(function(){
+        //     console.log("LocalNotificationPlugin: ClearAll callback a success.");
+        // });
 
         // cordova.plugins.notification.local.clearAll(function() {
         //     alert("clearAll Done!");
