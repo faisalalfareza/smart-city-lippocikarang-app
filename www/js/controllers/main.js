@@ -4,7 +4,6 @@ angular
     .controller('main', main)
     .controller('currencymain', currencymain)
     .controller('weather', weather);
-
 function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading) {
 
     //drawer - side menu
@@ -169,6 +168,21 @@ function app($scope, $filter, $cordovaGeolocation, mainService, PushNotification
         window.open("https://www.youtube.com/watch?v=h-DvHNnlFrs", '_system', 'location=yes')
     }
 
+    $scope.afliates_ovo = function afliates_ovo (){
+
+        appAvailability.check(
+          'twitter://', // URI Scheme
+           function() {  // Success callback
+                console.log('Twitter is available');
+                alert("twitter ada")
+            },
+           function() {  // Error callback
+            console.log('Twitter is not available');
+                alert("twitter tidak ada")
+           }
+        );
+
+    }
 }
 
 function weather($scope, $cordovaGeolocation, $filter, $localStorage, mainService) {
@@ -244,3 +258,4 @@ function currencymain($scope, $localStorage) {
 function main($scope, $filter) {
     $scope.title = $filter('translate')('app_name');
 }
+

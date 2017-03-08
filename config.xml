@@ -214,4 +214,5 @@
         <variable name="APP_NAME" value="Livein_iOS" />
     </plugin>
     <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
+    <plugin name="cordova-plugin-appavailability" spec="~0.4.2" />
 </widget>
