@@ -171,14 +171,16 @@ function app($scope, $filter, $cordovaGeolocation, mainService, PushNotification
     $scope.afliates_ovo = function afliates_ovo (){
 
         appAvailability.check(
-          'twitter://', // URI Scheme
+          'ovo://', // URI Scheme
            function() {  // Success callback
-                console.log('Twitter is available');
-                alert("twitter ada")
+             window.open('ovo://', '_system', 'location=no');
+            // alert("ovo succes")
             },
            function() {  // Error callback
-            console.log('Twitter is not available');
-                alert("twitter tidak ada")
+             window.open('ovo://', '_system', 'location=no');
+            // alert("ovo failed")
+
+
            }
         );
 
