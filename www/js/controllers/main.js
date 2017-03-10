@@ -176,7 +176,15 @@ function app($scope, $filter, $cordovaGeolocation, mainService, PushNotification
              window.open('ovo://', '_system', 'location=no');
             // alert("ovo succes")
             },
-           function() {  // Error callback
+           function() {  
+
+               try{
+                     window.open('ovo://', '_system', 'location=no');
+               }catch(error){
+                   $scope.showConfirm;
+               }
+               
+               // Error callback
 
                $scope.showConfirm = function() {    
                 var confirmPopup = $ionicPopup.confirm({
@@ -184,15 +192,14 @@ function app($scope, $filter, $cordovaGeolocation, mainService, PushNotification
                 template: 'Do You want to download OVO mobile apps'
                 });
 
-            confirmPopup.then(function(res) {
-             if(res) {
-        window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
-        } else {
-            console.log('You are not sure');
-        }
-     });
-    };
-
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                  });
+                };
            }
         );
 

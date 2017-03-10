@@ -52,21 +52,21 @@
                             </tr>
                         </table>
                         <p style="font-size:10px;font-weight:100;margin-bottom:-2px;;">{{ talktoUs.content4 }}</p>
-                        <strong style="font-size:12px;font-weight:bolder;">{{ talktoUs.emergencycall }}</strong>
+                        <strong style="font-size:12px;font-weight:bolder;margin-top:-4px;text-decoration:none;color:black;">{{ talktoUs.emergencycall }}</strong>
                         <div style="padding:1% 5%;" class="row sub-menu">
                             <div class="col" style="padding:0px 50px 0px 50px">
-                                <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height: 85%">
-                                    <span style="font-size: 12px">{{ 'emergency_call' | translate }}</span>
+                                <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                                    <strong style="font-size: 12px">{{'emergency_call_1' | translate}}</strong>
+                                    <span style="font-size: 12px">{{'emergency_call_2' | translate}}</span>
                                     <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
                                 </a>
                             </div>
                         </div>
                     </center>
                 </div>
-                <br>
-                <div class="talktoUs">
+                <div class="talktoUs" style="margin-top:3px;">
                     <center>
-                        <p style="font-size: 10px;">{{ talktoUs.content5 }}</p>
+                        <p style="font-size:10px;font-weight:700">{{ talktoUs.content5 }}</p>
                         <table align="center" border="1">
                             <tr>
                                 <td><img class="r1" src="img/talkToUs/services.png"></td>
@@ -89,11 +89,12 @@
                                 </td>
                             </tr>
                         </table>
-                        <p style="font-size: 12px;">reach us <b>{{talktoUs.callcenter}}</b></p>
+                        <p style="font-size:10px;">reach us <strong style="font-size:12px;font-weight:bolder;text-decoration:none;color:black;">{{talktoUs.callcenter}}</strong></p>
                         <div style="padding:1% 5%;" class="row sub-menu">
                             <div class="col" style="padding:0px 50px 0px 50px">
-                                <a class="button" href="tel:{{ talktoUs.callcenter }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0D6DB6;height: 85%">
-                                    <span style="font-size: 12px">{{ 'call_center' | translate }}</span>
+                                <a class="button" href="tel:{{ talktoUs.callcenter }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0D6DB6;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                                    <strong style="font-size: 12px">{{'call' | translate}}</strong>
+                                    <span style="font-size: 12px">{{'center' | translate}}</span>
                                     <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
                                 </a>
                             </div>
