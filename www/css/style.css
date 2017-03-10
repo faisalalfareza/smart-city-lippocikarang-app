@@ -412,12 +412,12 @@ w {
 .item-custom>.item,
 .item.item-custom {
     border-color: white !important;
-    background-color: #0081c9;
+    background-color: #0D6DB6;
     color: white;
 }
 
 .item-complex.item-custom {
-    background-color: #0081c9;
+    background-color: #0D6DB6;
 }
 .item-complex.item-custom .item-content {
     background-color: transparent;
@@ -426,10 +426,11 @@ w {
 .bar-custom>.bar,
 .bar.bar-custom {
     border: 0px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     border-bottom-color: transparent !important;
     background-image: none !important;
     border-bottom: none !important;
-    background-color: #0081c9;
+    background-color: #0D6DB6;
     color: #fff;
 }
 
@@ -447,7 +448,7 @@ w {
     border-top-color: transparent !important;
     background-image: none !important;
     border-top: none !important;
-    background-color: #0081c9;
+    background-color: #0D6DB6;
     color: #fff;
 }
 

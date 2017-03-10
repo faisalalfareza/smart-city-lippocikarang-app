@@ -7,30 +7,28 @@
     </div>
 
     <div class="itemModal" ng-repeat="talktoUs in data" overflow-scroll="true">
-        <ion-scroll direction="y" style="width: 100%; height: 100%">
+        <ion-scroll direction="y" style="width:100%;height:100%">
             <div>
-                <p>{{ talktoUs.header }}</p>
+                <strong>{{ talktoUs.header }}</strong>
                 <hr>
-                <p style="white-space: pre-wrap;font-size: 80%;">{{ talktoUs.description }}</p>
-                <div class="row talktoUs">
-                    <img class="col-15" src="img/talkToUs/languagesupport.png" style="width: 10%;height: 10%;margin-top: 0.5em;"> &nbsp;
+                <p style="white-space:pre-wrap;font-size:70%;font-weight:700;line-height:1.1em">{{ talktoUs.description }}</p>
+                <div class="row talktoUs" style="padding:0px 0px 0px 10px;">
+                    <img class="col-15" src="img/talkToUs/languagesupport.png" style="width:10%;height:10%;margin-top:0.5em;padding-right:2px;"> &nbsp;
                     <div class="col-85">
-                        <h2 style="font-size: 12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading1 }}</h2>
-                        <p style="font-size: 10px;">{{ talktoUs.content1 }}</p>
+                        <h2 style="font-size:12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading1 }}</h2>
+                        <p style="font-size:10px;font-weight:700;">{{ talktoUs.content1 }}</p>
                     </div>
                 </div>
-                <br>
-                <div class="row talktoUs">
-                    <img class="col-15" src="img/talkToUs/servicehours.png" style="width: 10%;height: 10%;margin-top: 0.5em;"> &nbsp;
-                    <div class="col-75">
-                        <h2 style="font-size: 12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading2 }}</h2>
-                        <p style="font-size: 10px;">{{ talktoUs.content2 }}</p>
+                <div class="row talktoUs" style="padding:0px 0px 0px 10px;margin-top:3px;">
+                    <img class="col-15" src="img/talkToUs/servicehours.png" style="width:10%;height:10%;margin-top:0.5em;padding-right:2px;"> &nbsp;
+                    <div class="col-85">
+                        <h2 style="font-size:12px;font-weight:bold;margin-top:8px;margin-bottom:0;">{{ talktoUs.heading2 }}</h2>
+                        <p style="font-size:10px;font-weight:700;">{{ talktoUs.content2 }}</p>
                     </div>
                 </div>
-                <br>
-                <div class="talktoUsRed">
+                <div class="talktoUsRed" style="margin-top:3px;">
                     <center>
-                        <p style="font-size: 10px;">{{ talktoUs.content3 }}</p>
+                        <p style="font-size:10px;font-weight:700;line-height:1.1em">{{ talktoUs.content3 }}</p>
                         <table align="center" border="1" style="margin-top: -5px">
                             <tr>
                                 <td><img class="r1" src="img/talkToUs/fire.png"></td>
@@ -53,9 +51,16 @@
                                 </td>
                             </tr>
                         </table>
-                        <p style="font-size: 12px;font-weight:bold;margin-bottom:0;">{{ talktoUs.content4 }}</p>
-                        <p style="font-size: 12px;font-weight:bold;">{{ talktoUs.emergencycall }}</p>
-                        <a style="border-radius: 10px" href="tel:{{ talktoUs.emergencycall }}" class="button button-assertive"><b>{{ 'emergency_call' | translate }}</b><img src="img/talkToUs/call_w.png"></a>
+                        <p style="font-size:10px;font-weight:100;margin-bottom:-2px;;">{{ talktoUs.content4 }}</p>
+                        <strong style="font-size:12px;font-weight:bolder;">{{ talktoUs.emergencycall }}</strong>
+                        <div style="padding:1% 5%;" class="row sub-menu">
+                            <div class="col" style="padding:0px 50px 0px 50px">
+                                <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height: 85%">
+                                    <span style="font-size: 12px">{{ 'emergency_call' | translate }}</span>
+                                    <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
+                                </a>
+                            </div>
+                        </div>
                     </center>
                 </div>
                 <br>
@@ -85,7 +90,14 @@
                             </tr>
                         </table>
                         <p style="font-size: 12px;">reach us <b>{{talktoUs.callcenter}}</b></p>
-                        <a style="border-radius:10px;" href="tel:{{ talktoUs.callcenter }}" class="button button-positive">{{ 'call_center' | translate }}<img src="img/talkToUs/call_w.png"></a>
+                        <div style="padding:1% 5%;" class="row sub-menu">
+                            <div class="col" style="padding:0px 50px 0px 50px">
+                                <a class="button" href="tel:{{ talktoUs.callcenter }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0D6DB6;height: 85%">
+                                    <span style="font-size: 12px">{{ 'call_center' | translate }}</span>
+                                    <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
+                                </a>
+                            </div>
+                        </div>
                     </center>
                 </div>
             </div>

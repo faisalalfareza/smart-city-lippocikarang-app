@@ -70,7 +70,8 @@
     "cordova-plugin-crosswalk-webview@~2.3.0",
     "cordova-plugin-inappbrowser@~1.6.1",
     "cordova-plugin-network-information",
-    "cordova-plugin-appavailability"
+    "cordova-plugin-appavailability",
+    "cordova-plugin-background-mode"
   ],
   "cordovaPlatforms": []
 }

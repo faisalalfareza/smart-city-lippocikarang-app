@@ -2,8 +2,8 @@
     <ion-content>
 
         <div class="row" ng-controller="weather" style="position:relative;background-color:#fff;align-items:center;height:2.5em">
-            <p style="font-size:13px;position:absolute;left:1em;top:0.5em;color:#7f8c8d;letter-spacing:1px;font-weight:bold;margin:0">{{'hello' | translate}}, {{fullname}}</p>
-            <p style="font-size:13px;position:absolute;right:1em;top:0.5em;color:#0c60ee;font-weight:bold;margin:0">{{data_weather.temp}} °C</p>
+            <strong style="font-size:13px;position:absolute;left:1em;top:0.5em;color:#7f8c8d;letter-spacing:1px;font-weight:bold;margin:0">{{'hello' | translate}}, {{fullname}}</strong>
+            <p style="font-size:13px;position:absolute;right:1em;top:0.5em;color:#0081c9;font-weight:bold;margin:0">{{data_weather.temp}}°C</p>
             <div ng-if="data_weather.icon == 2" style="position:absolute;right:5em;top:0.5em;">
                 <i class="icon icon ion-ios-thunderstorm iconcloudy"></i>
             </div>
@@ -35,47 +35,47 @@
             </ion-slide-box>
         </div>
 
-        <div class="row sub-menu recom_mainmenu" style="margin-top:-2%">
-            <div class="col col-50 sub-menu">
-                <ion-item class="sub item-light" href="#/app/recomended/11">
-                    <img src="img/side-menu/entertainment_b.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'entertaiment' | translate}} </p>
+        <div class="row sub-menu recom_mainmenu" style="margin-top:-2%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+            <div class="col col-50 sub-menu" style="border:0.5px solid #0081c9;" align="center">
+                <ion-item class="sub item-light" href="#/app/recomended/11" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/entertainment_b.png" style="width:20px;height:20px;margin-right:5.5em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:20px;"> {{'entertaiment' | translate}} </p>
                 </ion-item>
-                <ion-item class="sub item-light" href="#/app/recomended/13">
-                    <img src="img/side-menu/accomodation_b.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'accomodation' | translate}} </p>
+                <ion-item class="sub item-light" href="#/app/recomended/13" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/accomodation_b.png" style="width:20px;height:20px;margin-right:5.5em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:30px;"> {{'accomodation' | translate}} </p>
                 </ion-item>
-                <ion-item class="sub item-light" href="#/app/bus">
-                    <img src="img/side-menu/icon_transportation.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'transportation' | translate}} </p>
+                <ion-item class="sub item-light" href="#/app/bus" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/icon_transportation.png" style="width:20px;height:20px;margin-right:5.5em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:30px;"> {{'transportation' | translate}} </p>
                 </ion-item>
             </div>
-            <div class="col col-50 sub-menu">
-                <ion-item class="sub item-light" href="#/app/recomended/12">
-                    <img src="img/side-menu/dining_b.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'dining' | translate}} </p>
+            <div class="col col-50 sub-menu" style="border:0.5px solid #0081c9;" align="center">
+                <ion-item class="sub item-light" href="#/app/recomended/12" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/dining_b.png" style="width:20px;height:20px;margin-right:4em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:15px;"> {{'dining' | translate}} </p>
                 </ion-item>
-                <ion-item class="sub item-light" href="#/app/recomended/14">
-                    <img src="img/side-menu/shopping_b.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'shopping' | translate}} </p>
+                <ion-item class="sub item-light" href="#/app/recomended/14" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/shopping_b.png" style="width:20px;height:20px;margin-right:4em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:32px;"> {{'shopping' | translate}} </p>
                 </ion-item>
-                <ion-item class="sub item-light" href="#/app/gallery">
-                    <img src="img/side-menu/gallery_b.png" style="width:20px;height:20px;"> &nbsp;
-                    <p style="margin-top:-23px;margin-left:35px;"> {{'gallery' | translate}} </p>
+                <ion-item class="sub item-light" href="#/app/gallery" style="border:0.5px solid #0081c9;">
+                    <img src="img/side-menu/gallery_b.png" style="width:20px;height:20px;margin-right:4em;"> &nbsp;
+                    <p style="margin-top:-23px;margin-left:15px;"> {{'gallery' | translate}} </p>
                 </ion-item>
             </div>
         </div>
 
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col col-50">
-                <a class="button button-assertive" ng-click="openTalkto()" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height: 85%">
+                <a class="button button-assertive" ng-click="openTalkto()" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                     <img src="img/talkToUs/icon_talktous.png" style="width:20%;padding-right:5%;padding-right: 3%;margin-left: -10%;">
                     <strong style="font-size: 12px;margin-left: 10px;">Talk</strong>
-                    <spanp style="font-size: 12px">toUs</span>
+                    <span style="font-size: 12px">toUs</span>
                 </a>
             </div>
             <div class="col">
-                <a class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0D6DB6;height: 85%">
+                <a class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                     <strong style="font-size: 12px">{{'discount' | translate}}</strong>
                     <span style="font-size: 12px">{{'coupon' | translate}}</span>
                 </a>
@@ -108,20 +108,18 @@
 
 
         <div style="padding:1% 5%;" class="row sub-menu">
-            <div class="col col-25" style="display:flex;align-items:flex-end">
-                <p style="font-size:12px;margin-bottom:5%;text-align: center">Coonect with us</p>
+            <div class="col col-25" style="text-align:center;vertical-align:middle;margin-top:3%;">
+                {{'connect' | translate}}
             </div>
-            <div class="col col-40" style="vertical-align: middle;margin-top: 3%;">
+            <div class="col col-40" style="vertical-align: middle;margin-top:3%;padding:0;">
                 <img ng-click="gotoyoutbe()" src="img/youtube_main.png" style="width:22%">
                 <img src="img/instagram_main.png " style="width:22% ">
                 <img src="img/twitter_main.png " style="width:22% ">
                 <img src="img/facebook_main.png " style="width:22% ">
             </div>
-            <div ng-click="afliates_ovo()" class="col col-15 " style=" text-align: center;vertical-align: middle;margin-top: 3%; ">
-                afliates
-            </div>
-            <div ng-click="afliates_ovo()" class="col col-15 ">
-                <img style="margin-top:22% " src="img/icon_ovo.png " width="50% ">
+            <div ng-click="afliates_ovo()" class="col col-15 " style="text-align:center;vertical-align: middle;margin-top: 3%; "> {{'affiliates' | translate}} </div>
+            <div ng-click="afliates_ovo()" class="col col-15" style="text-align:center;">
+                <img style="width:80%;margin-top:10%;" src="img/icon_ovo.png">
             </div>
         </div>
 

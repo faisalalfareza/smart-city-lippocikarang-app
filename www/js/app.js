@@ -828,7 +828,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             property_agents: 'Property Agents',
             Property_Agent: 'Property Agents',
             property_market: 'Property Market',
-            property_start: 'This app offers you property search for properties in Lippo Cikarang. Find properties for sale and for rent, including houses, apartments, shops, commercial properties and land. \n\n Finding the property of your dreams.',
+            property_start: 'This app offers you property search for properties in Lippo Cikarang. Find properties for sale and for rent, including houses, apartments, shops, commercial properties and land.',
+            property_finding: 'Finding the property of your dreams.',
             pscode: 'PSCODE',
             pscode_correct: 'PsCode is correct',
             public_services: 'Public Services',
@@ -1074,7 +1075,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             remove_favorite_failed: 'Failed remove form favorites',
             hint_fullname: 'Fullname',
             ovo: 'OVO',
-            connect: 'Connect \n with Us',
+            connect: 'Connect with Us',
             affiliates: 'Affiliates',
             featured: 'Featured',
             bookmark: 'Bookmark',
@@ -1333,7 +1334,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             property_agents: 'Agen Properti',
             Property_Agent: 'Agen Properti',
             property_market: 'Property Market',
-            property_start: 'Aplikasi ini menawarakan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.Temukan properti impian Anda.',
+            property_start: 'Aplikasi ini menawarakan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.',
+            property_finding: 'Temukan properti impian Anda.',
             pscode: 'PSCODE',
             pscode_correct: 'PsCode Benar',
             public_services: 'Pelayanan Publik',
@@ -1570,7 +1572,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             hint_fullname: 'Nama Lengkap',
             spa___treatment: 'Spa & Treatment',
             ovo: 'OVO',
-            connect: 'Terhubung \n dengan Kami',
+            connect: 'Terhubung dengan Kami',
             affiliates: 'Afiliasi',
             featured: 'Fitur',
             load_from_library: 'Ambil Dari Perpustakaan',
@@ -1608,6 +1610,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             $rootScope.search_page = value;
         }
     }
+
     $rootScope.$on("$ionicView.beforeEnter", function() {
         var myEl = angular.element(document.querySelector('#sidemenu-con'));
 
@@ -1635,35 +1638,41 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     $ionicPlatform.ready(function() {
 
-        // cordova.plugins.notification.local.clearAll(function(){
-        //     console.log("LocalNotificationPlugin: ClearAll callback a success.");
-        // });
-
-        // cordova.plugins.notification.local.clearAll(function() {
-        //     alert("clearAll Done!");
-        // }); 
-
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.backgroundMode.setEnabled(false);
+            cordova.plugins.backgroundMode.disable();       
+            
+            document.addEventListener("deviceready", function() {   
+
+                cordova.plugins.notification.local.clear([0,1,18], function() { 
+                    cordova.plugins.notification.local.getAll(function (notifications) { 
+                        console.log(notifications);
+                        alert(JSON.stringify(notifications));
+                    });  
+                });           
+
+
+                // Push Notification
+                setInterval(function() {
+                    if ($localStorage.currentUser != null) {
+
+                        // Push Notifications
+                        PushNotifications();
+                        PushAdvertise();
+
+                    }
+                }, 5000);  
+
+            });
         }
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
-        }
-
-        // Push Notification
-        setInterval(function() {
-            if ($localStorage.currentUser != null) {
-
-                // Push Notifications
-                PushNotifications();
-                PushAdvertise();
-
-            }
-        }, 5000);
+        }      
 
         function PushNotifications() {
             NotifAccountService.countNotif(function(response) {
@@ -1688,19 +1697,20 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
                         // console.log('Notif Aktif ..');
                         // console.log('playSound : ' + playSound);
-                        cordova.plugins.notification.local.schedule({
+                        window.plugin.notification.local.schedule({
+                            id: 2,
                             title: $filter('translate')('notification_push'),
                             sound: playSound,
                             badge: sum
                         });
-                        cordova.plugins.notification.local.on("trigger", function(notification) {
-                            //console.log('Success with ' + notification);
+                        window.plugin.notification.local.on("trigger", function(notification) {
+                            console.log('Success with ' + notification);
                         });
                     } else {
-                        //console.log('Notif Nonaktif ..');
+                        console.log('Notif Nonaktif ..');
                     }
                 } else {
-                    //console.log('Tidak ada notif baru ..');
+                    console.log('Tidak ada notif baru ..');
                 }
             });
         }
@@ -1710,10 +1720,10 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 var sum = response;
 
                 if (sum > 0) {
-                    //console.log('Anda memiliki ' + sum + ' ads baru..');
+                    console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
-                    //console.log('Tidak ada ads baru ..');
+                    console.log('Tidak ada ads baru ..');
                 }
             });
         }
