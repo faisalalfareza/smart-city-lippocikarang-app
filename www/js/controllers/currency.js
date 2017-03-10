@@ -280,7 +280,6 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
             $scope.rate.push("IDR");
             $scope.currency.push("10.000");
 
-            console.log($scope.itemrate);
             $scope.date = response.date;
             $scope.time = new Date();
 
@@ -305,7 +304,6 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
         try {
 
             $scope.getfromlocal = $localStorage.currency.currency;
-            console.log($scope.getfromlocal.index)
             var currency_in_main = {
                 'time': $scope.wakut,
                 'index': $scope.getfromlocal.index,
