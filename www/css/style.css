@@ -77,12 +77,12 @@ table tr th {
 
 .searchBar.item-input-wrapper {
     background: transparent;
-    background-color: #0081c9;
+    background-color: #0D6DB6;
 }
 
 .searchBar input[type="search"] {
     color: #fff;
-    background-color: #0081c9;
+    background-color: #0D6DB6;
     width: 65vw;
     font-size: 16px;
 }

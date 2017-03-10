@@ -1651,10 +1651,9 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             
             document.addEventListener("deviceready", function() {   
 
-                cordova.plugins.notification.local.clear([0,1,18], function() { 
+                cordova.plugins.notification.local.clearAll(function() { 
                     cordova.plugins.notification.local.getAll(function (notifications) { 
                         console.log(notifications);
-                        alert(JSON.stringify(notifications));
                     });  
                 });           
 
