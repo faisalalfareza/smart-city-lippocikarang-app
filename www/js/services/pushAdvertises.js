@@ -2,7 +2,7 @@ angular
     .module('livein')
     .service('AdvertiseService', AdvertiseService);
 
-    function AdvertiseService($http, $ionicModal,$window, $rootScope, $localStorage, $filter) {
+    function AdvertiseService($http, $timeout, $ionicModal,$window, $rootScope, $localStorage, $filter) {
         var service = {};
 
         service.AdsLogin = AdsLogin;
@@ -109,7 +109,7 @@ angular
 
             }).finally(function() {
 
-              $rootScope.getFull = function() {    
+              $rootScope.getFull = function() {
                   $rootScope.$broadcast('adsModal:hideModal');
                   fullAds(indexes);
               };

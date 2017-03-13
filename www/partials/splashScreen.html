@@ -39,8 +39,8 @@
 
     <div class="headerSphlash">
         <div class="bottomLeft"> <w>{{ 'version'| translate }} 1.0</w> </div>
-        <button class="getStarted button button-block" ng-click="startApp()" ng-disabled="buttonDisabled" style="background-color:#0D6DB6;border:0;outline:0;color:white;">{{ 'get_started'| translate }}</button>
-        <button class="button-clear bottomRight" ng-click="startApp()" ng-disabled="buttonDisabled"><w ng-click="startApp()" ng-disabled="buttonDisabled">{{ 'skip'| translate }}</w></button>
+        <button class="getStarted button button-block" click-and-wait="startApp()" style="background-color:#0D6DB6;border:0;outline:0;color:white;">{{ 'get_started'| translate }}</button>
+        <button class="button-clear bottomRight" click-and-wait="startApp()"><w click-and-wait="startApp()">{{ 'skip'| translate }}</w></button>
     </div>
 
 </ion-view>

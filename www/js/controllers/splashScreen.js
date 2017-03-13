@@ -2,8 +2,7 @@ angular
   .module('livein')
   .controller('splashScreen', splashScreen);
 
-  function splashScreen($scope, $rootScope, $state, $filter, $localStorage, $location, ionicToast, $ionicPlatform, $ionicPopup, AdvertiseService) {
-    $rootScope.buttonDisabled = false;
+  function splashScreen($scope, $timeout, $rootScope, $state, $filter, $localStorage, $location, ionicToast, $ionicPlatform, $ionicPopup, AdvertiseService) {
 
     // Called to navigate to the main app
     $ionicPlatform.ready(function () {
@@ -40,11 +39,9 @@ angular
 
     $ionicPlatform.ready(function (){
       navigator.geolocation.getCurrentPosition(function (pos) { });
-      $scope.buttonDisabled = false;
     });
 
     $scope.startApp = function () {
-      $rootScope.buttonDisabled = true;
 
       if (!$localStorage.currentUser) {
 
