@@ -128,7 +128,6 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         $scope.arrayselected.push($index);
         $scope.dancok = $scope.arrayselected;
 
-
         if ($scope.arrayselected.length > 2) {
             $scope.selected[$scope.arrayselected[0]] = false;
             $scope.arrayselected = [];
@@ -153,10 +152,9 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         //         $scope.selected[$scope.arrayselected[0]] = false;
         //     }
         // }
-        console.log($index, selected);
+        console.log('index dan yg di select',$index, selected);
         console.log($scope.arrayselected[0]);
         console.log($scope.arrayselected);
-
 
 
     }
@@ -170,6 +168,8 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
                 }
             }
 
+        
+
         }
         var currencymain = {
             'time': $scope.wakut,
@@ -181,11 +181,21 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
             'cur2': $scope.rate[$scope.selectedItems[1]],
             'rate2': $scope.currency[$scope.selectedItems[1]]
         }
-        $localStorage.currency = { currency: currencymain };
-        $ionicLoading.show({
+
+            if ( $scope.selectedItems < 2){
+               $ionicLoading.show({
+                    template: $filter('translate')('must_choice_2'),
+                    duration: 2000
+               });
+            } else {
+            $localStorage.currency = { currency: currencymain };
+            $ionicLoading.show({
             template: $filter('translate')('succes_set_to_main'),
             duration: 2000
         });
+                
+            }
+       
         /*he.then(function(res) {
             $window.location.reload();
         });*/
