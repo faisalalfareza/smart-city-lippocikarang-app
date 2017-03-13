@@ -2,6 +2,7 @@ angular
     .module('livein')
     .controller('forum', forum)
     .controller('forumdetail', forumdetail)
+    .controller('forumdetailImage', forumdetailImage)
     .controller('forumComment', forumComment)
     .controller('topic', topic)
     .controller('forumupdate', forumupdate)
@@ -70,13 +71,42 @@ angular
                     $scope.detail = value[0]
                 })
                 $scope.detail = response.detail[0]
+                console.log($scope.detail);
                 $scope.title = $scope.detail.title;
-                $scope.comment = response.comment
-                $scope.galleryforums = response.galleryforums
+                $scope.comment = response.comment;
+                $scope.galleryforums = response.galleryforums;
+                //$scope.dibawa[0] = response.galleryforums.idgalleryforums;
+                $ionicSlideBoxDelegate.update();
+
+                var gall = $stateParams.index;
+                $scope.gall = gall;
+                console.log('gall ',$scope.gall);
+
+                var keys = Object.keys($scope.galleryforums);
+                $scope.len = keys.length;
+
+                var i = 1;
+                $scope.galleryforums.forEach(function(itemfile, indexfile, arrfile) {
+                    $scope.galleryforums[indexfile].number = i++;
+                });
+
+                console.log('di detailimage', $scope.galleryforums);
             } else {
                 $scope.data = { name: $filter('translate')('failed_get_data') }
             }
         })
+
+        function next() {
+            $ionicSlideBoxDelegate.next();
+        };
+
+        function previous() {
+            $ionicSlideBoxDelegate.previous();
+        };
+
+        $scope.slideChanged = function() {
+            $ionicSlideBoxDelegate.update();
+        };
 
         $scope.updateForum = updateForum;
 
@@ -347,6 +377,37 @@ angular
     }
 
     function forumGallery($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, ForumService, $filter) {
+        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+        ForumService.forumdetail(function(response) {
+            if (response != false) {
+                $scope.image = response.galleryforums;
+
+                $ionicSlideBoxDelegate.update();
+
+                var gall = $stateParams.index;
+                $scope.gall = gall;
+                console.log($scope.image);
+            } else {
+                $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
+            }
+            $ionicLoading.hide();
+        });
+
+        $scope.next = function() {
+            $ionicSlideBoxDelegate.next();
+        };
+
+        $scope.previous = function() {
+            $ionicSlideBoxDelegate.previous();
+        };
+
+        $scope.slideChanged = function() {
+            $ionicSlideBoxDelegate.update();
+        };
+
+    }
+
+    function forumdetailImage($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, ForumService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         ForumService.forumdetail(function(response) {
             if (response != false) {

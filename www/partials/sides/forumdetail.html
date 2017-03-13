@@ -32,7 +32,11 @@
 
             <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
             <p>{{detail.description}}</p>
-            <img ng-repeat="gallery in galleryforums" style="width: 30%; padding-right: 5%;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+            <div ng-repeat="gallery in galleryforums">
+                <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/{{$index}}">
+                    <img style="width: 30%; padding-right: 5%;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+                </a>
+            </div>
             <br>
             <a href="#/app/forumComment/{{ detail.idforums }}">
                 <button class="button button-positive ">{{ 'post_a_comment' | translate }}</button>
