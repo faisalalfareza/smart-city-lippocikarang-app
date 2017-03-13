@@ -12,6 +12,7 @@
     <access origin="*" />
     <allow-intent href="tel:*" />
     <allow-navigation href="*" />
+    <allow-navigation href="http://192.168.1.6:8100" />
     <preference name="Orientation" value="default" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -24,13 +25,13 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="TwitterConsumerKey" value="LuAov6upYoyXnv9MT8UegwiOX" />
     <preference name="TwitterConsumerSecret" value="uSpxUyRaFj5NH6I7WgUzEJMsqMRQYTeUpSRlFEgtiOIQfdc22V" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.InAppBrowser" />
     </feature>
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
         <param name="android-package" value="org.apache.cordova.NetworkManager" />
@@ -48,43 +49,43 @@
     </feature>
     <platform name="ios">
         <key>CFBundleDocumentTypes</key>
+        <key>UTExportedTypeDeclarations</key>
         <array>
             <dict>
                 <key>CFBundleTypeIconFiles</key>
+                <key>CFBundleTypeName</key>
+                <key>CFBundleTypeRole</key>
+                <key>LSHandlerRank</key>
+                <key>LSItemContentTypes</key>
                 <array>
                     <string>Document-molecules-320.png</string>
                     <string>Document-molecules-64.png</string>
                 </array>
-                <key>CFBundleTypeName</key>
-                <string>Molecules Structure File</string>
-                <key>CFBundleTypeRole</key>
-                <string>Viewer</string>
-                <key>LSHandlerRank</key>
-                <string>Owner</string>
-                <key>LSItemContentTypes</key>
                 <array>
                     <string>com.sunsetlakesoftware.molecules.pdb</string>
                     <string>org.gnu.gnu-zip-archive</string>
                 </array>
+                <string>Molecules Structure File</string>
+                <string>Viewer</string>
+                <string>Owner</string>
             </dict>
         </array>
-        <key>UTExportedTypeDeclarations</key>
         <array>
             <dict>
                 <key>UTTypeConformsTo</key>
+                <key>UTTypeDescription</key>
+                <key>UTTypeIdentifier</key>
+                <key>UTTypeTagSpecification</key>
                 <array>
                     <string>public.plain-text</string>
                     <string>public.text</string>
                 </array>
-                <key>UTTypeDescription</key>
                 <string>Molecules Structure File</string>
-                <key>UTTypeIdentifier</key>
                 <string>com.sunsetlakesoftware.molecules.pdb</string>
-                <key>UTTypeTagSpecification</key>
                 <dict>
                     <key>public.filename-extension</key>
-                    <string>pdb</string>
                     <key>public.mime-type</key>
+                    <string>pdb</string>
                     <string>chemical/x-pdb</string>
                 </dict>
             </dict>
@@ -94,29 +95,29 @@
                 <key>NSAllowsArbitraryLoads</key>
                 <true />
             </dict>
-            <key>NSAppTransportSecurity</key>
-            <key>NSExceptionDomains</key>
             <dict>
                 <key>localhost</key>
                 <dict>
                     <key>NSIncludesSubdomains</key>
-                    <false />
                     <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                    <false />
                     <key>NSExceptionRequiresForwardSecrecy</key>
-                    <true />
                     <key>NSExceptionMinimumTLSVersion</key>
-                    <string>TLSv1.2</string>
                     <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-                    <false />
                     <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                    <true />
                     <key>NSThirdPartyExceptionMinimumTLSVersion</key>
-                    <string>TLSv1.2</string>
                     <key>NSRequiresCertificateTransparency</key>
                     <false />
+                    <false />
+                    <false />
+                    <false />
+                    <true />
+                    <true />
+                    <string>TLSv1.2</string>
+                    <string>TLSv1.2</string>
                 </dict>
             </dict>
+            <key>NSAppTransportSecurity</key>
+            <key>NSExceptionDomains</key>
         </config-file>
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
@@ -215,4 +216,5 @@
     <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
     <plugin name="cordova-plugin-appavailability" spec="~0.4.2" />
     <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
 </widget>

@@ -1645,17 +1645,17 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.backgroundMode.setEnabled(false);
-            cordova.plugins.backgroundMode.disable();       
+            // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            // cordova.plugins.backgroundMode.setEnabled(false);
+            // cordova.plugins.backgroundMode.disable();       
             
             document.addEventListener("deviceready", function() {   
-
-                cordova.plugins.notification.local.clearAll(function() { 
+                console.log("============================= LOG DISINI =============================");
+                // cordova.plugins.notification.local.clearAll(function() { 
                     cordova.plugins.notification.local.getAll(function (notifications) { 
-                        console.log(notifications);
+                        console.log(JSON.stringify(notifications));
                     });  
-                });           
+                // });           
 
 
                 // Push Notification
@@ -1688,7 +1688,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 }
 
                 if (sum > 0) {
-                    console.log('Anda memiliki ' + sum + ' notif baru..');
+                    // console.log('Anda memiliki ' + sum + ' notif baru..');
                     if ($localStorage.notifPush.status != false) {
 
                         var alertPopup = $ionicPopup.alert({
@@ -1713,7 +1713,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                         console.log('Notif Nonaktif ..');
                     }
                 } else {
-                    console.log('Tidak ada notif baru ..');
+                    // console.log('Tidak ada notif baru ..');
                 }
             });
         }
@@ -1726,7 +1726,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                     console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
-                    console.log('Tidak ada ads baru ..');
+                    // console.log('Tidak ada ads baru ..');
                 }
             });
         }
