@@ -2,7 +2,12 @@ angular
     .module('livein')
     .controller('mainTabs', mainTabs);
 
-    function mainTabs($scope,$timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
+    function mainTabs($scope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
+        $scope.asyncAction = function() {
+            // The following code simulates an async action
+            return $timeout(() => angular.noop, 3000);
+        }
+        
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         dataWhatsNew.getDataWhatsNew(function(response) {
             $timeout(function() {

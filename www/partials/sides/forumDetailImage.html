@@ -1,4 +1,4 @@
-<ion-view view-title="{{'pro_gallery' | translate}}">
+<ion-view view-title="{{'gallery' | translate}}">
     <ion-nav-bar class="bar bar-positive bar-custom" style="background-color: #0081c9;">
       <ion-nav-back-button class="button-icon">
         <i class="ion-chevron-left"></i>
@@ -8,9 +8,11 @@
            <ion-slide ng-repeat="details in galleryforums">
                    <div class="photoGallery scroll" style="position: relative;">
                         <ion-content overflow-scroll="true">
-                        <img ng-src="{{details.avatar}}" class="square" style="margin-top: 10%;"/>
+                          <div class="center-cropped" 
+                              style="background-image: url({{details.avatar}});">
+                          </div>
                         <div class="row" style="margin-top:30%;margin-bottom: 30%; position: absolute;">
-                          <p class="bottomNumber col-12" style="position: absolute;margin-bottom: 10%;margin-top: 17%;">{{details.number}} {{'of' | translate}} {{len}}</p>
+                          <p class="bottomNumber col-12" style="position: absolute;margin-top: 20%;">{{details.number}} {{'of' | translate}} {{len}}</p>
                         </div>
                         <br>
 
