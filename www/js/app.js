@@ -218,6 +218,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.forumdetailImage', {
+            url: "/forumdetailImage/:idforum/{index}",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/forumdetailImage.html",
+                    controller: 'forumdetail'
+                }
+            }
+        })
         .state('app.newforum', {
             url: "/newforum",
             views: {
