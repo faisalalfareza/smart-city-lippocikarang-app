@@ -1657,25 +1657,24 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                     });  
                 // });           
 
-
-                // Push Notification
-                setInterval(function() {
-                    if ($localStorage.currentUser != null) {
-
-                        // Push Notifications
-                        PushNotifications();
-                        PushAdvertise();
-
-                    }
-                }, 5000);  
-
             });
         }
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
-        }      
+        }   
+
+        // Push Notification
+        setInterval(function() {
+            if ($localStorage.currentUser != null) {
+
+                // Push Notifications
+                PushNotifications();
+                PushAdvertise();
+
+            }
+        }, 5000);             
 
         function PushNotifications() {
             NotifAccountService.countNotif(function(response) {

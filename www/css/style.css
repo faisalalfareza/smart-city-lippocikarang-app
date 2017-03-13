@@ -523,6 +523,7 @@ w {
     height: 100%;
     border-color: #ddd;
     background-color: #fff;
+    border-radius: 10px !important;
     color: #444;
     position: relative;
     z-index: 2;
@@ -801,7 +802,7 @@ whatsnew-image {
 
 .iconcloudy:before {
     font-size: 26px;
-    color: #0c60ee;
+    color: #0081c9;
     float: right;
     margin-right: 15px;
     text-align: right;

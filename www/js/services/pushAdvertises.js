@@ -109,13 +109,19 @@ angular
 
             }).finally(function() {
 
+              $rootScope.getFull = function() {    
+                  $rootScope.$broadcast('adsModal:hideModal');
+                  fullAds(indexes);
+              };
+
               $rootScope.slideChanged = function(index) {
                   $rootScope.slideIndex = index;
                   $rootScope.getFull = function() {
                     // var screen = angular.element(document.querySelector('.itemModal.advertisement'));
                     // screen.css('height', '100%');
-                    fullAds(index);
+                    // console.log('open fullAds : ' + index);
                     $rootScope.$broadcast('adsModal:hideModal'); 
+                    fullAds(index);
                   };
               };
 
@@ -179,8 +185,14 @@ angular
 
                     }).finally(function() {         
 
+                      $rootScope.closeAds = function() {
+                          // console.log('close fullAds : ' + indexes);
+                          $rootScope.$broadcast('fullDynamic:hideModal');
+                          AdsOpen(indexes);
+                      };
+
                       $rootScope.slideChanged = function(index) {
-                      $rootScope.slideIndex = index;
+                        $rootScope.slideIndex = index;
                         $rootScope.closeAds = function() {
                           $rootScope.$broadcast('fullDynamic:hideModal');
                           AdsOpen(index);
