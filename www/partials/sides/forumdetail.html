@@ -32,10 +32,12 @@
 
             <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
             <p>{{detail.description}}</p>
-            <div ng-repeat="gallery in galleryforums">
-                <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/{{$index}}">
-                    <img style="width: 30%; padding-right: 5%;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
-                </a>
+            <div class="row">
+                <div ng-repeat="gallery in galleryforums" class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/{{$index}}">
+                        <img style="width: 100%;height: auto;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+                    </a>
+                </div>
             </div>
             <br>
             <a href="#/app/forumComment/{{ detail.idforums }}">
