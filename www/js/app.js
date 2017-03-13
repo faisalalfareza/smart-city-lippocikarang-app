@@ -1653,21 +1653,6 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            // cordova.plugins.backgroundMode.setEnabled(false);
-            // cordova.plugins.backgroundMode.disable();       
-            
-            document.addEventListener("deviceready", function() {   
-                console.log("============================= LOG DISINI =============================");
-                // cordova.plugins.notification.local.clearAll(function() { 
-                    cordova.plugins.notification.local.getAll(function (notifications) { 
-                        console.log(JSON.stringify(notifications));
-                    });  
-                // });           
-
-            });
-        }
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -1711,6 +1696,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                         window.plugin.notification.local.schedule({
                             id: 2,
                             title: $filter('translate')('notification_push'),
+                            every: "minute",
                             sound: playSound,
                             badge: sum
                         });
