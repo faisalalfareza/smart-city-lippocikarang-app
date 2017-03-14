@@ -211,7 +211,99 @@ function weather($scope, $cordovaGeolocation, $filter, $localStorage, mainServic
         lat = pos.coords.latitude
         long = pos.coords.longitude
         weatherservice($scope, $filter, lat, long)
+    },function(error){
+        alert(JSON.stringify(error))
+        navigator.geolocation.watchPosition
+            (function onSucces(position){
+                alert(JSON.stringify(position))
+
+             },function onMapError(error){
+                alert(JSON.stringify(error))
+
+             }, 
+             { enableHighAccuracy: false });
+    //     AdvancedGeolocation.start(function(success){
+    //     try{
+    //         var jsonObject = JSON.parse(success);
+    //         alert(JSON.stringify(jsonObject));
+    //         switch(jsonObject.provider){
+    //             case "gps":
+    //                  //TODO
+    //                 break;
+
+    //             case "network":
+    //                  //TODO
+    //                 break;
+
+    //             case "satellite":
+    //                  //TODO
+    //                 break;
+
+    //             case "cell_info":
+    //                 //TODO
+    //                 break;
+
+    //             case "cell_location":
+    //                 //TODO
+    //                 break;  
+
+    //             case "signal_strength":
+    //                 //TODO
+    //                 break;                  
+    //         }
+    //     }
+    //     catch(exc){
+    //         console.log("Invalid JSON: " + exc);
+    //     }
+    // },
+    // function(error){
+    //     console.log("ERROR! " + JSON.stringify(error));
+    // },
+    // ////////////////////////////////////////////
+    // //
+    // // REQUIRED:
+    // // These are required Configuration options!
+    // // See API Reference for additional details.
+    // //
+    // ////////////////////////////////////////////
+    //     {   
+    //         "minTime":500,         // Min time interval between updates (ms)
+    //         "minDistance":1,       // Min distance between updates (meters)
+    //         "noWarn":true,         // Native location provider warnings
+    //         "providers":"all",     // Return GPS, NETWORK and CELL locations
+    //         "useCache":true,       // Return GPS and NETWORK cached locations
+    //         "satelliteData":false, // Return of GPS satellite info
+    //         "buffer":false,        // Buffer location data
+    //         "bufferSize":0,         // Max elements in buffer
+    //         "signalStrength":false // Return cell signal strength data
+    //     });
     });
+
+//    var posOptions = {timeout: 10000, enableHighAccuracy: false};
+//         navigator.geolocation
+//             .getCurrentPosition(posOptions)
+//             .then(function (position) {
+//                 lat = pos.coords.latitude
+//                 long = pos.coords.longitude
+//          }, function(err) {
+//             var watchOptions = {
+//                 timeout : 3000,
+//                 enableHighAccuracy: false // may cause errors if true
+//             };
+
+//             var watch = navigator.geolocation.watchPosition(watchOptions);
+//              watch.then(null,
+//                 function(err) {
+//                     alert(JSON.stringify(error))
+//                 },
+//                 function(position) {
+//                     alert(JSON.stringify(position))
+//                     var lat  = position.coords.latitude
+//                     var long = position.coords.longitude
+//                 });
+//             });
+
+    
 
     function weatherservice($scope, $filter, lat, long) {
         mainService.reqweather(lat, long, function(weatherresponse) {
