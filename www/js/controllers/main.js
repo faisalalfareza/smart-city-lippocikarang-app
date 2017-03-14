@@ -212,13 +212,13 @@ function weather($scope, $cordovaGeolocation, $filter, $localStorage, mainServic
         long = pos.coords.longitude
         weatherservice($scope, $filter, lat, long)
     },function(error){
-        alert(JSON.stringify(error))
+        //alert(JSON.stringify(error))
         navigator.geolocation.watchPosition
             (function onSucces(position){
-                alert(JSON.stringify(position))
+                //alert(JSON.stringify(position))
 
              },function onMapError(error){
-                alert(JSON.stringify(error))
+                //alert(JSON.stringify(error))
 
              }, 
              { enableHighAccuracy: false });

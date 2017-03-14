@@ -6,10 +6,10 @@
         </div>
     </div>
 
-    <div class="itemModal" ng-repeat="talktoUs in data" overflow-scroll="true">
+    <div class="itemModal" ng-repeat="talktoUs in data" style="border-radius: 0 !important;" overflow-scroll="true">
         <ion-scroll direction="y" style="width:100%;height:100%">
             <div style="letter-spacing:-0.1px">
-                <strong>{{ talktoUs.header }}</strong>
+                <h4 style="font-weight:300;">{{ talktoUs.header }}</h4>
                 <hr>
                 <p style="white-space:pre-wrap;font-size:70%;font-weight:500;line-height:1.1em">{{ talktoUs.description }}</p>
                 <div class="row talktoUs" style="padding:0px 0px 0px 10px;">
@@ -52,13 +52,13 @@
                             </tr>
                         </table>
                         <p style="font-size:10px;font-weight:100;margin-bottom:-1em;">{{ talktoUs.content4 }}</p>
-                        <strong style="font-size:12px;font-weight:bolder;margin-top:-4px;text-decoration:none;color:black !important;">{{ talktoUs.emergencycall }}</strong>
+                        <strong style="font-size:9px;font-weight:bolder;margin-top:-4px;text-decoration:none;color:black !important;">{{ talktoUs.emergencycall }}</strong>
                         <div style="padding:1% 5%;" class="row sub-menu">
                             <div class="col" style="padding:0px 50px 0px 50px;">
                                 <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);background-color:#CD332C">
                                     <strong style="font-size: 12px">{{'emergency_call_1' | translate}}</strong>
                                     <span style="font-size: 12px">{{'emergency_call_2' | translate}}</span>
-                                    <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
+                                    <img src="img/talkToUs/call_w.png" style="width:23%;padding-left:6%;padding-right:3%;">
                                 </a>
                             </div>
                         </div>
@@ -89,13 +89,13 @@
                                 </td>
                             </tr>
                         </table>
-                        <p style="font-size:10px;">reach us <strong style="font-size:12px;font-weight:bolder;text-decoration:none;color:black !important;">{{talktoUs.callcenter}}</strong></p>
+                        <p style="font-size:10px;">reach us <strong style="font-size:10px;font-weight:bolder;text-decoration:none;color:black !important;">{{talktoUs.callcenter}}</strong></p>
                         <div style="padding:1% 5%;" class="row sub-menu">
                             <div class="col" style="padding:0px 50px 0px 50px">
                                 <a class="button" href="tel:{{ talktoUs.callcenter }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0D6DB6;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                                     <strong style="font-size: 12px">{{'call' | translate}}</strong>
                                     <span style="font-size: 12px">{{'center' | translate}}</span>
-                                    <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
+                                    <img src="img/talkToUs/call_w.png" style="width:23%;padding-left:6%;padding-right:3%;">
                                 </a>
                             </div>
                         </div>
