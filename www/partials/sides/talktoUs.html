@@ -8,7 +8,7 @@
 
     <div class="itemModal" ng-repeat="talktoUs in data" overflow-scroll="true">
         <ion-scroll direction="y" style="width:100%;height:100%">
-            <div>
+            <div style="letter-spacing:-0.1px">
                 <strong>{{ talktoUs.header }}</strong>
                 <hr>
                 <p style="white-space:pre-wrap;font-size:70%;font-weight:700;line-height:1.1em">{{ talktoUs.description }}</p>
@@ -55,7 +55,7 @@
                         <strong style="font-size:12px;font-weight:bolder;margin-top:-4px;text-decoration:none;color:black !important;">{{ talktoUs.emergencycall }}</strong>
                         <div style="padding:1% 5%;" class="row sub-menu">
                             <div class="col" style="padding:0px 50px 0px 50px;">
-                                <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                                <a class="button button-assertive" href="tel:{{ talktoUs.emergencycall }}" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);background-color:#CD332C">
                                     <strong style="font-size: 12px">{{'emergency_call_1' | translate}}</strong>
                                     <span style="font-size: 12px">{{'emergency_call_2' | translate}}</span>
                                     <img src="img/talkToUs/call_w.png" style="width:20%;padding-left:6%;padding-right:3%;">
