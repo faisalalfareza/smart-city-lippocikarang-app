@@ -1052,7 +1052,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             download_error: 'Download error',
             select: 'select',
             set_to_main: 'set to main',
-            must_choice_2: 'you must choice 2',
+            must_choice_2: 'you must choice two',
             Calculator: 'Calculator',
             succes_set_to_main: 'Success to set in main page',
             exchange_rate: 'Exchange Rates',
@@ -1553,7 +1553,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             download_error: 'Mengunduh gagal',
             select: 'Pilih',
             set_to_main: 'Pengaturan Utama',
-            must_choice_2: 'Harus Pilih 2',
+            must_choice_2: 'Harus Pilih Dua',
             Calculator: 'Kalkulator',
             succes_set_to_main: 'Berhasil mengatur di halaman utama',
             exchange_rate: 'Nilai Tukar',
@@ -1653,21 +1653,6 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            // cordova.plugins.backgroundMode.setEnabled(false);
-            // cordova.plugins.backgroundMode.disable();       
-            
-            document.addEventListener("deviceready", function() {   
-                console.log("============================= LOG DISINI =============================");
-                // cordova.plugins.notification.local.clearAll(function() { 
-                    cordova.plugins.notification.local.getAll(function (notifications) { 
-                        console.log(JSON.stringify(notifications));
-                    });  
-                // });           
-
-            });
-        }
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -1713,6 +1698,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                         window.plugin.notification.local.schedule({
                             id: 2,
                             title: $filter('translate')('notification_push'),
+                            every: "minute",
                             sound: playSound,
                             badge: sum
                         });

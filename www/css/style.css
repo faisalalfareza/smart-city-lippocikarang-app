@@ -1194,7 +1194,7 @@ progress[value]::-webkit-progress-value::after {
 }
 
 .row2 {
-    color: blue;
+    color: #0D6DB6;
     font-size: 50%;
     margin: 2em;
 }

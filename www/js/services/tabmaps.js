@@ -10,7 +10,6 @@ angular
   service.getPlacePredictions({ input: query }, function(predictions, status){
     if (status != google.maps.places.PlacesServiceStatus.OK) {
       dfd.resolve([]);
-      console.log(dfd)
 
     }
     else

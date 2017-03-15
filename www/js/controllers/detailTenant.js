@@ -701,8 +701,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             avoidTolls: false
         }, function(response, status) {
             console.log(response)
-            element = response.rows[0].elements[0];
-
+            element = response.rows[0].elements[0]; 
             $scope.mencret = element.distance.text;
             $scope.telek = element.duration.text;
             console.log('jarak = ' + $scope.mencret + "  duration" + $scope.telek);
