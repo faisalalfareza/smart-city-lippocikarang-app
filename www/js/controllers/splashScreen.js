@@ -46,11 +46,13 @@ angular
       if (!$localStorage.currentUser) {
 
         $state.go('login');
+        return $timeout(() => angular.noop, 3000);
 
       } else {
 
         $state.go('app.main');
-        AdvertiseService.AdsOpen();   
+        AdvertiseService.AdsOpen(); 
+        return $timeout(() => angular.noop, 3000);  
 
       }
     };
