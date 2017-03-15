@@ -611,9 +611,14 @@ function entertaimentSportDetailImage($timeout,$scope, $stateParams, $location, 
 function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
 
     //get location
-    $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
+    alert($rootScope.lat);
+    if($rootScope.lat != undefined || $rootScope.lat != null){
+        $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
+        getduration();
+    }
+
     $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
-    getduration();
+
 
     //load map
     $scope.$on('$ionicView.loaded', function() {
@@ -646,7 +651,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
 
     function loadMap() {
         var mapOptions = {
-            center: new google.maps.LatLng(43.074174, -89.380915),
+            center: $scope.tujuan,
             zoom: 16,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
@@ -673,6 +678,9 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
 
+
+        alert($scope.myLatlng)
+        if ($scope.myLatlng != undefined)
         directionsDisplay.setMap($scope.map);
         directionsService.route({
             origin: $scope.myLatlng,
@@ -686,6 +694,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
                 window.alert('Directions request failed due to ' + status);
             }
         });
+    }
 
     }
 
