@@ -1656,9 +1656,9 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
-            //StatusBar.styleDefault();
-            StatusBar.overlaysWebView(false);
-            StatusBar.backgroundColorByHexString('#0D6DB6');
+            StatusBar.styleDefault();
+            /*StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString('#0D6DB6');*/
         }   
 
         // Push Notification

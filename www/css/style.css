@@ -411,9 +411,10 @@ w {
 }
 .item-custom>.item,
 .item.item-custom {
-    border-color: white !important;
+    border-bottom: 2px solid white !important;
     background-color: #0D6DB6;
     color: white;
+    border: 0;
 }
 
 .item-complex.item-custom {
@@ -651,10 +652,12 @@ w {
     height: 100%;
     top: 0 !important;
     left: 0 !important;
+    margin-top: 1.5em;
 }
 
 .image-modal.advertisement {
     padding: 20px;
+    margin-top: 0 !important;
 }
 
 .fullscreen-image {
