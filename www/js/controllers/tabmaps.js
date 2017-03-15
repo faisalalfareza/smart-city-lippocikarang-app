@@ -52,7 +52,7 @@ angular
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControlOptions: {position: google.maps.ControlPosition.TOP_CENTER},
         zoom: 0,
-        zoomControl: true,
+        zoomControl: true, 
         mapTypeControl: false,
         streetViewControl: false,
         zoomControlOptions: {

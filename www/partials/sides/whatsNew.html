@@ -1,12 +1,12 @@
 <ion-view view-title="{{'what_new' | translate}}" style="background-color:#ecf0f1">
    <ion-content ng-controller="whatsNew" class="has-footer grey gallery">
-       <div class="list card" ng-repeat="list in whatsnew | filter:search_page" ng-click="openModal(list)" style="border-radius:5px 5px 0px 0px">
+       <div class="list card" ng-repeat="list in whatsnew | filter:search_page" ng-click="openModal(list)" style="border-radius:10px 10px 0px 0px">
            <div class="item">
                <h2>{{list.title}}</h2>
                <p>{{list.createdate | date : 'dd MMM yyyy'}}</p>
            </div>
-           <div class="item item-image">
-               <a><img src="{{list.avatar}}"></a>
+           <div style="margin-bottom: 0;">
+               <img src="{{list.avatar}}" style="width:100vw;margin-bottom: -1em;"> 
            </div>
        </div>
    </ion-content>
