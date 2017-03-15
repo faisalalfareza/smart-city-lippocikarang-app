@@ -407,7 +407,9 @@ w {
 
 .item-resident>.item,
 .item.item-resident {
+    border-bottom: 1px solid black !important;
     font-size: 14px;
+    
 }
 .item-custom>.item,
 .item.item-custom {
@@ -553,8 +555,8 @@ w {
     left: 0;
     right: 0;
     bottom: 0;
+    height: 60px;
     height: 11%;
-    border-radius: 10px !important;
 }
 
 .itemModal.advertisement.fullmodal img {

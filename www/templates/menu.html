@@ -61,8 +61,9 @@
                 <ion-item class="item-resident" nav-clear menu-close href="#/app/aboutUs">{{ 'about_us'| translate }}</ion-item>
                 <ion-item class="item-resident" nav-clear menu-close href="#/app/whatsNew">{{'what_new' | translate}}</ion-item>
                 <ion-item class="item-resident" nav-clear menu-close href="#/app/property">{{ 'property_market'| translate }}</ion-item>
+                
                 <div ng-show="showPrivillage">
-                  <ion-item class="item-resident" nav-clear nav-clear ng-click="showResident()" style="border-top:1px solid;">{{ 'resident'| translate }}</ion-item>
+                  <ion-item class="item-resident" nav-clear ng-click="showResident()" style="border-bottom:1px solid black;border-top:1px solid black;">{{ 'resident'| translate }}</ion-item>
                   <div class="row sub-menu" ng-show="subResident">
                       <div class="col col-50 sub-menu" style="border-right:1px solid #0D6DB6;background-color:#F1F1F2">
                           <ion-item class="sub item-stable" nav-clear menu-close href="#/app/loginbilling">
