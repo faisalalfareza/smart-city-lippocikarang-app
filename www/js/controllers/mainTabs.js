@@ -22,7 +22,6 @@ angular
         talktoUs.getTalktoUs(function(response) {
             if (response != false) {
                 $scope.data = response;
-                console.log(response);
             } else {
                 $scope.data = [{ name: $filter('translate')('no_data') }];
             }
