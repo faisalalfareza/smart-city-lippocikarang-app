@@ -47,11 +47,11 @@ angular
     var loadMap = function () {
 
       var mapOptions = {
-        // center: new google.maps.LatLng(43.074174, -89.380915),
+        center: new google.maps.LatLng(-6.21462, 106.84513),
         styles: [{featureType: "all", stylers: [{saturation: -75}]}],
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControlOptions: {position: google.maps.ControlPosition.TOP_CENTER},
-        zoom: 16,
+        zoom: 0,
         zoomControl: true,
         mapTypeControl: false,
         streetViewControl: false,
