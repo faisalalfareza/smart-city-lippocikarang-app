@@ -40,22 +40,17 @@
             </div>
 
             <div style="display:block; background-color: transparent; border: 2px solid #2558aa; padding : 0 5px 0px 10px; margin : 0px 15px 0px 15px;">
-
-                <div class="row ">
-                    <div class="col col-80 ">
-                    </div>
-                    <div class="col col-20 " style="padding: 0;">
-                        <p style="color:#2558aa;margin-left:1em;margin-bottom: 0;margin-top: 0.5em;" ng-if="isRead===true " ng-click="ShowRead() ">{{'edit' | translate}}</p>
-                        <p style="color:#2558aa ;margin-left:0.5em;margin-bottom: 0;margin-top: 0.5em;" ng-if="isRead===false " ng-click="ShowRead() ">{{'save' | translate}}</p>
-                    </div>
-                </div>
                 <div class="row ">
                     <div class="col col-25 " style="margin:0;padding:0;">
                         <h5 style="font-weight: 300; ">{{ 'name' | translate }}</h5>
                     </div>
-                    <div class="col col-75 " style="margin:0;padding:0;">
-                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
+                    <div class="col col-60 " style="margin:0;padding:0;">
+                        <input class="input-profile " style="padding-top:5%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.fullname}} " ng-model="data.fullname " ng-readonly="isRead " focus-me="true ">
+                    </div>
+                    <div class="col col-15" style="padding: 0;margin: 0">
+                        <p style="color:#2558aa;margin-bottom: 0;margin-top: 0.5em;text-align: right;margin-right: 0.5em;" ng-if="isRead===true " ng-click="ShowRead() ">{{'edit' | translate}}</p>
+                        <p style="color:#2558aa ;margin-bottom: 0;margin-top: 0.5em;text-align: right;margin-right: 0.5em;" ng-if="isRead===false " ng-click="ShowRead() ">{{'save' | translate}}</p>
                     </div>
                 </div>
                 <div class="row ">
@@ -66,7 +61,7 @@
                         <!--<input class="input-profile " style="background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.gender}} "
                             ng-model="data.gender " ng-readonly="isRead ">-->
-                        <select style="margin-top:3%;" ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
+                        <select style="margin-top:6%;" ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
                                 <option value="M " ng-selected="data.gender=='M' " ng-readonly="isRead ">{{ 'male' | translate }}</option>
                                 <option value="F " ng-selected="data.gender=='F' " ng-readonly="isRead ">{{ 'female' | translate }}</option>
                         </select>
@@ -77,7 +72,7 @@
                         <h5 style="font-weight: 300; ">{{ 'address' | translate }}</h5>
                     </div>
                     <div class="col col-75 " style="margin:0;padding:0;">
-                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
+                        <input class="input-profile " style="padding-top:4%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.address}} " ng-model="data.address " ng-readonly="isRead ">
                     </div>
                 </div>
@@ -86,7 +81,7 @@
                         <h5 style="font-weight: 300; ">{{ 'phone' | translate }}</h5>
                     </div>
                     <div class="col col-75 " style="margin:0;padding:0;">
-                        <input class="input-profile " style="padding-top:3%;background-color: transparent;border-color:transparent;
+                        <input class="input-profile " style="padding-top:4%;background-color: transparent;border-color:transparent;
                             " type="text " value="{{data.phone}} " ng-model="data.phone " ng-readonly="isRead ">
                     </div>
                 </div>
