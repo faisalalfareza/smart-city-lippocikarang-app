@@ -71,16 +71,13 @@ angular
                     $scope.detail = value[0]
                 })
                 $scope.detail = response.detail[0]
-                console.log($scope.detail);
                 $scope.title = $scope.detail.title;
                 $scope.comment = response.comment;
                 $scope.galleryforums = response.galleryforums;
-                //$scope.dibawa[0] = response.galleryforums.idgalleryforums;
                 $ionicSlideBoxDelegate.update();
 
                 var gall = $stateParams.index;
                 $scope.gall = gall;
-                console.log('gall ',$scope.gall);
 
                 var keys = Object.keys($scope.galleryforums);
                 $scope.len = keys.length;
@@ -171,6 +168,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_success'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         })
                         $location.path('app/forumdetail/' + detail.idforums)
@@ -178,6 +176,7 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update_failed'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
                         $location.path('app/forumdetail/' + detail.idforums)
@@ -221,7 +220,7 @@ angular
             $scope.checking = false;
         }
 
-        $scope.deleteforum = deleteForum
+        $scope.deleteforum = deleteForum;
 
         function deleteForum(idforums) {
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." })
@@ -232,12 +231,14 @@ angular
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('delete_topic_success'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         })
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('delete_topic_failed'),
                             okText: $filter('translate')('okay'),
+                            okType: "button-stable",
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
 
@@ -277,12 +278,14 @@ angular
                                 var alertPopup = $ionicPopup.alert({
                                     title: $filter('translate')('msg_delete_success'),
                                     okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
                                     cssClass: "alertPopup"
                                 })
                             } else {
                                 var alertPopup = $ionicPopup.alert({
                                     title: $filter('translate')('msg_delete_failed'),
                                     okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
                                     cssClass: "alertPopup"
                                 });
 
@@ -315,12 +318,14 @@ angular
                                 var alertPopup = $ionicPopup.alert({
                                     title: $filter('translate')('msg_delete_success'),
                                     okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
                                     cssClass: "alertPopup"
                                 })
                             } else {
                                 var alertPopup = $ionicPopup.alert({
                                     title: $filter('translate')('msg_delete_failed'),
                                     okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
                                     cssClass: "alertPopup"
                                 });
 
@@ -334,8 +339,6 @@ angular
         $scope.itemOnTouchEnd = function(galleryforums) {
             $scope.gallery = galleryforums;
             $location.path('app/forumGallery/' + idforums);
-            console.log($location.path());
-            console.log($scope.gallery);
         }
 
         $ionicModal.fromTemplateUrl('templates/forumGallery.html', {
@@ -386,7 +389,6 @@ angular
 
                 var gall = $stateParams.index;
                 $scope.gall = gall;
-                console.log($scope.image);
             } else {
                 $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
             }
@@ -417,7 +419,6 @@ angular
 
                 var gall = $stateParams.index;
                 $scope.gall = gall;
-                console.log($scope.image);
             } else {
                 $scope.image = [{ name: $filter('translate')('there_no_gallery') }];
             }
@@ -488,7 +489,6 @@ angular
                 linkImg,
                 function(response) {
                     if (response != false) {
-                        console.log('sukses')
                         $state.go('app.forum')
                     } else {
                         $state.go('app.forum')
@@ -572,6 +572,7 @@ angular
                             var alertPopup = $ionicPopup.alert({
                                 title: $filter('translate')('forum_comment'),
                                 template: $filter('translate')('comment_success'),
+                                okType: "button-stable",
                                 cssClass: "alertPopup"
                             });
                             $ionicHistory.goBack();
@@ -580,6 +581,7 @@ angular
                             var alertPopup = $ionicPopup.alert({
                                 title: $filter('translate')('forum_comment'),
                                 template: $filter('translate')('comment_failed'),
+                                okType: "button-stable",
                                 cssClass: "alertPopup"
                             });
                             $ionicHistory.goBack();
@@ -590,6 +592,7 @@ angular
               var alertPopup = $ionicPopup.alert({
                 title: $filter('translate')('forum_comment'),
                 template: $filter('translate')('comment_failed'),
+                okType: "button-stable",
                 cssClass: "alertPopup"
               });
             }
