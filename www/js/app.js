@@ -167,6 +167,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             url: "/cctvList",
             views: {
                 'menu-content': {
+                    // templateUrl: "partials/sides/soon.html"
                     templateUrl: "partials/sides/cctvList.html",
                     controller: "cctv"
                 }
@@ -259,7 +260,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
     /* start : navigation tabs */
 
         .state('app.main', {
-            cache: true,
             url: "/main",
             views: {
                 'main-content': {
@@ -563,12 +563,11 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.loginbilling', {
-            cache: false,
+            // cache: false,
             url: "/loginbilling",
             views: {
                 'menu-content': {
-                    templateUrl: "partials/sides/loginBilling.html",
-                    controller: 'loginBilling'
+                    templateUrl: "partials/sides/soon.html"
                 }
             }
         })
@@ -634,6 +633,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             loading: 'Loading',
             loginmessage: 'Logging in',
             logoutmessage: 'Logging out',
+            soon: 'Available Soon',
             Minimum_8_character: 'Minimum 8 character',
             about: 'About',
             accomodation: 'Accomodation',
@@ -1131,6 +1131,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             loading: 'Memuat',
             loginmessage: 'Mencoba masuk',
             logoutmessage: 'Mencoba keluar',
+            soon: 'Segera Tersedia',
             Minimum_8_character: 'Minimal 8 karakter',
             about: 'Tentang',
             accomodation: 'Akomodasi',

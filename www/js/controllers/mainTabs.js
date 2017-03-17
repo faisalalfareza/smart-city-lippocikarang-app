@@ -9,7 +9,9 @@ angular
         }
         
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
-        dataWhatsNew.getDataWhatsNew(function(response) {
+        var pagesize = 5;
+
+        dataWhatsNew.getDataWhatsNew(pagesize, function(response) {
             $timeout(function() {
                 if (response != false) {
                     $scope.news = response;

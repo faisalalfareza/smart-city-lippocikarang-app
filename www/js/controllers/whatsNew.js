@@ -4,9 +4,9 @@ angular
 
     function whatsNew($scope, $ionicLoading, $ionicModal, dataWhatsNew, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+        var pagesize = 5000;
 
-
-        dataWhatsNew.getDataWhatsNew(function(response) {
+        dataWhatsNew.getDataWhatsNew(pagesize, function(response) {
             if (response != false) {
                 $scope.data = response;
                 $scope.whatsnew = [];
