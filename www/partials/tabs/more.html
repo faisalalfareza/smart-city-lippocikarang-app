@@ -1,24 +1,23 @@
 <ion-view title="{{'more' | translate}}">
     <ion-content style="margin-top:5px">
         <ul>
-            <li style="padding:22px">
+            <li style="padding:1.5em !important;position:relative;">
                 <div ng-if="Tr == 'en'" class="moreDivParent">
                     <div class="row" ng-click="klikLang()">
-                        <img class="col-5" style="width:1.5em;height: 1.5em;" src="img/rounded_flag_ina.png">
-                        <div class="col-15"></div>
-                        <div class="col-75" style="margin-left: 3em;">
+                        <img class="col-5" style="width:9%;height:9%;border:2px solid;border-radius:360px;" src="img/rounded_flag_ina.png">
+                        <div class="col-75" style="padding-left:1.3em;">
                             <p>{{'BUTTON_TEXT_EN' | translate}}</p>
                         </div>
-                        <input style="opacity: 0;margin-left: 0;margin-top:0;width: 2em;height: 2em;z-index:1;" type="checkbox">
-                        <i style="margin-top: 0em;margin-left: -2em;z-index:0;" class="col ion-arrow-down-b"></i>
+                        <input style="opacity: 0;margin-left:0;margin-top:0;width: 2em;height: 2em;z-index:1;" type="checkbox">
+                        <i style="margin-top: 0em;margin-left:-1em;z-index:0;" class="col ion-arrow-down-b"></i>
                     </div>
                     <center>
                         <div ng-show="statLang" class="moreDiv" align="left">
-                            <div style="margin-left:1.4em;">
+                            <div style="margin-left:1.7em;">
                                 <p style="margin-top:0.8em;">{{'BUTTON_TEXT_EN' | translate}}</p>
                             </div>
                             <hr style="border:0;height:0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
-                            <div style="margin-left:1.4em;" ng-click="switchLanguage('ina');showToast('You have selected Indonesian', 'short', 'bottom')">
+                            <div style="margin-left:1.7em;" ng-click="switchLanguage('ina');showToast('You have selected Indonesian', 'short', 'bottom')">
                                 <p style="margin-top:0.8em;">{{'BUTTON_TEXT_DE' | translate}}</p>
                             </div>
                         </div>
@@ -26,21 +25,20 @@
                 </div>
                 <div ng-if="Tr == 'ina'" class="moreDivParent">
                     <div class="row" ng-click="klikLang()">
-                        <img class="col-5" style="height: 1.5em;width: 1.5em;" src="img/rounded_flag_ina.png">
-                        <div class="col-15"></div>
-                        <div class="col-75" style="margin-left: 3em;">
+                        <img class="col-5" style="width:9%;height:9%;border:2px solid;border-radius:360px;" src="img/rounded_flag_ina.png">
+                        <div class="col-75" style="padding-left:1.3em;">
                             <p>{{'BUTTON_TEXT_DE' | translate}}</p>
                         </div>
                         <input style="opacity: 0;margin-left: 0;margin-top:0;width: 2em;height: 2em;z-index:1;" type="checkbox">
-                        <i style="margin-top: 0em;margin-left: -2em;z-index:0;" class="col ion-arrow-down-b"></i>
+                        <i style="margin-top: 0em;margin-left:-1em;z-index:0;" class="col ion-arrow-down-b"></i>
                     </div>
                     <center>
                         <div ng-show="statLang" class="moreDiv" align="left">
-                            <div style="margin-left:1.4em;">
+                            <div style="margin-left:1.7em;">
                                 <p style="margin-top:0.8em;">{{'BUTTON_TEXT_DE' | translate}}</p>
                             </div>
                             <hr style="border:0;height:0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
-                            <div style="margin-left:1.4em;" ng-click="switchLanguage('en');showToast('You have selected English', 'short', 'bottom')">
+                            <div style="margin-left:1.7em;" ng-click="switchLanguage('en');showToast('You have selected English', 'short', 'bottom')">
                                 <p style="margin-top:0.8em;">{{'BUTTON_TEXT_EN' | translate}}</p>
                             </div>
                         </div>
@@ -52,12 +50,12 @@
             <li class="item item-toggle">
                 <div class="row">
                     <div class="col col-20">
-                        <img src="img/ic_notification.png" width="50px">
+                        <img src="img/ic_notification.png" width="90%">
                     </div>
                     <div class="col col-80">
-                        <p style="font-size:17px; padding-left:20px">{{ 'notification' | translate }}</p>
-                        <p style="font-size:12px; padding-left:20px">{{ 'notification_info' | translate }}</p>
-                        <label class="toggle toggle-positive">
+                        <p style="font-size:90%;font-weight:700;">{{ 'notification' | translate }}</p>
+                        <p style="font-size:60%;overflow:visible;line-height:1.2em;white-space:normal;">{{ 'notification_info' | translate }}</p>
+                        <label class="toggle toggle-positive" style="transform:scale(0.7);webkit-transform:scale(0.7);margin-top:0.5em;">
                             <input type="checkbox" ng-model="status.checked" ng-change="pushNotificationChange()">
                             <div class="track">
                                 <div class="handle"></div>
@@ -70,12 +68,12 @@
             <li class="item item-toggle">
                 <div class="row">
                     <div class="col col-20">
-                        <img src="img/ic_sound.png" width="50px">
+                        <img src="img/ic_sound.png" width="90%">
                     </div>
                     <div class="col col-80">
-                        <p style="font-size:17px; padding-left:20px">{{ 'sound' | translate }}</p>
-                        <p style="font-size:12px; padding-left:20px">{{ 'sound_info' | translate }}</p>
-                        <label class="toggle toggle-positive">
+                        <p style="font-size:90%;font-weight:700;">{{ 'sound' | translate }}</p>
+                        <p style="font-size:60%;overflow:visible;line-height:1.2em;white-space:normal;">{{ 'sound_info' | translate }}</p>
+                        <label class="toggle toggle-positive" style="transform:scale(0.7);webkit-transform:scale(0.7);margin-top:0.5em;">
                             <input type="checkbox" ng-model="sound.checked" ng-change="pushNotificationChange()">
                             <div class="track">
                                 <div class="handle"></div>
