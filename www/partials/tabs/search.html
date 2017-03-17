@@ -1,4 +1,4 @@
-<ion-view view-title="{{ 'search_title'| translate }} : {{$root.searchKeyword}}">
+<ion-view view-title="{{ 'search_title'| translate }} : {{$root.searchKeyword}}" can-swipe-back="false">
     <ion-content>
         <ion-list ng-if="listTenCount">
             <a class="button-block" style="background-color:#e6e7e8;color:#000;border:0;padding:6px 10px;text-decoration:none" ng-href="#/app/searchTenants/{{name}}">
