@@ -1668,8 +1668,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                // PushNotifications();
-                // PushAdvertise();
+                PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);             
@@ -1687,13 +1687,6 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 if (sum > 0) {
                     // console.log('Anda memiliki ' + sum + ' notif baru..');
                     if ($localStorage.notifPush.status != false) {
-
-                        var alertPopup = $ionicPopup.alert({
-                            template: $filter('translate')('notification_push'),
-                            okText: $filter('translate')('okay'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
 
                         // console.log('Notif Aktif ..');
                         // console.log('playSound : ' + playSound);

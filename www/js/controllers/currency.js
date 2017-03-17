@@ -122,11 +122,14 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         $scope.curtext1 = ($scope.curtext2 * ratepat) / $scope.cur1;
 
     }
-    $scope.tesslected = function($index, selected) {
+    
+    $scope.tesslected = function($index, selected,valuebool) {
 
         $scope.countMax = 0;
+        console.log(valuebool);
         $scope.arrayselected.push($index);
         $scope.dancok = $scope.arrayselected;
+
 
         if ($scope.arrayselected.length > 2) {
             $scope.selected[$scope.arrayselected[0]] = false;
@@ -135,7 +138,6 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
             $scope.arrayselected[1] = $scope.dancok[2];
 
         }
-
 
         // for (var k = 0; k < $scope.selected.length; k++) {
         //     if ($scope.selected[k] == true) {
@@ -152,9 +154,10 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         //         $scope.selected[$scope.arrayselected[0]] = false;
         //     }
         // }
-        console.log('index dan yg di select',$index, selected);
-        console.log($scope.arrayselected[0]);
-        console.log($scope.arrayselected);
+
+        // console.log('index dan yg di select',$index, selected);
+        // console.log($scope.arrayselected[0]);
+        // console.log($scope.arrayselected);
 
 
     }
