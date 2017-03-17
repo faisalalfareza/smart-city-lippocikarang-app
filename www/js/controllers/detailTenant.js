@@ -80,6 +80,7 @@ angular
 
             $rootScope.lattenant = (datalonglat2.split(',')[0]);
             $rootScope.longtenant = (datalonglat2.split(',')[1]);
+            $rootScope.nametenant = $scope.tenantname;
             $state.go('app.tenantMap');
 
         };
@@ -604,76 +605,74 @@ angular
         };
     }
 
-    function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
+function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
 
-        //get location
-        if($rootScope.lat != undefined || $rootScope.lat != null){
-            $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
-            getduration();
-        }
+    //get location
+    $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
+    $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
+    getduration();
 
-        $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
+    //load map
+    $scope.$on('$ionicView.loaded', function() {
+        console.log("map page loaded - should only see me once???");
+    })
 
-        //load map
-        $scope.$on('$ionicView.loaded', function() {
-            console.log("map page loaded - should only see me once???");
-        })
+    $scope.$on('$ionicView.enter', function() {
 
-        $scope.$on('$ionicView.enter', function() {
-
-            console.log("Is google, google maps and our map set up?")
-            if (window.google) {
-                console.log("google is");
-                if (window.google.maps) {
-                    console.log("maps is");
-                    if ($scope.map === undefined) {
-                        console.log("loading our map now...");
-                        loadMap();
-                    }
-                    /*else{
-                    goo
-                    }*/
-                } else {
-                    console.log("maps isn't...");
-                    $scope.loadGMapstenant(); //then load the map
+        console.log("Is google, google maps and our map set up?")
+        if (window.google) {
+            console.log("google is");
+            if (window.google.maps) {
+                console.log("maps is");
+                if ($scope.map === undefined) {
+                    console.log("loading our map now...");
+                    loadMap();
                 }
+                /*else{
+                 goo
+                 }*/
             } else {
-                console.log("google isn't...");
-                $scope.loadGLoadertenant(); //then load maps, then load the map
+                console.log("maps isn't...");
+                $scope.loadGMapstenant(); //then load the map
             }
-        });
+        } else {
+            console.log("google isn't...");
+            $scope.loadGLoadertenant(); //then load maps, then load the map
+        }
+    });
 
-        function loadMap() {
-            var mapOptions = {
-                center: $scope.tujuan,
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
-                zoomControl: true,
-                mapTypeControl: false,
-                streetViewControl: false,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM,
-                    style: google.maps.ZoomControlStyle.SMALL
-                }
+    function loadMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(43.074174, -89.380915),
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
+            zoom: 16,
+            zoomControl: true,
+            mapTypeControl: false,
+            streetViewControl: false,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_TOP,
+                style: google.maps.ZoomControlStyle.SMALL
+            }
 
-            };
+        };
 
-            $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    
+        if($scope.lat != undefined){
+
             $scope.map.setCenter(new google.maps.LatLng($scope.lat, $scope.lang));
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng($scope.lat, $scope.lang),
                 map: $scope.map,
                 title: $filter('translate')('my_location')
-            });
+             });
 
-            //  set destinaiton
+        //  set destinaiton
             var directionsDisplay = new google.maps.DirectionsRenderer;
             var directionsService = new google.maps.DirectionsService;
 
-
-            alert($scope.myLatlng)
-            if ($scope.myLatlng != undefined)
             directionsDisplay.setMap($scope.map);
             directionsService.route({
                 origin: $scope.myLatlng,
@@ -682,11 +681,25 @@ angular
                 unitSystem: google.maps.UnitSystem.IMPERIAL
             }, function(response, status) {
                 if (status == 'OK') {
-                    directionsDisplay.setDirections(response);
+                directionsDisplay.setDirections(response);
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
             });
+        }else
+            {
+                var geocoder = new google.maps.Geocoder;
+                var infowindow = new google.maps.InfoWindow;
+              
+                var myLocation = new google.maps.Marker({
+                position: $scope.tujuan,
+                map: $scope.map,
+                title: $filter('translate')('my_location')
+                
+             });
+              infowindow.setContent( $rootScope.nametenant);
+              infowindow.open($scope.map, myLocation);
+             $scope.map.setCenter($scope.tujuan);
         }
 
     }
@@ -703,7 +716,8 @@ angular
             avoidTolls: false
         }, function(response, status) {
             console.log(response)
-            element = response.rows[0].elements[0]; 
+            element = response.rows[0].elements[0];
+
             $scope.mencret = element.distance.text;
             $scope.telek = element.duration.text;
             console.log('jarak = ' + $scope.mencret + "  duration" + $scope.telek);
@@ -712,7 +726,7 @@ angular
 
     $scope.loadGLoadertenant = function() {
         if (!window.google || !window.google.loader) {
-            //console.log("loading gloader");
+            console.log("loading gloader");
             $http.get("http://maps.googleapis.com/maps/api/js?key=AIzaSyAZ4939bfDLme2qmuIsfwg-ilYmsG3CeBw&libraries=places")
                 .success(function(json) {
                     var scriptElem = document.createElement('script');
@@ -722,7 +736,7 @@ angular
                 });
         } else {
             if (!window.google.maps || !window.google.maps) {
-                //console.log("no gmaps");
+                console.log("no gmaps");
                 $rootScope.loadGMaps();
             }
         }
@@ -739,3 +753,6 @@ angular
             } catch (e) {}
         }
     };
+}
+
+

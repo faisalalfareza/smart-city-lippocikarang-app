@@ -307,9 +307,14 @@ angular
         $scope.saveEditProfile = saveEditProfile;
 
         $scope.isRead = true;
+        $scope.isEdit1 = true;
         $scope.ShowRead = function () {
             //If DIV is hidden it will be visible and vice versa.
             $scope.isRead = $scope.isRead ? false : true;
+        }
+        $scope.ShowEdit = function () {
+            //If DIV is hidden it will be visible and vice versa.
+            $scope.isEdit1 = $scope.isEdit1 ? false : true;
         }
         console.log($scope.isRead);
         // console.log($localStorage.currentUser.data[0]);
@@ -415,7 +420,8 @@ angular
                     if (response != false) {
                         console.log(response);
                         var alertPopup = $ionicPopup.alert({
-                            title: $filter('translate')('msg_update_success'),
+                            title: $filter('translate')('msg_update'),
+                            template: $filter('translate')('msg_update_success'),
                             okText: $filter('translate')('okay'),
                             okType: "button-stable",
                             cssClass: "alertPopup"
@@ -423,7 +429,8 @@ angular
                         dataProfile();
                     } else {
                         var alertPopup = $ionicPopup.alert({
-                            title: $filter('translate')('msg_update_failed'),
+                            title: $filter('translate')('msg_update'),
+                            template: $filter('translate')('msg_update_failed'),
                             okText: $filter('translate')('okay'),
                             okType: "button-stable",
                             cssClass: "alertPopup"

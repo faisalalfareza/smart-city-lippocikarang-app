@@ -409,6 +409,7 @@ w {
 .item.item-resident {
     border-bottom: 1px solid black !important;
     font-size: 14px;
+    z-index: 3;
     
 }
 .item-custom>.item,
@@ -1367,4 +1368,8 @@ iframe {
   background-repeat: no-repeat;
   margin-top:3em;
   margin-bottom:0em;
+}
+
+.full-width-tab{
+  max-width:100% !important;
 }

@@ -51,7 +51,7 @@ angular
         styles: [{featureType: "all", stylers: [{saturation: -75}]}],
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControlOptions: {position: google.maps.ControlPosition.TOP_CENTER},
-        zoom: 0,
+        zoom: 5,
         zoomControl: true, 
         mapTypeControl: false,
         streetViewControl: false,
@@ -63,6 +63,8 @@ angular
       var map = new google.maps.Map(document.getElementById("map"), mapOptions);
       navigator.geolocation.getCurrentPosition(function (pos) {
         map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        map.setZoom(16)
+
 
         var myLocation = new google.maps.Marker({
           position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
