@@ -122,21 +122,32 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         $scope.curtext1 = ($scope.curtext2 * ratepat) / $scope.cur1;
 
     }
-    
-    $scope.tesslected = function($index, selected,valuebool) {
+
+    $scope.tesslected = function($index, selected, valuebool) {
 
         $scope.countMax = 0;
         console.log(valuebool);
-        $scope.arrayselected.push($index);
-        $scope.dancok = $scope.arrayselected;
 
 
-        if ($scope.arrayselected.length > 2) {
-            $scope.selected[$scope.arrayselected[0]] = false;
-            $scope.arrayselected = [];
-            $scope.arrayselected[0] = $scope.dancok[1];
-            $scope.arrayselected[1] = $scope.dancok[2];
+        if (valuebool) {
+            $scope.arrayselected.push($index);
+            $scope.dancok = $scope.arrayselected;
+            if ($scope.arrayselected.length > 2) {
+                $scope.selected[$scope.arrayselected[0]] = false;
+                $scope.arrayselected = [];
+                $scope.arrayselected[0] = $scope.dancok[1];
+                $scope.arrayselected[1] = $scope.dancok[2];
 
+            }
+        } else {
+            for (i = 0; i < $scope.arrayselected.length; i++) {
+                if ($index == $scope.arrayselected[i]) {
+                    console.log("hallo index " + $index + " hallo value" + $scope.arrayselected[i])
+                    $scope.arrayselected.splice(i, 1);
+                    console.log($scope.arrayselected);
+                }
+
+            }
         }
 
         // for (var k = 0; k < $scope.selected.length; k++) {
@@ -159,46 +170,48 @@ function currency($scope, $window, $state, $ionicHistory, currencyService, $ioni
         // console.log($scope.arrayselected[0]);
         // console.log($scope.arrayselected);
 
-
     }
 
     $scope.settomain = function() {
         $scope.selectedItems = [];
+        console.log($scope.selected);
         if ($scope.selected.length != 0) {
             for (var i = 0; i < $scope.selected.length; i++) {
                 if ($scope.selected[i] == true) {
                     $scope.selectedItems.push(i);
+                    console.log($scope.selectedItems);
+                    $scope.handlerundifined = $scope.selectedItems;
                 }
             }
 
-        
-
-        }
-        var currencymain = {
-            'time': $scope.wakut,
-            'index': $scope.selectedItems,
-            'flag1': $scope.flag[$scope.selectedItems[0]],
-            'cur1': $scope.rate[$scope.selectedItems[0]],
-            'rate1': $scope.currency[$scope.selectedItems[0]],
-            'flag2': $scope.flag[$scope.selectedItems[1]],
-            'cur2': $scope.rate[$scope.selectedItems[1]],
-            'rate2': $scope.currency[$scope.selectedItems[1]]
         }
 
-            if ( $scope.selectedItems < 2){
-               $ionicLoading.show({
-                    template: $filter('translate')('must_choice_2'),
-                    duration: 2000
-               });
-            } else {
+        console.log($scope.selectedItems.length);
+        if ($scope.selectedItems.length < 2 || $scope.selectedItems == undefined) {
+            $ionicLoading.show({
+                template: $filter('translate')('must_choice_2'),
+                duration: 2000
+            });
+        } else {
+            var currencymain = {
+                'time': $scope.wakut,
+                'index': $scope.selectedItems,
+                'flag1': $scope.flag[$scope.selectedItems[0]],
+                'cur1': $scope.rate[$scope.selectedItems[0]],
+                'rate1': $scope.currency[$scope.selectedItems[0]],
+                'flag2': $scope.flag[$scope.selectedItems[1]],
+                'cur2': $scope.rate[$scope.selectedItems[1]],
+                'rate2': $scope.currency[$scope.selectedItems[1]]
+            }
+            console.log($scope.arrayselected.lenght)
             $localStorage.currency = { currency: currencymain };
             $ionicLoading.show({
-            template: $filter('translate')('succes_set_to_main'),
-            duration: 2000
-        });
-                
-            }
-       
+                template: $filter('translate')('succes_set_to_main'),
+                duration: 2000
+            });
+
+        }
+
         /*he.then(function(res) {
             $window.location.reload();
         });*/
@@ -302,7 +315,7 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
             });
 
 
-            $scope.settomain();
+            $scope.settomain_home();
             set_localstorage();
 
         } else {
@@ -312,7 +325,7 @@ function currency_home($scope, $timeout, $window, $state, $ionicHistory, currenc
     });
 
 
-    $scope.settomain = function settomain() {
+    $scope.settomain_home = function settomain_home() {
 
         try {
 
