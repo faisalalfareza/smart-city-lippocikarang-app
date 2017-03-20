@@ -17,9 +17,14 @@ angular
                 function(response) {
                     if (response != false) {
                         $scope.detail = response;
+
+                        console.log('scope detail : ' ,$scope.detail);
+
                         $rootScope.dataContact = response[0];
                         $rootScope.idaccount = response[0].idaccount;
                         var idaccount = $rootScope.idaccount;
+
+                        console.log('root scope : ' , $rootScope.dataContact);
                         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                         ForgetPasswordService.genCode(
@@ -27,6 +32,7 @@ angular
                             response[0].type,
                             response[0].contact,
                             function(response) {
+                            if($scope.detail[0].status == true){
                                 if (response != false) {
                                     $scope.detail = response;
                                     var myPopup = $ionicPopup.show({
@@ -60,6 +66,7 @@ angular
                                                                     myPopup.show();
                                                                 }
                                                             }
+                                                            
                                                 }
                                             ]
                                         });
@@ -72,6 +79,15 @@ angular
                                         cssClass: "alertPopup"
                                     }); 
                                 }
+                            }else{
+                                var alertPopup = $ionicPopup.alert({
+                                        title: $filter('translate')('forgot_password'),
+                                        template: $filter('translate')('email_not_exist'),
+                                        okText: $filter('translate')('okay'),
+                                        okType: "button-stable",
+                                        cssClass: "alertPopup"
+                                    }); 
+                            }
                             });
                     } else {
                         var alertPopup = $ionicPopup.alert({
