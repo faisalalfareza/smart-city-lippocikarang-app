@@ -2,8 +2,10 @@ angular
     .module('livein')
     .controller('whatsNew', whatsNew);
 
-    function whatsNew($scope, $ionicLoading, $ionicModal, dataWhatsNew, $filter) {
+    function whatsNew($scope, $localStorage, $ionicLoading, $ionicModal, dataWhatsNew, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+
+        var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
         var pagesize = 5000;
 
         dataWhatsNew.getDataWhatsNew(pagesize, function(response) {
@@ -24,7 +26,7 @@ angular
                     var d = new Date(dateString.replace(' ', 'T'));
 
                     var title = data.title;
-                    var createdate = new Date(d); //$filter('date')(data.createdate, "dd/MM/yyyy");
+                    var createdate = new Date(d); 
                     var avatar = data.avatar;
                     console.log(data.createdate);
 
@@ -53,10 +55,9 @@ angular
         $scope.openModal = function(list) {
             $scope.list = list;
             $scope.modal.show();
-            console.log(list);
         };
 
-    $scope.closeModalSlider = function() {
+        $scope.closeModalSlider = function() {
             $scope.modal.hide();
         };
 

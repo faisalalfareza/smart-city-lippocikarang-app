@@ -7,7 +7,7 @@ angular
 
 function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider) {
 
-    var api_link = "http://innodev.vnetcloud.com/LiveIn/";
+    var api_link = "https://innoprod.vnetcloud.com/LiveIn/";
     var api_link_payment = "http://innodev.vnetcloud.com/liveinpayment/";
 
     // Identify app
@@ -1669,8 +1669,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                PushNotifications();
-                PushAdvertise();
+                // PushNotifications();
+                // PushAdvertise();
 
             }
         }, 5000);             

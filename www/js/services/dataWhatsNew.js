@@ -9,7 +9,7 @@ angular
 
         return service; 
 
-        function getDataWhatsNew(pagesize, callback) {
+        function getDataWhatsNew(pagesize,callback) {
             var req = {
                     method: 'GET',
                     cache: true,
