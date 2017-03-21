@@ -2,16 +2,17 @@ angular
     .module('livein')
     .controller('mainTabs', mainTabs);
 
-    function mainTabs($scope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
+    function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
         $scope.asyncAction = function() {
             // The following code simulates an async action
             return $timeout(() => angular.noop, 3000);
         }
         
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
+        var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
         var pagesize = 5;
 
-        dataWhatsNew.getDataWhatsNew(pagesize, function(response) {
+        dataWhatsNew.getDataWhatsNew(lang,pagesize, function(response) {
             $timeout(function() {
                 if (response != false) {
                     $scope.news = response;
@@ -55,7 +56,14 @@ angular
         });
 
         $scope.openModal = function(list) {
+            
             $scope.list = list;
+
+            angular.forEach($scope.list, function(obj) {
+                var data = $scope.list;
+                $scope.gallery = $scope.list.gallery;
+            });
+
             $scope.modalSlider.show();
         };
 

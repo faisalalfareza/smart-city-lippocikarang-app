@@ -17,7 +17,7 @@ angular
 
         TenantService.retriveGetTenant($stateParams.idtenant, function(response) {
             if (response != false) {
-
+                
                 angular.forEach(response.detail, function(value, key) {
                     $scope.tenantdata = value;
                 });
@@ -644,7 +644,6 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
     function loadMap() {
         var mapOptions = {
             center: new google.maps.LatLng(43.074174, -89.380915),
-            zoom: 16,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
             zoom: 16,
