@@ -548,11 +548,31 @@ angular
 
     function myhistory($scope, $stateParams, $localStorage, $ionicLoading, HistoryService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
+        $scope.data = [];
+
+        var pagenumber = 1;
         $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
 
-        HistoryService.listHistory($stateParams.idaccount, function (response) {
+        HistoryService.listHistory($stateParams.idaccount, pagenumber, function (response) {
             if (response != false) {
                 $scope.data = response;
+                //
+                    var i = 2;
+                    $scope.loadMore = function () {
+                            pagenumber = i;
+                            
+                            HistoryService.listHistory($stateParams.idaccount, pagenumber, function(response){
+                                if(response){
+                                    $scope.data = $scope.data.concat(response);
+                                } else {
+                                    console.log('no more data loaded');
+                                }
+                            });
+
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                    };
+                    //
             } else {
                 $scope.data = [{ name: $filter('translate')('no_user') }];
             }

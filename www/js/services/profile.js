@@ -20,7 +20,7 @@ angular
         function listnotif(callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber=1&pagesize=10&idaccount=' + $localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
@@ -190,10 +190,10 @@ angular
         service.listHistory = listHistory;
         return service;
 
-        function listHistory(idaccount, callback) {
+        function listHistory(idaccount, pagenumber, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber='+pagenumber+'&pagesize=10'
             }
 
             $http(req)
