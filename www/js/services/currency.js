@@ -4,12 +4,14 @@ angular
 
   function CurrencyService($http) {
     var service = {};
+
     service.currencylist = currencylist;
+
     return service;
 
     function currencylist(callback) {
       var req = {
-        method: 'GET',
+          method: 'GET',
           url: 'http://api.fixer.io/latest?base=IDR'
       }
 

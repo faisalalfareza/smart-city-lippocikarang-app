@@ -21,6 +21,7 @@ angular
                 }
             }, 1000);
         });
+        
         talktoUs.getTalktoUs(function(response) {
             if (response != false) {
                 $scope.data = response;
