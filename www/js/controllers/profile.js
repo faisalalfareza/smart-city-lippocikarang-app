@@ -548,7 +548,7 @@ angular
 
     function myhistory($scope, $stateParams, $localStorage, $ionicLoading, HistoryService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
-        $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
+        $scope.idaccount = $localStorage.currentUser.data[0].idaccount;      
 
         HistoryService.listHistory($stateParams.idaccount, function (response) {
             if (response != false) {

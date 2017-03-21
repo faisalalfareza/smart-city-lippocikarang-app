@@ -1620,7 +1620,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filter, $localStorage, ngFB, NotifAccountService, AdvertiseService) {
 
     $rootScope.search = function(value) {
-        if ($location.path() == "/app/main") {
+        if ($location.path() == "/app/main" || $location.path() == "/app/currency") {
             $location.path('/app/search/' + value);
         } else if ($location.path() == "/app/property") {
             $location.path('/app/propertysearch/' + value + '/');
@@ -1671,8 +1671,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                // PushNotifications();
-                // PushAdvertise();
+                PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);             
