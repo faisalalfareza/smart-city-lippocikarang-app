@@ -41,7 +41,7 @@ angular
         countnotif();
 
         function countnotif() {
-            Notification.listnotif(
+            Notification.totalnotif(
                 function (response) {
                     if (response != false) {
                         $scope.listnotifUser = response;
@@ -119,11 +119,32 @@ angular
 
         function listnotifService() {
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-            Notification.listnotif(
-                function (response) {
+            $scope.listnotifUser = [];
+
+            var pagenumber = 1;
+            Notification.listnotif(pagenumber, function(response) {
                     if (response != false) {
-                        $scope.listnotifUser = [];
                         $scope.listnotifUser = response;
+                        console.log(pagenumber);
+                        //
+                        var i = 2;
+                        var a = 0;
+                        $scope.loadNotif = function () {
+                                pagenumber = i;
+                                Notification.listnotif(pagenumber, function(response){
+                                console.log(response.idnotif);
+                                    if(response[a].idnotif != 'undefined'){
+                                        $scope.listnotifUser = $scope.listnotifUser.concat(response);
+                                    } else {
+                                        alert('no more data loaded');
+                                    }
+                                });
+
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                                i++;
+                                a++;
+                        };
+                        //
 
                     } else {
                         $scope.listnotifUser = { name: $filter('translate')('failed_get_data') };
