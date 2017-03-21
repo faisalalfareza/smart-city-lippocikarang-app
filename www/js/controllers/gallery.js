@@ -28,6 +28,7 @@ angular
         listGallery.getlistGallery(function(response) {
             $timeout(function(){           
                 var gall = $stateParams.index;
+                console.log(gall);
                 if (response != false) {
                     $scope.image = response;
                     
@@ -35,14 +36,12 @@ angular
                     $scope.len = keys.length;
                     
                     $scope.gall = gall;
-                    console.log($scope.gall);
                     $ionicSlideBoxDelegate.update();
-                    //
+
                     var i = 1;
                     $scope.image.forEach(function(itemfile, indexfile, arrfile) {
                         $scope.image[indexfile].number = i++;
                     });
-                    console.log('image e bor :', $scope.image);
                     
                 } else {
                     $scope.image = [{ name: $filter('translate')('there_no_gallery') }];

@@ -8,7 +8,7 @@ angular
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
         var pagesize = 5000;
 
-        dataWhatsNew.getDataWhatsNew(pagesize, function(response) {
+        dataWhatsNew.getDataWhatsNew(lang,pagesize, function(response) {
             if (response != false) {
                 $scope.data = response;
                 $scope.whatsnew = [];

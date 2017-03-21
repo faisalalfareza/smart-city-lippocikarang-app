@@ -12,16 +12,14 @@
                 <hr style="border-color: 0.5px solid #0081c9;">
                 <p style="font-size:10px;font-weight:700;">{{list.createdate | date : 'dd MMM yyyy'}}</p>
             </div>
-
-            <!--<img ng-src="{{list.avatar}}" style="width:100vw;" ng-click="closeModal()" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25)"/>-->
-
+            
             <ion-slide-box auto-play="true" show-pager="false" slide-interval="3000" on-slide-changed="slideChanged(index)" style="height:auto;padding:0;margin:0;position:relative;">
-                <ion-slide class="slider-slide-image" ng-click="openModal(list)" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
+                <ion-slide class="slider-slide-image" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
                     <img ng-src="{{list.avatar}}" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                 </ion-slide>
-                <ion-slide class="slider-slide-image" ng-click="openModal(list)" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
-                    <img ng-src="{{list.avatar}}" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
-                </ion-slide>
+                <ion-slide class="slider-slide-image" ng-repeat="image in gallery" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
+                    <img ng-src="{{image.avatar}}" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                </ion-slide>                
             </ion-slide-box>
 
             <div style="margin: -1px;padding: 0px 16px 16px 16px;font-size:12px;font-weight:300;margin-top:1em;margin-bottom:5em !important;width:100%;line-height:1.1em;border:none;" ng-bind-html="list.description"></div>

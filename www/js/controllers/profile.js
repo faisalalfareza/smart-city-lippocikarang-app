@@ -570,14 +570,13 @@ angular
     function myhistory($scope, $stateParams, $localStorage, $ionicLoading, HistoryService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
         $scope.data = [];
-
         var pagenumber = 1;
         $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
 
         HistoryService.listHistory($stateParams.idaccount, pagenumber, function (response) {
             if (response != false) {
                 $scope.data = response;
-                //
+
                     var i = 2;
                     $scope.loadMore = function () {
                             pagenumber = i;
