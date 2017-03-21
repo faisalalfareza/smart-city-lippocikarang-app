@@ -200,7 +200,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.forum', {
-            cache: false,
+            //cache: false,
             url: "/forum",
             views: {
                 'menu-content': {

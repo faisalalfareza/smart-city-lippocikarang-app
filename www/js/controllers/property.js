@@ -13,16 +13,41 @@ angular
 
         function listProperty() {
             $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
+            $scope.data = [];
 
-            PropertyService.listproperty($stateParams.status, function(response) {
+            var pagenumber = 1;
+            PropertyService.listproperty($stateParams.status, pagenumber, function(response) {
                 if (response != false) {
                     $scope.data = response;
+                    
+                    //
+                    var i = 2;
+                    $scope.loadMore = function () {
+                        //for(var i = 2; i < $scope.data.length;i++){
+                        //a = $scope.data.length / 10;
+                        //console.log(a);
+                            pagenumber = i;
+                            
+                            PropertyService.listproperty($stateParams.status, pagenumber, function(response){
+                                if(response){
+                                    $scope.data = $scope.data.concat(response);
+                                } else {
+                                    console.log('no more data loaded');
+                                }
+                            });
+
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                    };
+                    //
+
                     $scope.favorites = false;
                 } else {
                     $scope.data = [{ name: $filter('translate')('no_property') }];
                 }
                 $ionicLoading.hide();
             });
+            console.log('data : ',$scope.data);
             PropertyService.propertycategory(function(response) {
                 if (response != false) {
                     $scope.category = response;
