@@ -92,15 +92,42 @@ angular
 
         });
 
+        $scope.detailTenants = [];
+
+        var pagenumber = 1;
         //tenants
-        searchService.searchingTenants($stateParams.name, function(response) {
+        searchService.searchingTenants($stateParams.name, pagenumber, function(response) {
+            searchService.tenantTotal($stateParams.name, function(total) {
+                $scope.dt = total;
+                $scope.lengthTenants = $scope.dt.length;
+                console.log($scope.lengthTenants);
+            })
             if (response != false) {
-                $timeout(function(){ 
+                //$timeout(function(){ 
                     $scope.detailTenants = response;
-                    $scope.lengthTenants = $scope.detailTenants.length;
+                    //$scope.lengthTenants = $scope.detailTenants.length;
                     $scope.name = $stateParams.name;
                     $scope.page = 1;
-                },1000);
+                //},1000);
+
+                var i = 2;
+                    $scope.loadTenant = function () {
+                        //for(var i = 2; i < $scope.data.length;i++){
+                        //a = $scope.data.length / 10;
+                        //console.log(a);
+                            pagenumber = i;
+                            
+                            searchService.searchingTenants($stateParams.name, pagenumber, function(response){
+                                if(response){
+                                    $scope.detailTenants = $scope.detailTenants.concat(response);
+                                } else {
+                                    console.log('no more data loaded');
+                                }
+                            });
+
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                    };
                 
             } else {
                 console.log('error');
@@ -110,12 +137,38 @@ angular
         });
 
 
+        $scope.detailProperty = [];
+
+        var pagenumberpro = 1;
         //property
-        searchService.searchingProperty($stateParams.name, function(response) {
+        searchService.searchingProperty($stateParams.name, pagenumberpro, function(response) {
+
+            searchService.propertyTotal($stateParams.name, function(total) {
+                $scope.dp = total;
+                $scope.lengthProperty = $scope.dp.length;
+                console.log($scope.lengthTenants);
+            })
+            
             if (response != false) {
                 $scope.detailProperty = response;
-                $scope.name = $stateParams.name;
-                $scope.lengthProperty = $scope.detailProperty.length;
+                $scope.name = $stateParams.name;      
+
+                var i = 2;
+                    $scope.loadPro = function () {
+                            pagenumberpro = i;
+                            
+                            searchService.searchingProperty($stateParams.name, pagenumberpro, function(response){
+                                if(response){
+                                    $scope.detailProperty = $scope.detailProperty.concat(response);
+                                } else {
+                                    console.log('no more data loaded');
+                                }
+                            });
+
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                    };
+
             } else {
                 console.log('error');
             }

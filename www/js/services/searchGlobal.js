@@ -7,7 +7,9 @@ angular
 
         service.searching = searching;
         service.searchingTenants = searchingTenants;
+        service.tenantTotal = tenantTotal;
         service.searchingProperty = searchingProperty;
+        service.propertyTotal = propertyTotal;
         service.searchingDiscount = searchingDiscount;
         service.searchingGallery = searchingGallery;
         service.searchingNews = searchingNews;
@@ -31,10 +33,10 @@ angular
                 });
         }
 
-        function searchingTenants(name, callback) {
+        function searchingTenants(name, pagenumber, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/tenant/?action=listalltenant&pagenumber=1&pagesize=1000&keyword=%25'+ name +'%25',
+                url: $filter('translate')('apilink') + 'api/tenant/?action=listalltenant&pagenumber='+pagenumber+'&pagesize=10&keyword=%25'+ name +'%25',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -47,11 +49,27 @@ angular
                     callback(false);
                 });
         }
+        function tenantTotal(name,callback){
+            var total = {
+                method: 'GET',
+                url: $filter('translate')('apilink') + 'api/tenant/?action=listalltenant&pagenumber=1&pagesize=1000&keyword=%25'+ name +'%25',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+            $http(total)
+                .success(function (total) {
+                    callback(total);
+                })
+                .error(function () {
+                    callback(false);
+                });
+        }
 
-        function searchingProperty(name, callback) {
+        function searchingProperty(name, pagenumberpro, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name + '%25&idaccount=' + $localStorage.currentUser.data[0].idaccount,
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber='+pagenumberpro+'&pagesize=10&status=&keyword=%25' + name + '%25&idaccount=' + $localStorage.currentUser.data[0].idaccount,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -59,6 +77,22 @@ angular
             $http(req)
                 .success(function (response) {
                     callback(response);
+                })
+                .error(function () {
+                    callback(false);
+                });
+        }
+        function propertyTotal(name, callback) {
+            var total = {
+                method: 'GET',
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name + '%25&idaccount=' + $localStorage.currentUser.data[0].idaccount,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+            $http(total)
+                .success(function (total) {
+                    callback(total);
                 })
                 .error(function () {
                     callback(false);
