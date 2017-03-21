@@ -1,4 +1,4 @@
-<ion-view view-title="{{'property_market' | translate}}">
+<ion-view view-title="{{'property_market' | translate}}" cache-view="false">
     <ion-nav-bar class="bar bar-positive bar-custom" style="background-color: #0081c9;">
       <ion-nav-back-button class="button-icon">
         <i class="ion-chevron-left"></i>
@@ -49,5 +49,6 @@
                 </div>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

@@ -14,10 +14,10 @@ angular
 
         return service;
 
-        function listproperty(status, callback) {
+        function listproperty(status, pagenumber, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Property/?action=listbycategory&idcategory=39&pagenumber=1&pagesize=1000&status='+status+'&idaccount='+$localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Property/?action=listbycategory&idcategory=39&pagenumber='+pagenumber+'&pagesize=10&status='+status+'&idaccount='+$localStorage.currentUser.data[0].idaccount
             }
             $http(req)
                 .success(function (response) {
