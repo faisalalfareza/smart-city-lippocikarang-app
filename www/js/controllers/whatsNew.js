@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('whatsNew', whatsNew);
 
-    function whatsNew($scope, $localStorage, $ionicLoading, $ionicModal, dataWhatsNew, $filter) {
+    function whatsNew($scope, $localStorage, $ionicLoading, $ionicModal, dataWhatsNew, $filter, $ionicSlideBoxDelegate) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
@@ -21,6 +21,7 @@ angular
                     var status = data.status;
                     var idnews = data.idnews;
                     var description = data.description;
+                    var gallery = data.gallery;
                     
                     dateString = data.createdate;
                     var d = new Date(dateString.replace(' ', 'T'));
@@ -28,12 +29,12 @@ angular
                     var title = data.title;
                     var createdate = new Date(d); 
                     var avatar = data.avatar;
-                    console.log(data.createdate);
 
                     $scope.whatsnew.push({
                         'status': status,
                         'idnews': idnews,
                         'description': description,
+                        'gallery': gallery,
 
                         'title': title,
                         'createdate': createdate,
@@ -53,8 +54,15 @@ angular
         });
 
         $scope.openModal = function(list) {
-            $scope.list = list;
-            $scope.modal.show();
+            $scope.list = list; 
+
+            if(list.gallery == '') {
+                $scope.showGallery = false;
+            } else {
+                $scope.showGallery = true;
+                $scope.gallery = list.gallery;
+            }
+            $scope.modal.show();  
         };
 
         $scope.closeModalSlider = function() {
