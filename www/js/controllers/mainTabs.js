@@ -20,7 +20,7 @@ angular
                 } else {
                     $scope.news = [{ name: $filter('translate')('no_news') }];
                 }
-            }, 1000);
+            }, 500);
         });
         
         talktoUs.getTalktoUs(function(response) {
@@ -56,14 +56,11 @@ angular
         });
 
         $scope.openModal = function(list) {
-            
-            $scope.list = list;
-
-            angular.forEach($scope.list, function(obj) {
-                var data = $scope.list;
-                $scope.gallery = $scope.list.gallery;
-            });
-
+            $timeout(function() {        
+                $scope.list = list; 
+                $scope.gallerys = list.gallery; 
+                $ionicSlideBoxDelegate.update();
+            }, 1000);
             $scope.modalSlider.show();
         };
 
