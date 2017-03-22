@@ -48,16 +48,18 @@ angular
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
         $scope.data = [];
-        
-        var pagenumber = 2;
-        var i = 2;
+        $scope.lama = [];
+        var pagenumber = 1;
+        var i = 1;
         $scope.loadForum = function () {
             console.log('hehe');
                 pagenumber = i;
                 
                 ForumService.listforum($stateParams.status, pagenumber, function(response){
                     if(response){
-                        $scope.data = $scope.data.concat(response);                        
+                        $scope.data = $scope.data.concat(response);
+                        $scope.lama = response[0].idforums;  
+                        console.log($scope.lama)                      ;
                     } else {
                         console.log('no more data loaded');
                     }
@@ -66,15 +68,20 @@ angular
                 $scope.$broadcast('scroll.infiniteScrollComplete');
                 i++;
         };
-
+        
         $scope.doRefresh = function() {
-            ForumService.listNewforum($stateParams.status, function(response) {
-                $scope.data = [];
-                $scope.data = $scope.data.concat(response);
-                console.log('lama : ' , $scope.data);
-                //Stop the ion-refresher from spinning
-                $scope.$broadcast('scroll.refreshComplete');
-            });
+            
+                ForumService.listNewforum($stateParams.status, function(response) {
+                    if($scope.lama != $scope.data[0].idforums){
+                        console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
+                        $scope.data = $scope.data.concat(response);
+
+                        $scope.$broadcast('scroll.refreshComplete');
+                    } else {
+                        console.log('tidak ada data baru');
+                        $scope.$broadcast('scroll.refreshComplete');
+                    }
+                });
         };
 
         /*ForumService.listforum($stateParams.status, pagenumber, function(response) {
@@ -87,7 +94,7 @@ angular
         })*/
     }
 
-    function forumdetail($scope,  $ionicHistory, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
+    function forumdetail($scope,  $ionicHistory, $window, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet, $cordovaImagePicker) {
         $scope.account = $localStorage.currentUser.data[0].idaccount
 
@@ -264,9 +271,10 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         })
-                        alertPopup.then(function(res) {
-                            $state.go('app.forum', {}, {reload: true});
-                        });
+                        $location.path('app/forum');
+                        //alertPopup.then(function(res) {
+                            //$state.go('app.forum', {}, {reload: true});
+                        //});
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('delete_topic_failed'),
@@ -274,14 +282,15 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
-                        alertPopup.then(function(res) {
-                            $state.go('app.forum', {}, {reload: true});
-                        });
+                        //alertPopup.then(function(res) {
+                            //$state.go('app.forum', {}, {reload: true});
+                        //});
+                        $location.path('app/forum');
                     }
                     //$location.path('app/forum')
                     //$state.go('app.forum', {}, {reload: true});
-                    $ionicLoading.hide()
                 })
+                $ionicLoading.hide()
         }
 
         $ionicModal.fromTemplateUrl('templates/modal.html', {
