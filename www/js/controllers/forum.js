@@ -45,16 +45,46 @@ angular
     }
 
     function forum($scope, $stateParams, ForumService, $ionicLoading, $filter) {
-        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
 
-        ForumService.listforum($stateParams.status, function(response) {
+        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
+        $scope.data = [];
+        
+        var pagenumber = 2;
+        var i = 2;
+        $scope.loadForum = function () {
+            console.log('hehe');
+                pagenumber = i;
+                
+                ForumService.listforum($stateParams.status, pagenumber, function(response){
+                    if(response){
+                        $scope.data = $scope.data.concat(response);                        
+                    } else {
+                        console.log('no more data loaded');
+                    }
+                });
+
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+                i++;
+        };
+
+        $scope.doRefresh = function() {
+            ForumService.listNewforum($stateParams.status, function(response) {
+                $scope.data = [];
+                $scope.data = $scope.data.concat(response);
+                console.log('lama : ' , $scope.data);
+                //Stop the ion-refresher from spinning
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        };
+
+        /*ForumService.listforum($stateParams.status, pagenumber, function(response) {
             if (response != false) {
-                $scope.data = response
+                $scope.data = response;
             } else {
                 $scope.data = [{ name: $filter('translate')('no_property') }]
             }
             $ionicLoading.hide()
-        })
+        })*/
     }
 
     function forumdetail($scope,  $ionicHistory, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
@@ -234,6 +264,9 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         })
+                        alertPopup.then(function(res) {
+                            $state.go('app.forum', {}, {reload: true});
+                        });
                     } else {
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('delete_topic_failed'),
@@ -241,9 +274,12 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
-
+                        alertPopup.then(function(res) {
+                            $state.go('app.forum', {}, {reload: true});
+                        });
                     }
-                    $location.path('app/forum')
+                    //$location.path('app/forum')
+                    //$state.go('app.forum', {}, {reload: true});
                     $ionicLoading.hide()
                 })
         }

@@ -6,6 +6,7 @@ angular
         var service = {};
         
         service.listforum = listforum;
+        service.listNewforum = listNewforum;
         service.forumdetail = forumdetail;
         service.newforum = newtopic;
         service.deleteforum = deleteforum;
@@ -17,10 +18,24 @@ angular
 
         return service;
 
-        function listforum(status, callback) {
+        function listforum(status, pagenumber, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Forums/?action=listforums&pagesize=10000&pagenumber=1'
+                url: $filter('translate')('apilink') + 'api/Forums/?action=listforums&pagesize=10&pagenumber='+pagenumber
+            }
+
+            $http(req)
+                .success(function(response) {
+                    callback(response);
+                })
+                .error(function() {
+                    callback(false);
+                });
+        }
+        function listNewforum(status, callback) {
+            var req = {
+                method: 'GET',
+                url: $filter('translate')('apilink') + 'api/Forums/?action=listforums&pagesize=10&pagenumber=1'
             }
 
             $http(req)
