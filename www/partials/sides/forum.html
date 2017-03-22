@@ -11,6 +11,7 @@
         </div>
     </ion-bar>
     <ion-content class="has-footer" style="margin-top:45px;padding-bottom:15px;">
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
             <ion-item class="item item-avatar" ng-repeat="list in data | filter : byCategory | filter : search_page | orderBy : '-createdate'" ng-href="#/app/forumdetail/{{list.idforums}}">
                 <img src="{{list.avatar}}" ng-if="list.avatar">
@@ -33,5 +34,6 @@
                 </div>
             </ion-item>
         </ion-list>
+        <ion-infinite-scroll on-infinite="loadForum()" distance="1%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
