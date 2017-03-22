@@ -48,7 +48,11 @@ angular
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
         $scope.data = [];
+        $scope.barulo = [];
         $scope.lama = [];
+        $scope.lamaloop = [];
+        $scope.baruloop = [];
+
         var pagenumber = 1;
         var i = 1;
         $scope.loadForum = function () {
@@ -59,6 +63,7 @@ angular
                     if(response){
                         $scope.data = $scope.data.concat(response);
                         $scope.lama = response[0].idforums;  
+                        $scope.lamaloop = response;
                         console.log($scope.lama)                      ;
                     } else {
                         console.log('no more data loaded');
@@ -72,12 +77,49 @@ angular
         $scope.doRefresh = function() {
             
                 ForumService.listNewforum($stateParams.status, function(response) {
-                    if($scope.lama != $scope.data[0].idforums){
+                    $scope.barulo = response[0].idforums;  
+                    $scope.baruloop = response;
+                    //console.log('lama : ' , $scope.lama , ' baru : ' , $scope.barulo);
+                    if($scope.lama != $scope.barulo){
                         console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
-                        $scope.data = $scope.data.concat(response);
+
+                        var i = 0;
+                        $scope.baruloop.forEach(function(itemlist, indexlist, arrlist) {
+                            $scope.lamaloop.forEach(function(itemfile, indexfile, arrfile) {
+                                if(arrlist[indexfile].idforums != arrfile[indexfile].idforums){
+                                    $scope.data = [];
+                                    $scope.data = $scope.data.concat($scope.baruloop);
+                                    //arrlist[indexfile];
+                                    //console.log('baru : ',arrlist);
+                                    //console.log('lama : ',arrfile);
+                                    //console.log('baru index : ',$scope.baruloop[indexfile]);
+                                } else {
+                                    console.log('tidak ada data terbaru');
+                                }
+                            });
+                        });
+                        /*
+                        $scope.datageneral.forEach(function(itemlist, indexlist, arrlist) {
+                        var status = [];
+                        source.forEach(function (itemlist, indexlist, arrlist) {
+                        fileData.forEach(function (itemfile, indexfile, arrfile) {
+                            if (arrlist[indexlist].filename === arrfile[indexfile]) {
+                            $scope.file = arrlist[indexlist].filename;
+                            $scope.storage = arrfile[indexfile];
+                            $scope.datageneral[indexlist].statusdownload = "downloaded";
+
+                            source.push(status_file + ': ' + 'downloaded');
+                            //status.push(filename + 'downloaded');
+                            }
+                            ;
+                        });
+                        });
+                        */
+                        //console.log($scope.data);
 
                         $scope.$broadcast('scroll.refreshComplete');
                     } else {
+                        console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
                         console.log('tidak ada data baru');
                         $scope.$broadcast('scroll.refreshComplete');
                     }
@@ -401,6 +443,26 @@ angular
             if (index == 1) $scope.omodal1.hide();
             else $scope.omodal2.hide();
         }
+
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.omodal1.remove();
+            $scope.omodal2.remove();
+            //if (index == 1) $scope.omodal1.remove();
+            //else $scope.omodal2.remove();
+        });
+        // Execute action on hide modal
+        $scope.$on('modal.hide', function() {
+            // Execute action
+        });
+        // Execute action on remove modal
+        $scope.$on('modal.removed', function() {
+            // Execute action
+        });
+        $scope.$on('modal.shown', function() {
+            console.log('Modal is shown!');
+        });
+
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
         };
