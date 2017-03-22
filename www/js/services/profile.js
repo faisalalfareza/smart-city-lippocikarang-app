@@ -9,6 +9,7 @@ angular
         var service = {};
 
         service.listnotif = listnotif;
+        service.totalnotif = totalnotif;
         service.deleteNotif = deleteNotif;
         service.detailNotif = detailNotif;
         service.updateNotif = updateNotif;
@@ -17,7 +18,20 @@ angular
 
         return service;
 
-        function listnotif(callback) {
+        function listnotif(pagenumbernotif,callback) {
+            var req = {
+                method: 'GET',
+                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber='+pagenumbernotif+'&pagesize=10&idaccount=' + $localStorage.currentUser.data[0].idaccount
+            }
+            $http(req)
+                .success(function (response) {
+                    callback(response);
+                })
+                .error(function () {
+                    callback(false);
+                });
+        }
+        function totalnotif(callback) {
             var req = {
                 method: 'GET',
                 url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber=1&pagesize=1000&idaccount=' + $localStorage.currentUser.data[0].idaccount
@@ -190,10 +204,10 @@ angular
         service.listHistory = listHistory;
         return service;
 
-        function listHistory(idaccount, callback) {
+        function listHistory(idaccount, pagenumber, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/History/?action=listhistory&idaccount=' + idaccount + '&pagenumber='+pagenumber+'&pagesize=10'
             }
 
             $http(req)
