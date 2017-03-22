@@ -1671,8 +1671,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
-                // PushNotifications();
-                // PushAdvertise();
+                PushNotifications();
+                PushAdvertise();
 
             }
         }, 5000);             
@@ -1701,10 +1701,10 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                             badge: sum
                         });
                         window.plugin.notification.local.on("trigger", function(notification) {
-                            console.log('Success with ' + notification);
+                            // console.log('Success with ' + notification);
                         });
                     } else {
-                        console.log('Notif Nonaktif ..');
+                        // console.log('Notif Nonaktif ..');
                     }
                 } else {
                     // console.log('Tidak ada notif baru ..');
@@ -1717,7 +1717,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 var sum = response;
 
                 if (sum > 0) {
-                    console.log('Anda memiliki ' + sum + ' ads baru..');
+                    //console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
                     // console.log('Tidak ada ads baru ..');

@@ -59,10 +59,10 @@ angular
             $http(req)
                 .success(function(response) {
                     if ($localStorage.notifBefore != null) {
-                        console.log('Ntf response : ' + response[0].total);
-                        console.log('Ntf localstr : ' + $localStorage.notifBefore.sum);
+                        // console.log('Ntf response : ' + response[0].total);
+                        // console.log('Ntf localstr : ' + $localStorage.notifBefore.sum);
                         var count = response[0].total - $localStorage.notifBefore.sum;
-                        console.log('Ntf count : ' + count);
+                        // console.log('Ntf count : ' + count);
 
                         $localStorage.notifBefore = { sum : response[0].total };
                         callback(count);
