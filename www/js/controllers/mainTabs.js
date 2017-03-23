@@ -29,7 +29,7 @@ angular
                         var gallery = data.gallery;
                         
                         if(data.createdate!=null) {
-                            var d = new Date(dateString.replace(' ', 'T'));
+                            var d = new Date(data.createdate.replace(' ', 'T'));
                             var createdate = new Date(d); 
                         } else {
                             var createdate = ""; 
