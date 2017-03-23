@@ -6,9 +6,11 @@ angular
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
-        var pagesize = 5000;
 
-        dataWhatsNew.getDataWhatsNew(lang,pagesize, function(response) {
+        $scope.whatsnew = [];
+        var pagenumber = 1;
+
+        dataWhatsNew.getDataWhatsNewSide(pagenumber,lang, function(response) {
             if (response != false) {
                 $scope.data = response;
                 $scope.whatsnew = [];
@@ -41,6 +43,27 @@ angular
                         'avatar': avatar
                     });
                 });            
+                //if($scope.hehe == null){
+                     //
+                    var i = 2;
+                    $scope.loadMore = function () {
+                            pagenumber = i;
+                            
+                            dataWhatsNew.getDataWhatsNewSide(pagenumber,lang, function(response) {
+                                if(response){
+                                    $scope.whatsnew = $scope.whatsnew.concat(response);
+                                    
+                                } else {
+                                    console.log('no more data loaded');
+                                    
+                                }
+                            });
+
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                    };
+                    //
+                //}
             } else {
                 $scope.data = [{ name: $filter('translate')('no_news') }];
             }
