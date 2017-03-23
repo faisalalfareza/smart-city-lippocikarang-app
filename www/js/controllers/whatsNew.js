@@ -6,9 +6,9 @@ angular
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
-        var pagesize = 5000;
+        var pagesize = 10000;
 
-        dataWhatsNew.getDataWhatsNew(lang,pagesize, function(response) {
+        dataWhatsNew.getDataWhatsNew(lang, pagesize, function(response) {
             if (response != false) {
                 $scope.data = response;
                 $scope.whatsnew = [];
@@ -23,11 +23,14 @@ angular
                     var description = data.description;
                     var gallery = data.gallery;
                     
-                    dateString = data.createdate;
-                    var d = new Date(dateString.replace(' ', 'T'));
+                    if(data.createdate!=null) {
+                        var d = new Date(dateString.replace(' ', 'T'));
+                        var createdate = new Date(d); 
+                    } else {
+                        var createdate = ""; 
+                    }
 
                     var title = data.title;
-                    var createdate = new Date(d); 
                     var avatar = data.avatar;
 
                     $scope.whatsnew.push({
@@ -35,7 +38,6 @@ angular
                         'idnews': idnews,
                         'description': description,
                         'gallery': gallery,
-
                         'title': title,
                         'createdate': createdate,
                         'avatar': avatar
