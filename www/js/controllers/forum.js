@@ -89,34 +89,32 @@ angular
                                 if(arrlist[indexfile].idforums != arrfile[indexfile].idforums){
                                     $scope.data = [];
                                     $scope.data = $scope.data.concat($scope.baruloop);
-                                    //arrlist[indexfile];
-                                    //console.log('baru : ',arrlist);
-                                    //console.log('lama : ',arrfile);
-                                    //console.log('baru index : ',$scope.baruloop[indexfile]);
+                                   //
+                                    var i = 2;
+                                    $scope.loadForum = function () {
+                                        console.log('hehe');
+                                            var pagenumber = i;
+                                            
+                                            ForumService.listforum($stateParams.status, pagenumber, function(response){
+                                                if(response){
+                                                    $scope.data = $scope.data.concat(response);
+                                                    $scope.lama = response[0].idforums;  
+                                                    $scope.lamaloop = response;
+                                                    console.log($scope.lama)                      ;
+                                                } else {
+                                                    console.log('no more data loaded');
+                                                }
+                                            });
+
+                                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                                            i++;
+                                    };
                                 } else {
                                     console.log('tidak ada data terbaru');
                                 }
                             });
                         });
-                        /*
-                        $scope.datageneral.forEach(function(itemlist, indexlist, arrlist) {
-                        var status = [];
-                        source.forEach(function (itemlist, indexlist, arrlist) {
-                        fileData.forEach(function (itemfile, indexfile, arrfile) {
-                            if (arrlist[indexlist].filename === arrfile[indexfile]) {
-                            $scope.file = arrlist[indexlist].filename;
-                            $scope.storage = arrfile[indexfile];
-                            $scope.datageneral[indexlist].statusdownload = "downloaded";
-
-                            source.push(status_file + ': ' + 'downloaded');
-                            //status.push(filename + 'downloaded');
-                            }
-                            ;
-                        });
-                        });
-                        */
-                        //console.log($scope.data);
-
+                     
                         $scope.$broadcast('scroll.refreshComplete');
                     } else {
                         console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
@@ -313,9 +311,11 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         })
-                        $location.path('app/forum');
                         //alertPopup.then(function(res) {
-                            //$state.go('app.forum', {}, {reload: true});
+                            /*$state.go('app.forum', {}, {reload: true});
+                            $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });*/
                         //});
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -325,11 +325,18 @@ angular
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
                         //alertPopup.then(function(res) {
-                            //$state.go('app.forum', {}, {reload: true});
+                            /*$state.go('app.forum', {}, {reload: true});
+                            $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });*/
                         //});
-                        $location.path('app/forum');
+                        //$location.path('app/forum');
+                        
                     }
                     //$location.path('app/forum')
+                    $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });
                     //$state.go('app.forum', {}, {reload: true});
                 })
                 $ionicLoading.hide()
@@ -437,30 +444,32 @@ angular
         })
         $scope.openModal = function(index) {
             if (index == 1) $scope.omodal1.show();
-            else $scope.omodal2.show();
+            else if (index == 2) $scope.omodal2.show();
         }
         $scope.closeModal = function(index) {
             if (index == 1) $scope.omodal1.hide();
-            else $scope.omodal2.hide();
+            else if (index == 2) $scope.omodal2.show();
         }
 
         // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function(index) {
             $scope.omodal1.remove();
-            $scope.omodal2.remove();
-            //if (index == 1) $scope.omodal1.remove();
-            //else $scope.omodal2.remove();
+            if (index == 2) {
+                $scope.omodal2.remove();
+            }
+            //$scope.omodal2.remove();
         });
-        // Execute action on hide modal
-        $scope.$on('modal.hide', function() {
-            // Execute action
-        });
-        // Execute action on remove modal
-        $scope.$on('modal.removed', function() {
-            // Execute action
-        });
+
         $scope.$on('modal.shown', function() {
             console.log('Modal is shown!');
+        });
+        $scope.$on('modal.hide', function() {
+            // Execute action
+            console.log('Modal hide');
+        });
+        $scope.$on('modal.removed', function() {
+            // Execute action
+            console.log('Modal destroy');
         });
 
         $scope.next = function() {
