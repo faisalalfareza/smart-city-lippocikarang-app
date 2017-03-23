@@ -25,11 +25,14 @@ angular
                     var description = data.description;
                     var gallery = data.gallery;
                     
-                    dateString = data.createdate;
-                    var d = new Date(dateString.replace(' ', 'T'));
+                    if(data.createdate!=null) {
+                        var d = new Date(data.createdate.replace(' ', 'T'));
+                        var createdate = new Date(d); 
+                    } else {
+                        var createdate = null; 
+                    }
 
                     var title = data.title;
-                    var createdate = new Date(d); 
                     var avatar = data.avatar;
 
                     $scope.whatsnew.push({
@@ -37,7 +40,6 @@ angular
                         'idnews': idnews,
                         'description': description,
                         'gallery': gallery,
-
                         'title': title,
                         'createdate': createdate,
                         'avatar': avatar
