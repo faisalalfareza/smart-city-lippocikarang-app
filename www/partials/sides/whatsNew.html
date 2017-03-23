@@ -3,7 +3,8 @@
        <div class="list card" ng-repeat="list in whatsnew | filter:search_page" ng-click="openModal(list)" style="border-radius:10px 10px 0px 0px">
            <div class="item">
                <h2>{{list.title}}</h2>
-               <p>{{list.createdate | date : 'dd MMM yyyy'}}</p>
+               <p ng-if="list.createdate==null" style="height:20px">&nbsp;</p>
+               <p ng-if="list.createdate!=null">{{list.createdate | date : 'dd MMM yyyy'}}</p>
            </div>
            <div class="center-cropped-wa" style="margin-bottom: 0;">
                <img src="{{list.avatar}}" style="width:100vw;margin-bottom: -1em;"> 

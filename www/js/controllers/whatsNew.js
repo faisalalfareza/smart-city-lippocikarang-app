@@ -27,7 +27,7 @@ angular
                         var d = new Date(data.createdate.replace(' ', 'T'));
                         var createdate = new Date(d); 
                     } else {
-                        var createdate = ""; 
+                        var createdate = null; 
                     }
 
                     var title = data.title;
