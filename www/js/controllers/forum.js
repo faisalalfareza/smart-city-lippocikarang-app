@@ -444,7 +444,7 @@ angular
         })
         $scope.openModal = function(index) {
             if (index == 1) $scope.omodal1.show();
-            else if (index == 2) $scope.omodal2.show();
+            else if (index == 2) $scope.omodal2.hide();
         }
         $scope.closeModal = function(index) {
             if (index == 1) $scope.omodal1.hide();
@@ -453,11 +453,7 @@ angular
 
         // Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function(index) {
-            $scope.omodal1.remove();
-            if (index == 2) {
-                $scope.omodal2.remove();
-            }
-            //$scope.omodal2.remove();
+            
         });
 
         $scope.$on('modal.shown', function() {
@@ -469,7 +465,7 @@ angular
         });
         $scope.$on('modal.removed', function() {
             // Execute action
-            console.log('Modal destroy');
+            console.log('Modal dihapus');
         });
 
         $scope.next = function() {
