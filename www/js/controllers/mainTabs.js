@@ -10,9 +10,9 @@ angular
         
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
-        var pagesize = 5000;
+        var pagesize = 5;
 
-        dataWhatsNew.getDataWhatsNew(lang,pagesize, function(response) {
+        dataWhatsNew.getDataWhatsNew(lang, pagesize, function(response) {
             $timeout(function() {
                 if (response != false) {
                     $scope.data = response;
@@ -28,11 +28,14 @@ angular
                         var description = data.description;
                         var gallery = data.gallery;
                         
-                        dateString = data.createdate;
-                        var d = new Date(dateString.replace(' ', 'T'));
+                        if(data.createdate!=null) {
+                            var d = new Date(dateString.replace(' ', 'T'));
+                            var createdate = new Date(d); 
+                        } else {
+                            var createdate = ""; 
+                        }
 
                         var title = data.title;
-                        var createdate = new Date(d); 
                         var avatar = data.avatar;
 
                         $scope.news.push({
@@ -40,7 +43,6 @@ angular
                             'idnews': idnews,
                             'description': description,
                             'gallery': gallery,
-
                             'title': title,
                             'createdate': createdate,
                             'avatar': avatar
