@@ -171,15 +171,15 @@ angular
         $scope.afliates_sos = function() {
 
             appAvailability.check(
-            'ambulancesiloam1health://', // URI Scheme
+            '1health://', // URI Scheme ambulancesiloam1health
             function() {  // Success callback
-                window.open('ambulancesiloam1health://', '_system', 'location=no');
+                window.open('1health://', '_system', 'location=no');
                 // alert("ovo succes")
                 },
             function() {  
 
                 try {
-                    window.open('ambulancesiloam1health://', '_system', 'location=no');
+                    window.open('1health://', '_system', 'location=no');
                 } catch(error){
                     $scope.showConfirm;
                 }
