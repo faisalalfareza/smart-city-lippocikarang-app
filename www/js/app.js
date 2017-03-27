@@ -571,6 +571,24 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.eComplaint', {
+            url: "/eComplaint",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaint.html",
+                    controller: 'eComplaint'
+                }
+            }
+        })
+        .state('app.eComplaintList', {
+            url: "/eComplaintList",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaintList.html",
+                    controller: 'eComplaintList'
+                }
+            }
+        })
         .state('app.billing', {
             cache: false,
             url: "/billing",
@@ -614,14 +632,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 'menu-content': {
                     templateUrl: "partials/sides/publictransportation.html",
                     controller: 'publictransportation'
-                }
-            }
-        })
-         .state('app.eComplaint', {
-            url: "/eComplaint",
-            views: {
-                'menu-content': {
-                    templateUrl: "partials/sides/eComplaint.html"
                 }
             }
         });

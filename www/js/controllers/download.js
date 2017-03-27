@@ -3,7 +3,7 @@ angular
     .controller('download', download)
     .controller('detaildownload', detaildownload);
 
-    function download($window,$ionicSlideBoxDelegate,$localStorage,$ionicPlatform, $scope, $state, DownloadService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
+    function download($window,$ionicSlideBoxDelegate,$localStorage,$scope, $state, DownloadService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         if (localStorage.getItem('added_file') === null) {
           var files = ['bams.pdf','zaki.pdf'];
           localStorage.setItem('added_file', files);
