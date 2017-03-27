@@ -1375,10 +1375,12 @@ iframe {
   height: 35vh;
   background-position: center center;
   background-repeat: no-repeat;
-  margin-top:3em;
-  margin-bottom:0em;
 }
 
 .full-width-tab{
   max-width:100% !important;
+}
+
+.desc_news > p:last-child {
+    margin-bottom: 6em;
 }

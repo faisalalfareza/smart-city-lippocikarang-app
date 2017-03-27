@@ -48,7 +48,11 @@ angular
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
         $scope.data = [];
+        $scope.barulo = [];
         $scope.lama = [];
+        $scope.lamaloop = [];
+        $scope.baruloop = [];
+
         var pagenumber = 1;
         var i = 1;
         $scope.loadForum = function () {
@@ -59,6 +63,7 @@ angular
                     if(response){
                         $scope.data = $scope.data.concat(response);
                         $scope.lama = response[0].idforums;  
+                        $scope.lamaloop = response;
                         console.log($scope.lama)                      ;
                     } else {
                         console.log('no more data loaded');
@@ -72,12 +77,47 @@ angular
         $scope.doRefresh = function() {
             
                 ForumService.listNewforum($stateParams.status, function(response) {
-                    if($scope.lama != $scope.data[0].idforums){
+                    $scope.barulo = response[0].idforums;  
+                    $scope.baruloop = response;
+                    //console.log('lama : ' , $scope.lama , ' baru : ' , $scope.barulo);
+                    if($scope.lama != $scope.barulo){
                         console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
-                        $scope.data = $scope.data.concat(response);
 
+                        var i = 0;
+                        $scope.baruloop.forEach(function(itemlist, indexlist, arrlist) {
+                            $scope.lamaloop.forEach(function(itemfile, indexfile, arrfile) {
+                                if(arrlist[indexfile].idforums != arrfile[indexfile].idforums){
+                                    $scope.data = [];
+                                    $scope.data = $scope.data.concat($scope.baruloop);
+                                   //
+                                    var i = 2;
+                                    $scope.loadForum = function () {
+                                        console.log('hehe');
+                                            var pagenumber = i;
+                                            
+                                            ForumService.listforum($stateParams.status, pagenumber, function(response){
+                                                if(response){
+                                                    $scope.data = $scope.data.concat(response);
+                                                    $scope.lama = response[0].idforums;  
+                                                    $scope.lamaloop = response;
+                                                    console.log($scope.lama)                      ;
+                                                } else {
+                                                    console.log('no more data loaded');
+                                                }
+                                            });
+
+                                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                                            i++;
+                                    };
+                                } else {
+                                    console.log('tidak ada data terbaru');
+                                }
+                            });
+                        });
+                     
                         $scope.$broadcast('scroll.refreshComplete');
                     } else {
+                        console.log('lama : ' , $scope.lama , ' baru : ' , $scope.data[0].idforums);
                         console.log('tidak ada data baru');
                         $scope.$broadcast('scroll.refreshComplete');
                     }
@@ -271,9 +311,11 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         })
-                        $location.path('app/forum');
                         //alertPopup.then(function(res) {
-                            //$state.go('app.forum', {}, {reload: true});
+                            /*$state.go('app.forum', {}, {reload: true});
+                            $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });*/
                         //});
                     } else {
                         var alertPopup = $ionicPopup.alert({
@@ -283,11 +325,18 @@ angular
                             cssClass: "alertPopup"
                         }); // tetap di halaman register//muncul alert phone or email alredy exist->dari api persis
                         //alertPopup.then(function(res) {
-                            //$state.go('app.forum', {}, {reload: true});
+                            /*$state.go('app.forum', {}, {reload: true});
+                            $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });*/
                         //});
-                        $location.path('app/forum');
+                        //$location.path('app/forum');
+                        
                     }
                     //$location.path('app/forum')
+                    $ionicHistory.clearCache().then(function(){
+                                $location.path('app/forum');
+                        });
                     //$state.go('app.forum', {}, {reload: true});
                 })
                 $ionicLoading.hide()
@@ -395,12 +444,30 @@ angular
         })
         $scope.openModal = function(index) {
             if (index == 1) $scope.omodal1.show();
-            else $scope.omodal2.show();
+            else if (index == 2) $scope.omodal2.hide();
         }
         $scope.closeModal = function(index) {
             if (index == 1) $scope.omodal1.hide();
-            else $scope.omodal2.hide();
+            else if (index == 2) $scope.omodal2.show();
         }
+
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function(index) {
+            
+        });
+
+        $scope.$on('modal.shown', function() {
+            console.log('Modal is shown!');
+        });
+        $scope.$on('modal.hide', function() {
+            // Execute action
+            console.log('Modal hide');
+        });
+        $scope.$on('modal.removed', function() {
+            // Execute action
+            console.log('Modal dihapus');
+        });
+
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
         };
