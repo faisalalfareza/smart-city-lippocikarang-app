@@ -58,9 +58,10 @@ angular
         
         talktoUs.getTalktoUs(function(response) {
             if (response != false) {
-                $scope.data = response;
+                $scope.datatalk = response;
+                console.log($scope.datatalk);
             } else {
-                $scope.data = [{ name: $filter('translate')('no_data') }];
+                $scope.datatalk = [{ name: $filter('translate')('no_data') }];
             }
             $ionicLoading.hide();
         });
