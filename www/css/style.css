@@ -419,11 +419,19 @@ w {
     color: white;
     border: 0;
 }
+.item-custom.last>.item,
+.item.item-custom.last {
+   background-color: #41a5dc; 
+}
 
 .item-complex.item-custom {
     background-color: #0D6DB6;
 }
-.item-complex.item-custom .item-content {
+.item-complex.item-custom.last {
+    background-color: #41a5dc;
+}
+
+.item-complex.item-custom .item-content , .item-complex.item-custom.last .item-content {
     background-color: transparent;
 }
 
