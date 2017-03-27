@@ -23,9 +23,6 @@ angular
                     //
                     var i = 2;
                     $scope.loadMore = function () {
-                        //for(var i = 2; i < $scope.data.length;i++){
-                        //a = $scope.data.length / 10;
-                        //console.log(a);
                             pagenumber = i;
                             
                             PropertyService.listproperty($stateParams.status, pagenumber, function(response){
@@ -47,11 +44,10 @@ angular
                 }
                 $ionicLoading.hide();
             });
-            console.log('data : ',$scope.data);
+
             PropertyService.propertycategory(function(response) {
                 if (response != false) {
                     $scope.category = response;
-                    console.log($scope.category);
                     $scope.categoryData = [];
                     var a = 0;
                     angular.forEach($scope.category, function() {
@@ -69,7 +65,6 @@ angular
                         });
                         //$scope.list = $filter('translate')(categoryname);                        
                     });
-                    console.log($scope.categoryData);
 
                 } else {
                     $scope.category = [{ name: $filter('translate')('no_category') }];
@@ -273,7 +268,7 @@ angular
                 angular.forEach(response.detail, function(value, key) {
                     $scope.propertydata = value;
                 });
-                // console.log('ini propert data : ' ,$scope.propertydata);
+
             } else {
                 $scope.propertydata = [{ name: $filter('translate')('no_property') }];
             }
@@ -296,9 +291,9 @@ angular
                     PropertyService.emailProperty(bodyemail,
                         function(response) {
                             if (response != false) {
-                                console.log('sucsess');
+                                // console.log('sucsess');
                             } else {
-                                console.log('error');
+                                // console.log('error');
                             }
                             $ionicLoading.hide();
                         });

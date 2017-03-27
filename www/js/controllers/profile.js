@@ -337,8 +337,7 @@ angular
             //If DIV is hidden it will be visible and vice versa.
             $scope.isEdit1 = $scope.isEdit1 ? false : true;
         }
-        console.log($scope.isRead);
-        // console.log($localStorage.currentUser.data[0]);
+
         dataProfile();
 
         function dataProfile() {
@@ -347,6 +346,46 @@ angular
                 function (response) {
                     if (response != false) {
                         $scope.dataaccount = response.account;
+                        $scope.account = [];
+                        var a = 0;
+                        angular.forEach($scope.dataaccount, function(obj) {
+                            var b = a++;
+                            var list = $scope.dataaccount;
+                            var data = list[b];
+                            
+                            var address = data.address;
+                            var avatar = data.avatar;
+                            var createdate = data.createdate;
+                            var dateofbirth = data.dateofbirth;
+                            var email = data.email;
+                            var fullname = data.fullname;
+                            var gender = data.gender;
+                            var idaccount = data.idaccount;
+                            var privilege = data.privilege;
+                            var pscode = data.pscode;
+                            
+                            if(data.phone==null) {
+                                var phone = ""; 
+                            } else {
+                                var phone = data.phone; 
+                            }
+
+                            $scope.account.push({
+                                'address': address,
+                                'avatar': avatar,
+                                'createdate': createdate,
+                                'dateofbirth': dateofbirth,
+                                'email': email,
+                                'fullname': fullname,
+                                'gender': gender,
+                                'idaccount': idaccount,
+                                'privilege': privilege,
+                                'pscode': pscode,
+                                'phone': phone
+                            });
+
+                            console.log($scope.account);
+                        });
                     } else {
                         $scope.dataaccount = { name: $filter('translate')('failed_get_data') };
                     }
@@ -359,13 +398,10 @@ angular
 
         function saveEditProfile(user) {
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-            console.log(user);
-
             var filename = $scope.image; // File name only
 
             if (filename === null) {
                 var avatarupdate = user.avatar;
-                // user.avatar avatar lama
             } else {
                 var url = encodeURI("http://innodev.vnetcloud.com/LiveInWeb/assets/img/upload_file_avatar.php");
                 var targetPath = $scope.pathForImage($scope.image); // File for Upload
@@ -384,45 +420,7 @@ angular
                         console.log("Image upload finished");
                     });
 
-                /*
-                  alert("Upload File: " + targetPath);
-
-                  function win(r) {
-                    alert("Code = " + r.responseCode);
-                    alert("Response = " + r.response);
-                    alert("Sent = " + r.bytesSent);
-                  }
-
-                  function fail(error) {
-                    alert("upload error source " + error.source);
-                    alert("upload error target " + error.target);
-                  }
-
-                  var uri = encodeURI(url);
-
-                  var options = new FileUploadOptions();
-                  options.fileKey     = "file";
-                  options.mimeType    = "text/plain";
-                  options.fileName    = filename;
-                  options.chunkedMode = false;
-                  options.params      = { 'fileName': filename };
-
-                  var headers = {
-                    'from': 'ios-app'
-                  };
-                  options.headers = headers;
-                  var ft = new FileTransfer();
-
-                  ft.upload(targetPath, uri, win, fail, options).then(function (result) {
-                    // $scope.showAlert('Success', 'Image upload finished.');
-                    console.log("Image upload finished");
-                    alert('bisa keupload coy')
-                  });
-
-              */
-
                 var avatarupdate = "http://innodev.vnetcloud.com/LiveInWeb/assets/img/account/" + filename;
-                // var avatarupdate = "http://192.168.0.13/jihan/uploads/" + filename;
             }
 
             EditProfileService.editprofile(
@@ -439,7 +437,6 @@ angular
                 user.email,
                 function (response) {
                     if (response != false) {
-                        console.log(response);
                         var alertPopup = $ionicPopup.alert({
                             title: $filter('translate')('msg_update'),
                             template: $filter('translate')('msg_update_success'),
@@ -476,7 +473,7 @@ angular
           $scope.loadImage = function () {
             var callback = function(buttonIndex) {
               setTimeout(function() {
-                alert('button index clicked: ' + buttonIndex);
+                //alert('button index clicked: ' + buttonIndex);
               });
             };
 
@@ -488,16 +485,17 @@ angular
               winphoneEnableCancelButton: true,
               destructiveButtonLast: true
             };
+
              $cordovaActionSheet.show(options, callback).then(function (btnIndex) {
-             var type = null;
-             if (btnIndex === 1) {
-             type = Camera.PictureSourceType.PHOTOLIBRARY;
-             } else if (btnIndex === 2) {
-             type = Camera.PictureSourceType.CAMERA;
-             }
-             if (type !== null) {
-             $scope.selectPicture(type);
-             }
+                var type = null;
+                    if (btnIndex === 1) {
+                    type = Camera.PictureSourceType.PHOTOLIBRARY;
+                } else if (btnIndex === 2) {
+                    type = Camera.PictureSourceType.CAMERA;
+                }
+                if (type !== null) {
+                    $scope.selectPicture(type);
+                }
              });
           };
 
@@ -512,7 +510,6 @@ angular
             $cordovaCamera.getPicture(options).then(function (imagePath) {
                 // Grab the file name of the photo in the temporary directory
                 var currentName = imagePath.replace(/^.*[\\\/]/, '');
-                alert(currentName);
                 //Create a new name for the photo
                 var d = new Date(),
                     n = d.getTime(),

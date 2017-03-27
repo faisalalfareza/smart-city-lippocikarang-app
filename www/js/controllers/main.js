@@ -174,32 +174,30 @@ angular
             '1health://', // URI Scheme ambulancesiloam1health
             function() {  // Success callback
                 window.open('1health://', '_system', 'location=no');
-                // alert("ovo succes")
                 },
             function() {  
 
                 try {
                     window.open('1health://', '_system', 'location=no');
                 } catch(error){
-                    $scope.showConfirm;
+                    $scope.showConfirm = function() {    
+                        var confirmPopup = $ionicPopup.confirm({
+                            title: 'Ambulance Siloam 1health not installed',
+                            template: 'Do You want to download Ambulance Siloam 1health mobile apps',
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+
+                        confirmPopup.then(function(res) {
+                            if(res) {
+                                window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
+                            } else {
+                                console.log('You are not sure');
+                            }
+                        });
+                    };
                 }
-
-                $scope.showConfirm = function() {    
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: 'Ovo not installed',
-                        template: 'Do You want to download OVO mobile apps',
-                        okType: "button-stable",
-                        cssClass: "alertPopup"
-                    });
-
-                    confirmPopup.then(function(res) {
-                        if(res) {
-                            window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
-                        } else {
-                            console.log('You are not sure');
-                        }
-                    });
-                };
+    
             });
 
         }   
