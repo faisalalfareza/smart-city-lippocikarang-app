@@ -616,8 +616,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                     controller: 'publictransportation'
                 }
             }
+        })
+         .state('app.eComplaint', {
+            url: "/eComplaint",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaint.html"
+                }
+            }
         });
-
     /* end : navigation tabs */
 
     //translate
