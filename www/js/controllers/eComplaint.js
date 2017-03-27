@@ -5,7 +5,7 @@ angular
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
-        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+        //$ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         //console.log($state.status);
         eComplaintService.getToken(function(response) {
             if (response != false) {
@@ -17,34 +17,32 @@ angular
     };
 
     function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter){
-        $scope.track = 'active';
-        console.log('hallo',$scope.track);
+        $scope.generals = 'active';
+
         // general tab & property tab
-        var genTab = angular.element(document.querySelector('#tracktab'));
-        var proTab = angular.element(document.querySelector('#addtab'));
+        var genTab = angular.element(document.querySelector('#generaltab'));
+        var proTab = angular.element(document.querySelector('#propertytab'));
         genTab.addClass("active");
 
-        $scope.track = function() {
+        $scope.general = function() {
             $ionicSlideBoxDelegate.previous();
-            $scope.track = 'active';
-            $scope.add = '';
+            $scope.generals = 'active';
+            $scope.propertys = '';
         };
-        $scope.add = function() {
+        $scope.property = function() {
             $ionicSlideBoxDelegate.next();
-            $scope.add = 'active';
-            $scope.track = '';
+            $scope.propertys = 'active';
+            $scope.generals = '';
         };
         // Called each time the slide changes
         $scope.slideChanged = function(index) {
             $scope.slideIndex = index;
             if ($scope.slideIndex == 1) {
-                $scope.track = '';
-                $scope.add = 'active';
+                $scope.generals = '';
+                $scope.propertys = 'active';
             } else {
-                $scope.add = '';
-                $scope.track = 'active';
+                $scope.propertys = '';
+                $scope.generals = 'active';
             }
         };
-        
-        console.log('hallo track',$scope.add);
     };

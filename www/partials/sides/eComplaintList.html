@@ -1,100 +1,12 @@
-<ion-view title="eComplaint List">
+<ion-view title="eComplaint">
 
   <div class="tabs-top tabs-background-light tabs-color-positive">
     <div class="tabs">
-      <a class="tab-item {{ track }} full-width-tab " style="font-weight:500;border-bottom:{{track == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-right:{{track == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}}" ng-click="track()" id="tracktab" ng-show="slideIndex = 1">
-        <i style="font-weight:500;letter-spacing:-0.5px;color:{{track == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'general' | translate }}</i>
+      <a class="tab-item {{ generals }} full-width-tab " style="font-weight:500;border-bottom:{{generals == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-right:{{generals == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}}" ng-click="general()" id="generaltab" ng-show="slideIndex = 1">
+        <i style="font-weight:500;letter-spacing:-0.5px;color:{{generals == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'track' | translate }}</i>
       </a>
-      <a class="tab-item {{ add }} full-width-tab" style="font-weight:500;border-bottom:{{add == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-left:{{add == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}};" ng-click="add()" id="addtab" ng-show="slideIndex = 2">
-        <i style="font-weight:500;letter-spacing:-0.5px;color:{{add == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'category_property' | translate }}</i>
+      <a class="tab-item {{ propertys }} full-width-tab" style="font-weight:500;border-bottom:{{propertys == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-left:{{propertys == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}};" ng-click="property()" id="propertytab" ng-show="slideIndex = 2">
+        <i style="font-weight:500;letter-spacing:-0.5px;color:{{propertys == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'add_new' | translate }}</i>
       </a>
     </div>
   </div>
-
-  <ion-content class="has-footer">
-
-    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
-
-      <ion-slide>
-        <!-- Start : Saturday & Sunday -->
-        <div class="row" style="height:auto">
-          <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
-            <div class="row">
-              <div class="col col-50">
-                <!--<select ng-model="byCategory" class="dropdown-filter">
-                  <option value="">{{ 'category' | translate }}</option>
-                  <option value="{{ cat.categoryValue }}" ng-repeat="cat in categoryData" ng-click="sortBy('cat.idcategory')">{{ cat.categoryName }}</option>
-                </select>-->
-              </div>
-              <div class="col col-50">
-                <!--<select ng-model="sortBy" class="dropdown-filter">
-                  <option value="">{{ 'sort' | translate }}</option>
-                  <option value="title">{{ 'name' | translate }}</option>
-                </select>-->
-              </div>
-            </div>
-          </ion-bar>
-
-          <ion-content style="margin-top:8em;">
-            <div class="list">
-              <div class="item item-thumbnail-left" ng-repeat="item in datageneral |filter : byCategory | orderBy : sortBy | filter :search_page" style="margin-bottom:-10%;margin-top:-1%">
-                <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
-                <div style="margin-top:5%;margin-left:5%;">
-                  <p style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">{{ item.title }}</p>
-                  <a ng-if="item.statusdownload !== 'downloaded'" class="positive " ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px;text-align:left;font-weight:500;">
-                    <p style="text-decoration:none;font-size:10px;text-align:left;color: #2980b9;">{{ 'download2' | translate }}</p>
-                  </a>
-                  <a ng-if="item.statusdownload === 'downloaded'" ng-click="openBrowser(item)" style="text-decoration:none;font-size:10px;color: grey;text-align:left;font-weight:500;">
-                    <p style="text-decoration:none;font-size:10px;color: grey;text-align:left;font-weight:500;">{{ 'downloaded' | translate }}</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </ion-content>
-        </div>
-        <!-- End : Saturday & Sunday -->
-      </ion-slide>
-
-      <ion-slide>
-        <!-- Start : Monday - Friday -->
-        <div class="row" style="height:auto">
-          <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
-            <div class="row">
-              <div class="col col-50">
-                <select ng-model="byCategoryProperty" class="dropdown-filter">
-                  <option value="">{{ 'category' | translate }}</option>
-                  <option value="{{ cat.categoryValue }}" ng-repeat="cat in proCategoryData" ng-click="<sortByProperty></sortByProperty>('cat.idcategory')">{{ cat.categoryName }}</option>
-                </select>
-              </div>
-              <div class="col col-50">
-                <select ng-model="sortByProperty" class="dropdown-filter">
-                  <option value="">{{ 'sort' | translate }}</option>
-                  <option value="title">{{ 'name' | translate }}</option>
-                </select>
-              </div>
-            </div>
-          </ion-bar>
-
-          <ion-content style="margin-top:8em;">
-            <div class="list">
-              <div class="item item-thumbnail-left" ng-repeat="item in dataproperty |filter : byCategoryProperty | orderBy : sortByProperty | filter :search_page" style="margin-bottom:-10%;margin-top:-1%">
-                <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
-                <div style="margin-top:5%; ">
-                  <p style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">{{ item.title }}</p>
-                  <a ng-if="item.statusdownload !== 'downloaded'" class="positive" ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px;font-weight:500;">
-                    <p style="text-decoration:none;font-size:10px;text-align:left;color: #2980b9;font-weight:500;">{{ 'download2' | translate }}</p>
-                  </a>
-                  <a ng-if="item.statusdownload === 'downloaded'" ng-click="openBrowser(item)"  style="text-decoration:none;font-size:10px;color: grey;text-align:left;font-weight:500;">
-                    <p style="text-decoration:none;font-size:10px;color: grey;text-align:left;font-weight:500;">{{ 'downloaded' | translate }}</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </ion-content>
-        </div>
-        <!-- End : Monday - Friday -->
-      </ion-slide>
-
-    </ion-slide-box>
-  </ion-content>
-</ion-view>

@@ -16,8 +16,6 @@ angular
             if (response != false) {
                 $scope.datageneral = response;
 
-                
-
               $scope.openBrowser = function(item) {
                 var url = item.linkfile;
                 window.open(url, '_blank', 'location=no');
@@ -50,52 +48,9 @@ angular
                   var targetPath = cordova.file.externalRootDirectory + "Pictures/";
                 }
 
-                //var targetDownload = targetPath + source;
-                //$scope.tesTes = targetPath + $scope.file;
-                //Check for the file.
-                /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
-                 .then(function (success) {
-                 // success
-                 }, function (error) {
-                 $cordovaFile.createDir(cordova.file.documentsDirectory , "LippoCikarang", false)
-                 .then(function (success) {
-                 console.log("Folder created" + success);
-                 }, function (error) {
-                 console.log("Folder not created." + error);
-                 });
-                 });*/
-
                 // Retrieve
                 $scope.ls = localStorage.getItem(downloaded);
 
-                /*$cordovaFile.checkFile(targetDownload)
-                 .then(function (success) {
-                 // success
-                 $scope.listGeneral = 'ada';
-                 alert('hal 62 : dicek sudah');
-                 }, function (error) {
-                 // error
-                 $scope.listGeneral = 'ndak';
-                 alert('file tidak ada');
-                 });*/
-
-
-                /*$scope.openPDF = function() {
-
-                 //
-                 cordova.plugins.fileOpener2.open(
-                 targetDownload, // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Download/starwars.pdf
-                 'application/pdf',
-                 {
-                 error : function(e) {
-                 alert('Error status: ' + e.status + ' - Error message: ' + e.message);
-                 },
-                 success : function () {
-                 alert('file opened successfully');
-                 }
-                 }
-                 );
-                 };*/
               });
 
             } else {
@@ -127,22 +82,6 @@ angular
                 } else if (ionic.Platform.isAndroid()) {
                     var targetPath = cordova.file.externalRootDirectory  + "Pictures/";
                 }
-
-                //var targetDownload = targetPath + source;
-                //Check for the file.
-
-                /*$cordovaFile.checkDir(cordova.file.documentsDirectory , "LippoCikarang/")
-                    .then(function (success) {
-                        // success
-                    }, function (error) {
-                        $cordovaFile.createDir(cordova.file.documentsDirectory , "LippoCikarang", false)
-                            .then(function (success) {
-                            console.log("Folder created" + success);
-                            }, function (error) {
-                            console.log("Folder not created." + error);
-                            });
-                    });*/
-
             } else {
                 $scope.dataproperty = [{ name: $filter('translate')('no_file_download') }];
             }
