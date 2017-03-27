@@ -168,18 +168,18 @@ angular
             window.open("https://www.youtube.com/watch?v=h-DvHNnlFrs", '_system', 'location=yes')
         }
 
-        $scope.afliates_ovo = function afliates_ovo (){
+        $scope.afliates_sos = function() {
 
             appAvailability.check(
-            'ovo://', // URI Scheme
+            'ambulancesiloam1health://', // URI Scheme
             function() {  // Success callback
-                window.open('ovo://', '_system', 'location=no');
+                window.open('ambulancesiloam1health://', '_system', 'location=no');
                 // alert("ovo succes")
                 },
             function() {  
 
                 try {
-                    window.open('ovo://', '_system', 'location=no');
+                    window.open('ambulancesiloam1health://', '_system', 'location=no');
                 } catch(error){
                     $scope.showConfirm;
                 }
@@ -187,20 +187,23 @@ angular
                 $scope.showConfirm = function() {    
                     var confirmPopup = $ionicPopup.confirm({
                         title: 'Ovo not installed',
-                        template: 'Do You want to download OVO mobile apps'
+                        template: 'Do You want to download OVO mobile apps',
+                        okType: "button-stable",
+                        cssClass: "alertPopup"
                     });
 
                     confirmPopup.then(function(res) {
                         if(res) {
-                            window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
+                            window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
                         } else {
                             console.log('You are not sure');
                         }
                     });
-                    };
+                };
             });
 
-        }
+        }   
+
     }
 
     function weather($scope, $cordovaGeolocation, $filter, $localStorage, mainService) {
