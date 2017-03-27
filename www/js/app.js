@@ -571,6 +571,24 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.eComplaint', {
+            url: "/eComplaint",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaint.html",
+                    controller: 'eComplaint'
+                }
+            }
+        })
+        .state('app.eComplaintList', {
+            url: "/eComplaintList",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaintList.html",
+                    controller: 'eComplaintList'
+                }
+            }
+        })
         .state('app.billing', {
             cache: false,
             url: "/billing",
@@ -614,14 +632,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 'menu-content': {
                     templateUrl: "partials/sides/publictransportation.html",
                     controller: 'publictransportation'
-                }
-            }
-        })
-         .state('app.eComplaint', {
-            url: "/eComplaint",
-            views: {
-                'menu-content': {
-                    templateUrl: "partials/sides/eComplaint.html"
                 }
             }
         });
@@ -1116,6 +1126,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             load_from_library: 'Load From Library',
             of: ' of ',
             Gas_Station: 'Gas Station',
+            track: 'Lacak Komplain Anda',
+            add_new: '+ Tambahkan',
             ds1: 'DS1',
             ds2: 'DS2',
             ds3: 'DS3',
@@ -1607,6 +1619,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             select_image_source: 'Pilih Sumber Gambar',
             of: ' dari ',
             Gas_Station: 'SPBU',
+            track: 'Track Your Complaint',
+            add_new: '+ Add New',
             //button
             BUTTON_TEXT_EN: 'Inggris',
             BUTTON_TEXT_DE: 'Indonesia'
