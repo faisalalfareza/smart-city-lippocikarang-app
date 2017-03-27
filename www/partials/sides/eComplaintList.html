@@ -1,0 +1,12 @@
+<ion-view title="eComplaint">
+
+  <div class="tabs-top tabs-background-light tabs-color-positive">
+    <div class="tabs">
+      <a class="tab-item {{ generals }} full-width-tab " style="font-weight:500;border-bottom:{{generals == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-right:{{generals == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}}" ng-click="general()" id="generaltab" ng-show="slideIndex = 1">
+        <i style="font-weight:500;letter-spacing:-0.5px;color:{{generals == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'track' | translate }}</i>
+      </a>
+      <a class="tab-item {{ propertys }} full-width-tab" style="font-weight:500;border-bottom:{{propertys == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-left:{{propertys == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}};" ng-click="property()" id="propertytab" ng-show="slideIndex = 2">
+        <i style="font-weight:500;letter-spacing:-0.5px;color:{{propertys == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'add_new' | translate }}</i>
+      </a>
+    </div>
+  </div>
