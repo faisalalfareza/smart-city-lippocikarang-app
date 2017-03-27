@@ -30,7 +30,7 @@ angular
             var req = {
                     method: 'GET',
                     cache: true,
-                    url: $filter('translate')('apilink') + 'api/News/?action=listnews&pagenumber='+pagenumber+'&pagesize=2&lang='+lang
+                    url: $filter('translate')('apilink') + 'api/News/?action=listnews&pagenumber='+pagenumber+'&pagesize=10&lang='+lang
                 }
             $http(req)
                 .success(function(response) {
