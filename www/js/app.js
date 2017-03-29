@@ -1372,7 +1372,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             property_agents: 'Agen Properti',
             Property_Agent: 'Agen Properti',
             property_market: 'Property Market',
-            property_start: 'Aplikasi ini menawarakan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.',
+            property_start: 'Aplikasi ini menawarkan pencarian properti di Lippo Cikarang. Temukan properti yang dijual, disewa, termasuk rumah, apartemen, ruko, komersial dan tanah.',
             property_finding: 'Temukan properti impian Anda.',
             pscode: 'PSCODE',
             pscode_correct: 'PsCode Benar',
@@ -1769,7 +1769,6 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
     ngFB.init({ appId: '822365854560840' });
 
 }
-
 
 function ngEnter() {
     return function(scope, element, attrs) {

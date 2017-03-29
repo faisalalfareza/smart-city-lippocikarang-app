@@ -1,7 +1,7 @@
 <ion-view view-title="{{'profile' | translate}}" can-swipe-back="false">
     <ion-content scroll="false" style="height:100vh;">
         <!--<button class="button icon-left ion-camera" ng-click="loadImage()">Take Photo</button>-->
-        <div ng-repeat="data in dataaccount" style="padding:0;margin:0;">
+        <div ng-repeat="data in account" style="padding:0;margin:0;">
             <div class="row sub-menu header" style="background-color: rgb(236, 240, 241);margin-bottom:0.5em;padding-top:0px;padding-bottom:2px;display: block;">
                 <div style="width: 100%">
                     <center>
@@ -62,9 +62,6 @@
                         <h5 style="font-weight: 300;margin:0;padding:0;margin-top:6px;">{{ 'gender' | translate }}</h5>
                     </div>
                     <div class="col col-75 " style="margin:0;padding:0;">
-                        <!--<input class="input-profile " style="background-color: transparent;border-color:transparent;
-                            " type="text " value="{{data.gender}} "
-                            ng-model="data.gender " ng-readonly="isRead ">-->
                         <select style="margin-top:1%;" ng-disabled="isRead " ng-model="data.gender " class="form-control " ng-readonly="isRead ">
                                 <option value="M " ng-selected="data.gender=='M' " ng-readonly="isRead ">{{ 'male' | translate }}</option>
                                 <option value="F " ng-selected="data.gender=='F' " ng-readonly="isRead ">{{ 'female' | translate }}</option>
@@ -85,8 +82,7 @@
                         <h5 style="font-weight: 300;margin:0;padding:0;margin-top:6px;">{{ 'phone' | translate }}</h5>
                     </div>
                     <div class="col col-75 " style="margin:0;padding:0;">
-                        <input class="input-profile " style="padding-top:2%;background-color: transparent;border-color:transparent;
-                            " type="text " value="{{data.phone}} " ng-model="data.phone " ng-readonly="isRead ">
+                        <input class="input-profile " style="padding-top:2%;background-color: transparent;border-color:transparent;" type="text " value="{{data.phone}}" ng-model="data.phone" ng-readonly="isRead ">
                     </div>
                 </div>
                 <input class="input-profile " type="hidden" value="{{data.avatar}} " ng-model="data.avatar ">

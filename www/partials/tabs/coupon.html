@@ -35,7 +35,7 @@
                     }}
                     " width="20px">
                     <h2 style="font-weight:500;font-size:14px;margin:0">  {{list.title}} </h2>
-                    <p style="font-size:12px;margin:0"> {{list.caption}} </p>
+                    <p style="font-size:12px;margin:0" ng-bind-html="list.caption"></p>
                 </div>
             </div>
         </ion-item>
