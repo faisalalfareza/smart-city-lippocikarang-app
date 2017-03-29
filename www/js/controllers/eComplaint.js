@@ -46,26 +46,24 @@ angular
         });
 
         $scope.data = {};
-        var id = $scope.data.index;
-        var allId = $scope.data;
 
         $scope.changedUnit = function() {
             console.log('51 : ' , $scope.data.index);
-        }
-
-        if(id != null){
-            console.log(id);
-            alert('allId , ' , allId);
-            eComplaintService.getHelpname(at, id, function(response) {
-                if (response != false) {
-                    $scope.data = response;
-                    $scope.nameDropDown = response.ListHelpName;
-                    console.log('Drop Down : ' , JSON.stringify($scope.nameDropDown));
-                    console.log('response : ' , JSON.stringify(response));
-                } else {
-                    console.log('huft : ' , response);
-                }
-            });
+            var id = $scope.data.index;
+            if(id != null){
+                console.log(id);
+                alert('allId , ' , allId);
+                eComplaintService.getHelpname(at, id, function(response) {
+                    if (response != false) {
+                        $scope.data = response;
+                        $scope.nameDropDown = response.ListHelpName;
+                        console.log('Drop Down : ' , JSON.stringify($scope.nameDropDown));
+                        console.log('response : ' , JSON.stringify(response));
+                    } else {
+                        console.log('huft : ' , response);
+                    }
+                });
+            }
         }
         //
 
