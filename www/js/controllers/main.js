@@ -5,7 +5,7 @@ angular
     .controller('currencymain', currencymain)
     .controller('weather', weather);
 
-    function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading) {
+    function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
 
         //drawer - side menu
         $scope.showPrivillage, $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
@@ -170,35 +170,48 @@ angular
 
         $scope.afliates_sos = function() {
 
-            appAvailability.check(
-            '1health://', // URI Scheme ambulancesiloam1health
-            function() {  // Success callback
-                window.open('1health://', '_system', 'location=no');
-                },
-            function() {  
+            // convenience method for determining the platform:
+            function isIOS() {
+                return device.platform === "iOS";
+            }  
 
-                try {
-                    window.open('1health://', '_system', 'location=no');
-                } catch(error){
-                    $scope.showConfirm = function() {    
-                        var confirmPopup = $ionicPopup.confirm({
-                            title: 'Ambulance Siloam 1health not installed',
-                            template: 'Do You want to download Ambulance Siloam 1health mobile apps',
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
+            // this function invokes the plugin:
+            function checkAppAvailability(identifier) {
+                appAvailability.check(
+                    'sos1health://',
+                    function() { gotoApps(); }, // succes handler
+                    function() { gotoAppStore(); } // error handler
+                )
+            }
 
-                        confirmPopup.then(function(res) {
-                            if(res) {
-                                window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
-                            } else {
-                                console.log('You are not sure');
-                            }
-                        });
-                    };
-                }
-    
-            });
+            // examples of a few well known apps  (wait for 'deviceready' to fire as usual):
+            checkAppAvailability(isIOS() ? "sos1health://"  : "com.app.onehealth");
+
+            function gotoApps() {
+                window.open('sos1health://', '_system', 'location=no');
+                console.log('Ambulance Siloam 1health Installed');               
+            }
+
+            function gotoAppStore() {
+                console.log('Ambulance Siloam 1health Not Installed');
+                
+                // Error callback
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Ambulance Siloam 1health not installed',
+                    template: 'Do You want to download Ambulance Siloam 1health mobile apps',
+                    okText: $filter('translate')('yes'),
+                    cancelText: $filter('translate')('no'),
+                    okType: "button-stable"
+                });
+
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
+            }            
 
         }   
 
