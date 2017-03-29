@@ -46,26 +46,24 @@ angular
         });
 
         $scope.data = {};
-        var id = $scope.data.index;
-        var allId = $scope.data;
 
         $scope.changedUnit = function() {
             console.log('51 : ' , $scope.data.index);
-        }
-
-        if(id != null){
-            console.log(id);
-            alert('allId , ' , allId);
-            eComplaintService.getHelpname(at, id, function(response) {
-                if (response != false) {
-                    $scope.data = response;
-                    $scope.nameDropDown = response.ListHelpName;
-                    console.log('Drop Down : ' , JSON.stringify($scope.nameDropDown));
-                    console.log('response : ' , JSON.stringify(response));
-                } else {
-                    console.log('huft : ' , response);
-                }
-            });
+            var id = $scope.data.index;
+            if(id != null){
+                console.log(id);
+                alert('allId , ' , allId);
+                eComplaintService.getHelpname(at, id, function(response) {
+                    if (response != false) {
+                        $scope.data = response;
+                        $scope.nameDropDown = response.ListHelpName;
+                        console.log('Drop Down : ' , JSON.stringify($scope.nameDropDown));
+                        console.log('response : ' , JSON.stringify(response));
+                    } else {
+                        console.log('huft : ' , response);
+                    }
+                });
+            }
         }
         //
 
@@ -80,6 +78,7 @@ angular
             }
         });
         //
+        $scope.images = [];
         $scope.checking = false;
         //Image
         $scope.loadImage = function() {
@@ -88,13 +87,25 @@ angular
                 maximumImagesCount: 3, // Max number of selected images, I'm using only one for this example
                 width: 800,
                 height: 800,
-                quality: 100 // Higher is better
+                quality: 100, // Higher is better
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                allowEdit: true,
+                encodingType: Camera.EncodingType.JPEG,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false,
+                correctOrientation:true
             };
 
             $cordovaImagePicker.getPictures(options).then(function(results) {
                 // Loop through acquired images
                 for (var i = 0; i < results.length; i++) {
-                    $scope.images.push(results[i]);
+                    
+                    $scope.images.push({
+                        filename: "eComplaint-" + results[i] + ".jpg",
+                        Base64String: "data:image/jpeg;base64," + results[i]
+                    });
+                    //filename: "eComplaint-" + i + ".jpg",
                 }
                 $scope.checking = true;
                 $scope.progressUpload = true;
@@ -102,6 +113,9 @@ angular
                 $timeout(function() {
                     $scope.progressUpload = false;
                 }, 6000);
+
+            alert('image : ',$scope.images);
+            
             }, function(error) {
                 console.log('Error: ' + JSON.stringify(error)); // In case of error
             })
@@ -118,7 +132,7 @@ angular
             $scope.checking = false;
         }
         //
-
+        
         $scope.generals = 'active';
 
         // general tab & property tab
