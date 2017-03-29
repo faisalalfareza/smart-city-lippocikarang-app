@@ -127,6 +127,26 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
+        .state('app.getSearchGallery', {
+            cache: false,
+            url: "/getSearchGallery/:name",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/getSearchGallery.html",
+                    controller: "searchGalleryDetail"
+                }
+            }
+        })
+        .state('app.detailGallerySearch', {
+            cache: false,
+            url: "/detailGallerySearch/:gall/{index}",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/detailGallerySearch.html",
+                    controller: "searchGalleryDetailImage"
+                }
+            }
+        })
         .state('app.callCenter', {
             url: "/callCenter",
             views: {
@@ -1649,6 +1669,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
             $location.path('/app/search/' + value);
         } else if ($location.path() == "/app/property") {
             $location.path('/app/propertysearch/' + value + '/');
+        } else if ($location.path() == "/app/gallery") {
+            $location.path('/app/getSearchGallery/' + value);
         } else {
             $rootScope.search_page = value;
         }
