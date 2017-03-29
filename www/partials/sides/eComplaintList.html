@@ -10,3 +10,129 @@
       </a>
     </div>
   </div>
+
+  <ion-content class="has-footer">
+
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
+
+      <ion-slide>
+        <!-- Start : Saturday & Sunday -->
+        <div class="row" style="height:auto">
+          <ion-bar class="bar bar-subheader bar-stable" style="border:0;outline:0">
+            <div class="row">
+              <div class="col col-50">
+
+              </div>
+              <div class="col col-50">
+                <select ng-model="sortBy" class="dropdown-filter">
+                  <option value="">{{ 'sort' | translate }}</option>
+                  <option value="CaseNumber">Number</option>
+                  <option value="StatusCase">Status</option>
+                </select>
+              </div>
+            </div>
+          </ion-bar>
+
+          <ion-content style="margin-top:8em;">
+            <div class="list">
+              <div class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page"  style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;">
+
+                  <div class="row" style="margin-top:5%;margin-left:1%;">
+                      <p class="col-70" style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">
+                        {{ item.HelpName }}
+                      </p>
+                      <p align="right" class="col-30" style="color:black;font-size:10px;margin-bottom:-2%;text-align:right;font-weight:500;margin-right: 2em;">
+                        {{item.CreatedOn | date : "dd/MM/y"}}
+                      </p>
+                  </div>
+
+                <div class="row" style="margin-right: 0;">
+                    <p class="row-70" style="color:grey;font-size:10px;margin-top:4%;text-align:right;font-weight:500;">
+                        {{item.Description}}
+                    </p>
+                    <div align="right" style="text-align: right;">
+                      <a ng-if="item.StatusCase == 'In Progress'" class="col-30 button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 2em;margin-top: 1em;font-size: 10px;">
+                          In Progress
+                      </a>
+                      <a ng-if="item.StatusCase == 'On Hold'" class="col-30 button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 2em;margin-top: 1em;font-size: 10px;">
+                          On Hold
+                      </a>
+                      <a ng-if="item.StatusCase == 'Assigned to PIC'" class="col-30 button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 2em;margin-top: 1em;font-size: 10px;">
+                          Accepted
+                      </a>
+                      <a ng-if="item.StatusCase == 'Progress Completed'" class="col-30 button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:darkgrey;background-color:lightgrey;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 2em;margin-top: 1em;font-size: 10px;">
+                          Solved
+                      </a>
+                    </div>
+                </div>
+              </div>  
+            </div>    
+          </ion-content>
+        </div>
+        <!-- End : Saturday & Sunday -->
+      </ion-slide>
+
+      <ion-slide>
+        <!-- Start : Monday - Friday -->
+        <div class="row" style="height:auto">
+          <ion-content style="background-color: rgb(236, 240, 241);">
+            <div class="row" style="margin-top: 8em">
+              <div class="col-50">
+                <h3 style="color:#2980b9;">Client Code</h3>
+              </div>
+              <div class="col-50" style="color:#2980b9;">
+                0000000
+              </div>
+            </div>
+            <div class="col-100">
+              <select ng-model="data.index" ng-change="changedUnit()" class="dropdown-filter">
+                     <option value="" selected="selected">{{ 'category' | translate }}</option>
+                     <option value="{{ category.IdDropDown }}" ng-repeat="category in unit">{{ category.LabelDropDown }}</option>
+                </select>
+            </div>
+            <div class="col-100" style="margin-top: 1em;">
+              <select ng-model="data.concern" ng-change="changedUnit()" class="dropdown-filter">
+                     <option value="" selected="selected">What is your concern?</option>
+                     <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ category.LabelDropDown }}</option>
+                </select>
+            </div>
+            <div class="col-100" style="margin-top: 1em;">
+              <label class="item item-input text">
+                    <textarea name="desc" type="text" ng-model="data.description" rows="10" style="margin-right:18px;" required></textarea>
+              </label>
+            </div>
+            <div class="col-100" style="margin-top: 1em;">
+              <div ng-show="checking === false">
+                    <button ng-click="loadImage()" class="button button-positive button-small">
+                        {{ 'upload' | translate }}
+                    </button>
+                </div>
+                <div class="row" ng-show="checking === true" style="color: white; background-color: #387EF5">
+                    <center>
+                        <button class="button button-positive button-small">
+                            {{ 'upload' | translate }}
+                        </button>
+                    </center>
+                    <div class="col col-75">
+                        <table width="100%">
+                            <tr ng-repeat="item in images">
+                                <td width="40%" align="left">
+                                    {{ item | limitTo : 6 : -6 }} ...
+                                </td>
+                                <td>
+                                    <br>
+                                    <div class="loader" ng-if="progressUpload">loader</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col text-right" ng-click="clearImages()">x</div>
+                </div>
+            </div>
+          </ion-content>
+        </div>
+        <!-- End : Monday - Friday -->
+      </ion-slide>
+
+    </ion-slide-box>
+  </ion-content>

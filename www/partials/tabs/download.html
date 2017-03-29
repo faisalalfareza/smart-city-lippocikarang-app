@@ -39,7 +39,7 @@
             <div class="list">
               <div class="item item-thumbnail-left" ng-repeat="item in datageneral |filter : byCategory | orderBy : sortBy | filter :search_page" style="margin-bottom:-10%;margin-top:-1%">
                 <img style=" width:20%;height:50%;margin-left:7%; " src="{{ item.avatar }} ">
-                <div style="margin-top:5%;margin-left:5%;">
+                <div style="margin-top:5%;margin-left:7%;">
                   <p style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">{{ item.title }}</p>
                   <a ng-if="item.statusdownload !== 'downloaded'" class="positive " ng-click="showPopup(item.iddownload) " style="text-decoration:none;font-size:10px;text-align:left;font-weight:500;">
                     <p style="text-decoration:none;font-size:10px;text-align:left;color: #2980b9;">{{ 'download2' | translate }}</p>

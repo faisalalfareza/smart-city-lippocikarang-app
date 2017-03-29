@@ -289,7 +289,7 @@ angular
                 });
                 email.desc = "";
 
-                var bodyemail = $scope.eml;
+                var bodyemail = '<div><p>' + $scope.eml + '</p></div>';
 
                 if (bodyemail != "") {
                     $ionicLoading.show({ template: $filter('translate')('loading') + "..." });

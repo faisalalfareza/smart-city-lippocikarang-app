@@ -1392,3 +1392,10 @@ iframe {
 .desc_news > p:last-child {
     margin-bottom: 6em;
 }
+
+.inprogressAccepted{
+    text-decoration:none;
+    font-size:10px;
+    text-align:left;
+    font-weight:500;
+}
