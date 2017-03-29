@@ -7,6 +7,8 @@ angular
 
     function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
 
+        $scope.afliates_sos = isSOS;
+
         //drawer - side menu
         $scope.showPrivillage, $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
 
@@ -168,7 +170,7 @@ angular
             window.open("https://www.youtube.com/watch?v=h-DvHNnlFrs", '_system', 'location=yes')
         }
 
-        $scope.afliates_sos = function() {
+        function isSOS() {
 
             // convenience method for determining the platform:
             function isIOS() {
