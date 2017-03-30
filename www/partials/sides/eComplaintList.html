@@ -41,7 +41,7 @@
                       <p class="col-70" style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">
                         {{ item.HelpName }}
                       </p>
-                      <p align="right" class="col-30" style="color:black;font-size:10px;margin-bottom:-2%;text-align:right;font-weight:500;margin-right: 2em;">
+                      <p align="right" class="col-30" style="color:black;font-size:10px;margin-bottom:-2%;text-align:right;font-weight:500;margin-right: 2em;float: right;margin-right: 0.5em;">
                         {{item.CreatedOn | date : "dd/MM/y"}}
                       </p>
                   </div>
@@ -50,7 +50,7 @@
                     <p class="row-70" style="color:grey;font-size:10px;margin-top:4%;text-align:right;font-weight:500;">
                         {{item.Description}}
                     </p>
-                    <div align="right" style="text-align: right;">
+                    <div align="right" style="text-align: right;float: right;margin-right: 0.5em;">
                       <a ng-if="item.StatusCase == 'In Progress'" class="col-30 button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 2em;margin-top: 1em;font-size: 10px;">
                           In Progress
                       </a>
@@ -76,24 +76,25 @@
         <!-- Start : Monday - Friday -->
         <div class="row" style="height:auto">
           <ion-content style="background-color: rgb(236, 240, 241);">
+            <form>
             <div class="row" style="margin-top: 8em">
               <div class="col-50">
                 <h3 style="color:#2980b9;">Client Code</h3>
               </div>
               <div class="col-50" style="color:#2980b9;">
-                0000000
+                {{pps}}
               </div>
             </div>
             <div class="col-100">
               <select ng-model="data.index" ng-change="changedUnit()" class="dropdown-filter">
-                     <option value="" selected="selected">{{ 'category' | translate }}</option>
+                     <option value="">Unit</option>
                      <option value="{{ category.IdDropDown }}" ng-repeat="category in unit">{{ category.LabelDropDown }}</option>
-                </select>
+              </select>
             </div>
             <div class="col-100" style="margin-top: 1em;">
-              <select ng-model="data.concern" class="dropdown-filter">
+              <select ng-model="data.concern" ng-change="Helpname()" class="dropdown-filter">
                      <option value="" selected="selected">What is your concern?</option>
-                     <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ category.LabelDropDown }}</option>
+                     <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ label.LabelDropDown }}</option>
               </select>
             </div>
             <div class="col-100" style="margin-top: 1em;">
@@ -117,7 +118,7 @@
                         <table width="100%">
                             <tr ng-repeat="item in images">
                                 <td width="40%" align="left">
-                                    {{ item | limitTo : 6 : -6 }} ...
+                                    {{ item.filename }}
                                 </td>
                                 <td>
                                     <br>
@@ -129,6 +130,17 @@
                     <div class="col text-right" ng-click="clearImages()">x</div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col text-left">
+                    <button ng-disabled="myform.$invalid" type="submit" ng-click="newCase(data)" class="button button-positive button-small" style="width:75px;margin-left:-5%;">{{ 'post' | translate }}</button>
+                </div>
+                <div class="col text-right">
+                    <a href="#/app/eComplaint">
+                        <button class="button button-positive button-small" style="width:75px;margin-right:-5%;">{{ 'cancel' | translate }}</button>
+                    </a>
+                </div>
+            </div>
+            </form>
           </ion-content>
         </div>
         <!-- End : Monday - Friday -->

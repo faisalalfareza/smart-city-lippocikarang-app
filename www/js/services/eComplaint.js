@@ -9,6 +9,7 @@ angular
         service.getUnit = getUnit;
         service.getListCase = getListCase;
         service.getHelpname = getHelpname;
+        service.insertCase = insertCase;
         
         return service;
 
@@ -86,7 +87,7 @@ angular
             //console.log($localStorage.tokken.token_type + ' dan ' + $localStorage.tokken.access_token);
             var req = {
                 method: 'POST',
-                url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/helpname',
+                url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/gethelpname',
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + at
@@ -96,6 +97,38 @@ angular
                 }
             }
             console.log('getHelpname : ', JSON.stringify(req));
+            $http(req)
+                .success(function (response) {
+                    callback(response);
+
+                })
+                .error(function () {
+                    callback(false);
+                });
+        }
+
+        function insertCase(at,pps,unit,concern,description,linkImg,callback) {
+            console.log('insertCase : ',unit,concern,description,linkImg);
+            var req = {
+                method: 'POST',
+                url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/gethelpname',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + at
+                },
+                data: {
+                    "SiteSmartCity": 1,
+                    "PsCode": ps,
+                    "Email": $localStorage.currentUser.data[0].email,
+                    "Name": $localStorage.currentUser.data[0].fullname,
+                    "NumberPhone": localStorage.currentUser.data[0].phone,
+                    "IdDropDownUnit": unit,
+                    "IdDropDownHelpName": concern,
+                    "Description": description,
+                    "ListAttach": linkImg
+                }
+            }
+            console.log('insert : ', JSON.stringify(req));
             $http(req)
                 .success(function (response) {
                     callback(response);
