@@ -18,10 +18,10 @@ angular
 
         return service;
 
-        function listnotif(pagenumbernotif,callback) {
+        function listnotif(lang,pagenumbernotif,callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber='+pagenumbernotif+'&pagesize=10&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=listnotif&pagenumber='+pagenumbernotif+'&pagesize=10&idaccount=' + $localStorage.currentUser.data[0].idaccount+'&lang='+lang
             }
             $http(req)
                 .success(function (response) {
@@ -31,6 +31,7 @@ angular
                     callback(false);
                 });
         }
+
         function totalnotif(callback) {
             var req = {
                 method: 'GET',
@@ -45,10 +46,10 @@ angular
                 });
         }
 
-        function detailNotif(callback) {
+        function detailNotif(lang,callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Notif/?action=retrieve_get&idnotif=' + $stateParams.idnotif + '&idaccount=' + $localStorage.currentUser.data[0].idaccount+'&lang='+lang
             }
  
             $http(req)

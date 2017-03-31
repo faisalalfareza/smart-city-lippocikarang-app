@@ -111,9 +111,11 @@ angular
         }
     }
 
-    function notification($scope, $stateParams, $ionicLoading, $location, $state, Notification, $ionicPopup, $filter, $window) {
+    function notification($scope, $stateParams, $ionicLoading, $location, $state, Notification, $ionicPopup, $filter, $window, $localStorage) {
         $scope.insertbookmarknotif = insertbookmarknotif;
         $scope.deletebookmarknotif = deletebookmarknotif;
+
+        var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
 
         listnotifService();
 
@@ -122,30 +124,27 @@ angular
             $scope.listnotifUser = [];
 
             var pagenumber = 1;
-            Notification.listnotif(pagenumber, function(response) {
+
+            Notification.listnotif(lang, pagenumber, function(response) {
                     if (response != false) {
                         $scope.listnotifUser = response;
-                        console.log(pagenumber);
-                        //
+
                         var i = 2;
                         var a = 0;
                         $scope.loadNotif = function () {
-                                pagenumber = i;
-                                Notification.listnotif(pagenumber, function(response){
-                                console.log(response.idnotif);
-                                    if(response[a].idnotif != 'undefined'){
-                                        $scope.listnotifUser = $scope.listnotifUser.concat(response);
-                                    } else {
-                                        alert('no more data loaded');
-                                    }
-                                });
+                            pagenumber = i;
+                            Notification.listnotif(pagenumber, function(response){
+                                if(response[a].idnotif != 'undefined'){
+                                    $scope.listnotifUser = $scope.listnotifUser.concat(response);
+                                } else {
+                                    alert('no more data loaded');
+                                }
+                            });
 
-                                $scope.$broadcast('scroll.infiniteScrollComplete');
-                                i++;
-                                a++;
+                            $scope.$broadcast('scroll.infiniteScrollComplete');
+                            i++;
+                            a++;
                         };
-                        //
-
                     } else {
                         $scope.listnotifUser = { name: $filter('translate')('failed_get_data') };
                     }
@@ -289,30 +288,33 @@ angular
         $scope.goBack = function () {
             $state.go('app.notification');
         };
-        Notification.listnotif(function (response) {
-            if (response != false) {
-                $scope.results = [];
-                $scope.notif = response;
 
-                var a = 0;
-                angular.forEach($scope.notif, function (obj) {
-                    var b = a++;
-                    var list = $scope.notif;
-                    var data = list[b];
-                    var ll = data.idnotif;
+        // Notification.listnotif(function (response) {
+        //     if (response != false) {
+        //         $scope.results = [];
+        //         $scope.notif = response;
 
-                    if (ll == $stateParams.idnotif) {
-                        $scope.results.push(list[b]);
-                    }
-                })
+        //         var a = 0;
+        //         angular.forEach($scope.notif, function (obj) {
+        //             var b = a++;
+        //             var list = $scope.notif;
+        //             var data = list[b];
+        //             var ll = data.idnotif;
 
-            } else {
-                $.data = { name: $filter('translate')('failed_get_data') };
-            }
+        //             if (ll == $stateParams.idnotif) {
+        //                 $scope.results.push(list[b]);
+        //             }
+        //         })
 
-        });
+        //     } else {
+        //         $.data = { name: $filter('translate')('failed_get_data') };
+        //     }
 
-        Notification.detailNotif(function (response) {
+        // });
+
+        var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
+
+        Notification.detailNotif(lang, function (response) {
             if (response != false) {
                 $scope.details = response.notif;
                 $scope.bookmarked = $stateParams.bookmarked;

@@ -95,7 +95,6 @@ angular
         talktoUs.getTalktoUs(function(response) {
             if (response != false) {
                 $scope.datatalk = response;
-                console.log($scope.datatalk);
             } else {
                 $scope.datatalk = [{ name: $filter('translate')('no_data') }];
             }
