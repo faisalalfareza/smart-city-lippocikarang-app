@@ -3,6 +3,7 @@ angular
     .controller('cctv', cctv);
 
     function cctv($scope, $ionicLoading, $state, cctv, $filter) {
+        
         cctvList();
 
         function cctvList() {
