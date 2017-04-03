@@ -171,23 +171,18 @@ angular
         }
 
         function isSOS() {
-
-            // convenience method for determining the platform:
-            function isIOS() {
-                return device.platform === "iOS";
-            }  
-
+            
             // this function invokes the plugin:
-            function checkAppAvailability(identifier) {
+            ionic.Platform.ready(function() {
                 appAvailability.check(
-                    'sos1health://',
-                    function() { gotoApps(); }, // succes handler
-                    function() { gotoAppStore(); } // error handler
-                )
-            }
-
-            // examples of a few well known apps  (wait for 'deviceready' to fire as usual):
-            checkAppAvailability(isIOS() ? "sos1health://"  : "com.app.onehealth");
+                    ['sos1health://'], 
+                    function onSucces(result) { 
+                        gotoApps(); 
+                    }, 
+                    function onError(error) { 
+                        gotoAppStore(); 
+                    })
+            });
 
             function gotoApps() {
                 window.open('sos1health://', '_system', 'location=no');
