@@ -173,7 +173,7 @@ angular
         function isSOS() {
             
             // this function invokes the plugin:
-            ionic.Platform.ready(function() {
+            $ionicPlatform.ready(function() {
                 appAvailability.check(
                     ['sos1health://', '_system', 'location=no'], 
                     function onSucces(result) { 
