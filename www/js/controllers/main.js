@@ -5,7 +5,7 @@ angular
     .controller('currencymain', currencymain)
     .controller('weather', weather);
 
-    function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
+    function app($scope, $filter, $cordovaGeolocation, $ionicPlatform, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
 
         $scope.afliates_sos = isSOS;
 
@@ -175,7 +175,7 @@ angular
             // this function invokes the plugin:
             ionic.Platform.ready(function() {
                 appAvailability.check(
-                    ['sos1health://'], 
+                    ['sos1health://', '_system', 'location=no'], 
                     function onSucces(result) { 
                         gotoApps(); 
                     }, 
