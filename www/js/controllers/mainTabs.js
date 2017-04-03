@@ -3,44 +3,47 @@ angular
     .controller('mainTabs', mainTabs);
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
-        $scope.asyncAction = function() {
-            // The following code simulates an async action
-            return $timeout(() => angular.noop, 3000);
-        }      
 
-        $scope.afliates_ovo = function() {
+        $scope.afliates_ovo = isOVO;
 
+        function isOVO() {
+
+            // this function invokes the plugin:    
             appAvailability.check(
-            'ovo://', // URI Scheme
-            function() {  // Success callback
-                window.open('ovo://', '_system', 'location=no');
-                // alert("ovo succes")
-                },
-            function() {  
-
-                try {
-                    window.open('ovo://', '_system', 'location=no');
-                } catch(error){
-                    $scope.showConfirm;
+                'ovo://', 
+                function onSucces(result) { 
+                    gotoApps(); 
+                }, 
+                function onError(error) { 
+                    gotoAppStore(); 
                 }
+            );
 
-                $scope.showConfirm = function() {    
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: 'Ovo not installed',
-                        template: 'Do You want to download OVO mobile apps',
-                        okType: "button-stable",
-                        cssClass: "alertPopup"
-                    });
+            function gotoApps() {
+                window.open('ovo://', '_system', 'location=no');
+                console.log('Ovo Installed');               
+            }
 
-                    confirmPopup.then(function(res) {
-                        if(res) {
-                            window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
-                        } else {
-                            console.log('You are not sure');
-                        }
-                    });
-                };
-            });
+            function gotoAppStore() {
+                console.log('Ovo Not Installed');
+                
+                // Error callback
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Ovo not installed',
+                    template: 'Do You want to download Ovo mobile apps',
+                    okText: $filter('translate')('yes'),
+                    cancelText: $filter('translate')('no'),
+                    okType: "button-stable"
+                });
+
+                confirmPopup.then(function(res) {
+                    if(res) {
+                        window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
+            }            
 
         }        
         

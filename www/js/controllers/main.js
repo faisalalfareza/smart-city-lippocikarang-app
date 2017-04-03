@@ -171,18 +171,27 @@ angular
         }
 
         function isSOS() {
+
+            var scheme;
+
+            // Don't forget to add the cordova-plugin-device plugin for `device.platform`
+            if(device.platform === 'iOS') {
+                scheme = 'sos1health://';
+            }
+            else if(device.platform === 'Android') {
+                scheme = 'com.app.onehealth';
+            }            
             
-            // this function invokes the plugin:
-            $ionicPlatform.ready(function() {
-                appAvailability.check(
-                    ['sos1health://', '_system', 'location=no'], 
-                    function onSucces(result) { 
-                        gotoApps(); 
-                    }, 
-                    function onError(error) { 
-                        gotoAppStore(); 
-                    })
-            });
+            // this function invokes the plugin:    
+            appAvailability.check(
+                scheme, 
+                function onSucces(result) { 
+                    gotoApps(); 
+                }, 
+                function onError(error) { 
+                    gotoAppStore(); 
+                });
+          
 
             function gotoApps() {
                 window.open('sos1health://', '_system', 'location=no');
