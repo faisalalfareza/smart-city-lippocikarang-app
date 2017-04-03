@@ -190,7 +190,8 @@ angular
                 }, 
                 function onError(error) { 
                     gotoAppStore(); 
-                });
+                }
+            );
           
 
             function gotoApps() {

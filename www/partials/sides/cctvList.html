@@ -1,10 +1,9 @@
 <ion-view cache-view="false" view-title="CCTV">
     <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" 
-            menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
     </ion-nav-buttons>
-    <ion-content class="padding">
+    <ion-content class="has-footer padding" style="margin-bottom:30px">
         <ion-list>
            <ion-item ng-repeat="list in data | filter : search_page" href="#/app/cctvDetail/{{$index}}">
                <h2> {{list.name}} </h2>
