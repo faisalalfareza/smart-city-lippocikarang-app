@@ -5,7 +5,7 @@ angular
     .controller('currencymain', currencymain)
     .controller('weather', weather);
 
-    function app($scope, $filter, $cordovaGeolocation, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
+    function app($scope, $filter, $cordovaGeolocation, $ionicPlatform, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
 
         $scope.afliates_sos = isSOS;
 
@@ -171,23 +171,18 @@ angular
         }
 
         function isSOS() {
-
-            // convenience method for determining the platform:
-            function isIOS() {
-                return device.platform === "iOS";
-            }  
-
+            
             // this function invokes the plugin:
-            function checkAppAvailability(identifier) {
+            $ionicPlatform.ready(function() {
                 appAvailability.check(
-                    'sos1health://',
-                    function() { gotoApps(); }, // succes handler
-                    function() { gotoAppStore(); } // error handler
-                )
-            }
-
-            // examples of a few well known apps  (wait for 'deviceready' to fire as usual):
-            checkAppAvailability(isIOS() ? "sos1health://"  : "com.app.onehealth");
+                    ['sos1health://', '_system', 'location=no'], 
+                    function onSucces(result) { 
+                        gotoApps(); 
+                    }, 
+                    function onError(error) { 
+                        gotoAppStore(); 
+                    })
+            });
 
             function gotoApps() {
                 window.open('sos1health://', '_system', 'location=no');
