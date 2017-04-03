@@ -6,19 +6,25 @@ angular
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
             $scope.at = localStorage.getItem('at');
-            if (localStorage.getItem('at') === null && localStorage.getItem('tt') === null ) {
+            //if (localStorage.getItem('at') === null && localStorage.getItem('tt') === null ) {
                 eComplaintService.getToken(function(response) {
                     if (response != false) {
                         var at = response.access_token;
                         var tt = response.token_type;
                         
-                        localStorage.setItem('at', JSON.stringify(at));
+                        localStorage.setItem('at', at);
                         localStorage.setItem('tt', tt);
                     } else {
-                        console.log('gaisa njumuk');
+                        eComplaintService.getToken(function(response) {
+                            var at = response.access_token;
+                            var tt = response.token_type;
+                            localStorage.setItem('at', at);
+                            localStorage.setItem('tt', tt);
+                            alert('token anyar');
+                        })
                     }
                 });
-            } else {
+            /*} else {
                 eComplaintService.getToken(function(response) {
                     if (response != false) {
                         var at = response.access_token;
@@ -29,7 +35,8 @@ angular
                         console.log('gaisa njumuk 2');
                     }
                 });
-            }
+            }*/
+            console.log($scope.at);
         });
     };
 
@@ -40,35 +47,60 @@ angular
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
-        var at = localStorage.getItem('at', JSON.stringify(at));
+        var at = localStorage.getItem('at');
         
+        $scope.Helpname = function(){
+            console.log('62 : ', $scope.data.concern);
+            alert('63 : ', $scope.data.concern);
+        }
+
         eComplaintService.getUnit(at, function(response) {
+            alert(at);
             if (response != false) {
                 $scope.pps = response.PsCode;
+                var pp = $scope.pps;
                 //$scope.data = $scope.data.push($scope.pps);
                 $scope.dataUnit = response;
                 $scope.unit = response.ListUnit;
-                console.log('response : ' , JSON.stringify(response));  
 
-                var pps = $scope.pps;
-                var unit = $scope.unit;
-                var linkImg = $scope.images;
+                console.log('data unit : ', JSON.stringify(response));
+                
+                $scope.newCase = function(data,pp){
+                    var email = $localStorage.currentUser.data[0].email;
+                    var fullname = $localStorage.currentUser.data[0].fullname;
+                    var phone = $localStorage.currentUser.data[0].phone;
+                    var unit = JSON.stringify($scope.unit[0].IdDropDown);
+                    var concern = JSON.stringify($scope.data.concern);
+                    var pps = $scope.pps;
+                    alert(pps);
+                    var linkImg = $scope.images;
+                    if(concern != null){
+                        eComplaintService.insertCase(
+                            
+                            pps,
+                            email,
+                            fullname,
+                            phone,
+                            unit,
+                            concern,
+                            data.description,
+                            linkImg, 
+                        
+                        function(response){
+                            console.log(pps,email,fullname,phone,unit,concern,data.description,linkImg);
+                            if (response != false) {
+                                console('yeay');
+                            } else {
+                                console('huft');
+                            }
 
-                $scope.newCase = function(data,pps,unit){
-                    console.log('newCase dipitet',JSON.stringify(data));
-                    alert('isolo');
-                    eComplaintService.insertCase(pps,unit,data.concern,data.description,linkImg, function(response){
-                        if (response != false) {
-                            console('yeay');
-                        } else {
-                            console('huft');
-                        }
-
-                    });
+                        });
+                    }
                 }
 
             } else {
                 console.log('haha kasian ' , response);
+                alert('haha kasian')
             }
         });
         
@@ -85,11 +117,6 @@ angular
                     }
                 });
             }
-        }
-
-        $scope.Helpname = function(){
-            console.log('62 : ', $scope.data.concern);
-            alert('63 : ', $scope.data.concern);
         }
         
         //getlistcase
@@ -135,11 +162,6 @@ angular
                 $timeout(function() {
                     $scope.progressUpload = false;
                 }, 6000);
-
-                console.log('data 123 : ',$scope.data);
-                console.log('image 124 : ',JSON.stringify($scope.images));
-                var ps = localStorage.getItem('PsCode', JSON.stringify(PsCode));
-                console.log('psCode : ', ps);
             
             }, function(error) {
                 console.log('Error: ' + JSON.stringify(error)); // In case of error
@@ -158,21 +180,6 @@ angular
             $scope.checking = false;
         }
         //end of image
-
-        //insert case
-        var linkImg = $scope.images.join();
-        
-        //console.log('PsCode : ' ,localStorage.getItem('PsCode', JSON.stringify(PsCode)));
-        $scope.newCase = function(data){
-            alert('newCase on process');
-            
-            alert(data);
-            alert(linkImg);
-            console.log(linkImg);
-            console.log(data);
-            
-        }
-        //
         
         $scope.generals = 'active';
 

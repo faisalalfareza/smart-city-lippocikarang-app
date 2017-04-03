@@ -47,6 +47,8 @@ angular
                     'SiteSmartCity': '1'
                 }
             }
+            console.log(req);
+            alert(req);
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -107,28 +109,28 @@ angular
                 });
         }
 
-        function insertCase(at,pps,unit,concern,description,linkImg,callback) {
-            console.log('insertCase : ',unit,concern,description,linkImg);
+        function insertCase(at,pps,email,fullname,phone,unit,concern,description,linkImg,callback) {
+            console.log('insertCase : ', pp,email,fullname,phone,unit,concern,description,linkImg);
             var req = {
                 method: 'POST',
                 url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/gethelpname',
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + at
-                },
+            },
                 data: {
                     "SiteSmartCity": 1,
-                    "PsCode": ps,
-                    "Email": $localStorage.currentUser.data[0].email,
-                    "Name": $localStorage.currentUser.data[0].fullname,
-                    "NumberPhone": localStorage.currentUser.data[0].phone,
+                    "PsCode": pps,
+                    "Email": email,
+                    "Name": fullname,
+                    "NumberPhone": phone,
                     "IdDropDownUnit": unit,
                     "IdDropDownHelpName": concern,
                     "Description": description,
                     "ListAttach": linkImg
                 }
             }
-            console.log('insert : ', JSON.stringify(req));
+            console.log('insert : ', req);
             $http(req)
                 .success(function (response) {
                     callback(response);
