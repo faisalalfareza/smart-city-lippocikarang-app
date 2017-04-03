@@ -47,7 +47,7 @@ angular
                     'SiteSmartCity': '1'
                 }
             }
-            console.log(req);
+            //console.log(req);
             alert(req);
             $http(req)
                 .success(function (response) {
@@ -98,7 +98,6 @@ angular
                     'IdDropDownUnit': id
                 }
             }
-            console.log('getHelpname : ', JSON.stringify(req));
             $http(req)
                 .success(function (response) {
                     callback(response);
@@ -109,18 +108,18 @@ angular
                 });
         }
 
-        function insertCase(at,pps,email,fullname,phone,unit,concern,description,linkImg,callback) {
-            console.log('insertCase : ', pp,email,fullname,phone,unit,concern,description,linkImg);
+        function insertCase(at,pp,email,fullname,phone,unit,concern,description,linkImg,callback) {
+            console.log('insertCase : ',at,pp,email,fullname,phone,unit,concern,description,linkImg);
             var req = {
                 method: 'POST',
-                url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/gethelpname',
+                url: 'https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/v1/case/Insertcase',
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + at
             },
                 data: {
                     "SiteSmartCity": 1,
-                    "PsCode": pps,
+                    "PsCode": pp,
                     "Email": email,
                     "Name": fullname,
                     "NumberPhone": phone,
@@ -130,14 +129,16 @@ angular
                     "ListAttach": linkImg
                 }
             }
-            console.log('insert : ', req);
+            console.log('insert : ', JSON.stringify(req));
             $http(req)
                 .success(function (response) {
                     callback(response);
+                    console.log('response : ' , response);
 
                 })
                 .error(function () {
                     callback(false);
+                    console.log('response : false');
                 });
         }
 

@@ -20,7 +20,6 @@ angular
                             var tt = response.token_type;
                             localStorage.setItem('at', at);
                             localStorage.setItem('tt', tt);
-                            alert('token anyar');
                         })
                     }
                 });
@@ -40,7 +39,7 @@ angular
         });
     };
 
-    function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet, $cordovaImagePicker){
+    function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
         
         $scope.images = [];
         $scope.data = {};
@@ -48,72 +47,95 @@ angular
         //$scope.newCase = newCase;
         //Tambahkan
         var at = localStorage.getItem('at');
-        
-        $scope.Helpname = function(){
-            console.log('62 : ', $scope.data.concern);
-            alert('63 : ', $scope.data.concern);
-        }
 
         eComplaintService.getUnit(at, function(response) {
-            alert(at);
             if (response != false) {
                 $scope.pps = response.PsCode;
                 var pp = $scope.pps;
-                //$scope.data = $scope.data.push($scope.pps);
+                
+                if(localStorage.getItem('pp') != null){
+                    var pp = localStorage.getItem('pp');
+                    console.log('get item : ' ,pp);
+                } else {
+                    localStorage.setItem('pp', pp);
+                    console.log('set item : ' ,pp);
+                }
+                
                 $scope.dataUnit = response;
                 $scope.unit = response.ListUnit;
-
-                console.log('data unit : ', JSON.stringify(response));
                 
-                $scope.newCase = function(data,pp){
-                    var email = $localStorage.currentUser.data[0].email;
-                    var fullname = $localStorage.currentUser.data[0].fullname;
-                    var phone = $localStorage.currentUser.data[0].phone;
-                    var unit = JSON.stringify($scope.unit[0].IdDropDown);
-                    var concern = JSON.stringify($scope.data.concern);
-                    var pps = $scope.pps;
-                    alert(pps);
-                    var linkImg = $scope.images;
-                    if(concern != null){
-                        eComplaintService.insertCase(
-                            
-                            pps,
-                            email,
-                            fullname,
-                            phone,
-                            unit,
-                            concern,
-                            data.description,
-                            linkImg, 
-                        
-                        function(response){
-                            console.log(pps,email,fullname,phone,unit,concern,data.description,linkImg);
-                            if (response != false) {
-                                console('yeay');
-                            } else {
-                                console('huft');
-                            }
-
-                        });
-                    }
-                }
-
             } else {
-                console.log('haha kasian ' , response);
-                alert('haha kasian')
+                console.log('haha kasian ');
             }
         });
         
+        //insert
+        $scope.newCase = function(data,at){
+            var at = localStorage.getItem('at');
+            console.log('data newCase : ', JSON.stringify(data));
+            console.log('isole : ',$localStorage.pp);
+            var pp = localStorage.getItem('pp');
+            var email = $localStorage.currentUser.data[0].email;
+            var fullname = $localStorage.currentUser.data[0].fullname;
+            var phone = $localStorage.currentUser.data[0].phone;
+            var unit = $scope.unit[0].IdDropDown;
+            var concern = $scope.data.concern;
+            //var pps = $scope.pps;
+            var linkImg = $scope.images;
+
+                eComplaintService.insertCase(
+                    at,
+                    pp,
+                    email,
+                    fullname,
+                    phone,
+                    unit,
+                    concern,
+                    data.description,
+                    linkImg, 
+                function(response){
+                    if (response != false) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'eComplaint',
+                            template: $filter('translate')('e_success'),
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+                        //getlistcase
+                        eComplaintService.getListCase(at, function(response) {
+                            if (response != false) {
+                                $scope.list = response;
+                                $scope.dataList = response.ListCase;
+                                console.log('sudah diupdate : ' , JSON.stringify($scope.dataList));
+                            } else {
+                                console.log('huft kasian ' , response);
+                            }
+                        });
+                        console.log('Umak Spesial : ',JSON.stringify(response));
+                    } else {
+                        var alertPopup = $ionicPopup.alert({
+                            title: 'eComplaint',
+                            template: $filter('translate')('e_failed'),
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+                        console.log('Umak ndak Spesial ');
+                    }
+
+                });
+        }
+
+        
         $scope.changedUnit = function() {
             var id = $scope.data.index;
+            //$scope.data.concern = 0;
             if(id != null){
                 var at = localStorage.getItem('at', JSON.stringify(at));
                 eComplaintService.getHelpname(at, id, function(response) {
                     if (response != false) {
-                        $scope.data = response;
                         $scope.nameDropDown = response.ListHelpName;
                     } else {
-                        console.log('huft : ' , response);
+                        console.log('huft');
                     }
                 });
             }
@@ -124,7 +146,7 @@ angular
             if (response != false) {
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
-                console.log('response : ' , $scope.dataList);
+                console.log('response : ' , JSON.stringify($scope.dataList));
             } else {
                 console.log('huft kasian ' , response);
             }

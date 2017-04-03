@@ -601,6 +601,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.eComplaintList', {
+            cache: false,
             url: "/eComplaintList",
             views: {
                 'menu-content': {
@@ -1009,6 +1010,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             cinema: 'Cinema',
             commercial: 'Commercial',
             industry: 'Industry',
+            e_success: 'New Case Success',
+            e_failed: 'New Case Failed',
             //Industry: 'Industry',
 
             //Sort Property
@@ -1305,6 +1308,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             indoor_sports: 'Dalam Ruangan',
             industry: 'Petunjuk Industrial',
             Industry: 'Petunjuk Industrial',
+            e_success: 'Case Baru Sukses',
+            e_failed: 'Case Baru Gagal',
             industries: 'Industri',
             unit: ' unit',
             insurance: 'Asuransi',
