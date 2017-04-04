@@ -32,13 +32,52 @@
 
             <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
             <p>{{detail.description}}</p>
-            <div class="row" style="margin-bottom: 2em;">
-                <div ng-repeat="gallery in galleryforums" class="col" style="width: auto;height: 5em;overflow:hidden;align:left;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/{{$index}}">
-                            <img class='ver-center' src="{{gallery.avatar}}" style="width:5em;height:5em;margin-bottom: -1em;"> 
+            <div ng-if="hitung == 3" class="row">
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
+                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
+                    </a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/1">
+                        <img style="width: 100%;height: auto;" src="{{dua.avatar}}" ng-if="dua.avatar">
+                    </a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/2">
+                        <img style="width: 100%;height: auto;" src="{{tiga.avatar}}" ng-if="tiga.avatar">
                     </a>
                 </div>
             </div>
+            <div ng-if="hitung == 2" class="row">
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
+                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
+                    </a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/1">
+                        <img style="width: 100%;height: auto;" src="{{dua.avatar}}" ng-if="dua.avatar">
+                    </a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a></a>
+                </div>
+            </div>
+            <div ng-if="hitung == 1" class="row">
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
+                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
+                    </a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a></a>
+                </div>
+                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
+                    <a></a>
+                </div>
+            </div>
+            
             <br>
             <a href="#/app/forumComment/{{ detail.idforums }}">
                 <button class="button button-positive ">{{ 'post_a_comment' | translate }}</button>

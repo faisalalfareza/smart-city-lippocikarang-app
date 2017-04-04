@@ -151,6 +151,7 @@ angular
                 $scope.title = $scope.detail.title;
                 $scope.comment = response.comment;
                 $scope.galleryforums = response.galleryforums;
+                
                 $ionicSlideBoxDelegate.update();
 
                 var gall = $stateParams.index;
@@ -165,6 +166,11 @@ angular
                 });
 
                 console.log('di detailimage', $scope.galleryforums);
+                console.log('GalForum total : ' , $scope.galleryforums.length);
+                $scope.satu = $scope.galleryforums[0];
+                $scope.dua = $scope.galleryforums[1];
+                $scope.tiga = $scope.galleryforums[2];
+                $scope.hitung = $scope.galleryforums.length
             } else {
                 $scope.data = { name: $filter('translate')('failed_get_data') }
             }
