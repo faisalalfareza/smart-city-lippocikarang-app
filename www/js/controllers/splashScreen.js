@@ -51,9 +51,13 @@ angular
       } else {
 
         $state.go('app.main');
-        AdvertiseService.AdsOpen(); 
-        return $timeout(() => angular.noop, 3000);  
 
+        if($location.path("/app/main")) {
+          AdvertiseService.AdsOpen(); 
+        }
+        
+        return $timeout(() => angular.noop, 3000);
+        
       }
     };
 
