@@ -30,7 +30,7 @@
 
             <ion-slide-box auto-play="true" does-continue="true" slide-interval="3000" active-slide="currentIndex" on-slide-changed="slideChanged(index)" style="height:auto;padding:0;margin:0;position:relative;">
                 <ion-slide class="slider-slide-image" ng-repeat="list in news" ng-click="openModal(list)" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
-                    <img ng-src="{{list.avatar}}">
+                    <img class='ver-center' ng-src="{{list.avatar}}">
                 </ion-slide>
             </ion-slide-box>
         </div>

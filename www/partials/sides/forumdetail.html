@@ -32,13 +32,17 @@
 
             <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
             <p>{{detail.description}}</p>
+            
             <div class="row">
-                <div ng-repeat="gallery in galleryforums" class="col" style="width: auto;height: 5em;overflow:hidden;">
+                <div ng-repeat="gallery in galleryforums" class="col" style="width: 10em;height: 10em;overflow:hidden;">
                     <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/{{$index}}">
-                        <img style="width: 100%;height: auto;" src="{{gallery.avatar}}" ng-if="gallery.avatar">
+                        <div ng-if="gallery.avatar" style="margin-bottom: 0;">
+                            <img class='ver-center' src="{{gallery.avatar}}" style="width:5em;height:5em;margin-bottom: -1em;"> 
+                        </div>   
                     </a>
                 </div>
             </div>
+
             <br>
             <a href="#/app/forumComment/{{ detail.idforums }}">
                 <button class="button button-positive ">{{ 'post_a_comment' | translate }}</button>
@@ -46,7 +50,7 @@
             <div class=" " ng-repeat="comment in comment ">
                 <div class="card ">
                     <div class="item item-avatar ">
-                        <img src="{{comment.avatar}} ">
+                        <img class='ver-center' src="{{comment.avatar}} ">
                         <div class="row ">
                             <h2 class="col col-70 ">{{comment.fullname}}</h2>
                             <h5 class="col col-30 " style="color: #2980b9; ">
