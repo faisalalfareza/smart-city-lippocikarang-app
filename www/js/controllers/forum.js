@@ -561,8 +561,9 @@ angular
             $ionicHistory.goBack();
         };
         function newForum(data) {
-
-            // $ionicLoading.show({ template: 'Loading...' })
+            alert('hallo')
+            console.log(data);
+                        // $ionicLoading.show({ template: 'Loading...' })
 
             var a = 0;
             angular.forEach($scope.images, function(obj) {
