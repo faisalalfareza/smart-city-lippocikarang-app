@@ -169,7 +169,7 @@ angular
                 for (var i = 0; i < results.length; i++) {
                     
                     $scope.images.push({
-                        filename: "eComplaint-" + [i] + ".jpg",
+                        filename: "eComplaint-" + results[i] + ".jpg",
                         Base64String: "data:image/jpeg;base64," + results[i]
                     });
                 }
