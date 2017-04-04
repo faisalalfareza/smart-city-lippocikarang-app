@@ -15,16 +15,16 @@
 
             <ion-slide-box ng-if="list.gallery == false" auto-play="true" show-pager="false" slide-interval="3000" on-slide-changed="slideChanged(index)" style="height:auto;padding:0;margin:0;position:relative;">
                 <ion-slide class="slider-slide-image" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
-                    <img ng-src="{{list.avatar}}">
+                    <img class='ver-center' style="vertical-align: middle;" ng-src="{{list.avatar}}">
                 </ion-slide>               
             </ion-slide-box>            
             
             <ion-slide-box ng-if="showGallery == true" auto-play="true" show-pager="false" slide-interval="3000" on-slide-changed="slideChanged(index)" style="height:auto;padding:0;margin:0;position:relative;">
                 <ion-slide class="slider-slide-image" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
-                    <img ng-src="{{list.avatar}}">
+                    <img class='ver-center' style="vertical-align: middle;" ng-src="{{list.avatar}}">
                 </ion-slide> 
-                <ion-slide class="slider-slide-image" ng-repeat="list in gallery" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;">
-                    <img ng-src="{{list.avatar}}">
+                <ion-slide class="slider-slide-image" ng-repeat="list in gallery" style="padding:0;margin:0;justify-content:center;align-items:center;height:180px;width:100%;"                    
+                    <img class='ver-center' style="vertical-align: middle;" ng-src="{{list.avatar}}">
                 </ion-slide>               
             </ion-slide-box>
 
