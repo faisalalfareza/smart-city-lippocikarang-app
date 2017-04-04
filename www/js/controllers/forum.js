@@ -561,7 +561,6 @@ angular
             $ionicHistory.goBack();
         };
         function newForum(data) {
-            alert('hallo')
             console.log(data);
                         // $ionicLoading.show({ template: 'Loading...' })
 
@@ -603,8 +602,10 @@ angular
                 function(response) {
                     if (response != false) {
                         $state.go('app.forum')
+                        console.log('hallo bisa')
                     } else {
                         $state.go('app.forum')
+                        console.log('gabisa')
                     }
                     // $ionicLoading.hide()
                 })
