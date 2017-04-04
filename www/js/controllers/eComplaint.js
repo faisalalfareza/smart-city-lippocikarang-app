@@ -6,7 +6,6 @@ angular
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
             $scope.at = localStorage.getItem('at');
-            //if (localStorage.getItem('at') === null && localStorage.getItem('tt') === null ) {
                 eComplaintService.getToken(function(response) {
                     if (response != false) {
                         var at = response.access_token;
@@ -23,19 +22,6 @@ angular
                         })
                     }
                 });
-            /*} else {
-                eComplaintService.getToken(function(response) {
-                    if (response != false) {
-                        var at = response.access_token;
-                        var tt = response.token_type;
-                        localStorage.setItem('at', at);
-                        localStorage.setItem('tt', tt);
-                    } else {
-                        console.log('gaisa njumuk 2');
-                    }
-                });
-            }*/
-            console.log($scope.at);
         });
     };
 
@@ -101,14 +87,20 @@ angular
                             okType: "button-stable",
                             cssClass: "alertPopup"
                         });
+
                         //getlistcase
                         eComplaintService.getListCase(at, function(response) {
                             if (response != false) {
                                 $scope.list = response;
                                 $scope.dataList = response.ListCase;
-                                console.log('sudah diupdate : ' , JSON.stringify($scope.dataList));
+                                //$scope.dataList.CreatedOn = new Date($scope.dataList.CreatedOn).toISOString();
+                                $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
+                                    $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                                });
+
+                                console.log('alert response : ' , JSON.stringify($scope.dataList));
                             } else {
-                                console.log('huft kasian ' , response);
+                                console.log('huft kasian ');
                             }
                         });
                         console.log('Umak Spesial : ',JSON.stringify(response));
@@ -146,7 +138,10 @@ angular
             if (response != false) {
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
-                console.log('response : ' , JSON.stringify($scope.dataList));
+                $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
+                    $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                });
+                console.log('response 144 : ' , JSON.stringify($scope.dataList));
             } else {
                 console.log('huft kasian ' , response);
             }

@@ -48,7 +48,6 @@ angular
                 }
             }
             //console.log(req);
-            alert(req);
             $http(req)
                 .success(function (response) {
                     callback(response);
