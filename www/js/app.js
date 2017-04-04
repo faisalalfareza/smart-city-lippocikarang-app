@@ -1706,6 +1706,13 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     });
 
+    $rootScope.$on("$ionicView.beforeEnter", function() {
+        if($location.path() != "/app/main") {
+            $rootScope.$broadcast('adsModal:hideModal');
+            $rootScope.$broadcast('adsLogin:hideModal');
+        }    
+    });
+
     $ionicPlatform.ready(function() {
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
