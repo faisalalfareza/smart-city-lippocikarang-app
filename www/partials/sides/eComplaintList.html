@@ -26,7 +26,7 @@
               <div class="col col-50">
                 <select ng-model="sortBy" class="dropdown-filter">
                   <option value="">{{ 'sort' | translate }}</option>
-                  <option value="CaseNumber">Number</option>
+                  <option value="CaseNumber">{{'number'|translate}}</option>
                   <option value="StatusCase">Status</option>
                 </select>
               </div>
@@ -82,9 +82,9 @@
         <div class="row" style="height:auto">
           <ion-content style="background-color: rgb(236, 240, 241);padding:1em;">
             <form>
-            <div class="row" style="margin-top: 8em;padding: 1em;">
-              <div class="col-50">
-                <h3 style="color:#2980b9;">Client Code</h3>
+            <div class="row" style="margin-top: 2em;padding: 0.5em;">
+              <div class="col-50" align="left">
+                <h4 style="color:#2980b9;">{{'CC'|translate}}</h4>
               </div>
               <div class="col-50" style="color:#2980b9;">
                 {{pps}}
@@ -98,13 +98,13 @@
             </div>
             <div class="col-100" style="margin-top: 1em;">
               <select ng-model="data.concern" class="dropdown-filter">
-                     <option value="" selected="selected">What is your concern?</option>
+                     <option value="" selected="selected">{{'what_c'|translate}}</option>
                      <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ label.LabelDropDown }}</option>
               </select>
             </div>
             <div class="col-100" style="margin-top: 1em;">
               <label class="item item-input text">
-                    <textarea name="description" type="text" ng-model="data.description" rows="10" style="margin-right:18px;" required></textarea>
+                    <textarea placeholder="{{'desc_c'|translate}}" name="description" type="text" ng-model="data.description" rows="5" style="margin-right:18px;" required></textarea>
               </label>
             </div>
             <div class="col-100" style="margin-top: 1em;margin-bottom: 1em">
