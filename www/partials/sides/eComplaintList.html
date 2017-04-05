@@ -26,7 +26,7 @@
               <div class="col col-50">
                 <select ng-model="sortBy" class="dropdown-filter">
                   <option value="">{{ 'sort' | translate }}</option>
-                  <option value="CaseNumber">Number</option>
+                  <option value="CaseNumber">{{'number'|translate}}</option>
                   <option value="StatusCase">Status</option>
                 </select>
               </div>
@@ -34,38 +34,38 @@
           </ion-bar>
 
           <ion-content style="margin-top:8em;" class="has-footer">
-            <div class="list">
-              <div class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page"  style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;">
+            <div class="list" style="margin-top:-2em;">
+              <div class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;">
 
-                  <div class="row" style="margin-top:5%;margin-left:1%;">
+                  <div class="row" style="margin-top:5%;">
                       <div class="col col-50">
                         <h5 style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">
-                          {{ item.HelpName }}
+                        {{ item.HelpName }}
                         </h5>
                       </div>
                       <div class="col"></div>
                       <div class="col col-40">
-                        <p align="center" style="color:black;font-size:10px;margin-bottom:-2%;text-align:center;font-weight:500;margin-right: 2em;margin-right: 0.5em;">
-                          {{item.tanggal | date : "dd/MM/y"}}
+                        <p align="center" style="color:black;font-size:10px;margin-bottom: -6%;text-align:center;font-weight:500;margin-right: 2em;margin-right: 0.5em;margin-top:-0.5em;">
+                         {{item.tanggal | date : "dd/MM/y"}}
                         </p>
                       </div>
                   </div>
 
                 <div class="row">
-                    <p class="col col-offset-70" style="color:grey;font-size:10px;margin-top:4%;text-align:left;font-weight:500;">
+                    <p class="col col-offset-70" style="color:grey;font-size:10px;text-align:left;font-weight:500;">
                         {{item.Description}}
                     </p>
                     <div class="col col-30" align="right" style="text-align: right;float: right;margin-left: 4.5em;">
-                      <a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: 1em;font-size: 10px;">
+                      <a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           In Progress
                       </a>
-                      <a ng-if="item.StatusCase == 'On Hold'" class="button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: 1em;font-size: 10px;">
+                      <a ng-if="item.StatusCase == 'On Hold'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           On Hold
                       </a>
-                      <a ng-if="item.StatusCase == 'Assigned to PIC'" class="button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: 1em;font-size: 10px;">
-                          Accepted
+                      <a ng-if="item.StatusCase == 'Assigned to PIC'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
+                          Accepted 
                       </a>
-                      <a ng-if="item.StatusCase == 'Progress Completed'" class="button button-positive" style="position:absolute; width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:darkgrey;background-color:lightgrey;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: 1em;font-size: 10px;">
+                      <a ng-if="item.StatusCase == 'Progress Completed'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:darkgrey;background-color:lightgrey;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           Solved
                       </a>
                     </div>
@@ -82,9 +82,9 @@
         <div class="row" style="height:auto">
           <ion-content style="background-color: rgb(236, 240, 241);padding:1em;">
             <form>
-            <div class="row" style="margin-top: 8em;padding: 1em;">
-              <div class="col-50">
-                <h3 style="color:#2980b9;">Client Code</h3>
+            <div class="row" style="margin-top: 2em;padding: 0.5em;">
+              <div class="col-50" align="left">
+                <h4 style="color:#2980b9;">{{'CC'|translate}}</h4>
               </div>
               <div class="col-50" style="color:#2980b9;">
                 {{pps}}
@@ -98,13 +98,13 @@
             </div>
             <div class="col-100" style="margin-top: 1em;">
               <select ng-model="data.concern" class="dropdown-filter">
-                     <option value="" selected="selected">What is your concern?</option>
+                     <option value="" selected="selected">{{'what_c'|translate}}</option>
                      <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ label.LabelDropDown }}</option>
               </select>
             </div>
             <div class="col-100" style="margin-top: 1em;">
               <label class="item item-input text">
-                    <textarea name="description" type="text" ng-model="data.description" rows="10" style="margin-right:18px;" required></textarea>
+                    <textarea placeholder="{{'desc_c'|translate}}" name="description" type="text" ng-model="data.description" rows="5" style="margin-right:18px;" required></textarea>
               </label>
             </div>
             <div class="col-100" style="margin-top: 1em;margin-bottom: 1em">
