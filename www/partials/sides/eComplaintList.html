@@ -34,26 +34,34 @@
           </ion-bar>
 
           <ion-content style="margin-top:8em;" class="has-footer">
-            <div class="list" style="margin-top:-2em;">
+            <div class="list" style="margin-top:0em;">
               <div class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;">
-
-                  <div class="row" style="margin-top:5%;">
+                  <div class="row">
+                    <div class="col col-100">
+                        <h6 style="color:black;font-size:8px;margin-bottom:-2%;text-align:left;font-weight:500;">
+                        {{ item.CaseNumber }}
+                        </h6>
+                      </div>
+                  </div>
+                  <div class="row" style="margin-top:0%;">
                       <div class="col col-50">
                         <h5 style="color:black;font-size:13px;margin-bottom:-2%;text-align:left;font-weight:500;">
                         {{ item.HelpName }}
                         </h5>
                       </div>
-                      <div class="col"></div>
-                      <div class="col col-40">
-                        <p align="center" style="color:black;font-size:10px;margin-bottom: -6%;text-align:center;font-weight:500;margin-right: 2em;margin-right: 0.5em;margin-top:-0.5em;">
+                      <div class="col col-50">
+                        <p align="center" style="color:black;font-size:10px;margin-bottom: -6%;text-align:center;font-weight:500;margin-right: 0.5em;margin-top:-0.5em;margin-left: 2.5em;">
                          {{item.tanggal | date : "dd/MM/y"}}
                         </p>
                       </div>
                   </div>
 
                 <div class="row">
-                    <p class="col col-offset-70" style="color:grey;font-size:10px;text-align:left;font-weight:500;">
+                    <p ng-if="item.Description != null" class="col col-offset-70" style="color:grey;font-size:10px;text-align:left;font-weight:500;">
                         {{item.Description}}
+                    </p>
+                    <p ng-if="item.Description == null" class="col col-offset-70" style="color:grey;font-size:10px;text-align:left;font-weight:500;">
+                        &nbsp;
                     </p>
                     <div class="col col-30" align="right" style="text-align: right;float: right;margin-left: 4.5em;">
                       <a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
@@ -86,7 +94,7 @@
               <div class="col-50" align="left">
                 <h4 style="color:#2980b9;">{{'CC'|translate}}</h4>
               </div>
-              <div class="col-50" style="color:#2980b9;">
+              <div class="col-50" style="color:#2980b9;margin-top: 0.7em;">
                 {{pps}}
               </div>
             </div>

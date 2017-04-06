@@ -11,8 +11,18 @@ angular
                         var at = response.access_token;
                         var tt = response.token_type;
                         
-                        localStorage.setItem('at', at);
+                        if(localStorage.getItem('at') != null){
+                            var pp = localStorage.getItem('at');
+                            console.log('get at : ' ,pp);
+                        } else {
+                            localStorage.setItem('at', at);
+                            console.log('set item : ' ,at);
+                            console.log(localStorage.getItem('at'));
+                        }
+                        
+                        
                         localStorage.setItem('tt', tt);
+                        
                     } else {
                         eComplaintService.getToken(function(response) {
                             var at = response.access_token;
@@ -33,27 +43,30 @@ angular
         //$scope.newCase = newCase;
         //Tambahkan
         var at = localStorage.getItem('at');
-
-        eComplaintService.getUnit(at, function(response) {
-            if (response != false) {
-                $scope.pps = response.PsCode;
-                var pp = $scope.pps;
-                
-                if(localStorage.getItem('pp') != null){
-                    var pp = localStorage.getItem('pp');
-                    console.log('get item : ' ,pp);
+        if(at != null){
+            eComplaintService.getUnit(at, function(response) {
+                if (response != false) {
+                    $scope.pps = response.PsCode;
+                    var pp = $scope.pps;
+                    console.log(pp);
+                    if(localStorage.getItem('pp') != null){
+                        var pp = localStorage.getItem('pp');
+                        console.log('get item : ' ,pp);
+                    } else {
+                        localStorage.setItem('pp', pp);
+                        console.log('set item : ' ,pp);
+                    }
+                    
+                    $scope.dataUnit = response;
+                    $scope.unit = response.ListUnit;
+                    
                 } else {
-                    localStorage.setItem('pp', pp);
-                    console.log('set item : ' ,pp);
+                    console.log('haha kasian ');
                 }
-                
-                $scope.dataUnit = response;
-                $scope.unit = response.ListUnit;
-                
-            } else {
-                console.log('haha kasian ');
-            }
-        });
+            });
+        } else {
+            console.log('gabisa ambil local storage');
+        }
         
         //insert
         $scope.newCase = function(data,at){
@@ -93,6 +106,7 @@ angular
                             if (response != false) {
                                 $scope.list = response;
                                 $scope.dataList = response.ListCase;
+                                
                                 //$scope.dataList.CreatedOn = new Date($scope.dataList.CreatedOn).toISOString();
                                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
