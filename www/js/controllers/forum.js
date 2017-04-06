@@ -134,7 +134,7 @@ angular
         })*/
     }
 
-    function forumdetail($scope,  $ionicHistory, $window, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,
+    function forumdetail($scope,  $ionicHistory, $window, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,$timeout,
         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet, $cordovaImagePicker) {
         $scope.account = $localStorage.currentUser.data[0].idaccount
 
@@ -143,6 +143,7 @@ angular
         };
 
         ForumService.forumdetail(function(response) {
+            $timeout(function(){  
             if (response != false) {
                 angular.forEach(response.detail, function(value, key) {
                     $scope.detail = value[0]
@@ -154,7 +155,7 @@ angular
                 
                 $ionicSlideBoxDelegate.update();
 
-                var gall = $stateParams.index;
+                var gall = $stateParams.idx;
                 $scope.gall = gall;
 
                 var keys = Object.keys($scope.galleryforums);
@@ -168,12 +169,34 @@ angular
                 console.log('di detailimage', $scope.galleryforums);
                 console.log('GalForum total : ' , $scope.galleryforums.length);
                 $scope.satu = $scope.galleryforums[0];
+                $scope.s = 0;
+                $scope.d = 1;
+                $scope.t = 2;
                 $scope.dua = $scope.galleryforums[1];
                 $scope.tiga = $scope.galleryforums[2];
-                $scope.hitung = $scope.galleryforums.length
+                $scope.hitung = $scope.galleryforums.length;
+                $scope.idforum = $scope.galleryforums[0].idforums;
+
+                $scope.move1 = function(){
+                    alert('move1');
+                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '0'});
+                    $ionicSlideBoxDelegate.update();
+                }
+                $scope.move2 = function(){
+                    alert('move2');
+                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '1'});
+                    $ionicSlideBoxDelegate.update();
+                }
+                $scope.move3 = function(){
+                    alert('move3');
+                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '2'});
+                    $ionicSlideBoxDelegate.update();
+                }
+                
             } else {
                 $scope.data = { name: $filter('translate')('failed_get_data') }
             }
+            }, 10);
         })
 
         function next() {
@@ -535,7 +558,8 @@ angular
 
                 $ionicSlideBoxDelegate.update();
 
-                var gall = $stateParams.index;
+                var gall = $stateParams.idx;
+                console.log(gall);
                 $scope.gall = gall;
             } else {
                 $scope.image = [{ name: $filter('translate')('there_no_gallery') }];

@@ -240,7 +240,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.forumdetailImage', {
-            url: "/forumdetailImage/:idforum/{index}",
+            url: "/forumdetailImage/:idforum/:idx",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/forumdetailImage.html",

@@ -994,6 +994,8 @@ whatsnew-image {
 .contentTenant {
     margin-left: 5%;
     margin-right: 5%;
+    position: absolute;
+    z-index: 999;
 }
 
 .contentComment {
