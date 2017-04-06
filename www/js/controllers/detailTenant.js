@@ -607,10 +607,11 @@ angular
 
 function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
 
-    //get location
-    $scope.myLatlng = new google.maps.LatLng($rootScope.lat, $rootScope.long);
-    $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
-    getduration();
+
+   $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
+    $scope.myLatlng = $rootScope.backgroundmyLatlng;
+        getduration($scope.myLatlng,$scope.tujuan);
+   
 
     //load map
     $scope.$on('$ionicView.loaded', function() {
@@ -643,7 +644,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
 
     function loadMap() {
         var mapOptions = {
-            center: new google.maps.LatLng(43.074174, -89.380915),
+            center: new google.maps.LatLng(-6.21462, 106.84513),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
             zoom: 16,
@@ -658,12 +659,25 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
         };
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    
-        if($scope.lat != undefined){
+      
+        getdirection($scope.myLatlng,$scope.tujuan);
 
-            $scope.map.setCenter(new google.maps.LatLng($scope.lat, $scope.lang));
+    
+    
+    }
+
+    // get current location
+
+
+
+
+    //get direction 
+    function getdirection (mylatlang,tujuan) {
+            if(mylatlang != undefined){
+
+            $scope.map.setCenter(mylatlang);
             var myLocation = new google.maps.Marker({
-                position: new google.maps.LatLng($scope.lat, $scope.lang),
+                position: mylatlang,
                 map: $scope.map,
                 title: $filter('translate')('my_location')
              });
@@ -674,8 +688,8 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
 
             directionsDisplay.setMap($scope.map);
             directionsService.route({
-                origin: $scope.myLatlng,
-                destination: $scope.tujuan,
+                origin: mylatlang,
+                destination: tujuan,
                 travelMode: 'DRIVING',
                 unitSystem: google.maps.UnitSystem.IMPERIAL
             }, function(response, status) {
@@ -689,26 +703,25 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             {
                 var geocoder = new google.maps.Geocoder;
                 var infowindow = new google.maps.InfoWindow;
-              
                 var myLocation = new google.maps.Marker({
-                position: $scope.tujuan,
+                position: tujuan,
                 map: $scope.map,
                 title: $filter('translate')('my_location')
                 
              });
               infowindow.setContent( $rootScope.nametenant);
               infowindow.open($scope.map, myLocation);
-             $scope.map.setCenter($scope.tujuan);
+              $scope.map.setCenter($scope.tujuan);
         }
 
     }
 
     //get distance and duration
-    function getduration() {
+    function getduration(mylatlang,tujuan) {
         service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
-            origins: [$scope.myLatlng],
-            destinations: [$scope.tujuan],
+            origins: [mylatlang],
+            destinations: [tujuan],
             travelMode: 'DRIVING',
             unitSystem: google.maps.UnitSystem.METRIC,
             avoidHighways: false,

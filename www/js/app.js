@@ -1718,11 +1718,41 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     });
 
+
     $rootScope.$on("$ionicView.beforeEnter", function() {
         if($location.path() != "/app/main") {
             $rootScope.$broadcast('adsModal:hideModal');
             $rootScope.$broadcast('adsLogin:hideModal');
         }    
+    });
+
+    $ionicPlatform.ready(function(){
+        
+     backgroundGeolocation.configure(callBackFn,failureFn,{
+        desiredAccuracy: 10,
+        stationaryRadius: 20,
+        distanceFilter: 30,
+        interval: 60000
+
+    });
+
+    //get location succes
+    function callBackFn (position){
+            // alert(JSON.stringify(position));
+            $rootScope.backgroundmyLatlng = new google.maps.LatLng(position.latitude,position.longitude);
+
+        }   
+
+        function failureFn(errror){
+            $rootScope.backgroundmyLatlng= undefined;
+        //    alert(JSON.stringify(position));
+            // $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
+            // getdirection($scope.tujuan)
+
+        }
+
+      backgroundGeolocation.start();
+
     });
 
     $ionicPlatform.ready(function() {

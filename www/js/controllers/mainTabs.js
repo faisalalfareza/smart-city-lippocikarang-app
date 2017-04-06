@@ -49,7 +49,7 @@ angular
         
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
-        var pagesize = 5;
+        var pagesize = 3;
 
         dataWhatsNew.getDataWhatsNew(lang, pagesize, function(response) {
             $timeout(function() {

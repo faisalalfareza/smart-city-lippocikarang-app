@@ -5,7 +5,7 @@ angular
     .module('livein')
     .controller('mainmap', mainmap);
 
-function mainmap($scope, $location, $ionicLoading, distanceduration,$cordovaGeolocation) {
+function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$cordovaGeolocation) {
     $scope.showdistance = false;
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
@@ -43,6 +43,7 @@ function mainmap($scope, $location, $ionicLoading, distanceduration,$cordovaGeol
     $scope.labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $scope.labelIndex = 0;
     $scope.arrMarker = [];
+    $scope.myLocation;
     
     var loadMap = function() {
   
@@ -62,128 +63,45 @@ function mainmap($scope, $location, $ionicLoading, distanceduration,$cordovaGeol
         };
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         $scope.map = map;
-        var callbackFn = function(location) {
-            alert('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
-            // alert(JSON.stringify(location))
-             map.setCenter(new google.maps.LatLng(location.latitude, location.longitude));
+       $scope.curentloc= $rootScope.backgroundmyLatlng
+
+       if($scope.curentloc != null || $scope.curentloc != undefined){
+        map.setCenter($scope.curentloc);
                 map.setZoom(16)
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(location.latitude, location.longitude),
-                    map: map,
+                myLocation = new google.maps.Marker({
+                    position:$scope.curentloc,
+                    map: $scope.map,
                     title: "background"
-                });
-                 google.maps.event.addListener(myLocation,'click', (function(myLocation,content,infowindow){ 
-                    return function() {
-                    infowindow.setContent("background ");
-                    infowindow.open(map,myLocation);
-                    };
-                     })(myLocation,"background ]",infowindow));
-                backgroundGeolocation.finish();
-            };
+                })
+       }
 
-        var failureFn = function(error) {
-            alert(JSON.stringify(error))
-            console.log('BackgroundGeolocation error');
-        };
 
-    // BackgroundGeolocation is highly configurable. See platform specific configuration options
-        backgroundGeolocation.configure(callbackFn, failureFn, {
-            desiredAccuracy: 10,
-            stationaryRadius: 20,
-            distanceFilter: 30,
-            interval: 60000
-        });
 
-    // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-        backgroundGeolocation.start();
+    //     var callbackFn = function(location) {
+    //         // alert('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
+    //         // alert(JSON.stringify(location))
+             
+    //             backgroundGeolocation.finish();
 
-        $cordovaGeolocation
-            .getCurrentPosition({timeout: 10000, enableHighAccuracy:true})
-            .then(function (pos) {
-                // marker(pos.coords.latitude, pos.coords.longitude,"enableHighAccuracy true");
-                // alert(JSON.stringify(pos));
-                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                map.setZoom(16)
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                    map: map,
-                    title: "enableHighAccuracy true"
-                });
-                // $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                google.maps.event.addListener(myLocation,'click', (function(myLocation,content,infowindow){ 
-                    return function() {
-                    infowindow.setContent("enableHighAccuracy true");
-                    infowindow.open(map,myLocation);
-                    };
-                     })(myLocation,"enableHighAccuracy true",infowindow)); 
-                // infowindow.setContent("enableHighAccuracy true");
-                // infowindow.open($scope.map, myLocation);
-            }, function(err) {
-      // error
-            });
+    //             $scope.curentloc = new google.maps.LatLng(location.latitude,location.longitude)
+            
+    //     };
 
-        $cordovaGeolocation
-            .getCurrentPosition({timeout: 10000, enableHighAccuracy:false})
-            .then(function (pos) {
-                // marker(pos.coords.latitude, pos.coords.longitude,"enableHighAccuracy false");
-                alert(JSON.stringify("false" +pos));
-                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                map.setZoom(16)
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                    map: map,
-                    title: "enableHighAccuracy false"
-                });
-                // $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                  google.maps.event.addListener(myLocation,'click', (function(myLocation,content,infowindow){ 
-                    return function() {
-                    infowindow.setContent("enableHighAccuracy false");
-                    infowindow.open(map,myLocation);
-                    };
-                     })(myLocation,"enableHighAccuracy false",infowindow));
-            }, function(err) {
-      // error
-            });
+    //     var failureFn = function(error) {
+    //         // alert(JSON.stringify(error))
+    //         console.log('BackgroundGeolocation error');
+    //     }
 
-        // navigator, geolocation.getCurrentPosition(
-        //     function onSucces(pos) {
+    // // BackgroundGeolocation is highly configurable. See platform specific configuration options
+    //     backgroundGeolocation.configure(callbackFn, failureFn, {
+    //         desiredAccuracy: 10,
+    //         stationaryRadius: 20,
+    //         distanceFilter: 30,
+    //         interval: 60000
+    //     });
 
-        //         map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        //         map.setZoom(16)
-        //         var myLocation = new google.maps.Marker({
-        //             position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-        //             map: map,
-        //             title: "My Location"
-        //         });
-        //         $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-
-        //     },
-
-        //     function onError() {
-
-        //     },
-
-        //     {
-        //         enableHighAccuracy: true,
-        //         timeout: 5000,
-        //         maximumAge: 0
-        //     });
-
-        function marker (latitude,longtitude,addrestempat){
-              map.setCenter(new google.maps.LatLng(latitude,longtitude));
-                map.setZoom(16)
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(latitude,longitude),
-                    map: map,
-                    title: addrestempat
-                });
-                // $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                infowindow.setContent(addrestempat);
-                infowindow.open($scope.map, myLocation);
-        }
-
-       
-
+    // // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+    //     backgroundGeolocation.start();
 
         $scope.getPlacePredictions = function($q) {
             var dfd = $q,
@@ -248,7 +166,7 @@ function mainmap($scope, $location, $ionicLoading, distanceduration,$cordovaGeol
         }
 
         $scope.placeid = result.place_id;
-        // $scope.getduration()
+        $scope.getduration()
         $scope.balala = result.description;
         $scope.predictions = [];
         console.log(result.place_id);
@@ -275,66 +193,66 @@ function mainmap($scope, $location, $ionicLoading, distanceduration,$cordovaGeol
         });
     }
 
-    // $scope.getdirection = function() {
-    //     var directionsDisplay = new google.maps.DirectionsRenderer;
-    //     var directionsService = new google.maps.DirectionsService;
-    //     directionsDisplay.setMap($scope.map);
-    //     directionsService.route({
-    //         origin: $scope.curentloc, // Haight.
-    //         destination: { 'placeId': $scope.placeid }, // Ocean Beach.
-    //         // Note that Javascript allows us to access the constant
-    //         // using square brackets and a string value as its
-    //         // "property."
-    //         travelMode: 'DRIVING',
-    //         unitSystem: google.maps.UnitSystem.IMPERIAL
-    //     }, function(response, status) {
-    //         if (status == 'OK') {
-    //             directionsDisplay.setDirections(response);
-    //         } else {
-    //             window.alert('Directions request failed due to ' + status);
-    //         }
-    //     });
-    //     $scope.showdistance = true;
+    $scope.getdirection = function() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        directionsDisplay.setMap($scope.map);
+        directionsService.route({
+            origin: $scope.curentloc, // Haight.
+            destination: { 'placeId': $scope.placeid }, // Ocean Beach.
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.IMPERIAL
+        }, function(response, status) {
+            if (status == 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+        $scope.showdistance = true;
 
 
 
-    // }
-    // $scope.checkdesitenate = function() {
+    }
+    $scope.checkdesitenate = function() {
 
-    //         if ($scope.placeid == null) {
-    //             return true;
-    //         } else {
-    //             return false
-    //         }
+            if ($scope.placeid == null) {
+                return true;
+            } else {
+                return false
+            }
 
-    //     }
-    //     //get distance and duration
+        }
+        //get distance and duration
 
-    // $scope.getduration = function() {
+    $scope.getduration = function() {
 
-    //     console.log($scope.curentloc)
-    //     console.log($scope.placeid)
-    //     distanceduration.reqdistance($scope.curentloc, $scope.placeid, function(response) {
+        console.log($scope.curentloc)
+        console.log($scope.placeid)
+        distanceduration.reqdistance($scope.curentloc, $scope.placeid, function(response) {
 
-    //         element = response.rows[0].elements[0];
-    //         $scope.distance = element.distance.text;
-    //         $scope.duration = element.duration.text;
-
-
-    //         console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);
+            element = response.rows[0].elements[0];
+            $scope.distance = element.distance.text;
+            $scope.duration = element.duration.text;
 
 
-
-    //     })
-
-    //     $scope.setMapOnAll = function(map) {
-    //         for (var i = 0; i < $scope.arrMarker.length; i++) {
-    //             $scope.arrMarker[i].setMap(map);
-    //         }
-    //     }
+            console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);
 
 
 
-    // }
+        })
+
+        $scope.setMapOnAll = function(map) {
+            for (var i = 0; i < $scope.arrMarker.length; i++) {
+                $scope.arrMarker[i].setMap(map);
+            }
+        }
+
+
+
+    }
 
 }
