@@ -178,19 +178,14 @@ angular
                 $scope.idforum = $scope.galleryforums[0].idforums;
 
                 $scope.move1 = function(){
-                    alert('move1');
-                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '0'});
-                    $ionicSlideBoxDelegate.update();
+                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '0'});
+                    //$state.go('app.newforum');
                 }
                 $scope.move2 = function(){
-                    alert('move2');
-                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '1'});
-                    $ionicSlideBoxDelegate.update();
+                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '1'});
                 }
                 $scope.move3 = function(){
-                    alert('move3');
-                    $state.go('app.forumdetailImage', {idforum: $scope.idforum,idx: '2'});
-                    $ionicSlideBoxDelegate.update();
+                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '2'});
                 }
                 
             } else {

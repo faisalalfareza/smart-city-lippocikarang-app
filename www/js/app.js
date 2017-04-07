@@ -239,11 +239,11 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
-        .state('app.forumdetailImage', {
-            url: "/forumdetailImage/:idforum/:idx",
+        .state('app.forumDetailImage', {
+            url: "/forumDetailImage/:idforum/:idx",
             views: {
                 'menu-content': {
-                    templateUrl: "partials/sides/forumdetailImage.html",
+                    templateUrl: "partials/sides/forumDetailImage.html",
                     controller: 'forumdetail'
                 }
             }

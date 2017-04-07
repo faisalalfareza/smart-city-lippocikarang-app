@@ -32,49 +32,25 @@
 
             <h4 style="color: #2980b9; ">{{detail.title | uppercase}}</h4>
             <p>{{detail.description}}</p>
-            <div ng-if="hitung == 3" class="row">
+            <div class="row" data-tap-disabled="true">
                 <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
-                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
+                    <!-- ng-href="#/app/forumdetailImage/{{detail.idforums}}/0" -->
+                    <a ng-if="satu.avatar" ng-click="move1()">
+                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}">
                     </a>
+                    <a ng-if="!satu.avatar">&nbsp;</a>
                 </div>
                 <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/1">
-                        <img style="width: 100%;height: auto;" src="{{dua.avatar}}" ng-if="dua.avatar">
+                    <a ng-if="dua.avatar" ng-click="move2()">
+                        <img style="width: 100%;height: auto;" src="{{dua.avatar}}" >
                     </a>
+                    <a ng-if="!dua.avatar">&nbsp;</a>
                 </div>
                 <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/2">
-                        <img style="width: 100%;height: auto;" src="{{tiga.avatar}}" ng-if="tiga.avatar">
+                    <a ng-if="tiga.avatar" ng-click="move3()">
+                        <img style="width: 100%;height: auto;" src="{{tiga.avatar}}" >
                     </a>
-                </div>
-            </div>
-            <div ng-if="hitung == 2" class="row">
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
-                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
-                    </a>
-                </div>
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/1">
-                        <img style="width: 100%;height: auto;" src="{{dua.avatar}}" ng-if="dua.avatar">
-                    </a>
-                </div>
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a></a>
-                </div>
-            </div>
-            <div ng-if="hitung == 1" class="row">
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a ng-href="#/app/forumdetailImage/{{detail.idforums}}/0">
-                        <img style="width: 100%;height: auto;" src="{{satu.avatar}}" ng-if="satu.avatar">
-                    </a>
-                </div>
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a></a>
-                </div>
-                <div class="col" style="width: auto;height: 5em;overflow:hidden;">
-                    <a></a>
+                    <a ng-if="!tiga.avatar">&nbsp;</a>
                 </div>
             </div>
             
