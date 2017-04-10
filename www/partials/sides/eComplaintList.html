@@ -26,7 +26,7 @@
               <div class="col col-50">
                 <select ng-model="sortBy" class="dropdown-filter">
                   <option value="">{{ 'sort' | translate }}</option>
-                  <option value="tanggal">{{'number'|translate}}</option>
+                  <option value="-tanggal">{{'number'|translate}}</option>
                   <option value="StatusCase">Status</option>
                 </select>
               </div>
@@ -130,8 +130,8 @@
                     <div class="col col-75">
                         <table width="100%">
                             <tr ng-repeat="item in images">
-                                <td width="40%" align="left">
-                                    {{ item.filename | limitTo : 30 : 13}}
+                                <td width="100%" align="left">
+                                    {{ item.filename | limitTo : 12 : 79}} ..
                                 </td>
                                 <td>
                                     <br>

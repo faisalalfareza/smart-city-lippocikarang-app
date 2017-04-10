@@ -49,13 +49,9 @@ angular
                     $scope.pps = response.PsCode;
                     var pp = $scope.pps;
                     console.log(pp);
-                    if(localStorage.getItem('pp') != null){
-                        var pp = localStorage.getItem('pp');
-                        console.log('get item : ' ,pp);
-                    } else {
+                    
                         localStorage.setItem('pp', pp);
                         console.log('set item : ' ,pp);
-                    }
                     
                     $scope.dataUnit = response;
                     $scope.unit = response.ListUnit;
