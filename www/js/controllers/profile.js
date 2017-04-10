@@ -34,12 +34,14 @@ angular
         }
     }
 
-    function profile($scope, $rootScope, $state, $localStorage, $filter, $ionicPopup, $ionicLoading, LoginService, Notification, ProfileService, $window) {
+    function profile($scope, $timeout, $rootScope, $state, $localStorage, $filter, $ionicPopup, $ionicLoading, LoginService, Notification, ProfileService, $window) {
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         $scope.logoutConfirm = logoutConfirm;
 
         countnotif();
 
+        $scope.cb = [];
+        console.log($scope.cb);
         function countnotif() {
             Notification.totalnotif(
                 function (response) {
@@ -62,9 +64,10 @@ angular
                         });
 
                         if ($scope.listnotif.length === 0) {
-                            $scope.countnotif = 0;
+                            $scope.cb.push(0);
                         } else {
-                            $scope.countnotif = $scope.listnotif.length;
+                            var cn = $scope.listnotif.length;
+                            $scope.cb.push(cn);
                         }
                     } else {
                         $scope.listnotifUser = { name: $filter('translate')('failed_get_data') };
