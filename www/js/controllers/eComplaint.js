@@ -101,6 +101,10 @@ angular
                             cssClass: "alertPopup"
                         });
 
+                        alertPopup.then(function(res) {
+                            $state.go($state.current, {}, {reload: true});
+                        });
+
                         //getlistcase
                         eComplaintService.getListCase(at, function(response) {
                             if (response != false) {
