@@ -47,7 +47,7 @@ angular
                 styles: [{ featureType: "all", stylers: [{ saturation: -75 }] }],
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
-                zoom: 16,
+                zoom: 36,
                 zoomControl: true,
                 mapTypeControl: false,
                 streetViewControl: false,

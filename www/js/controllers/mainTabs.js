@@ -29,8 +29,8 @@ angular
                 
                 // Error callback
                 var confirmPopup = $ionicPopup.confirm({
-                    title: 'Ovo not installed',
-                    template: 'Do You want to download Ovo mobile apps',
+                    title: 'Ovo ' + $filter('translate')('not_installed'),
+                    template: $filter('translate')('confirm_install_ovo'),
                     okText: $filter('translate')('yes'),
                     cancelText: $filter('translate')('no'),
                     okType: "button-stable"

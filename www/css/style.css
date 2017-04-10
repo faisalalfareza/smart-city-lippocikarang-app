@@ -421,7 +421,9 @@ w {
 }
 .item-custom.last>.item,
 .item.item-custom.last {
-   background-color: #41a5dc; 
+   background-color: #41a5dc;
+   outline: 0 !important; 
+   border: 0 !important;
 }
 
 .item-complex.item-custom {
