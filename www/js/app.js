@@ -779,7 +779,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             hello: 'Hello',
             help: 'Help',
             helpful_number: 'Helpful Number',
-            number: 'Ticket Number',
+            number: 'Date Created',
             what_c: 'What is your concern?',
             desc_c: 'Your concern ...',
             CC: 'Client Code',
@@ -1021,8 +1021,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             cinema: 'Cinema',
             commercial: 'Commercial',
             industry: 'Industry',
-            e_success: 'New Case Success',
-            e_failed: 'New Case Failed',
+            e_success: 'Case Submitted!',
+            e_failed: 'Case Unsubmited!',
             //Industry: 'Industry',
 
             //Sort Property
@@ -1306,7 +1306,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             hello: 'Halo',
             help: 'Bantuan',
             helpful_number: 'Nomor Bantuan',
-            number: 'Nomor Tiket',
+            number: 'Tanggal Dibuat',
             what_c: 'Apakah keluhan anda?',
             desc_c: 'Keluhan Anda ...',
             CC: 'Klien Kode',
