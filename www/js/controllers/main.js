@@ -204,8 +204,8 @@ angular
                 
                 // Error callback
                 var confirmPopup = $ionicPopup.confirm({
-                    title: 'Ambulance Siloam 1health not installed',
-                    template: 'Do You want to download Ambulance Siloam 1health mobile apps',
+                    title: 'Ambulance Siloam 1health ' + $filter('translate')('not_installed'),
+                    template: $filter('translate')('confirm_install_sos'),
                     okText: $filter('translate')('yes'),
                     cancelText: $filter('translate')('no'),
                     okType: "button-stable"
