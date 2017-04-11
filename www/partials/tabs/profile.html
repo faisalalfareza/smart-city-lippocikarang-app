@@ -26,8 +26,8 @@
             <div class="col pmenu-icon">
               <img src="img/profile/notification_p.png" style="height:25px">
 
-                <div ng-show="(showNotification == true)" class="count-notif">
-                  {{ countnotif }}
+                <div ng-if="cb != 0" class="count-notif">
+                  {{ cb[0] }}
                 </div>
             </div>
             <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">

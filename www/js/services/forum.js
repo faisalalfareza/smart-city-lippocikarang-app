@@ -50,7 +50,7 @@ angular
         function forumdetail(callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum
+                url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum + '&idaccount=' + $stateParams.idaccount
             }
 
             $http(req)

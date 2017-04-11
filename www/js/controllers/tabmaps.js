@@ -229,14 +229,18 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
         //get distance and duration
 
     $scope.getduration = function() {
-
+        $scope.hh = [];
+        alert($scope.hh);
         console.log($scope.curentloc)
         console.log($scope.placeid)
         distanceduration.reqdistance($scope.curentloc, $scope.placeid, function(response) {
 
             element = response.rows[0].elements[0];
-            $scope.distance = element.distance.text;
-            $scope.duration = element.duration.text;
+            if(element.distance.text){
+                $scope.distance = element.distance.text;
+                $scope.duration = element.duration.text;
+                $scope.hh.push(1);
+            }
 
 
             console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);

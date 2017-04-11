@@ -44,7 +44,7 @@ angular
         };
     }
 
-    function forum($scope, $stateParams, ForumService, $ionicLoading, $filter) {
+    function forum($scope, $stateParams, ForumService, $ionicLoading, $filter, $localStorage) {
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 })
         $scope.data = [];
@@ -56,20 +56,19 @@ angular
         var pagenumber = 1;
         var i = 1;
         $scope.loadForum = function () {
-            console.log('hehe');
                 pagenumber = i;
                 
                 ForumService.listforum($stateParams.status, pagenumber, function(response){
                     if(response){
                         $scope.data = $scope.data.concat(response);
                         $scope.lama = response[0].idforums;  
-                        $scope.lamaloop = response;
-                        console.log($scope.lama)                      ;
+                        $scope.lamaloop = response;                ;
                     } else {
                         console.log('no more data loaded');
                     }
                 });
 
+                // $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
                 i++;
         };
@@ -166,8 +165,6 @@ angular
                     $scope.galleryforums[indexfile].number = i++;
                 });
 
-                console.log('di detailimage', $scope.galleryforums);
-                console.log('GalForum total : ' , $scope.galleryforums.length);
                 $scope.satu = $scope.galleryforums[0];
                 $scope.s = 0;
                 $scope.d = 1;

@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angularSoap'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
@@ -231,7 +231,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         })
         .state('app.forumdetail', {
             cache: false,
-            url: "/forumdetail/:idforum",
+            url: "/forumdetail/:idforum/:idaccount",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/forumdetail.html",
@@ -1043,7 +1043,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             edit_topic: 'edit',
             edit_post: 'Edit Post',
             delete_discussion: 'Delete Discussion',
-            comment: 'Comment',
+            comment: 'COMMENTS',
             forum_comment: 'Forum Comment',
             comment_success: 'Success!',
             comment_failed: 'Failed!',
@@ -1564,7 +1564,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             edit_topic: 'edit',
             edit_post: 'Ubah',
             delete_discussion: 'Hapus Diskusi',
-            comment: 'Komentar',
+            comment: 'KOMENTAR',
             forum_comment: 'Komentar Forum',
             comment_success: 'Berhasil!',
             comment_failed: 'Gagal!',
