@@ -25,24 +25,8 @@ angular
             }
 
             function gotoAppStore() {
+                window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
                 console.log('Ovo Not Installed');
-                
-                // Error callback
-                var confirmPopup = $ionicPopup.confirm({
-                    title: 'Ovo ' + $filter('translate')('not_installed'),
-                    template: $filter('translate')('confirm_install_ovo'),
-                    okText: $filter('translate')('yes'),
-                    cancelText: $filter('translate')('no'),
-                    okType: "button-stable"
-                });
-
-                confirmPopup.then(function(res) {
-                    if(res) {
-                        window.open('https://itunes.apple.com/id/app/ovo/id1142114207?mt=8', '_system', 'location=no');
-                    } else {
-                        console.log('You are not sure');
-                    }
-                });
             }            
 
         }        

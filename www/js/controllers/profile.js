@@ -38,6 +38,8 @@ angular
         $scope.fullname = $localStorage.currentUser.data[0].fullname;
         $scope.logoutConfirm = logoutConfirm;
 
+        $scope.showNotification = false;
+
         countnotif();
 
         function countnotif() {
@@ -62,13 +64,14 @@ angular
                         });
 
                         if ($scope.listnotif.length === 0) {
-                            $scope.countnotif = 0;
+                            $scope.showNotification = false;
                         } else {
                             $scope.countnotif = $scope.listnotif.length;
+                            $scope.showNotification = true;
                         }
                     } else {
                         $scope.listnotifUser = { name: $filter('translate')('failed_get_data') };
-                        $scope.countnotif = 0;
+                        $scope.showNotification = false;
                     }
                     $ionicLoading.hide();
                 });

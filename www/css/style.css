@@ -943,7 +943,9 @@ whatsnew-image {
     display: block;
     background: center;
 }
-
+.count-notif {
+    position:absolute;width:21px;height:100%;background-image:url('../img/profile/notification.png');background-repeat:no-repeat;background-size:contain;color:white;top:-5px;left:65%;text-align:center;    
+}
 .rowaction {
     padding: 0 !important;
     background-color: #E3F2FD;

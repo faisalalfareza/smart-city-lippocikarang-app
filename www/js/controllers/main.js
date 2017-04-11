@@ -200,24 +200,8 @@ angular
             }
 
             function gotoAppStore() {
-                console.log('Ambulance Siloam 1health Not Installed');
-                
-                // Error callback
-                var confirmPopup = $ionicPopup.confirm({
-                    title: 'Ambulance Siloam 1health ' + $filter('translate')('not_installed'),
-                    template: $filter('translate')('confirm_install_sos'),
-                    okText: $filter('translate')('yes'),
-                    cancelText: $filter('translate')('no'),
-                    okType: "button-stable"
-                });
-
-                confirmPopup.then(function(res) {
-                    if(res) {
-                        window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
-                    } else {
-                        console.log('You are not sure');
-                    }
-                });
+                window.open('https://itunes.apple.com/id/app/ambulance-siloam-1health/id1126512880?mt=8', '_system', 'location=no');
+                console.log('Ambulance Siloam 1health Not Installed');        
             }            
 
         }   

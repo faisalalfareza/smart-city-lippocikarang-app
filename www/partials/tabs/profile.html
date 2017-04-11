@@ -25,9 +25,11 @@
           <div class="row">
             <div class="col pmenu-icon">
               <img src="img/profile/notification_p.png" style="height:25px">
-              <div ng-if="countnotif!==0" style="position:absolute;width:21px;height:100%;background-image:url('img/profile/notification.png');background-repeat:no-repeat;background-size:contain;color:white;top:-5px;left:65%;text-align:center">
-                {{ countnotif }}
-              </div>
+
+                <div ng-show="(showNotification == true)" class="count-notif">
+                  {{ countnotif }}
+                </div>
+
             </div>
             <div class="col col-80 sub-menu item-text-wrap" style="display:flex;align-items:flex-end">
               <p> {{ 'my_notification' | translate }} </p>
