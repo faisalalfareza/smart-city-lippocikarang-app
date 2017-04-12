@@ -64,7 +64,7 @@
                         &nbsp;
                     </p>
                     <div class="col col-30" align="right" style="text-align: right;float: right;margin-left: 4.5em;">
-                      <a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
+                      <!--<a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           In Progress
                       </a>
                       <a ng-if="item.StatusCase == 'On Hold'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
@@ -75,6 +75,9 @@
                       </a>
                       <a ng-if="item.StatusCase == 'Progress Completed'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:darkgrey;background-color:lightgrey;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           Solved
+                      </a>-->
+                      <a class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
+                          {{item.StatusCase}} 
                       </a>
                     </div>
                 </div>

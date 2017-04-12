@@ -111,16 +111,19 @@ angular
         };
     }
 
-    function propertyDetail($scope, $timeout, $stateParams, $ionicSlideBoxDelegate, PropertyService, $ionicLoading, $filter) {
+    function propertyDetail($scope, $timeout, $stateParams, $ionicSlideBoxDelegate, PropertyService, $ionicLoading, $filter, $localStorage) {
+
+        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
+
         $scope.next = next;
         $scope.previous = previous;
+        var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
 
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
         });
-
-        $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
-        PropertyService.retriveGetProperty($stateParams.idproperty, function(response) {
+        
+        PropertyService.retriveGetProperty(lang, $stateParams.idproperty, function(response) {
             if (response != false) {
                 $ionicSlideBoxDelegate.update();
                 $scope.roomlist = ['0', '0', '0', '0', '0', '0'];

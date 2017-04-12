@@ -4,13 +4,25 @@ angular
 
     function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $filter, trackingVehicles) {
 
-            trackingVehicles.busRoute().then(function(response){
-                $scope.response = response;
-                console.log($scope.response);
-            }, function(){
-                console.log("Something went wrong!");
-            });
-     
+        trackingBus();
+
+        function trackingBus() {
+
+            trackingVehicles.busRoute().then(
+                function(response){
+
+                    if(response) {
+                        $scope.response = response;
+                        alert('Callback');
+                        alert($scope.response);
+                    }
+                    
+                }, function(){
+                    console.log("Something went wrong!");
+                }
+            );
+
+        }
 
         $scope.daily = 'active';
 

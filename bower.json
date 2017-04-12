@@ -19,6 +19,7 @@
     "ngCordova": "^0.1.27-alpha",
     "ionic-toast": "^0.4.1",
     "ng-cordova-oauth": "^0.3.0",
-    "angular-click-and-wait": "^1.1.0"
+    "angular-click-and-wait": "^1.1.0",
+    "angular-soap": "https://github.com/andrewmcgivery/angular-soap.git#^2.1.2"
   }
 }

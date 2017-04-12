@@ -1,4 +1,10 @@
 {
   "name": "LiveIn",
-  "app_id": "62a7483e"
+  "app_id": "62a7483e",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://fleet.cartrack.id/api/"
+    }
+  ]
 }
