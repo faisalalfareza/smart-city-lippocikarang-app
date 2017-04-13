@@ -17,9 +17,11 @@ angular
         return service;
 
         function searching(name, callback) {
+            var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
+
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/City/?action=listglobal&idcity=1&pagenumber=1&pagesize=3&keyword=%25'+ name +'%25',
+                url: $filter('translate')('apilink') + 'api/City/?action=listglobal&idcity=1&pagenumber=1&pagesize=3&keyword='+ name +'&lang='+lang,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
