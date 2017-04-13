@@ -2,27 +2,31 @@ angular
     .module('livein')
     .controller('busSchedule', busSchedule);
 
-    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $filter, trackingVehicles) {
+    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $filter, $ionicPlatform, trackingVehicles) {
 
-        trackingBus();
+        $ionicPlatform.ready(function() {
 
-        function trackingBus() {
+            trackingBus();
 
-            trackingVehicles.busRoute().then(
-                function(response){
+            function trackingBus() {
 
-                    if(response) {
-                        $scope.response = response;
-                        alert('Callback');
-                        alert($scope.response);
+                trackingVehicles.busRoute().then(
+                    function(response){
+
+                        if(response) {
+                            $scope.response = response;
+                            alert('Callback');
+                            alert($scope.response);
+                        }
+                        
+                    }, function(){
+                        console.log("Something went wrong!");
                     }
-                    
-                }, function(){
-                    console.log("Something went wrong!");
-                }
-            );
+                );
 
-        }
+            }
+            
+        });
 
         $scope.daily = 'active';
 
