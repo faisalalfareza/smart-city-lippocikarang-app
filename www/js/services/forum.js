@@ -47,10 +47,10 @@ angular
                 });
         }
 
-        function forumdetail(callback) {
+        function forumdetail(idaccount,callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum + '&idaccount=' + $stateParams.idaccount
+                url: $filter('translate')('apilink') + 'api/Forums/?action=retrieve_get&idforums=' + $stateParams.idforum + '&idaccount=' + idaccount
             }
 
             $http(req)

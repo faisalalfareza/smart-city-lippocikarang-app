@@ -55,6 +55,7 @@ angular
 
         var pagenumber = 1;
         var i = 1;
+        $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
         $scope.loadForum = function () {
                 pagenumber = i;
                 
@@ -68,7 +69,7 @@ angular
                     }
                 });
 
-                // $scope.idaccount = $localStorage.currentUser.data[0].idaccount;
+                
                 $scope.$broadcast('scroll.infiniteScrollComplete');
                 i++;
         };
@@ -136,60 +137,66 @@ angular
     function forumdetail($scope,  $ionicHistory, $window, $stateParams, $ionicLoading, $localStorage, ForumService, $ionicModal, $ionicPopup, $location, $filter, $state, $ionicSlideBoxDelegate,$timeout,
         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet, $cordovaImagePicker) {
         $scope.account = $localStorage.currentUser.data[0].idaccount
-
+        console.log('tes1');
         $scope.myGoBack = function() {
             $ionicHistory.goBack();
         };
+        var idaccount = $stateParams.idaccount;
+        //if($location.path() == "/app/forumdetail/"+$stateParams.idforum+"/"+$stateParams.idaccount){
+            ForumService.forumdetail(idaccount,function(response) {
+                console.log('tes1 masuk response');
+                $timeout(function(){  
+                if (response != false) {
+                    angular.forEach(response.detail, function(value, key) {
+                        $scope.detail = value[0]
+                    })
+                    $scope.detail = response.detail[0];
+                    console.log($scope.detail);
+                    $scope.title = $scope.detail.title;
+                    $scope.comment = response.comment;
+                    $scope.galleryforums = response.galleryforums;
+                    
+                    $ionicSlideBoxDelegate.update();
 
-        ForumService.forumdetail(function(response) {
-            $timeout(function(){  
-            if (response != false) {
-                angular.forEach(response.detail, function(value, key) {
-                    $scope.detail = value[0]
-                })
-                $scope.detail = response.detail[0]
-                $scope.title = $scope.detail.title;
-                $scope.comment = response.comment;
-                $scope.galleryforums = response.galleryforums;
-                
-                $ionicSlideBoxDelegate.update();
+                    var gall = $stateParams.idx;
+                    $scope.gall = gall;
 
-                var gall = $stateParams.idx;
-                $scope.gall = gall;
+                    var keys = Object.keys($scope.galleryforums);
+                    $scope.len = keys.length;
 
-                var keys = Object.keys($scope.galleryforums);
-                $scope.len = keys.length;
+                    var i = 1;
+                    $scope.galleryforums.forEach(function(itemfile, indexfile, arrfile) {
+                        $scope.galleryforums[indexfile].number = i++;
+                    });
 
-                var i = 1;
-                $scope.galleryforums.forEach(function(itemfile, indexfile, arrfile) {
-                    $scope.galleryforums[indexfile].number = i++;
-                });
+                    $scope.satu = $scope.galleryforums[0];
+                    $scope.s = 0;
+                    $scope.d = 1;
+                    $scope.t = 2;
+                    $scope.dua = $scope.galleryforums[1];
+                    $scope.tiga = $scope.galleryforums[2];
+                    $scope.hitung = $scope.galleryforums.length;
+                    $scope.idforum = $scope.galleryforums[0].idforums;
 
-                $scope.satu = $scope.galleryforums[0];
-                $scope.s = 0;
-                $scope.d = 1;
-                $scope.t = 2;
-                $scope.dua = $scope.galleryforums[1];
-                $scope.tiga = $scope.galleryforums[2];
-                $scope.hitung = $scope.galleryforums.length;
-                $scope.idforum = $scope.galleryforums[0].idforums;
-
-                $scope.move1 = function(){
-                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '0'});
-                    //$state.go('app.newforum');
+                    $scope.move1 = function(){
+                        $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '0'});
+                        //$state.go('app.newforum');
+                    }
+                    $scope.move2 = function(){
+                        $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '1'});
+                    }
+                    $scope.move3 = function(){
+                        $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '2'});
+                    }
+                    
+                } else {
+                    $scope.data = { name: $filter('translate')('failed_get_data') }
                 }
-                $scope.move2 = function(){
-                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '1'});
-                }
-                $scope.move3 = function(){
-                    $state.go('app.forumDetailImage', {idforum: $scope.idforum,idx: '2'});
-                }
-                
-            } else {
-                $scope.data = { name: $filter('translate')('failed_get_data') }
-            }
-            }, 10);
-        })
+                }, 10);
+            })
+       /* } else {
+            console.log('gausa di cari');
+        }*/
 
         function next() {
             $ionicSlideBoxDelegate.next();
@@ -499,7 +506,8 @@ angular
     }
 
     function forumupdate($scope, $stateParams, $ionicLoading, ForumService, $ionicPopup, $filter) {
-        ForumService.forumdetail(function(response) {
+        var idaccount = '' ;
+        ForumService.forumdetail(idaccount,function(response) {
             if (response != false) {
                 angular.forEach(response.detail, function(value, key) {
                     $scope.detail = value[0]
@@ -514,7 +522,8 @@ angular
 
     function forumGallery($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, ForumService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-        ForumService.forumdetail(function(response) {
+        var idaccount = '' ;
+        ForumService.forumdetail(idaccount,function(response) {
             if (response != false) {
                 $scope.image = response.galleryforums;
 
@@ -544,7 +553,8 @@ angular
 
     function forumdetailImage($scope, $ionicLoading, $ionicSlideBoxDelegate, $stateParams, ForumService, $filter) {
         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-        ForumService.forumdetail(function(response) {
+        var idaccount = '' ;
+        ForumService.forumdetail(idaccount,function(response) {
             if (response != false) {
                 $scope.image = response.galleryforums;
 
@@ -673,8 +683,8 @@ angular
         $scope.myGoBack = function() {
             $ionicHistory.goBack();
         };
-
-        ForumService.forumdetail(function(response) {
+        var idaccount = '' ;
+        ForumService.forumdetail(idaccount,function(response) {
             if (response != false) {
                 angular.forEach(response.detail, function(value, key) {
                     $scope.detail = value[0]
