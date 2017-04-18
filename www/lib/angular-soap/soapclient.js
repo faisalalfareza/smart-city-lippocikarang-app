@@ -210,6 +210,8 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 		xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
 		xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
 		xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
     }
     else {
     	xmlHttp.open("GET", url + "?wsdl", async);
@@ -299,6 +301,7 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
     xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
     xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
 	xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
     if (SOAPClient.cors) {
     	xmlHttp.withCredentials = true;
     	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");

@@ -24,7 +24,7 @@ angular
                         getStatus.then(function(res) {
                             if (res) {
                                 console.log('Successfully!');
-                                console.log(JSON.stringify(response));
+                                console.log(response);
                             }
                         });     
 
