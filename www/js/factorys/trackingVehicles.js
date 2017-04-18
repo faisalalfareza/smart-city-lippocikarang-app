@@ -2,7 +2,7 @@ angular
     .module('livein')
     .factory('trackingVehicles', trackingVehicles);
 
-    function trackingVehicles($soap) {      
+    function trackingVehicles($soap, $ionicPopup) {   
 
         var base_url = 'http://fleet.cartrack.id/api/';
 
@@ -20,12 +20,14 @@ angular
         return {
             busRoute: function(){
                 return $soap.post(base_url, 'endpoint.get_vehicle_last_positions', {headers: req})
-                .then(function(response){
+                .then(function(response) {
+
                     alert(response);
-                    console.log(response);
-                    console.log("Successfully!");
-                },function(response){
+
+                },function(response) {
+
                     console.log("Unexpected result");
+                    
                 })
             }
         }

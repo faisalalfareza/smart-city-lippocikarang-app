@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('busSchedule', busSchedule);
 
-    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $filter, $ionicPlatform, trackingVehicles) {
+    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehicles) {
 
         $ionicPlatform.ready(function() {
 
@@ -10,19 +10,27 @@ angular
 
             function trackingBus() {
 
-                trackingVehicles.busRoute().then(
-                    function(response){
+                trackingVehicles.busRoute()
+                    .then(function(response){
 
-                        if(response) {
-                            $scope.response = response;
-                            alert('Callback');
-                            alert($scope.response);
-                        }
-                        
-                    }, function(){
-                        console.log("Something went wrong!");
-                    }
-                );
+                        $scope.response = response;
+
+                        var getStatus = $ionicPopup.alert({
+                            title: 'Tracking in Controller',
+                            template: $scope.response,
+                            okText: $filter('translate')('okay'),
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+
+                        getStatus.then(function(res) {
+                            if (res) {
+                                console.log('Successfully!');
+                                console.log($scope.response);
+                            }
+                        });     
+
+                });
 
             }
             

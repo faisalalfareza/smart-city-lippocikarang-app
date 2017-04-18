@@ -37,6 +37,28 @@ angular
 
     function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
         
+        /*function convertImgToBase64URL(url, callback, outputFormat) {
+            var img = new Image();
+            img.crossOrigin = 'NeoGeeksCamp';
+            img.onload = function() {
+            var canvas = document.createElement('CANVAS'),
+                ctx = canvas.getContext('2d'),
+                dataURL;
+            canvas.height = this.height;
+            canvas.width = this.width;
+            ctx.drawImage(this, 0, 0);
+            dataURL = canvas.toDataURL(outputFormat);
+            callback(dataURL);
+            canvas = null;
+            };
+            img.src = url;
+        return url;
+    }
+    
+        convertImgToBase64URL(img, function(base64Img) {
+            console.log(base64Img);// this is your base64 converted image     
+        });*/
+
         $scope.images = [];
         $scope.data = {};
         $scope.checking = false;
@@ -181,12 +203,13 @@ angular
             $cordovaImagePicker.getPictures(options).then(function(results) {
                 // Loop through acquired images
                 for (var i = 0; i < results.length; i++) {
-                    
+                    //"data:image/jpeg;base64," +
                     $scope.images.push({
                         filename: "eComplaint-" + results[i] + ".jpg",
-                        Base64String: "data:image/jpeg;base64," + results[i]
+                        Base64String: results[i]
                     });
                 }
+                console.log($scope.images);
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
