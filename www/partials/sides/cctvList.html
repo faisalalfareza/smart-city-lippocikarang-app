@@ -3,9 +3,9 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
     </ion-nav-buttons>
-    <ion-content class="has-footer padding" style="margin-bottom:30px">
+    <ion-content class="has-footer padding" style="margin-bottom:30px;padding:0">
         <ion-list>
-           <ion-item ng-repeat="list in data | filter : search_page" href="#/app/cctvDetail/{{$index}}">
+           <ion-item ng-repeat="list in data | filter : search_page" href="#/app/cctvDetail/{{$index}}" class="listcctv">
                <h2> {{list.name}} </h2>
            </ion-item>
        </ion-list>

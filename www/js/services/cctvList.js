@@ -12,7 +12,7 @@ angular
         function cctvList(callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Cctv/?action=list&idcity=1&pagenumber=1&pagesize=1000'
+                url: $filter('translate')('apilink') + 'api/Cctv/?action=list_rtsp&idcity=1&pagenumber=1&pagesize=1000'
             }
             $http(req)
                 .success(function (response) {
