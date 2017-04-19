@@ -209,7 +209,12 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
         xmlHttp.setRequestHeader("Authorization", "Basic WExRUTAwMDAxOkFPbGNAMDEtMDc=");
 		xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
 		xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+        
+        xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
+        xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "*");
+        xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "*");
 		xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
         // xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT");
         // xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
     }
@@ -248,7 +253,7 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 				parameters.toXml() +
 				"</" + method + "></soap:Body></soap:Envelope>";
 
-    xmlHttp.send(sr);
+    xmlHttp.send(null);
     
 	if (!async)
         return SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
@@ -300,8 +305,7 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
     var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + ((SOAPClient.interface != "") ? SOAPClient.interface + "/" : "") + method;
     xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
     xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-	xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-    xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+	// xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
     if (SOAPClient.cors) {
     	xmlHttp.withCredentials = true;
     	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
