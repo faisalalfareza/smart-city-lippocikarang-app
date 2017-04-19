@@ -36,6 +36,32 @@ angular
     };
 
     function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+
+        $scope.cobatackPicture = function() {
+            $scope.imgUrl;
+            $scope.dataImg;
+
+            var options = {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                allowEdit: true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100,
+                targetHeight: 100,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false,
+                correctOrientation:true
+            };
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                //var image = document.getElementById('myImage');
+                $scope.dataImg = imageData; // <--- this is your Base64 string 
+                $scope.imgUrl = "data:image/jpeg;base64," + imageData;
+            }, function(err) {
+                // error
+            });
+            
+        }
         
         /*function convertImgToBase64URL(url, callback, outputFormat) {
             var img = new Image();
