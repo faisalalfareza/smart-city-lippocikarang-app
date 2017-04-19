@@ -11,8 +11,7 @@ angular
         var req = {
             'Authorization': 'Basic WExRUTAwMDAxOkFPbGNAMDEtMDc=',
             'Content-Type': 'text/xml; charset=utf-8',
-            'SOAPAction': 'fleettestlive.cartrack.id/api/#get_vehicle_last_positions',
-            'Access-Control-Allow-Origin': '*'
+            'SOAPAction': 'fleettestlive.cartrack.id/api/#get_vehicle_last_positions'
         }   
 
 	    $soap.setCredentials("XLQQ00001","AOlc@01-07");          
