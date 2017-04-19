@@ -25,16 +25,7 @@ angular
                         Authorization : "Basic WExRUTAwMDAxOkFPbGNAMDEtMDc=",
                         SOAPAction : "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions"
                     }
-                )
-                .then(function(response) {
-
-                    alert(response);
-
-                },function(response) {
-
-                    console.log("Unexpected result");
-                    
-                })
+                );
             }
         }
 

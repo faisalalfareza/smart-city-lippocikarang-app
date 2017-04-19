@@ -10,23 +10,55 @@ angular
 
             function trackingBus() {
 
-                trackingVehicles.busRoute()
-                    .then(function(response) {
+                console.log('GetIn!');
 
-                        var getStatus = $ionicPopup.alert({
-                            title: 'Tracking in Controller',
-                            template: response,
-                            okText: $filter('translate')('okay'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
+                var username = 'XLQQ00001';
+                var password = 'AOlc@01-07';
+                var sr = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns:return xmlns:ns="http://localhost/"><ns:</soap:Body></soap:Envelope>';
 
-                        getStatus.then(function(res) {
-                            if (res) {
-                                console.log('Successfully!');
-                                console.log(response);
-                            }
-                        });     
+                $.soap({
+                    url: 'http://fleettestlive.cartrack.id/api/index.php?wsdl',
+                    namespaceQualifier: 'busService',
+                    namespaceURL: 'http://fleettestlive.cartrack.id/api/',  
+                    noPrefix: false,                  
+                    method: 'endpoint.get_vehicle_last_positions',
+                    appendMethodToURL: false,				
+                    SOAPAction: 'http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions',		
+                    soap12: false,
+
+                    HTTPHeaders: {
+                        type: 'POST',
+                        Authorization: 'Basic ' + btoa(username + ':' + password),
+                        Origin: '*'
+                        // Authorization: 'Basic WExRUTAwMDAxOkFPbGNAMDEtMDc='
+                    },
+
+                    beforeSend: function(SOAPEnvelope) {
+                        console.log(SOAPEnvelope.toString());
+                    },
+                    success: function (soapResponse) {
+                        var result = soapResponse.toJSON();
+                        console.log('Success!');
+                        console.log(result);
+                        // do stuff with soapResponse
+                        // if you want to have the response as JSON use soapResponse.toJSON();
+                        // or soapResponse.toString() to get XML string
+                        // or soapResponse.toXML() to get XML DOM
+                    },
+                    error: function (SOAPResponse) {
+                        // show error
+                        console.log('Failed!');
+                    },
+                    statusCode: {									
+                        404: function() {
+                            console.log('404 Not Found')
+                        },
+                        200: function() {
+                            console.log('200 OK')
+                        }
+                    },
+
+                    enableLogging: true
 
                 });
 

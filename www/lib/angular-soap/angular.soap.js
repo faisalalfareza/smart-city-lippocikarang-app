@@ -12,18 +12,17 @@ angular.module('angularSoap', [])
 			}
 			
 			//Create Callback
-			var soapCallback = function(e){
-				if(e.constructor.toString().indexOf("function Error()") != -1){
-					deferred.reject("An error has occurred.");
-					alert('there is an error');
-				} else {
-					deferred.resolve(e);
-				}
-			}
+			var soapCallback = function (e, status) {
+                if (e == null || e.constructor.toString().indexOf("function Error()") != -1) {
+                    deferred.reject("An error has occurred " + status);
+                } else {
+                    deferred.resolve(e);
+                }
+            }
 
 			function GetSoapResponse_callBack(r, soapResponse) {
+				alert(r);
 				deferred.resolve(soapResponse);
-				console.log(soapResponse);
 			}
 			
 			console.log('ini url : ' + url);
