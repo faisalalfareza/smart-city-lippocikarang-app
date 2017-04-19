@@ -1,7 +1,8 @@
 angular
     .module('livein')
     .controller('eComplaint', eComplaint)
-    .controller('eComplaintList', eComplaintList);
+    .controller('eComplaintList', eComplaintList)
+    .controller('eComplaintListDetail', eComplaintListDetail);
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
@@ -239,6 +240,80 @@ angular
             $scope.checking = false;
         }
         //end of image
+        
+        $scope.generals = 'active';
+
+        // general tab & property tab
+        var genTab = angular.element(document.querySelector('#generaltab'));
+        var proTab = angular.element(document.querySelector('#propertytab'));
+        genTab.addClass("active");
+
+        $scope.general = function() {
+            $ionicSlideBoxDelegate.previous();
+            $scope.generals = 'active';
+            $scope.propertys = '';
+        };
+        $scope.property = function() {
+            $ionicSlideBoxDelegate.next();
+            $scope.propertys = 'active';
+            $scope.generals = '';
+        };
+        // Called each time the slide changes
+        $scope.slideChanged = function(index) {
+            $scope.slideIndex = index;
+            if ($scope.slideIndex == 1) {
+                $scope.generals = '';
+                $scope.propertys = 'active';
+            } else {
+                $scope.propertys = '';
+                $scope.generals = 'active';
+            }
+        };
+
+    };
+
+    function eComplaintListDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+        $scope.images = [];
+        $scope.data = {};
+        $scope.checking = false;
+        //$scope.newCase = newCase;
+        //Tambahkan
+        var at = localStorage.getItem('at');
+        if(at != null){
+            eComplaintService.getUnit(at, function(response) {
+                if (response != false) {
+                    $scope.pps = response.PsCode;
+                    var pp = $scope.pps;
+                    console.log(pp);
+                    
+                        localStorage.setItem('pp', pp);
+                        console.log('set item : ' ,pp);
+                    
+                    $scope.dataUnit = response;
+                    $scope.unit = response.ListUnit;
+                    
+                } else {
+                    console.log('haha kasian ');
+                }
+            });
+        } else {
+            console.log('gabisa ambil local storage');
+        }
+        
+       
+        //getlistcase
+        eComplaintService.getListCase(at, function(response) {
+            if (response != false) {
+                $scope.list = response;
+                $scope.dataList = response.ListCase;
+                $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
+                    $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                });
+                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+            } else {
+                console.log('huft kasian ' , response);
+            }
+        });
         
         $scope.generals = 'active';
 
