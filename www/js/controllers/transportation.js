@@ -10,11 +10,36 @@ angular
 
             function trackingBus() {
 
+                trackingVehicles.busRoute()
+                    .then(function(response) {
+
+                        var getStatus = $ionicPopup.alert({
+                            title: 'Tracking in Controller',
+                            template: response,
+                            okText: $filter('translate')('okay'),
+                            okType: "button-stable",
+                            cssClass: "alertPopup"
+                        });
+
+                        getStatus.then(function(res) {
+                            if (res) {
+                                console.log('Successfully!');
+                                console.log(response);
+                            }
+                        });     
+
+                });
+
+            }
+
+            /*
+            function trackingBus() {
+
                 console.log('GetIn!');
 
                 var username = 'XLQQ00001';
                 var password = 'AOlc@01-07';
-                var sr = '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns:return xmlns:ns="http://localhost/"><ns:</soap:Body></soap:Envelope>';
+                var soapRequest ='<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="fleettestlive.cartrack.id/api/"><x:Header> <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> <wsse:UsernameToken> <wsse:Username/> <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"/> </wsse:UsernameToken> </wsse:Security> </x:Header> <x:Body> <api:endpoint.get_vehicle_last_positions> <api:username>?</api:username> </api:endpoint.get_vehicle_last_positions> </x:Body> </x:Envelope>';
 
                 $.soap({
                     url: 'http://fleettestlive.cartrack.id/api/index.php?wsdl',
@@ -32,13 +57,21 @@ angular
                         Origin: '*'
                         // Authorization: 'Basic WExRUTAwMDAxOkFPbGNAMDEtMDc='
                     },
+                    data: {	// JSON structure used to build request XML - SHOULD be coupled with ('namespaceQualifier' AND 'namespaceURL') AND ('method' OR 'elementName')
+                        method: 'endpoint.get_vehicle_last_positions',
+                        SOAPAction: 'http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions'
+                    },
+                    data: function(SOAPObject) { // function returning an instance of the SOAPObject class
+                        return new SOAPObject(soapRequest);
+                    },
 
                     beforeSend: function(SOAPEnvelope) {
+                        console.log('beforeSend!');
                         console.log(SOAPEnvelope.toString());
                     },
                     success: function (soapResponse) {
                         var result = soapResponse.toJSON();
-                        console.log('Success!');
+                        alert('Success!');
                         console.log(result);
                         // do stuff with soapResponse
                         // if you want to have the response as JSON use soapResponse.toJSON();
@@ -47,7 +80,7 @@ angular
                     },
                     error: function (SOAPResponse) {
                         // show error
-                        console.log('Failed!');
+                        alert('Failed!');
                     },
                     statusCode: {									
                         404: function() {
@@ -63,6 +96,7 @@ angular
                 });
 
             }
+            */
             
         });
 

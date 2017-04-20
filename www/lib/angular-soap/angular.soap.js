@@ -21,7 +21,6 @@ angular.module('angularSoap', [])
             }
 
 			function GetSoapResponse_callBack(r, soapResponse) {
-				alert(r);
 				deferred.resolve(soapResponse);
 			}
 			
