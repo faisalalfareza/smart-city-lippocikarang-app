@@ -1,7 +1,8 @@
 angular
     .module('livein')
     .controller('eComplaint', eComplaint)
-    .controller('eComplaintList', eComplaintList);
+    .controller('eComplaintList', eComplaintList)
+    .controller('eComplaintListDetail', eComplaintListDetail);
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
@@ -36,29 +37,6 @@ angular
     };
 
     function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
-        
-        /*function convertImgToBase64URL(url, callback, outputFormat) {
-            var img = new Image();
-            img.crossOrigin = 'NeoGeeksCamp';
-            img.onload = function() {
-            var canvas = document.createElement('CANVAS'),
-                ctx = canvas.getContext('2d'),
-                dataURL;
-            canvas.height = this.height;
-            canvas.width = this.width;
-            ctx.drawImage(this, 0, 0);
-            dataURL = canvas.toDataURL(outputFormat);
-            callback(dataURL);
-            canvas = null;
-            };
-            img.src = url;
-        return url;
-    }
-    
-        convertImgToBase64URL(img, function(base64Img) {
-            console.log(base64Img);// this is your base64 converted image     
-        });*/
-
         $scope.images = [];
         $scope.data = {};
         $scope.checking = false;
@@ -182,14 +160,16 @@ angular
                 console.log('huft kasian ' , response);
             }
         });
-
+        
         //Image
         $scope.tackPicture = function() {
+            $scope.imgUrl;
+            $scope.dataImg;
             // Image picker will load images according to these settings
             var options = {
-                maximumImagesCount: 3, // Max number of selected images, I'm using only one for this example
-                width: 800,
-                height: 800,
+                maximumImagesCount: 2, // Max number of selected images, I'm using only one for this example
+                targetWidth: 100,
+                targetHeight: 100,
                 quality: 100, // Higher is better
                 destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.CAMERA,
@@ -200,23 +180,49 @@ angular
                 correctOrientation:true
             };
 
-            $cordovaImagePicker.getPictures(options).then(function(results) {
+            $cordovaImagePicker.getPictures(options).then(function(results) {     
                 // Loop through acquired images
                 for (var i = 0; i < results.length; i++) {
+                    console.log('Image URI: ' + results[i]);
                     //"data:image/jpeg;base64," +
-                    $scope.images.push({
-                        filename: "eComplaint-" + results[i] + ".jpg",
-                        Base64String: results[i]
-                    });
-                }
-                console.log($scope.images);
+                    
+                    window.resolveLocalFileSystemURI(results[i],
+                            function (fileEntry) {
+                                // convert to Base64 string
+                                fileEntry.file(
+                                    function(file) {
+                                        //got file
+                                        var reader = new FileReader();
+                                        reader.onloadend = function (evt) {
+                                            $scope.imgUrl = evt.target.result;
+                                            console.log("imgData : ",$scope.imgUrl) // this is your Base64 string
+                                        };
+                                        reader.readAsDataURL(file);
+                                    }, 
+                                function (evt) { 
+                                    //failed to get file
+                                });
+                            },
+                            // error callback
+                            function () { }
+                        );
+                    }
+
+
+                $scope.results=results;
+
+                $scope.images.push({
+                    filename: "eComplaint-"+results,
+                    Base64String: $scope.imgUrl
+                });
+                
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
                 $timeout(function() {
                     $scope.progressUpload = false;
                 }, 6000);
-            
+
             }, function(error) {
                 console.log('Error: ' + JSON.stringify(error)); // In case of error
             })
@@ -234,6 +240,80 @@ angular
             $scope.checking = false;
         }
         //end of image
+        
+        $scope.generals = 'active';
+
+        // general tab & property tab
+        var genTab = angular.element(document.querySelector('#generaltab'));
+        var proTab = angular.element(document.querySelector('#propertytab'));
+        genTab.addClass("active");
+
+        $scope.general = function() {
+            $ionicSlideBoxDelegate.previous();
+            $scope.generals = 'active';
+            $scope.propertys = '';
+        };
+        $scope.property = function() {
+            $ionicSlideBoxDelegate.next();
+            $scope.propertys = 'active';
+            $scope.generals = '';
+        };
+        // Called each time the slide changes
+        $scope.slideChanged = function(index) {
+            $scope.slideIndex = index;
+            if ($scope.slideIndex == 1) {
+                $scope.generals = '';
+                $scope.propertys = 'active';
+            } else {
+                $scope.propertys = '';
+                $scope.generals = 'active';
+            }
+        };
+
+    };
+
+    function eComplaintListDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+        $scope.images = [];
+        $scope.data = {};
+        $scope.checking = false;
+        //$scope.newCase = newCase;
+        //Tambahkan
+        var at = localStorage.getItem('at');
+        if(at != null){
+            eComplaintService.getUnit(at, function(response) {
+                if (response != false) {
+                    $scope.pps = response.PsCode;
+                    var pp = $scope.pps;
+                    console.log(pp);
+                    
+                        localStorage.setItem('pp', pp);
+                        console.log('set item : ' ,pp);
+                    
+                    $scope.dataUnit = response;
+                    $scope.unit = response.ListUnit;
+                    
+                } else {
+                    console.log('haha kasian ');
+                }
+            });
+        } else {
+            console.log('gabisa ambil local storage');
+        }
+        
+       
+        //getlistcase
+        eComplaintService.getListCase(at, function(response) {
+            if (response != false) {
+                $scope.list = response;
+                $scope.dataList = response.ListCase;
+                $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
+                    $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                });
+                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+            } else {
+                console.log('huft kasian ' , response);
+            }
+        });
         
         $scope.generals = 'active';
 

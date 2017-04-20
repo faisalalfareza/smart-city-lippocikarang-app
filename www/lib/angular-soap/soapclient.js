@@ -166,7 +166,7 @@ SOAPClient.authUser = "XLQQ00001";
 SOAPClient.authPass = "AOlc@01-07";
 SOAPClient.explicitNS = false;
 SOAPClient.interface = "";
-SOAPClient.cors = false;
+SOAPClient.cors = true;
 
 SOAPClient.invoke = function(url, method, parameters, async, callback)
 {
@@ -206,10 +206,17 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 		// xmlHttp.open("GET", url, async);
 
     	// Some WS implementations (i.e. BEA WebLogic Server 10.0 JAX-WS) don't support Challenge/Response HTTP BASIC, so we send authorization headers in the first request
-        xmlHttp.setRequestHeader("Authorization", "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password));
-		xmlHttp.setRequestHeader("SOAPAction", "fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
+        xmlHttp.setRequestHeader("Authorization", "Basic WExRUTAwMDAxOkFPbGNAMDEtMDc=");
+		xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
 		xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+        
+        xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
+        xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "*");
+        xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "*");
 		xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
     }
     else {
     	xmlHttp.open("GET", url + "?wsdl", async);
@@ -234,7 +241,7 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 
 	console.log('SOAPClient.auth : ' + SOAPClient.auth);
 
-	var ns = "fleettestlive.cartrack.id/api/";
+	var ns = "http://fleettestlive.cartrack.id/api/index.php";
 	var sr = 
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
 				"<soap:Envelope " +
@@ -246,7 +253,7 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 				parameters.toXml() +
 				"</" + method + "></soap:Body></soap:Envelope>";
 
-    xmlHttp.send(sr);
+    xmlHttp.send(null);
     
 	if (!async)
         return SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
@@ -296,9 +303,9 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	}, 30000);
 
     var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + ((SOAPClient.interface != "") ? SOAPClient.interface + "/" : "") + method;
-    xmlHttp.setRequestHeader("SOAPAction", "fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
+    xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
     xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-	xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+	// xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
     if (SOAPClient.cors) {
     	xmlHttp.withCredentials = true;
     	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -464,7 +471,7 @@ SOAPClient._getElementsByTagName = function(document, tagName)
     }
     catch (ex) {}
     // old XML parser support
-    return document.getElementsByTagName(tagName);
+    return document.getElementsByTagNameNS("*", tagName);
 }
 // private: xmlhttp factory
 SOAPClient._getXmlHttp = function() 

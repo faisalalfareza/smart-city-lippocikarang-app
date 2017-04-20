@@ -11,13 +11,11 @@ angular
             function trackingBus() {
 
                 trackingVehicles.busRoute()
-                    .then(function(response){
-
-                        $scope.response = response;
+                    .then(function(response) {
 
                         var getStatus = $ionicPopup.alert({
                             title: 'Tracking in Controller',
-                            template: $scope.response,
+                            template: response,
                             okText: $filter('translate')('okay'),
                             okType: "button-stable",
                             cssClass: "alertPopup"
@@ -26,7 +24,7 @@ angular
                         getStatus.then(function(res) {
                             if (res) {
                                 console.log('Successfully!');
-                                console.log($scope.response);
+                                console.log(response);
                             }
                         });     
 

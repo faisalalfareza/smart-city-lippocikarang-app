@@ -1414,3 +1414,16 @@ iframe {
     top:50%;
     transform:translateY(-50%);
 }
+
+.listcctv {
+    border-color: #0D6DB6;
+}
+
+.listcctv h2 {
+    font-weight: 500;
+    padding: 12px 6px 12px 20px;
+}
+
+.listcctv > a.item-content {
+    padding: 0;
+}

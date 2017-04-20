@@ -211,14 +211,6 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
-        .state('app.cctvMulti', {
-            url: "/cctvMulti",
-            views: {
-                'main-content': {
-                    templateUrl: "partials/sides/cctvMulti.html"
-                }
-            }
-        })
         .state('app.forum', {
             //cache: false,
             url: "/forum",
@@ -607,6 +599,15 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 'menu-content': {
                     templateUrl: "partials/sides/eComplaintList.html",
                     controller: 'eComplaintList'
+                }
+            }
+        })
+        .state('app.eComplaintListDetail', {
+            url: "/eComplaintListDetail/:id",
+            views: {
+                'menu-content': {
+                    templateUrl: "partials/sides/eComplaintListDetail.html",
+                    controller: 'eComplaintListDetail'
                 }
             }
         })
@@ -1706,7 +1707,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
     $rootScope.$on("$ionicView.beforeEnter", function() {
         var myEl = angular.element(document.querySelector('#sidemenu-con'));
 
-        if ($location.path() == "/app/cctvMulti" || $location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
+        if ($location.path().substr(0, 15) == "/app/cctvDetail" || $location.path() == "/app/main" || $location.path().substr(0, 11) == "/app/search" ||
             $location.path() == "/app/currency" || $location.path() == "/app/profile" || $location.path() == "/app/history" ||
             $location.path().substr(0, 14) == "/app/myhistory" || $location.path() == "/app/editprofile" || $location.path() == "/app/listbookmark" ||
             $location.path() == "/app/listbookmark" || $location.path() == "/app/notification" || $location.path().substr(0, 23) == "/app/notificationDetail" ||
