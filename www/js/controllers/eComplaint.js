@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('eComplaint', eComplaint)
     .controller('eComplaintList', eComplaintList)
-    .controller('eComplaintListDetail', eComplaintListDetail);
+    .controller('eComplaintDetail', eComplaintDetail);
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
@@ -272,7 +272,7 @@ angular
 
     };
 
-    function eComplaintListDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+    function eComplaintDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
         $scope.images = [];
         $scope.data = {};
         $scope.checking = false;
