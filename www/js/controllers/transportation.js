@@ -135,46 +135,94 @@ angular
                 $scope.weekend = '';
             }
         };
+  
 
-        $scope.loadMap = function() {
+        loadMap();
 
-            var mapOptions = {
-                center: new google.maps.LatLng(43.074174, -89.380915),
-                styles: [{ featureType: "all", stylers: [{ saturation: -75 }] }],
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
-                zoom: 18,
-                zoomControl: true,
-                mapTypeControl: false,
-                streetViewControl: false,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM,
-                    style: google.maps.ZoomControlStyle.SMALL
-                }
+        function loadMap() {
+
+            var locations = [
+                ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
+                ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
+                ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
+                ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
+                ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
+            ];
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: new google.maps.LatLng(-6.3356287, 107.12469867),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            var icon = {
+                url: "img/busposition.png", // url
+                scaledSize: new google.maps.Size(50, 50), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
             };
 
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-            navigator.geolocation.getCurrentPosition(function(pos) {
-                map.setCenter(new google.maps.LatLng(-6.3075372, 107.1695603));
-                var myLocation = new google.maps.Marker({
-                    position: new google.maps.LatLng(-6.3075372, 107.1695603),
-                    map: map,
-                    title: $filter('translate')('my_location')
+            for (i = 0; i < locations.length; i++) { 
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    align: 'center',
+                    icon: icon,
+                    map: map
                 });
-                infowindow.setContent('Lippocikarang');
-                infowindow.open(map, myLocation);
-                $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-            });
-            $scope.map = map;
-        }
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+        }        
+
+        // $scope.loadMap = function() {
+
+        //     var mapOptions = {
+        //         center: new google.maps.LatLng(43.074174, -89.380915),
+        //         styles: [{ featureType: "all", stylers: [{ saturation: -75 }] }],
+        //         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        //         mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
+        //         zoom: 18,
+        //         zoomControl: true,
+        //         mapTypeControl: false,
+        //         streetViewControl: false,
+        //         zoomControlOptions: {
+        //             position: google.maps.ControlPosition.RIGHT_BOTTOM,
+        //             style: google.maps.ZoomControlStyle.SMALL
+        //         }
+        //     };
+
+        //     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        //     navigator.geolocation.getCurrentPosition(function(pos) {
+        //         map.setCenter(new google.maps.LatLng(-6.3075372, 107.1695603));
+        //         var myLocation = new google.maps.Marker({
+        //             position: new google.maps.LatLng(-6.3075372, 107.1695603),
+        //             map: map,
+        //             title: $filter('translate')('my_location')
+        //         });
+        //         infowindow.setContent('Lippocikarang');
+        //         infowindow.open(map, myLocation);
+        //         $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        //     });
+        //     $scope.map = map;
+        // }
 
         $scope.$on('$ionicView.enter', function() {
 
             if (window.google) {
                 if (window.google.maps) {
                     if ($scope.map === undefined) {
-                        $scope.loadMap();
+                        loadMap();
                     }
                 } else {
                     $scope.loadGMapsbus(); //then load the map
@@ -184,7 +232,6 @@ angular
                 $scope.loadGLoaderbus(); //then load maps, then load the map
             }
         });
-
 
         $scope.loadGLoaderbus = function() {
             if (!window.google || !window.google.loader) {

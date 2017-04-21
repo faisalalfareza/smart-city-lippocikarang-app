@@ -1787,7 +1787,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 PushAdvertise();
 
             }
-        }, 5000);             
+        }, 10000);             
 
         function PushNotifications() {
             NotifAccountService.countNotif(function(response) {
