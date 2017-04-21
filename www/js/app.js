@@ -602,12 +602,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
-        .state('app.eComplaintListDetail', {
-            url: "/eComplaintListDetail/:id",
+        .state('app.eComplaintDetail', {
+            url: "/eComplaintDetail",
             views: {
                 'menu-content': {
-                    templateUrl: "partials/sides/eComplaintListDetail.html",
-                    controller: 'eComplaintListDetail'
+                    templateUrl: "partials/sides/eComplaintDetail.html",
+                    controller: 'eComplaintDetail'
                 }
             }
         })
