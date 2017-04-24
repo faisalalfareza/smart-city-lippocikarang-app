@@ -76,7 +76,6 @@ angular
             $http(req)
                 .success(function (response) {
                     callback(response);
-
                 })
                 .error(function () {
                     callback(false);

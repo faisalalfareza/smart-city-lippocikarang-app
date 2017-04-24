@@ -174,7 +174,7 @@ angular
                 });
             }
         }
-        
+
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
             if (response != false) {
@@ -183,7 +183,7 @@ angular
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+                
             } else {
                 console.log('huft kasian ' , response);
             }
@@ -223,6 +223,10 @@ angular
                                         var reader = new FileReader();
                                         reader.onloadend = function (evt) {
                                             $scope.imgUrl = evt.target.result;
+                                            $scope.images.push({
+                                                filename: "eComplaint-"+results,
+                                                Base64String: $scope.imgUrl
+                                            });
                                             console.log("imgData : ",$scope.imgUrl) // this is your Base64 string
                                         };
                                         reader.readAsDataURL(file);
@@ -238,12 +242,11 @@ angular
 
 
                 $scope.results=results;
-
-                $scope.images.push({
-                    filename: "eComplaint-"+results,
-                    Base64String: $scope.imgUrl
+                $scope.nm.push({
+                    filename: "eComplaint-"+results
                 });
                 
+                console.log('eComplaint image : ',JSON.stringfy($scope.images));
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
@@ -300,9 +303,13 @@ angular
 
     };
 
-    function eComplaintDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+    function eComplaintDetail($ionicSlideBoxDelegate,$stateParams, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+        $scope.title = $stateParams.CaseNumber;
         $scope.images = [];
-        $scope.data = {};
+        $scope.datanya = [];
+
+        $scope.searchText = $stateParams.CaseNumber;
+        
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
@@ -310,12 +317,11 @@ angular
         if(at != null){
             eComplaintService.getUnit(at, function(response) {
                 if (response != false) {
+                    
                     $scope.pps = response.PsCode;
                     var pp = $scope.pps;
-                    console.log(pp);
-                    
                         localStorage.setItem('pp', pp);
-                        console.log('set item : ' ,pp);
+                        console.log('haiiii : ' ,pp);
                     
                     $scope.dataUnit = response;
                     $scope.unit = response.ListUnit;
@@ -328,16 +334,36 @@ angular
             console.log('gabisa ambil local storage');
         }
         
-       
+       $scope.detail= [];
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
             if (response != false) {
+                
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
+                $scope.detail.push($scope.dataList);
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+                
+                if($scope.detail != null){
+                    console.log('scope : ',JSON.stringfy($scope.detail))
+                    console.log('scope : ',JSON.stringfy($scope.detail[0]))
+
+                    for (var i = 0; i < $scope.detail.length; i++) {
+                        console.log('masuk if');
+                        if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
+                            console.log('stateCase same : ' ,$scope.detail[i].CaseNumber);
+                            $scope.detailList = $scope.detail[i];
+                            console.log('response 344 : ' , $scope.detailList);
+                        } else {
+                            console.log('gak podo');
+                        }
+                    }
+                } else {
+                    console.log('scope.detail is null')
+                }
+
             } else {
                 console.log('huft kasian ' , response);
             }

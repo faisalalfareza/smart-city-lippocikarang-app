@@ -603,7 +603,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.eComplaintDetail', {
-            url: "/eComplaintDetail",
+            url: "/eComplaintDetail/:CaseNumber",
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/eComplaintDetail.html",

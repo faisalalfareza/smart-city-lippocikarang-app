@@ -16,22 +16,30 @@
             <!-- modal -->
             <div class="contentComplaint">
                 <center>
-                    <h3>{{ 'comment' | translate }}</h3>
+                    <h3>{{ title }}</h3>
                 </center>
-                <form name="myform" ng-submit="sending(comment)" ng-controller="forumComment">
+                <input type="hidden" ng-model="searchText">
+                
+                <form name="myform">
                     <div class="row">
                         <div class="col">
-                            <label class="item item-input text" style="width:70vw;text-align: center;`">
-                                <textarea name="comment" placeholder="Comment" rows="10" ng-model="comment.desc" required></textarea>
-                            </label>
-                            <br>
+                          <ion-scroll zooming = "true" direction = "y" style = "width: auto; height: auto">
+                          <div ng-repeat="data in dataList | filter:searchText">
+                            <p>{{data.CaseNumber}}</p>
+                            <img ng-if="{{data.ListImage != null}}" src="{{data.ListImage[0]}}" width="100vw" height="auto">
+                            <img ng-if="{{data.ListImage != null}}" src="{{data.ListImage[1]}}" width="100vw" height="auto">
+                            <p>{{data.Description}}</p>
+                          </div>
+                          </ion-scroll>
                             <div class="row">
-                                <button class="col-40 button button-positive" style="margin:0.8em;" type="submit" ng-disabled="myform.$invalid">Done</button>
-                                <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-40 button button-positive" type="submit">Edit</button></a>
+                              </center>
+                                <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-60 button button-positive">Done</button></a>
+                              </center>
                             </div>
                         </div>
                     </div>
                 </form>
+                
             </div>
         </div>
     <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
