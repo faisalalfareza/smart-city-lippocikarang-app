@@ -42,7 +42,9 @@ angular
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
+        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         var at = localStorage.getItem('at');
+        
         if(at != null){
             eComplaintService.getUnit(at, function(response) {
                 if (response != false) {
@@ -63,28 +65,11 @@ angular
         } else {
             console.log('gabisa ambil local storage');
         }
+        $ionicLoading.hide();
         
-        //insert//are u sure to CreatedOn
-        function newCase() {
-            var confirmPopup = $ionicPopup.confirm({
-                template: $filter('translate')('dialog_signout'),
-                okText: $filter('translate')('yes'),
-                cancelText: $filter('translate')('no'),
-                okType: "button-stable"
-            });
-
-            confirmPopup.then(function (res) {
-                if (res) {
-                    LoginService.logoutUser();
-                    $rootScope.buttonDisabled = false;
-                    $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
-                    $state.go('login');
-                }
-            });
-        }//
         $scope.newCase = function(data,at){
             var confirmPopup = $ionicPopup.confirm({
-                template: $filter('translate')('dialog_signout'),
+                template: $filter('translate')('newCase'),
                 okText: $filter('translate')('yes'),
                 cancelText: $filter('translate')('no'),
                 okType: "button-stable"
@@ -103,7 +88,6 @@ angular
                     var concern = $scope.data.concern;
                     //var pps = $scope.pps;
                     var linkImg = $scope.images;
-
                         eComplaintService.insertCase(
                             at,
                             pp,
@@ -128,7 +112,9 @@ angular
                                 });
 
                                 //getlistcase
+                                $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                                 eComplaintService.getListCase(at, function(response) {
+                                    
                                     if (response != false) {
                                         $scope.list = response;
                                         $scope.dataList = response.ListCase;
@@ -153,7 +139,7 @@ angular
                                 });
                                 console.log('Umak ndak Spesial ');
                             }
-
+                            $ionicLoading.hide();
                         });
                     }
                 });
@@ -165,6 +151,7 @@ angular
             //$scope.data.concern = 0;
             if(id != null){
                 var at = localStorage.getItem('at', JSON.stringify(at));
+                $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                 eComplaintService.getHelpname(at, id, function(response) {
                     if (response != false) {
                         $scope.nameDropDown = response.ListHelpName;
@@ -172,93 +159,88 @@ angular
                         console.log('huft');
                     }
                 });
+                $ionicLoading.hide();
             }
         }
 
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
+            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             if (response != false) {
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                
+                console.log('Response : ',JSON.stringify($scope.dataList));
             } else {
                 console.log('huft kasian ' , response);
             }
+            $ionicLoading.hide();
         });
-        
-        //Image
-        $scope.tackPicture = function() {
-            $scope.imgUrl;
-            $scope.dataImg;
-            // Image picker will load images according to these settings
+
+        function convertImgToBase64URL(url, callback, outputFormat){
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function(){
+                var canvas = document.createElement('CANVAS'),
+                ctx = canvas.getContext('2d'), dataURL;
+                canvas.height = this.height;
+                canvas.width = this.width;
+                ctx.drawImage(this, 0, 0);
+                dataURL = canvas.toDataURL(outputFormat);
+                callback(dataURL);
+                canvas = null; 
+            };
+            img.src = url;
+        }
+        $scope.gambar;
+        //coba
+        $scope.Pick = function(){
             var options = {
-                maximumImagesCount: 2, // Max number of selected images, I'm using only one for this example
-                targetWidth: 100,
-                targetHeight: 100,
-                quality: 100, // Higher is better
+                quality: 50,
                 destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: true,
                 encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100,
+                targetHeight: 100,
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false,
                 correctOrientation:true
-            };
-
-            $cordovaImagePicker.getPictures(options).then(function(results) {     
-                // Loop through acquired images
+                };
+            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
+            $cordovaImagePicker.getPictures(options).then(function (results) {
                 for (var i = 0; i < results.length; i++) {
                     console.log('Image URI: ' + results[i]);
-                    //"data:image/jpeg;base64," +
+
+                    var example_uri = results[i];
                     
-                    window.resolveLocalFileSystemURI(results[i],
-                            function (fileEntry) {
-                                // convert to Base64 string
-                                fileEntry.file(
-                                    function(file) {
-                                        //got file
-                                        var reader = new FileReader();
-                                        reader.onloadend = function (evt) {
-                                            $scope.imgUrl = evt.target.result;
-                                            $scope.images.push({
-                                                filename: "eComplaint-"+results,
-                                                Base64String: $scope.imgUrl
-                                            });
-                                            console.log("imgData : ",$scope.imgUrl) // this is your Base64 string
-                                        };
-                                        reader.readAsDataURL(file);
-                                    }, 
-                                function (evt) { 
-                                    //failed to get file
-                                });
-                            },
-                            // error callback
-                            function () { }
-                        );
-                    }
-
-
-                $scope.results=results;
-                $scope.nm.push({
-                    filename: "eComplaint-"+results
-                });
-                
-                console.log('eComplaint image : ',JSON.stringfy($scope.images));
+                    convertImgToBase64URL(example_uri, function(base64Img){
+                        // Base64DataURL
+                        var base = base64Img.substring(24);
+                        $scope.images.push({
+                            filename: "eComplaint-"+results,
+                            Base64String: base
+                        });
+                        $scope.gambar.push(base64Img);
+                        console.log('baseGambar : ',$scope.gambar)
+                        console.log('images 233 : ',$scope.images);
+                        console.log('base64Img 230 : ',base);
+                    });
+                }
+            $ionicLoading.hide();
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
                 $timeout(function() {
                     $scope.progressUpload = false;
                 }, 6000);
-
+                
             }, function(error) {
                 console.log('Error: ' + JSON.stringify(error)); // In case of error
             })
         }
-
         $scope.pathForImage = function(images) {
             if (images === null) {
                 return ''
@@ -313,6 +295,7 @@ angular
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
+
         var at = localStorage.getItem('at');
         if(at != null){
             eComplaintService.getUnit(at, function(response) {
@@ -347,15 +330,18 @@ angular
                 });
                 
                 if($scope.detail != null){
-                    console.log('scope : ',JSON.stringfy($scope.detail))
-                    console.log('scope : ',JSON.stringfy($scope.detail[0]))
-
                     for (var i = 0; i < $scope.detail.length; i++) {
-                        console.log('masuk if');
                         if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
-                            console.log('stateCase same : ' ,$scope.detail[i].CaseNumber);
                             $scope.detailList = $scope.detail[i];
-                            console.log('response 344 : ' , $scope.detailList);
+
+                            var canvas = document.getElementById("c");
+                            var ctx = canvas.getContext("2d");
+
+                            var image = new Image();
+                            image.onload = function() {
+                                ctx.drawImage(image, 0, 0);
+                            };
+                            image.src = $scope.detailList.ListImage[0];
                         } else {
                             console.log('gak podo');
                         }

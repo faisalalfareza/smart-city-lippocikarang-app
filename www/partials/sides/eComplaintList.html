@@ -34,8 +34,8 @@
           </ion-bar>
 
           <ion-content style="margin-top:8em;" class="has-footer">
-            <ion-list>
-              <ion-item class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;" href="#/app/eComplaintDetail/{{item.CaseNumber}}">
+            <ion-list><!-- href="#/app/eComplaintDetail/{{item.CaseNumber}}"-->
+              <ion-item class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;" >
                   <div class="row">
                     <div class="col col-100">
                         <h6 style="color:black;font-size:8px;margin-bottom:-2%;text-align:left;font-weight:500;">
@@ -120,7 +120,7 @@
             </div>
             <div class="col-100" style="margin-top: 1em;margin-bottom: 1em">
               <div align="left" ng-show="checking === false">
-                    <button ng-click="tackPicture()" class="button button-positive button-small">
+                    <button ng-click="Pick()" class="button button-positive button-small">
                         {{ 'upload' | translate }}
                     </button>
                 </div>
@@ -130,9 +130,9 @@
                             {{ 'upload' | translate }}
                         </button>
                     </center>
-                    <div class="col col-75">
+                    <div ng-if="images" class="col col-75">
                         <table width="100%">
-                            <tr ng-repeat="item in dataList">
+                            <tr ng-repeat="item in images">
                                 <td width="100%" align="left">
                                     {{ item.filename | limitTo : 12 : 79}} ..
                                 </td>
