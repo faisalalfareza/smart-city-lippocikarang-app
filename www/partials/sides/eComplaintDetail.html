@@ -2,17 +2,46 @@
 
   <div class="tabs-top tabs-background-light tabs-color-positive">
     <div class="tabs">
-      <a class="tab-item {{ generals }} full-width-tab " style="font-weight:500;border-bottom:{{generals == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-right:{{generals == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}}" ng-click="general()" id="generaltab" ng-show="slideIndex = 1">
+      <a class="tab-item {{ generals }} full-width-tab " style="font-weight:500;border-bottom:{{generals == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-right:{{generals == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}}" id="generaltab" ng-show="slideIndex = 1">
         <i style="font-weight:500;letter-spacing:-0.5px;color:{{generals == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'track' | translate }}</i>
       </a>
-      <a class="tab-item {{ propertys }} full-width-tab" style="font-weight:500;border-bottom:{{propertys == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-left:{{propertys == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}};" ng-click="property()" id="propertytab" ng-show="slideIndex = 2">
+      <a class="tab-item {{ propertys }} full-width-tab" style="font-weight:500;border-bottom:{{propertys == 'active' ? '5px solid #2980b9' : '5px solid #ecf0f1'}};border-left:{{propertys == 'active' ? '1px solid #2980b9' : '1px solid #ecf0f1'}};" id="propertytab" ng-show="slideIndex = 2">
         <i style="font-weight:500;letter-spacing:-0.5px;color:{{propertys == 'active' ? ' #2980b9' : '#ecf0f1'}}" class="dark">{{ 'add_new' | translate }}</i>
       </a>
     </div>
   </div>
 
   <ion-content class="has-footer">
-
+    <div style="width:100vw;height: 100vh;background-color: rgba(0,0,0, 0.7);z-index: 3;position: absolute;top: 0;">
+            <!-- modal -->
+            <div class="contentComplaint">
+                <center>
+                    <h3>{{ title }}</h3>
+                </center>
+                <input type="hidden" ng-model="searchText">
+                
+                <form name="myform">
+                    <div class="row">
+                        <div class="col">
+                          <ion-scroll zooming = "true" direction = "y" style = "width: auto; height: auto">
+                          <div ng-repeat="data in dataList | filter:searchText">
+                            <p>{{data.CaseNumber}}</p>
+                            <img ng-if="{{data.ListImage != null}}" src="{{data.ListImage[0]}}" width="100vw" height="auto">
+                            <img ng-if="{{data.ListImage != null}}" src="{{data.ListImage[1]}}" width="100vw" height="auto">
+                            <p>{{data.Description}}</p>
+                          </div>
+                          </ion-scroll>
+                            <div class="row">
+                              </center>
+                                <a href="#/app/forumdetail/{{detail[0].idforums}}" style="margin:0.8em;" class="col-60 button button-positive">Done</button></a>
+                              </center>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
     <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
 
       <ion-slide>
@@ -64,18 +93,6 @@
                         &nbsp;
                     </p>
                     <div class="col col-30" align="right" style="text-align: right;float: right;margin-left: 4.5em;">
-                      <!--<a ng-if="item.StatusCase == 'In Progress'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
-                          In Progress
-                      </a>
-                      <a ng-if="item.StatusCase == 'On Hold'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
-                          On Hold
-                      </a>
-                      <a ng-if="item.StatusCase == 'Assigned to PIC'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
-                          Accepted 
-                      </a>
-                      <a ng-if="item.StatusCase == 'Progress Completed'" class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:darkgrey;background-color:lightgrey;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
-                          Solved
-                      </a>-->
                       <a class="button button-positive" style="position:absolute;width: 30%;border-radius: 15px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#2980b9;height: 2.5em;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);margin-right: 0;margin-top: -0.5em;font-size: 10px;">
                           {{item.StatusCase}} 
                       </a>
@@ -92,78 +109,6 @@
         <!-- Start : Monday - Friday -->
         <div class="row" style="height:auto">
           <ion-content style="background-color: rgb(236, 240, 241);padding:1em;">
-            <form>
-            <div class="row" style="margin-top: 2em;padding: 0.5em;">
-              <div class="col-50" align="left">
-                <h4 style="color:#2980b9;">{{'CC'|translate}}</h4>
-              </div>
-              <div class="col-50" style="color:#2980b9;margin-top: 0.7em;">
-                {{pps}}
-              </div>
-            </div>
-            <div class="col-100">
-              <select ng-model="data.index" ng-change="changedUnit()" class="dropdown-filter">
-                     <option value="">Unit</option>
-                     <option value="{{ category.IdDropDown }}" ng-repeat="category in unit">{{ category.LabelDropDown }}</option>
-              </select>
-            </div>
-            <div class="col-100" style="margin-top: 1em;">
-              <select ng-model="data.concern" class="dropdown-filter">
-                     <option value="" selected="selected">{{'what_c'|translate}}</option>
-                     <option value="{{ label.IdDropDown }}" ng-repeat="label in nameDropDown">{{ label.LabelDropDown }}</option>
-              </select>
-            </div>
-            <div class="col-100" style="margin-top: 1em;">
-              <label class="item item-input text">
-                    <textarea placeholder="{{'desc_c'|translate}}" name="description" type="text" ng-model="data.description" rows="5" style="margin-right:18px;" required></textarea>
-              </label>
-            </div>
-            <div class="col-100" style="margin-top: 1em;margin-bottom: 1em">
-              <div align="left" ng-show="checking === false">
-                    <button ng-click="tackPicture()" class="button button-positive button-small">
-                        {{ 'upload' | translate }}
-                    </button>
-                </div>
-                <div class="row" ng-show="checking === true" style="color: white; background-color: #387EF5">
-                    <center>
-                        <button class="button button-positive button-small">
-                            {{ 'upload' | translate }}
-                        </button>
-                    </center>
-                    <div class="col col-75">
-                        <table width="100%">
-                            <tr ng-repeat="item in images">
-                                <td width="100%" align="left">
-                                    {{ item.filename | limitTo : 12 : 79}} ..
-                                </td>
-                                <td>
-                                    <br>
-                                    <div class="loader" ng-if="progressUpload">loader</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col text-right" ng-click="clearImages()">x</div>
-                </div>
-            </div>
-            <div class="row">
-              <button class="button icon-left ion-ios-camera button-block button-positive" ng-click="cobatackPicture()">
-                  OPEN CAMERA
-              </button>
-              <img ng-src="{{ imgUrl }}">
-              <p>{{ dataImg }}</p>
-            </div>
-            <div class="row">
-                <div class="col text-left">
-                    <button ng-disabled="myform.$invalid" type="submit" ng-click="newCase(data)" class="button button-positive button-small" style="width:75px;margin-left:-5%;">{{ 'post' | translate }}</button>
-                </div>
-                <div class="col text-right">
-                    <a href="#/app/eComplaint">
-                        <button class="button button-positive button-small" style="width:75px;margin-right:-5%;">{{ 'cancel' | translate }}</button>
-                    </a>
-                </div>
-            </div>
-            </form>
           </ion-content>
         </div>
         <!-- End : Monday - Friday -->

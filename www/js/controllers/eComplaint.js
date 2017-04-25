@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('eComplaint', eComplaint)
     .controller('eComplaintList', eComplaintList)
-    .controller('eComplaintListDetail', eComplaintListDetail);
+    .controller('eComplaintDetail', eComplaintDetail);
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
@@ -64,70 +64,98 @@ angular
             console.log('gabisa ambil local storage');
         }
         
-        //insert
+        //insert//are u sure to CreatedOn
+        function newCase() {
+            var confirmPopup = $ionicPopup.confirm({
+                template: $filter('translate')('dialog_signout'),
+                okText: $filter('translate')('yes'),
+                cancelText: $filter('translate')('no'),
+                okType: "button-stable"
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    LoginService.logoutUser();
+                    $rootScope.buttonDisabled = false;
+                    $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
+                    $state.go('login');
+                }
+            });
+        }//
         $scope.newCase = function(data,at){
-            var at = localStorage.getItem('at');
-            console.log('data newCase : ', JSON.stringify(data));
-            console.log('isole : ',$localStorage.pp);
-            var pp = localStorage.getItem('pp');
-            var email = $localStorage.currentUser.data[0].email;
-            var fullname = $localStorage.currentUser.data[0].fullname;
-            var phone = $localStorage.currentUser.data[0].phone;
-            var unit = $scope.unit[0].IdDropDown;
-            var concern = $scope.data.concern;
-            //var pps = $scope.pps;
-            var linkImg = $scope.images;
+            var confirmPopup = $ionicPopup.confirm({
+                template: $filter('translate')('dialog_signout'),
+                okText: $filter('translate')('yes'),
+                cancelText: $filter('translate')('no'),
+                okType: "button-stable"
+            });
+            
+            confirmPopup.then(function (res) {
+                if (res) {
+                    var at = localStorage.getItem('at');
+                    console.log('data newCase : ', JSON.stringify(data));
+                    console.log('isole : ',$localStorage.pp);
+                    var pp = localStorage.getItem('pp');
+                    var email = $localStorage.currentUser.data[0].email;
+                    var fullname = $localStorage.currentUser.data[0].fullname;
+                    var phone = $localStorage.currentUser.data[0].phone;
+                    var unit = $scope.unit[0].IdDropDown;
+                    var concern = $scope.data.concern;
+                    //var pps = $scope.pps;
+                    var linkImg = $scope.images;
 
-                eComplaintService.insertCase(
-                    at,
-                    pp,
-                    email,
-                    fullname,
-                    phone,
-                    unit,
-                    concern,
-                    data.description,
-                    linkImg, 
-                function(response){
-                    if (response != false) {
-                        var alertPopup = $ionicPopup.alert({
-                            title: 'eComplaint',
-                            template: $filter('translate')('e_success'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
-
-                        alertPopup.then(function(res) {
-                            $state.go($state.current, {}, {reload: true});
-                        });
-
-                        //getlistcase
-                        eComplaintService.getListCase(at, function(response) {
+                        eComplaintService.insertCase(
+                            at,
+                            pp,
+                            email,
+                            fullname,
+                            phone,
+                            unit,
+                            concern,
+                            data.description,
+                            linkImg, 
+                        function(response){
                             if (response != false) {
-                                $scope.list = response;
-                                $scope.dataList = response.ListCase;
-                                
-                                //$scope.dataList.CreatedOn = new Date($scope.dataList.CreatedOn).toISOString();
-                                $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
-                                    $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'eComplaint',
+                                    template: $filter('translate')('e_success'),
+                                    okType: "button-stable",
+                                    cssClass: "alertPopup"
                                 });
 
-                                console.log('alert response : ' , JSON.stringify($scope.dataList));
-                            } else {
-                                console.log('huft kasian ');
-                            }
-                        });
-                        console.log('Umak Spesial : ',JSON.stringify(response));
-                    } else {
-                        var alertPopup = $ionicPopup.alert({
-                            title: 'eComplaint',
-                            template: $filter('translate')('e_failed'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
-                        console.log('Umak ndak Spesial ');
-                    }
+                                alertPopup.then(function(res) {
+                                    $state.go($state.current, {}, {reload: true});
+                                });
 
+                                //getlistcase
+                                eComplaintService.getListCase(at, function(response) {
+                                    if (response != false) {
+                                        $scope.list = response;
+                                        $scope.dataList = response.ListCase;
+                                        
+                                        //$scope.dataList.CreatedOn = new Date($scope.dataList.CreatedOn).toISOString();
+                                        $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
+                                            $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
+                                        });
+
+                                        console.log('alert response : ' , JSON.stringify($scope.dataList));
+                                    } else {
+                                        console.log('huft kasian ');
+                                    }
+                                });
+                                console.log('Umak Spesial : ',JSON.stringify(response));
+                            } else {
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'eComplaint',
+                                    template: $filter('translate')('e_failed'),
+                                    okType: "button-stable",
+                                    cssClass: "alertPopup"
+                                });
+                                console.log('Umak ndak Spesial ');
+                            }
+
+                        });
+                    }
                 });
         }
 
@@ -146,7 +174,7 @@ angular
                 });
             }
         }
-        
+
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
             if (response != false) {
@@ -155,7 +183,7 @@ angular
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+                
             } else {
                 console.log('huft kasian ' , response);
             }
@@ -195,6 +223,10 @@ angular
                                         var reader = new FileReader();
                                         reader.onloadend = function (evt) {
                                             $scope.imgUrl = evt.target.result;
+                                            $scope.images.push({
+                                                filename: "eComplaint-"+results,
+                                                Base64String: $scope.imgUrl
+                                            });
                                             console.log("imgData : ",$scope.imgUrl) // this is your Base64 string
                                         };
                                         reader.readAsDataURL(file);
@@ -210,12 +242,11 @@ angular
 
 
                 $scope.results=results;
-
-                $scope.images.push({
-                    filename: "eComplaint-"+results,
-                    Base64String: $scope.imgUrl
+                $scope.nm.push({
+                    filename: "eComplaint-"+results
                 });
                 
+                console.log('eComplaint image : ',JSON.stringfy($scope.images));
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
@@ -272,9 +303,13 @@ angular
 
     };
 
-    function eComplaintListDetail($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+    function eComplaintDetail($ionicSlideBoxDelegate,$stateParams, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+        $scope.title = $stateParams.CaseNumber;
         $scope.images = [];
-        $scope.data = {};
+        $scope.datanya = [];
+
+        $scope.searchText = $stateParams.CaseNumber;
+        
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
@@ -282,12 +317,11 @@ angular
         if(at != null){
             eComplaintService.getUnit(at, function(response) {
                 if (response != false) {
+                    
                     $scope.pps = response.PsCode;
                     var pp = $scope.pps;
-                    console.log(pp);
-                    
                         localStorage.setItem('pp', pp);
-                        console.log('set item : ' ,pp);
+                        console.log('haiiii : ' ,pp);
                     
                     $scope.dataUnit = response;
                     $scope.unit = response.ListUnit;
@@ -300,16 +334,36 @@ angular
             console.log('gabisa ambil local storage');
         }
         
-       
+       $scope.detail= [];
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
             if (response != false) {
+                
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
+                $scope.detail.push($scope.dataList);
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                console.log('response 144 : ' , JSON.stringify($scope.dataList));
+                
+                if($scope.detail != null){
+                    console.log('scope : ',JSON.stringfy($scope.detail))
+                    console.log('scope : ',JSON.stringfy($scope.detail[0]))
+
+                    for (var i = 0; i < $scope.detail.length; i++) {
+                        console.log('masuk if');
+                        if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
+                            console.log('stateCase same : ' ,$scope.detail[i].CaseNumber);
+                            $scope.detailList = $scope.detail[i];
+                            console.log('response 344 : ' , $scope.detailList);
+                        } else {
+                            console.log('gak podo');
+                        }
+                    }
+                } else {
+                    console.log('scope.detail is null')
+                }
+
             } else {
                 console.log('huft kasian ' , response);
             }

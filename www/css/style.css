@@ -999,12 +999,21 @@ whatsnew-image {
 }
 
 .contentComment {
-        margin-top: 4em;
+    margin-top: 4em;
     background-color: lightgray;
     position: absolute;
     align-content: center;
     margin-left: 8.5%;
     margin-right: 8.5%;
+}
+
+.contentComplaint {
+    margin-top: 7em;
+    background-color: lightgray;
+    position: absolute;
+    align-content: center;
+    margin-left: 14%;
+    margin-right: 14%;
 }
 
 .contentCommentHe {

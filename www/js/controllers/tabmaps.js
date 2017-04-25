@@ -63,45 +63,17 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
         };
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         $scope.map = map;
-       $scope.curentloc= $rootScope.backgroundmyLatlng
+        $scope.curentloc = $rootScope.backgroundmyLatlng;
 
-       if($scope.curentloc != null || $scope.curentloc != undefined){
-        map.setCenter($scope.curentloc);
-                map.setZoom(16)
-                myLocation = new google.maps.Marker({
-                    position:$scope.curentloc,
-                    map: $scope.map,
-                    title: "background"
-                })
-       }
-
-
-
-    //     var callbackFn = function(location) {
-    //         // alert('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
-    //         // alert(JSON.stringify(location))
-             
-    //             backgroundGeolocation.finish();
-
-    //             $scope.curentloc = new google.maps.LatLng(location.latitude,location.longitude)
-            
-    //     };
-
-    //     var failureFn = function(error) {
-    //         // alert(JSON.stringify(error))
-    //         console.log('BackgroundGeolocation error');
-    //     }
-
-    // // BackgroundGeolocation is highly configurable. See platform specific configuration options
-    //     backgroundGeolocation.configure(callbackFn, failureFn, {
-    //         desiredAccuracy: 10,
-    //         stationaryRadius: 20,
-    //         distanceFilter: 30,
-    //         interval: 60000
-    //     });
-
-    // // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-    //     backgroundGeolocation.start();
+        if($scope.curentloc != null || $scope.curentloc != undefined){
+            map.setCenter($scope.curentloc);
+                    map.setZoom(16)
+                    myLocation = new google.maps.Marker({
+                        position:$scope.curentloc,
+                        map: $scope.map,
+                        title: "background"
+                    })
+        }
 
         $scope.getPlacePredictions = function($q) {
             var dfd = $q,
@@ -185,10 +157,10 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
                     infowindow.open($scope.map, marker);
 
                 } else {
-                    window.alert('No results found');
+                    // window.alert('No results found');
                 }
             } else {
-                window.alert('Geocoder failed due to: ' + status);
+                // window.alert('Geocoder failed due to: ' + status);
             }
         });
     }
@@ -209,7 +181,7 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
             if (status == 'OK') {
                 directionsDisplay.setDirections(response);
             } else {
-                window.alert('Directions request failed due to ' + status);
+                // window.alert('Directions request failed due to ' + status);
             }
         });
         $scope.showdistance = true;
@@ -230,9 +202,6 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
 
     $scope.getduration = function() {
         $scope.hh = [];
-        alert($scope.hh);
-        console.log($scope.curentloc)
-        console.log($scope.placeid)
         distanceduration.reqdistance($scope.curentloc, $scope.placeid, function(response) {
 
             element = response.rows[0].elements[0];
@@ -242,10 +211,7 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
                 $scope.hh.push(1);
             }
 
-
             console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);
-
-
 
         })
 

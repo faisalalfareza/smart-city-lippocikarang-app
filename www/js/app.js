@@ -602,12 +602,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
                 }
             }
         })
-        .state('app.eComplaintListDetail', {
-            url: "/eComplaintListDetail/:id",
+        .state('app.eComplaintDetail', {
+            url: "/eComplaintDetail/:CaseNumber",
             views: {
                 'menu-content': {
-                    templateUrl: "partials/sides/eComplaintListDetail.html",
-                    controller: 'eComplaintListDetail'
+                    templateUrl: "partials/sides/eComplaintDetail.html",
+                    controller: 'eComplaintDetail'
                 }
             }
         })
@@ -1787,7 +1787,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 PushAdvertise();
 
             }
-        }, 5000);             
+        }, 10000);             
 
         function PushNotifications() {
             NotifAccountService.countNotif(function(response) {

@@ -34,8 +34,8 @@
           </ion-bar>
 
           <ion-content style="margin-top:8em;" class="has-footer">
-            <div class="list" style="margin-top:0em;">
-              <div class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;">
+            <ion-list>
+              <ion-item class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;" href="#/app/eComplaintDetail/{{item.CaseNumber}}">
                   <div class="row">
                     <div class="col col-100">
                         <h6 style="color:black;font-size:8px;margin-bottom:-2%;text-align:left;font-weight:500;">
@@ -81,8 +81,8 @@
                       </a>
                     </div>
                 </div>
-              </div>  
-            </div>    
+              </ion-item>  
+            </ion-list>    
           </ion-content>
         </div>
         <!-- End : Saturday & Sunday -->
@@ -132,7 +132,7 @@
                     </center>
                     <div class="col col-75">
                         <table width="100%">
-                            <tr ng-repeat="item in images">
+                            <tr ng-repeat="item in dataList">
                                 <td width="100%" align="left">
                                     {{ item.filename | limitTo : 12 : 79}} ..
                                 </td>
