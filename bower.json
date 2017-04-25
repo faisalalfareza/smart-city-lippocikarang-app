@@ -21,6 +21,7 @@
     "ng-cordova-oauth": "^0.3.0",
     "angular-click-and-wait": "^1.1.0",
     "angular-soap": "https://github.com/andrewmcgivery/angular-soap.git#^2.1.2",
-    "jquery.soap": "^1.6.9"
+    "jquery.soap": "^1.6.9",
+    "abdmob/x2js": "https://github.com/abdmob/x2js.git#^1.2.0"
   }
 }

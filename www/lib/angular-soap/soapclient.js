@@ -211,7 +211,7 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
         
         xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
         xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-        xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
         xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
         xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         

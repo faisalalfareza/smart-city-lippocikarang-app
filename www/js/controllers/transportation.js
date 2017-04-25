@@ -2,12 +2,35 @@ angular
     .module('livein')
     .controller('busSchedule', busSchedule);
 
-    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehicles) {
+    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehiclesService) {
 
         $ionicPlatform.ready(function() {
 
             trackingBus();
 
+            function trackingBus() {
+       
+                trackingVehiclesService.busRoute(function(response) {
+
+                    var getStatus = $ionicPopup.alert({
+                        title: 'Tracking in Controller',
+                        template: response,
+                        okText: $filter('translate')('okay'),
+                        okType: "button-stable",
+                        cssClass: "alertPopup"
+                    });
+
+                    getStatus.then(function(res) {
+                        if (res) {
+                            console.log('Successfully!');
+                            console.log(response);
+                        }
+                    }); 
+
+                });
+            }
+
+            /*
             function trackingBus() {
 
                 trackingVehicles.busRoute()
@@ -31,6 +54,7 @@ angular
                 });
 
             }
+            */
 
             /*
             function trackingBus() {
@@ -151,7 +175,7 @@ angular
             
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
-                center: new google.maps.LatLng(-6.3356287, 107.12469867),
+                center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
@@ -160,8 +184,8 @@ angular
             var marker, i;
 
             var icon = {
-                url: "img/busposition.png", // url
-                scaledSize: new google.maps.Size(50, 50), // scaled size
+                url: "img/ic_destination.png", // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
                 origin: new google.maps.Point(0,0), // origin
                 anchor: new google.maps.Point(0, 0) // anchor
             };

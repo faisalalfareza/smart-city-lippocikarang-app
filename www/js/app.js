@@ -1,11 +1,11 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angularSoap'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
     .run(run)
 
-function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider) {
+function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $translateProvider, $sceDelegateProvider, $ionicConfigProvider, $ionicAppProvider, $httpProvider) {
 
     var api_link = "http://innodev.vnetcloud.com/LiveIn/";
     var api_link_payment = "http://innodev.vnetcloud.com/liveinpayment/";
@@ -21,6 +21,9 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         //gcm_id: '999348773193'
     });
 
+    //uncommenting the following line makes GET requests fail as well
+    //$httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $ionicConfigProvider.platform.android.views.maxCache(0);
     $ionicConfigProvider.tabs.position('bottom');
