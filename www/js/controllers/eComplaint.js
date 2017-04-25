@@ -42,7 +42,9 @@ angular
         $scope.checking = false;
         //$scope.newCase = newCase;
         //Tambahkan
+        $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
         var at = localStorage.getItem('at');
+        
         if(at != null){
             eComplaintService.getUnit(at, function(response) {
                 if (response != false) {
@@ -63,28 +65,11 @@ angular
         } else {
             console.log('gabisa ambil local storage');
         }
+        $ionicLoading.hide();
         
-        //insert//are u sure to CreatedOn
-        function newCase() {
-            var confirmPopup = $ionicPopup.confirm({
-                template: $filter('translate')('dialog_signout'),
-                okText: $filter('translate')('yes'),
-                cancelText: $filter('translate')('no'),
-                okType: "button-stable"
-            });
-
-            confirmPopup.then(function (res) {
-                if (res) {
-                    LoginService.logoutUser();
-                    $rootScope.buttonDisabled = false;
-                    $ionicLoading.show({ template: $filter('translate')('logoutmessage') + "...", duration: 500 });
-                    $state.go('login');
-                }
-            });
-        }//
         $scope.newCase = function(data,at){
             var confirmPopup = $ionicPopup.confirm({
-                template: $filter('translate')('dialog_signout'),
+                template: $filter('translate')('newCase'),
                 okText: $filter('translate')('yes'),
                 cancelText: $filter('translate')('no'),
                 okType: "button-stable"
@@ -103,7 +88,6 @@ angular
                     var concern = $scope.data.concern;
                     //var pps = $scope.pps;
                     var linkImg = $scope.images;
-
                         eComplaintService.insertCase(
                             at,
                             pp,
@@ -128,7 +112,9 @@ angular
                                 });
 
                                 //getlistcase
+                                $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                                 eComplaintService.getListCase(at, function(response) {
+                                    
                                     if (response != false) {
                                         $scope.list = response;
                                         $scope.dataList = response.ListCase;
@@ -153,7 +139,7 @@ angular
                                 });
                                 console.log('Umak ndak Spesial ');
                             }
-
+                            $ionicLoading.hide();
                         });
                     }
                 });
@@ -165,6 +151,7 @@ angular
             //$scope.data.concern = 0;
             if(id != null){
                 var at = localStorage.getItem('at', JSON.stringify(at));
+                $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                 eComplaintService.getHelpname(at, id, function(response) {
                     if (response != false) {
                         $scope.nameDropDown = response.ListHelpName;
@@ -172,11 +159,13 @@ angular
                         console.log('huft');
                     }
                 });
+                $ionicLoading.hide();
             }
         }
 
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
+            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             if (response != false) {
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
@@ -187,6 +176,7 @@ angular
             } else {
                 console.log('huft kasian ' , response);
             }
+            $ionicLoading.hide();
         });
 
         function convertImgToBase64URL(url, callback, outputFormat){
@@ -219,7 +209,7 @@ angular
                 saveToPhotoAlbum: false,
                 correctOrientation:true
                 };
-
+            $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             $cordovaImagePicker.getPictures(options).then(function (results) {
                 for (var i = 0; i < results.length; i++) {
                     console.log('Image URI: ' + results[i]);
@@ -239,7 +229,7 @@ angular
                         console.log('base64Img 230 : ',base);
                     });
                 }
-                
+            $ionicLoading.hide();
                 $scope.checking = true;
                 $scope.progressUpload = true;
 
