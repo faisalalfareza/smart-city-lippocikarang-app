@@ -12,8 +12,12 @@ angular
         //drawer - side menu
         $scope.showPrivillage, $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
 
-        $scope.fullname = $localStorage.currentUser.data[0].fullname;
-        $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
+        if($localStorage.currentUser != null) {
+            $scope.fullname = $localStorage.currentUser.data[0].fullname;
+            $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
+        } else {
+            $scope.fullname = "Guest";
+        }
 
         $scope.showEntertaiment = function() {
             $scope.subEntertaiment == true ? $scope.subEntertaiment = false : $scope.subEntertaiment = true;
