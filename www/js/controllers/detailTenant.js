@@ -228,7 +228,7 @@ angular
                 $scope.rating = rate;
             } else {
                 var getStatus = $ionicPopup.alert({
-                    template: 'Sorry, you are not logged in. Please login from Profile to use this feature.',
+                    template: $filter('translate')('blm_login'),
                     okText: $filter('translate')('okay'),
                     okType: "button-stable",
                     cssClass: "alertPopup"
