@@ -69,9 +69,15 @@ angular
         }
 
         function searchingProperty(name, pagenumberpro, callback) {
+            if($localStorage.currentUser != null){
+                var accountid = $localStorage.currentUser.data[0].idaccount;
+            } else {
+                var accountid = "";
+            }
+
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber='+pagenumberpro+'&pagesize=10&status=&keyword=%25' + name,
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber='+pagenumberpro+'&pagesize=10&status=&keyword=%25' + name + '%25&idaccount=' + accountid,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -85,9 +91,15 @@ angular
                 });
         }
         function propertyTotal(name, callback) {
+            if($localStorage.currentUser != null){
+                var accountid = $localStorage.currentUser.data[0].idaccount;;
+            } else {
+                var accountid = "";
+            }
+
             var total = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name ,
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name + '%25&idaccount=' + accountid,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }

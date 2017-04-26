@@ -15,7 +15,7 @@ angular
         return service;
 
         function listproperty(status, pagenumber, callback) {
-            if($localStorage.currentUser.data[0].idaccount != null){
+            if($localStorage.currentUser != null){
                 var accountid = $localStorage.currentUser.data[0].idaccount;;
             } else {
                 var accountid = "";
@@ -50,7 +50,7 @@ angular
 
         function retriveGetProperty(lang, idproperty, callback) {
             
-            if($localStorage.currentUser.data[0].idaccount != null){
+            if($localStorage.currentUser != null){
                 var accountid = $localStorage.currentUser.data[0].idaccount;;
             } else {
                 var accountid = "";
