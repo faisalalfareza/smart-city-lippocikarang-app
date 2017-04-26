@@ -31,18 +31,18 @@ angular
             
             $scope.categorytenant = texcategory($scope.tenantdata.idcategory);
             $scope.tenantname = $scope.tenantdata.name;
-            console.log($scope.categorytenant);
+            //console.log($scope.categorytenant);
         });
 
         var posOptions = { timeout: 10000, enableHighAccuracy: true };
         $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position) {
             $rootScope.lat = position.coords.latitude
             $rootScope.long = position.coords.longitude
-            console.log('lat :' + $rootScope.lat + '  long: ' + $rootScope.long);
+            //console.log('lat :' + $rootScope.lat + '  long: ' + $rootScope.long);
 
             //set to service
             $scope.distance = calculatdistance(lat, long);
-            console.log($scope.distance);
+            //console.log($scope.distance);
         });
 
         function calculatdistance(lat, long) {
@@ -63,7 +63,7 @@ angular
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c; // Distance in km
 
-            console.log(d);
+            //console.log(d);
             return d;
 
         }
@@ -169,7 +169,7 @@ angular
                         $scope.img = $scope.results[0];
                         $scope.img1 = $scope.results[1];
                         $scope.img2 = $scope.results[2];
-                        console.log($scope.img.avatar);
+                        //console.log($scope.img.avatar);
                     }
                 })
 
@@ -180,7 +180,6 @@ angular
         });
 
         $scope.$on('$ionicView.beforeLeave', function() {
-            console.log($scope.rating);
             if ($scope.rating != null || $scope.rating != undefined) {
                 var confirmPopup = $ionicPopup.confirm({
                     title: $filter('translate')('rate_title'),
@@ -193,7 +192,7 @@ angular
                     if (res) {
                         rateTenantService();
                     } else {
-                        console.log('You are not sure');
+                        //console.log('You are not sure');
                     }
                 });
             }
@@ -207,9 +206,7 @@ angular
                 $localStorage.currentUser.data[0].idaccount,
                 $scope.rating,
                 function(response) {
-                    console.log($localStorage.currentUser.data[0].idaccount)
                     if (response != false) {
-                        console.log(response);
                         $ionicLoading.show({
                             template: $filter('translate')('post_rating_success'),
                             duration: 3000
@@ -226,8 +223,18 @@ angular
         };
 
         $scope.inputrate = function(rate) {
-            $scope.rating = rate;
-            console.log($scope.rating);
+
+            if ($localStorage.currentUser != null) {
+                $scope.rating = rate;
+            } else {
+                var getStatus = $ionicPopup.alert({
+                    template: 'Sorry, you are not logged in. Please login from Profile to use this feature.',
+                    okText: $filter('translate')('okay'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
+                });
+            }
+
         }
 
         function texcategory(idcategory) {
@@ -585,7 +592,7 @@ angular
                 $scope.results.forEach(function(itemfile, indexfile, arrfile) {
                     $scope.results[indexfile].number = i++;
                 });
-                console.log('image e bor :', $scope.results);
+                
             } else {
                 $.data = { name: $filter('translate')('failed_get_data') };
             }
@@ -607,37 +614,35 @@ angular
 
 function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocation, distanceduration, $filter) {
 
-
    $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
-    $scope.myLatlng = $rootScope.backgroundmyLatlng;
-        getduration($scope.myLatlng,$scope.tujuan);
+   $scope.myLatlng = $rootScope.backgroundmyLatlng;
+   getduration($scope.myLatlng,$scope.tujuan);
    
-
     //load map
     $scope.$on('$ionicView.loaded', function() {
-        console.log("map page loaded - should only see me once???");
+        //console.log("map page loaded - should only see me once???");
     })
 
     $scope.$on('$ionicView.enter', function() {
 
-        console.log("Is google, google maps and our map set up?")
+        //console.log("Is google, google maps and our map set up?")
         if (window.google) {
-            console.log("google is");
+            //console.log("google is");
             if (window.google.maps) {
-                console.log("maps is");
+                //console.log("maps is");
                 if ($scope.map === undefined) {
-                    console.log("loading our map now...");
+                    //console.log("loading our map now...");
                     loadMap();
                 }
                 /*else{
                  goo
                  }*/
             } else {
-                console.log("maps isn't...");
+                //console.log("maps isn't...");
                 $scope.loadGMapstenant(); //then load the map
             }
         } else {
-            console.log("google isn't...");
+            //console.log("google isn't...");
             $scope.loadGLoadertenant(); //then load maps, then load the map
         }
     });
@@ -661,17 +666,10 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
       
         getdirection($scope.myLatlng,$scope.tujuan);
-
-    
-    
     }
 
     // get current location
-
-
-
-
-    //get direction 
+    // get direction 
     function getdirection (mylatlang,tujuan) {
             if(mylatlang != undefined){
 
@@ -737,7 +735,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
 
     $scope.loadGLoadertenant = function() {
         if (!window.google || !window.google.loader) {
-            console.log("loading gloader");
+            //console.log("loading gloader");
             $http.get("http://maps.googleapis.com/maps/api/js?key=AIzaSyAZ4939bfDLme2qmuIsfwg-ilYmsG3CeBw&libraries=places")
                 .success(function(json) {
                     var scriptElem = document.createElement('script');
@@ -747,7 +745,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
                 });
         } else {
             if (!window.google.maps || !window.google.maps) {
-                console.log("no gmaps");
+                //console.log("no gmaps");
                 $rootScope.loadGMaps();
             }
         }
@@ -755,7 +753,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
     
     $scope.loadGMapstenant = function() {
         if (window.google && window.google.loader && window.google.maps === undefined) {
-            console.log("loading gmaps");
+            //console.log("loading gmaps");
             try {
                 google.load("maps", "3.21", {
                     callback: mappingCallback,
