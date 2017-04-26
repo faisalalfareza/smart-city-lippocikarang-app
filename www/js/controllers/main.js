@@ -34,6 +34,14 @@ angular
                                 cssClass: "alertPopup"
                             });
         }
+        
+        if($localStorage.currentUser != null) {
+            $scope.fullname = $localStorage.currentUser.data[0].fullname;
+            $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
+        } else {
+            $scope.fullname = "Guest";
+
+        }
 
         $scope.showEntertaiment = function() {
             $scope.subEntertaiment == true ? $scope.subEntertaiment = false : $scope.subEntertaiment = true;
