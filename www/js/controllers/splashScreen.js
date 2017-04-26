@@ -45,7 +45,7 @@ angular
 
       if (!$localStorage.currentUser) {
 
-        $state.go('login');
+        $state.go('app.main');
         return $timeout(() => angular.noop, 3000);
 
       } else {

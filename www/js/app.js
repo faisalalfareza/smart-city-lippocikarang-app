@@ -745,6 +745,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dialog_signout: 'Are you sure want to sign out your mobile apps ?',
             dialog_success_upgrade: 'Your email is registered, <br/> <b>Congratulations</b> <br/>Now you\'re resident!',
             dialog_fail_upgrade: 'Sorry, your email isn\’t registered, <br/> Please contact our Customer service <br/>to register your email',
+            blm_login: 'Sorry, you are not logged in. Please login from Profile to access this menu.',
             dining: 'Dining',
             coupon: 'Coupon',
             discount: 'Discount',
@@ -946,6 +947,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             sign_start: 'Sign in and start exploring',
             signout: 'Sign Out',
             signup: 'Sign Up',
+            goMain: 'Go To Main Page',
             signup_lippo: 'Sign up for LippoCikarang.com',
             lippo_cikarang: 'Lippo Cikarang',
             skip: 'Skip',
@@ -1267,6 +1269,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dialog_signout: 'Apakah anda yakin \n ingin keluar dari akun ini?',
             dialog_success_upgrade: 'Email Anda Telah Terdaftar, <br/> <b>Selamat</b> <br/>Sekarang anda sudah<br/>menjadi warga',
             dialog_fail_upgrade: 'Maaf, email tidak dapat terdaftar, <br/> Silahkan menghubungi Customer Service <br/>untuk mendaftarkan email anda',
+            blm_login: 'Maaf, Anda belum login. Mohon login dari Profil untuk mengakses menu ini.',
             dining: 'Kuliner',
             westren_food: 'Barat',
             WESTREN_FOOD: 'Barat',
@@ -1479,6 +1482,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             sign_start: 'Daftar dan mulai menjelajah',
             signout: 'Keluar',
             signup: 'Daftar',
+            goMain: 'Kembali ke Halaman Utama',
             signup_lippo: 'Daftar ke LippoCikarang.com',
             lippo_cikarang: 'Lippo Cikarang',
             skip: 'Lewati',
@@ -1849,14 +1853,14 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
         $localStorage.currentUser.fullname = $localStorage.currentUser.fullname;
     }
 
-    // redirect to login page if not logged in and trying to access a restricted page
+    /*// redirect to login page if not logged in and trying to access a restricted page
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
         var publicPages = ['/'];
         var restrictedPage = publicPages.indexOf($location.path()) === -1;
         if (restrictedPage && !$localStorage.currentUser) {
             $location.path('/');
         }
-    });
+    });*/
 
     ngFB.init({ appId: '822365854560840' });
 

@@ -45,7 +45,7 @@ angular
         function retriveGetProperty(lang, idproperty, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Property/?action=retrieve_get&idproperty='+idproperty+'&idaccount=' + $localStorage.currentUser.data[0].idaccount+'&lang='+lang
+                url: $filter('translate')('apilink') + 'api/Property/?action=retrieve_get&idproperty='+idproperty+'&lang='+lang
             }
             $http(req)
                 .success(function (response) {

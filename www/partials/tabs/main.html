@@ -2,7 +2,8 @@
     <ion-content>
 
         <div class="row" ng-controller="weather" style="position:relative;background-color:#fff;align-items:center;height:2.5em">
-            <strong style="font-size:13px;position:absolute;left:1em;top:0.5em;color:#7f8c8d;letter-spacing:1px;font-weight:bold;margin:0">{{'hello' | translate}}, {{fullname}}</strong>
+            <strong style="font-size:13px;position:absolute;left:1em;top:0.5em;color:#7f8c8d;letter-spacing:1px;font-weight:bold;margin:0" ng-if="salah">{{'hello' | translate}}, {{fullname}}</strong>
+            <strong style="font-size:13px;position:absolute;left:1em;top:0.5em;color:#7f8c8d;letter-spacing:1px;font-weight:bold;margin:0" ng-if="!salah">{{'hello' | translate}}</strong>
             <p style="font-size:13px;position:absolute;right:1em;top:0.5em;color:#0081c9;font-weight:bold;margin:0">{{data_weather.temp}}°C</p>
             <div ng-if="data_weather.icon == 2" style="position:absolute;right:5em;top:0.5em;">
                 <i class="icon icon ion-ios-thunderstorm iconcloudy"></i>
@@ -75,7 +76,11 @@
                 </a>
             </div>
             <div class="col">
-                <a class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                <a ng-if="salah == true" class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                    <strong style="font-size: 12px">{{'discount' | translate}}</strong>
+                    <span style="font-size: 12px">{{'coupon' | translate}}</span>
+                </a>
+                <a ng-if="salah == false" class="button button-positive" ng-click="sorry()" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                     <strong style="font-size: 12px">{{'discount' | translate}}</strong>
                     <span style="font-size: 12px">{{'coupon' | translate}}</span>
                 </a>
