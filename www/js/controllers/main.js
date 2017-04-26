@@ -10,7 +10,7 @@ angular
         $scope.afliates_sos = isSOS;
         $scope.profil = function(){
             if ($localStorage.currentUser != null) {
-                $state.go('app.profil');
+                $state.go('app.profile');
             }else{
                 $state.go('login');
             }

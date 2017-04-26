@@ -224,7 +224,7 @@ angular
 
         $scope.inputrate = function(rate) {
 
-            if ($localStorage.currentUser == null) {
+            if ($localStorage.currentUser != null) {
                 $scope.rating = rate;
             } else {
                 var getStatus = $ionicPopup.alert({
