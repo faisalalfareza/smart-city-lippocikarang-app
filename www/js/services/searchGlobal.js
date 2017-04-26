@@ -71,7 +71,7 @@ angular
         function searchingProperty(name, pagenumberpro, callback) {
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber='+pagenumberpro+'&pagesize=10&status=&keyword=%25' + name + '%25&idaccount=' + $localStorage.currentUser.data[0].idaccount,
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber='+pagenumberpro+'&pagesize=10&status=&keyword=%25' + name,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -87,7 +87,7 @@ angular
         function propertyTotal(name, callback) {
             var total = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name + '%25&idaccount=' + $localStorage.currentUser.data[0].idaccount,
+                url: $filter('translate')('apilink') + 'api/property/?action=listpropertybyname&idcategory=39&pagenumber=1&pagesize=1000&status=&keyword=%25' + name ,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }

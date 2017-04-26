@@ -16,6 +16,10 @@ function login($window, $scope, LoginService, $ionicPopup, $ionicLoading, $state
         LoginService.logoutUser();
     };
 
+    $scope.startApp = function(){
+        $state.go('app.main');
+    }
+
     // Login By Credentials
     function loginManualService(data) {
         if (data.email && data.password) {

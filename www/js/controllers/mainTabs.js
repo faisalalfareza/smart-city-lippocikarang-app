@@ -93,8 +93,14 @@ angular
             }            
 
         }        
-        
-        $scope.fullname = $localStorage.currentUser.data[0].fullname;
+        if($localStorage.currentUser){
+            $scope.fullname = $localStorage.currentUser.data[0].fullname;
+            $scope.salah = true;
+        } else {
+            console.log('belum login')
+            $scope.salah = false;
+        }
+
         var lang = localStorage.getItem('NG_TRANSLATE_LANG_KEY');
         var pagesize = 3;
 
