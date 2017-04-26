@@ -12,20 +12,23 @@ angular
        
                 trackingVehiclesService.busRoute(function(response) {
 
-                    var getStatus = $ionicPopup.alert({
-                        title: 'Tracking in Controller',
-                        template: response,
-                        okText: $filter('translate')('okay'),
-                        okType: "button-stable",
-                        cssClass: "alertPopup"
-                    });
+                    $scope.route = response;
+                    console.log($scope.route);
 
-                    getStatus.then(function(res) {
-                        if (res) {
-                            console.log('Successfully!');
-                            console.log(response);
-                        }
-                    }); 
+                    // var getStatus = $ionicPopup.alert({
+                    //     title: 'Tracking in Controller',
+                    //     template: response,
+                    //     okText: $filter('translate')('okay'),
+                    //     okType: "button-stable",
+                    //     cssClass: "alertPopup"
+                    // });
+
+                    // getStatus.then(function(res) {
+                    //     if (res) {
+                    //         console.log('Successfully!');
+                    //         console.log(response);
+                    //     }
+                    // }); 
 
                 });
             }
