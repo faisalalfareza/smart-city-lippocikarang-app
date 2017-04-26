@@ -45,9 +45,15 @@ angular
         }
 
         function listRecomendedTenant(idcategory, callback) {
+            if($localStorage.currentUser != null){
+                var accountid = $localStorage.currentUser.data[0].idaccount;;
+            } else {
+                var accountid = "";
+            }
+
             var req = {
                     method: 'GET',
-                    url: $filter('translate')('apilink') + 'api/Tenant/?action=listcategoryfilterbyrecommended&idcategory='+idcategory+'&idaccount='+$localStorage.currentUser.data[0].idaccount+'&pagenumber=1&pagesize=1000&keyword=%%'
+                    url: $filter('translate')('apilink') + 'api/Tenant/?action=listcategoryfilterbyrecommended&idcategory='+idcategory+'&idaccount='+accountid+'&pagenumber=1&pagesize=1000&keyword=%%'
                 }
 
             $http(req)
