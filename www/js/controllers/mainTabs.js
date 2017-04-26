@@ -97,7 +97,6 @@ angular
             $scope.fullname = $localStorage.currentUser.data[0].fullname;
             $scope.salah = true;
         } else {
-            console.log('belum login')
             $scope.salah = false;
         }
 

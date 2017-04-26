@@ -112,6 +112,20 @@ angular
     }
 
     function propertyDetail($scope, $timeout, $stateParams, $ionicSlideBoxDelegate, PropertyService, $ionicLoading, $filter, $localStorage) {
+        if ($localStorage.currentUser != null) {
+            $scope.salah = true;
+        } else {
+            $scope.salah = false;
+        }
+        
+        $scope.lalapo = function(){
+            var getStatus = $ionicPopup.alert({
+                    template: $filter('translate')('blm_emailAgen'),
+                    okText: $filter('translate')('okay'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
+                });
+        }
 
         $ionicLoading.show({ template: $filter('translate')('loading') + "...", duration: 1000 });
 

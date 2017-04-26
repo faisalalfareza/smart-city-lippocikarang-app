@@ -13,7 +13,11 @@
                 </a>
             </div>
             <div class="col">
-                <div ng-click="Bookmark()" class="col tenantAction">
+                <div ng-if="salah == true" ng-click="Bookmark()" class="col tenantAction">
+                    <img src="img/tenantDetail/action_bookmark.png" class="ion-image">
+                    <i>{{'action_bookmark'| translate}}</i>
+                </div>
+                <div ng-if="salah == false" ng-click="gagalBookmark()" class="col tenantAction">
                     <img src="img/tenantDetail/action_bookmark.png" class="ion-image">
                     <i>{{'action_bookmark'| translate}}</i>
                 </div>

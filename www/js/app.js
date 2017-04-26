@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angular-intro'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
@@ -276,6 +276,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
 
         .state('app.main', {
             url: "/main",
+            cache: false,
             views: {
                 'main-content': {
                     templateUrl: "partials/tabs/main.html",
@@ -746,6 +747,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dialog_success_upgrade: 'Your email is registered, <br/> <b>Congratulations</b> <br/>Now you\'re resident!',
             dialog_fail_upgrade: 'Sorry, your email isn\’t registered, <br/> Please contact our Customer service <br/>to register your email',
             blm_login: 'Sorry, you are not logged in. Please login from Profile to access this menu.',
+            blm_rate: 'Sorry, you are not logged in. Please login from Profile to rate.',
+            blm_emailAgen: 'Sorry you are not logged in. Please login from Profile to send an email to agent.',
             dining: 'Dining',
             coupon: 'Coupon',
             discount: 'Discount',
@@ -1270,6 +1273,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             dialog_success_upgrade: 'Email Anda Telah Terdaftar, <br/> <b>Selamat</b> <br/>Sekarang anda sudah<br/>menjadi warga',
             dialog_fail_upgrade: 'Maaf, email tidak dapat terdaftar, <br/> Silahkan menghubungi Customer Service <br/>untuk mendaftarkan email anda',
             blm_login: 'Maaf, Anda belum login. Mohon login dari Profil untuk mengakses menu ini.',
+            blm_rate: 'Maaf, Anda belum login. Mohon login dari Profil untuk memberikan rating.',
+            blm_emailAgen: 'Maaf Anda belum login. Mohon login dari Profil untuk mengirimkan email pada agen.',
             dining: 'Kuliner',
             westren_food: 'Barat',
             WESTREN_FOOD: 'Barat',

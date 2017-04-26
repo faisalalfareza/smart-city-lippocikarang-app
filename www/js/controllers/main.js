@@ -8,13 +8,15 @@ angular
     function app($scope, $filter, $cordovaGeolocation, $ionicPlatform, mainService, PushNotificationService, $location, $rootScope, $state, LoginService, $localStorage, $ionicPopup, $ionicLoading, $cordovaAppAvailability) {
 
         $scope.afliates_sos = isSOS;
+        
         $scope.profil = function(){
             if ($localStorage.currentUser != null) {
                 $state.go('app.profile');
-            }else{
+            } else{
                 $state.go('login');
             }
         }
+
         //drawer - side menu
         $scope.showPrivillage, $scope.subEntertaiment, $scope.subDining, $scope.subAccomodation, $scope.subShopping, $scope.subTransportation, $scope.subPublicServ, $scope.subHelp, $scope.subResident, $scope.subInformation = false;
         if($localStorage.currentUser){
@@ -22,24 +24,23 @@ angular
             $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
             $scope.salah = true;
         } else {
-            console.log('belum login')
             $scope.salah = false;
         }
 
         $scope.sorry = function(){
             var alertPopup = $ionicPopup.alert({
-                                template: $filter('translate')('blm_login'),
-                                okText: $filter('translate')('okay'),
-                                okType: "button-stable",
-                                cssClass: "alertPopup"
-                            });
+                template: $filter('translate')('blm_login'),
+                okText: $filter('translate')('okay'),
+                okType: "button-stable",
+                cssClass: "alertPopup"
+            });
         }
         
         if($localStorage.currentUser != null) {
             $scope.fullname = $localStorage.currentUser.data[0].fullname;
             $localStorage.currentUser.data[0].privilege == 'resident' ? $scope.showPrivillage = true : $scope.showPrivillage = false;
         } else {
-            $scope.fullname = "Guest";
+            $scope.fullname = "";
 
         }
 

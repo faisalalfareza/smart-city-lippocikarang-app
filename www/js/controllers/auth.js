@@ -17,7 +17,7 @@ function login($window, $scope, LoginService, $ionicPopup, $ionicLoading, $state
     };
 
     $scope.startApp = function(){
-        $state.go('app.main');
+        $state.go('app.main', {}, {reload: true});
     }
 
     // Login By Credentials

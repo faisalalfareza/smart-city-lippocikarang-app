@@ -5,6 +5,22 @@ angular
     .controller('sportDetailImage', entertaimentSportDetailImage);
 
     function entertaimentSportDetail($scope, $timeout, $ionicHistory, $rootScope, $cordovaGeolocation, $stateParams, $ionicPopup, $location, $ionicLoading, $localStorage, $state, TenantService, TenantServiceA, $filter) {
+
+        if ($localStorage.currentUser != null) {
+            $scope.salah = true;
+        } else{
+            $scope.salah = false;
+        }
+
+        $scope.gagalBookmark = function(){
+            var alertPopup = $ionicPopup.alert({
+                template: $filter('translate')('blm_login'),
+                okText: $filter('translate')('okay'),
+                okType: "button-stable",
+                cssClass: "alertPopup"
+            });
+        }
+
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
         });
@@ -228,7 +244,7 @@ angular
                 $scope.rating = rate;
             } else {
                 var getStatus = $ionicPopup.alert({
-                    template: $filter('translate')('blm_login'),
+                    template: $filter('translate')('blm_rate'),
                     okText: $filter('translate')('okay'),
                     okType: "button-stable",
                     cssClass: "alertPopup"
