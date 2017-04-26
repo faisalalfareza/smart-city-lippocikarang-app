@@ -1,5 +1,6 @@
 <ion-view view-title="{{'app_name' | translate}}" style="background-color:#ecf0f1" cache-view="false" can-swipe-down="false">
-    <ion-content ng-intro-options="IntroOptions" ng-intro-method="CallMe"
+    <ion-content>
+     <div ng-intro-options="IntroOptions" ng-intro-method="startIntroduction"
      ng-intro-oncomplete="CompletedEvent" ng-intro-onexit="ExitEvent"
      ng-intro-onchange="ChangeEvent" ng-intro-onbeforechange="BeforeChangeEvent"
      ng-intro-autostart="true">
@@ -79,7 +80,7 @@
                 </a>
             </div>
             <div class="col">
-                <a ng-if="salah == true" class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
+                <a  id="step1" class="button button-positive" href="#/app/coupon" style="width:100%;border-radius:10px;padding:0 2%;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;color:white;background-color:#0081c9;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);">
                     <strong style="font-size: 12px">{{'discount' | translate}}</strong>
                     <span style="font-size: 12px">{{'coupon' | translate}}</span>
                 </a>
@@ -113,8 +114,6 @@
             </div>
         </div>
 
-
-
         <div style="padding:1% 5%;" class="row sub-menu">
             <div class="col col-25" style="text-align:center;vertical-align:middle;margin-top:3%;line-height:1em;font-size:0.9em;padding:0 5px">
                 {{'connect' | translate}}
@@ -131,5 +130,6 @@
             </div>
         </div>
 
+     </div>
     </ion-content>
 </ion-view>
