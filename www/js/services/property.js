@@ -15,9 +15,15 @@ angular
         return service;
 
         function listproperty(status, pagenumber, callback) {
+            if($localStorage.currentUser.data[0].idaccount != null){
+                var accountid = $localStorage.currentUser.data[0].idaccount;;
+            } else {
+                var accountid = "";
+            }
+
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Property/?action=listbycategory&idcategory=39&pagenumber='+pagenumber+'&pagesize=10&status='+status+'&idaccount='+$localStorage.currentUser.data[0].idaccount
+                url: $filter('translate')('apilink') + 'api/Property/?action=listbycategory&idcategory=39&pagenumber='+pagenumber+'&pagesize=10&status='+status+'&idaccount='+accountid
             }
             $http(req)
                 .success(function (response) {
@@ -43,9 +49,16 @@ angular
         }
 
         function retriveGetProperty(lang, idproperty, callback) {
+            
+            if($localStorage.currentUser.data[0].idaccount != null){
+                var accountid = $localStorage.currentUser.data[0].idaccount;;
+            } else {
+                var accountid = "";
+            }
+
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Property/?action=retrieve_get&idproperty='+idproperty+'&lang='+lang
+                url: $filter('translate')('apilink') + 'api/Property/?action=retrieve_get&idproperty='+idproperty+'&idaccount=' + accountid +'&lang='+lang
             }
             $http(req)
                 .success(function (response) {
