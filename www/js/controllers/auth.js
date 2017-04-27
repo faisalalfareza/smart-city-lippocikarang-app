@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('login', login);
 
-function login($window, $scope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
+function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage) {
     $scope.data = {};
     $scope.credentials = loginManualService;
     $scope.facebook_auth = facebookAuth;
@@ -36,19 +36,83 @@ function login($window, $scope, LoginService, $ionicPopup, $ionicLoading, $state
                         $state.go('app.main');
                         if ($location.path() == "/app/main") {
 
-                            $ionicLoading.hide();
-                            var getStatus = $ionicPopup.alert({
-                                template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
-                                okText: $filter('translate')('okay'),
-                                okType: "button-stable",
-                                cssClass: "alertPopup"
-                            });
+                            startIntroduction();
 
-                            getStatus.then(function(res) {
-                                if (res) {
-                                    AdvertiseService.AdsLogin();
-                                }
-                            });
+                            function startIntroduction() {
+
+                                var screen = angular.element(document.querySelector('ion-side-menu'));
+                                screen.css('visibility', 'hidden');
+
+                                $rootScope.IntroOptions = {
+                                        steps:[
+                                        {
+                                            element: document.querySelector('#step1'),
+                                            intro: $filter('translate')('intro2'),
+                                            position: 'top'
+                                        },
+                                        {
+                                            element: document.querySelector('#step2'),
+                                            intro: $filter('translate')('intro1'),
+                                            position: 'top'
+                                        },
+                                        {
+                                            element: document.querySelector('#step3'),
+                                            intro: $filter('translate')('intro3'),
+                                            position: 'bottom'
+                                        }
+                                        ],
+                                        showStepNumbers: false,
+                                        showBullets: false,
+                                        exitOnOverlayClick: false,
+                                        exitOnEsc: true,
+                                        nextLabel: $filter('translate')('next'),
+                                        prevLabel: '<span style="color:#2980b9">' + $filter('translate')('previous') + '</span>',
+                                        skipLabel: $filter('translate')('skip'),
+                                        doneLabel: $filter('translate')('thanks')
+                                    };
+
+                                    $rootScope.CompletedEvent = function(){
+                                        alertLogin();
+                                        screen.css('visibility', 'visible');
+                                        console.log('[directive] completed Event')
+                                    }
+                                    $rootScope.ExitEvent = function(){
+                                        alertLogin();
+                                        screen.css('visibility', 'visible');
+                                        console.log('[directive] exit Event')
+                                    }
+                                    $rootScope.ChangeEvent = function(element){
+                                        console.log('[directive] change Event')
+                                        console.info(element);
+                                    }
+                                    $rootScope.BeforeChangeEvent= function(element){
+                                        console.log('[directive] beforeChange Event')
+                                        console.info(element);
+                                    }
+                                    $rootScope.AfterChangeEvent= function(element){
+                                        console.log('[directive] after change Event')
+                                        console.info(element);
+                                    }
+
+                            }
+
+                            function alertLogin() {
+                                var getStatus = $ionicPopup.alert({
+                                    template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
+                                    okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
+                                    cssClass: "alertPopup"
+                                });
+
+                                getStatus.then(function(res) {
+                                    if (res) {
+                                        AdvertiseService.AdsLogin();
+                                    }
+                                });
+                            }
+
+                            $ionicLoading.hide();
+
                         }
                     } else {
                         $ionicLoading.show({

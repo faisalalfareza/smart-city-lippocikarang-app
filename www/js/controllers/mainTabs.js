@@ -4,59 +4,6 @@ angular
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
 
-        startIntroduction();
-
-        function startIntroduction() {
-
-            $rootScope.IntroOptions = {
-                    steps:[
-                    {
-                        element: document.querySelector('#step1'),
-                        intro: "Enjoy Special Discount, <br> Register Now!",
-                        position: 'top'
-                    },
-                    {
-                        element: document.querySelector('#step2'),
-                        intro: 'More features, more fun.',
-                        position: 'top'
-                    },
-                    {
-                        element: document.querySelector('#step3'),
-                        intro: "Another step.",
-                        position: 'bottom'
-                    }
-                    ],
-                    showStepNumbers: false,
-                    showBullets: false,
-                    exitOnOverlayClick: true,
-                    exitOnEsc:true,
-                    nextLabel: 'Next',
-                    prevLabel: '<span style="color:green">Previous</span>',
-                    skipLabel: 'Exit',
-                    doneLabel: 'Thanks'
-                };
-
-                $rootScope.CompletedEvent = function(){
-                    console.log('[directive] completed Event')
-                }
-                $rootScope.ExitEvent = function(){
-                    console.log('[directive] exit Event')
-                }
-                $rootScope.ChangeEvent = function(element){
-                    console.log('[directive] change Event')
-                    console.info(element);
-                }
-                $rootScope.BeforeChangeEvent= function(element){
-                    console.log('[directive] beforeChange Event')
-                    console.info(element);
-                }
-                $rootScope.AfterChangeEvent= function(element){
-                    console.log('[directive] after change Event')
-                    console.info(element);
-                }
-
-        }
-
         $scope.afliates_ovo = isOVO;
 
         function isOVO() {

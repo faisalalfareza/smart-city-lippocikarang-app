@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angular-intro'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angular-intro', 'base64'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
@@ -749,6 +749,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             blm_login: 'Sorry, you are not logged in. Please login from Profile to access this menu.',
             blm_rate: 'Sorry, you are not logged in. Please login from Profile to rate.',
             blm_emailAgen: 'Sorry you are not logged in. Please login from Profile to send an email to agent.',
+            intro1: 'Register to <br> experience more <br> <i><p style="font-size:8px">special features for residents!</p></i>',
+            intro2: 'Enjoy Special Discount, <br> Register Now!',
+            intro3: 'Discover More',
+            next: 'Next',
+            previous: 'Previous',
+            thanks: 'Thanks',
             dining: 'Dining',
             coupon: 'Coupon',
             discount: 'Discount',
@@ -1275,6 +1281,12 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             blm_login: 'Maaf, Anda belum login. Mohon login dari Profil untuk mengakses menu ini.',
             blm_rate: 'Maaf, Anda belum login. Mohon login dari Profil untuk memberikan rating.',
             blm_emailAgen: 'Maaf Anda belum login. Mohon login dari Profil untuk mengirimkan email pada agen.',
+            intro1: 'Daftarkan diri untuk pengalaman lebih <br> <i><p style="font-size:8px">fitur khusus untuk residents!</p></i>',
+            intro2: 'Nikmati Diskon Khusus, <br> Daftar Sekarang!',
+            intro3: 'Temukan <br> Lebih Banyak',
+            next: 'Lanjut',
+            previous: 'Kembali',
+            thanks: 'Terimakasih',
             dining: 'Kuliner',
             westren_food: 'Barat',
             WESTREN_FOOD: 'Barat',

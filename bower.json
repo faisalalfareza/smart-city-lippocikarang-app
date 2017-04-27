@@ -22,6 +22,7 @@
     "angular-click-and-wait": "^1.1.0",
     "angular-soap": "https://github.com/andrewmcgivery/angular-soap.git#^2.1.2",
     "jquery.soap": "^1.6.9",
-    "angular-intro.js": "^3.2.4"
+    "angular-intro.js": "^3.2.4",
+    "angular-base64": "^2.0.5"
   }
 }
