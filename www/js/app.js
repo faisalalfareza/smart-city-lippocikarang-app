@@ -956,7 +956,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             sign_start: 'Sign in and start exploring',
             signout: 'Sign Out',
             signup: 'Sign Up',
-            goMain: 'Go To Main Page',
+            goMain: 'Go to Main Page',
             signup_lippo: 'Sign up for LippoCikarang.com',
             lippo_cikarang: 'Lippo Cikarang',
             skip: 'Skip',
