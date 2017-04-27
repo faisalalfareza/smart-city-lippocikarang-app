@@ -35,7 +35,7 @@
 
           <ion-content style="margin-top:8em;" class="has-footer">
             <ion-list><!-- href="#/app/eComplaintDetail/{{item.CaseNumber}}"-->
-              <ion-item class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;" >
+              <ion-item class="item" ng-repeat="item in dataList | orderBy : sortBy | filter :search_page" style="margin-bottom:0;margin-top:-1%;margin-left: 0 !important;padding:0.5em;" href="#/app/eComplaintDetail/{{item.CaseNumber}}">
                   <div class="row">
                     <div class="col col-100">
                         <h6 style="color:black;font-size:8px;margin-bottom:-2%;text-align:left;font-weight:500;">

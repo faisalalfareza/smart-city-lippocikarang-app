@@ -208,27 +208,53 @@ angular
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false,
                 correctOrientation:true
-                };
+            };
+            /*
+            $scope.images.push({
+                filename: "eComplaint-"+results[i],
+                Base64String: imgData
+            }); 
+            */
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
-            $cordovaImagePicker.getPictures(options).then(function (results) {
-                for (var i = 0; i < results.length; i++) {
-                    console.log('Image URI: ' + results[i]);
+                $cordovaImagePicker.getPictures(options)
+                    .then(function (results) {
+                    for (var i = 0; i < results.length; i++) {
+                        console.log('Image URI: ' + results[i]);
 
-                    var example_uri = results[i];
-                    
-                    convertImgToBase64URL(example_uri, function(base64Img){
-                        // Base64DataURL
-                        var base = base64Img.substring(24);
-                        $scope.images.push({
-                            filename: "eComplaint-"+results,
-                            Base64String: base
-                        });
-                        $scope.gambar.push(base64Img);
-                        console.log('baseGambar : ',$scope.gambar)
-                        console.log('images 233 : ',$scope.images);
-                        console.log('base64Img 230 : ',base);
-                    });
-                }
+                        window.resolveLocalFileSystemURI(results[i],
+                                function (fileEntry) {
+                                    // convert to Base64 string
+
+                                    fileEntry.file(
+                                        function(file) {
+                                            //got file
+                                            var reader = new FileReader();
+                                            reader.onload = function (evt) {
+                                                var imgData = evt.target.result;
+                                                var dataIni = btoa(imgData); // this is your Base64 string
+
+                                                console.log('dataIni : ',dataIni);
+                                                //console.log('imgData : ', imgData);
+
+                                                $scope.images.push({
+                                                    filename: "eComplaint-"+results,
+                                                    Base64String: dataIni
+                                                }); 
+                                            };
+                                            reader.readAsBinaryString(file);
+                                        }, 
+                                    function (evt) { 
+                                        //failed to get file
+                                    });
+                                },
+                                // error callback
+                                function () { }
+                            );
+                        }
+
+
+                    $scope.results=results;
+
             $ionicLoading.hide();
                 $scope.checking = true;
                 $scope.progressUpload = true;
