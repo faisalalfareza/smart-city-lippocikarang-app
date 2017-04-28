@@ -36,6 +36,7 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
                         $state.go('app.main');
                         if ($location.path() == "/app/main") {
 
+                            /*
                             startIntroduction();
 
                             function startIntroduction() {
@@ -95,21 +96,20 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
                                     }
 
                             }
+                            */
 
-                            function alertLogin() {
-                                var getStatus = $ionicPopup.alert({
-                                    template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
-                                    okText: $filter('translate')('okay'),
-                                    okType: "button-stable",
-                                    cssClass: "alertPopup"
-                                });
+                            var getStatus = $ionicPopup.alert({
+                                template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
+                                okText: $filter('translate')('okay'),
+                                okType: "button-stable",
+                                cssClass: "alertPopup"
+                            });
 
-                                getStatus.then(function(res) {
-                                    if (res) {
-                                        AdvertiseService.AdsLogin();
-                                    }
-                                });
-                            }
+                            getStatus.then(function(res) {
+                                if (res) {
+                                    AdvertiseService.AdsLogin();
+                                }
+                            });
 
                             $ionicLoading.hide();
 
