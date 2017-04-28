@@ -198,23 +198,12 @@ angular
         //coba
         $scope.Pick = function(){
             var options = {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false,
-                correctOrientation:true
+                maximumImagesCount: 2,
+                width: 800,
+                height: 800,
+                quality: 100
             };
-            /*
-            $scope.images.push({
-                filename: "eComplaint-"+results[i],
-                Base64String: imgData
-            }); 
-            */
+        
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                 $cordovaImagePicker.getPictures(options)
                     .then(function (results) {

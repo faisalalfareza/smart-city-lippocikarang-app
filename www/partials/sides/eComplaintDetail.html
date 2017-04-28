@@ -28,8 +28,11 @@
                             <p>{{data.CaseNumber}}</p>
                             <p ng-if="{{data.CaseNumber != null}}">&nbsp;</p>
                             
-                            <img src="{{data.ListImage}}" width="100vw" height="auto">
-                            <canvas id="myCanvas" width="100vw" height="auto"></canvas>
+                            <div class="row">
+                                <div class="col">
+                                    <iframe name="iframe1" src="{{data.ListImage}}"></iframe>
+                                </div>
+                            </div>
                             
                             <p>{{data.Description}}</p>
                             <p ng-if="{{data.Description != null}}">&nbsp;</p>
