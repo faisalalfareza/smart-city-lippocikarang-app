@@ -18,6 +18,7 @@ angular
                         } else {
                             localStorage.setItem('at', at);
                             console.log('set item : ' ,at);
+                            var pp = localStorage.getItem('at');
                             console.log(localStorage.getItem('at'));
                         }
                         
@@ -53,7 +54,7 @@ angular
                     console.log(pp);
                     
                         localStorage.setItem('pp', pp);
-                        console.log('set item : ' ,pp);
+                        console.log('set pps : ' ,pp);
                     
                     $scope.dataUnit = response;
                     $scope.unit = response.ListUnit;
@@ -343,8 +344,11 @@ angular
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
+
+                $scope.dataImg = $scope.dataList.ListImage;
+                console.log('data image : ' ,$scope.dataImg);
                 
-                if($scope.detail != null){
+                /*if($scope.detail != null){
                     for (var i = 0; i < $scope.detail.length; i++) {
                         if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
                             $scope.detailList = $scope.detail[i];
@@ -363,7 +367,7 @@ angular
                     }
                 } else {
                     console.log('scope.detail is null')
-                }
+                }*/
 
             } else {
                 console.log('huft kasian ' , response);
