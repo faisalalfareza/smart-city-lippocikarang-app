@@ -31,12 +31,10 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
                 function(response) {
                     if (response[0].status == true) {
 
-                        // alert(JSON.stringify(response));
                         $scope.users = response;
                         $state.go('app.main');
                         if ($location.path() == "/app/main") {
-
-                            /*
+                            
                             startIntroduction();
 
                             function startIntroduction() {
@@ -67,18 +65,18 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
                                         exitOnOverlayClick: false,
                                         exitOnEsc: true,
                                         nextLabel: $filter('translate')('next'),
-                                        prevLabel: '<span style="color:#2980b9">' + $filter('translate')('previous') + '</span>',
+                                        prevLabel: '<span style="color:#7a7a7a">' + $filter('translate')('previous') + '</span>',
                                         skipLabel: $filter('translate')('skip'),
                                         doneLabel: $filter('translate')('thanks')
                                     };
 
                                     $rootScope.CompletedEvent = function(){
-                                        alertLogin();
+                                        showAlertUser();
                                         screen.css('visibility', 'visible');
                                         console.log('[directive] completed Event')
                                     }
                                     $rootScope.ExitEvent = function(){
-                                        alertLogin();
+                                        showAlertUser();
                                         screen.css('visibility', 'visible');
                                         console.log('[directive] exit Event')
                                     }
@@ -96,20 +94,21 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
                                     }
 
                             }
-                            */
+                            
+                            function showAlertUser() {
+                                var getStatus = $ionicPopup.alert({
+                                    template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
+                                    okText: $filter('translate')('okay'),
+                                    okType: "button-stable",
+                                    cssClass: "alertPopup"
+                                });
 
-                            var getStatus = $ionicPopup.alert({
-                                template: $filter('translate')('hello') + '! ' + $scope.users[0].fullname + '. ' + $filter('translate')('welcome_dialog') + ' <strong>' + $scope.users[0].privilege + '!</strong> ',
-                                okText: $filter('translate')('okay'),
-                                okType: "button-stable",
-                                cssClass: "alertPopup"
-                            });
-
-                            getStatus.then(function(res) {
-                                if (res) {
-                                    AdvertiseService.AdsLogin();
-                                }
-                            });
+                                getStatus.then(function(res) {
+                                    if (res) {
+                                        AdvertiseService.AdsLogin();
+                                    }
+                                });
+                            }
 
                             $ionicLoading.hide();
 
