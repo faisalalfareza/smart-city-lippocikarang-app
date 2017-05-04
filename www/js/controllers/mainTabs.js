@@ -2,7 +2,77 @@ angular
     .module('livein')
     .controller('mainTabs', mainTabs);
 
-    function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, dataWhatsNew, talktoUs, $filter) {
+    function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPlatform, dataWhatsNew, talktoUs, $filter, AdvertiseService) {
+
+        if ($localStorage.firstOpen == null) {
+            startIntroduction();
+            $localStorage.firstOpen = { status : true };
+        }
+
+        function startIntroduction() {
+
+            var screen = angular.element(document.querySelector('ion-side-menu'));
+            screen.css('visibility', 'hidden');
+            
+            $rootScope.IntroOptions = {
+                    steps:[
+                    {
+                        element: document.querySelector('.tabs .tab-item.profilecon'),
+                        intro: $filter('translate')('intro1'),
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#step1'),
+                        intro: $filter('translate')('intro2'),
+                        position: 'top'
+                    },
+                    {
+                        //.bar .button.button-custom.navcon
+                        element: document.querySelector('.bar'),
+                        intro: $filter('translate')('intro3'),
+                        position: 'bottom'
+                    }
+                    ],
+                    showStepNumbers: false,
+                    showBullets: false,
+                    exitOnOverlayClick: false,
+                    exitOnEsc: true,
+                    nextLabel: $filter('translate')('next'),
+                    prevLabel: $filter('translate')('previous'),
+                    skipLabel: $filter('translate')('skip'),
+                    doneLabel: $filter('translate')('thanks')
+            };
+
+            var introprofile = angular.element(document.querySelector('.tabs .tab-item.profilecon'));
+            introprofile.css('opacity', '1.0');
+            introprofile.css('background-color', '#0D6DB6');
+
+            var intronav = angular.element(document.querySelector('.bar .button.button-custom'));
+            intronav.css('background-color', '#0D6DB6');
+
+            $rootScope.CompletedEvent = function(){
+                screen.css('visibility', 'visible');
+                // console.log('[directive] completed Event')
+            }
+            $rootScope.ExitEvent = function(){
+                screen.css('visibility', 'visible');
+                // console.log('[directive] exit Event')
+            }
+            $rootScope.ChangeEvent = function(id){
+                // console.log('[directive] change Event')
+                // console.log($rootScope.IntroOptions.steps);
+            }
+            $rootScope.BeforeChangeEvent= function(id){
+                // console.log('[directive] beforeChange Event')
+                // console.log($rootScope.IntroOptions.steps);
+            }
+            $rootScope.AfterChangeEvent= function(id){
+                // console.log('[directive] after change Event')
+                // console.log($rootScope.IntroOptions.steps);
+            }
+        
+
+        }        
 
         $scope.afliates_ovo = isOVO;
 

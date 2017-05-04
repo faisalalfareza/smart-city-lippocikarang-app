@@ -4,14 +4,15 @@
             <ion-nav-back-button>
             </ion-nav-back-button>
         
-            <ion-nav-buttons class="step2" side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            <ion-nav-buttons side="left">
+                <button class="button button-custom button-clear navcon" menu-toggle="left">
+                    <i class="icon ion-navicon"></i>
                 </button>
             </ion-nav-buttons>
             
             <ion-nav-buttons side="right">
                 <div ng-if="navbar">
-                    <button class="button button-icon icon ion-ios-search" ng-click="searchbarAct()"></button>
+                    <button class="button button-icon navsearch icon ion-ios-search" ng-click="searchbarAct()"></button>
                 </div>
                 <span ng-if="searchbar">
                     <label class="searchBar item-input-wrapper">
@@ -29,7 +30,7 @@
                 <ion-nav-view name="main-content"></ion-nav-view>
             </ion-tab>
 
-            <ion-tab title="{{ 'profile' | translate }}" icon-off="sc-profile-off" icon-on="sc-profile-on" ng-click="profil()">
+            <ion-tab class="profilecon" title="{{ 'profile' | translate }}" icon-off="sc-profile-off" icon-on="sc-profile-on" ng-click="profil()">
                 <ion-nav-view name="profile-content"></ion-nav-view>
             </ion-tab>
 
