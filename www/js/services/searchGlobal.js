@@ -21,7 +21,7 @@ angular
 
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/City/?action=listglobal&idcity=1&pagenumber=1&pagesize=3&keyword='+ name +'&lang='+lang,
+                url: $filter('translate')('apilink') + 'api/City/?action=listglobal&idcity=1&pagenumber=1&pagesize=3' +'&lang='+lang + '&keyword='+ name,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
