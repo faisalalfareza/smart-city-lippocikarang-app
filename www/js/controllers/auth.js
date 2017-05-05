@@ -33,6 +33,7 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
 
                         $scope.users = response;
                         $state.go('app.main');
+                        
                         if ($location.path() == "/app/main") {
                             
                             var getStatus = $ionicPopup.alert({
