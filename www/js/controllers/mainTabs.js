@@ -56,6 +56,7 @@ angular
                 screen.css('visibility', 'visible');
                 // console.log('[directive] completed Event')
             }
+            $rootScope.StartEvent = true;
             $rootScope.ExitEvent = function(){
                 screen.css('visibility', 'visible');
                 // console.log('[directive] exit Event')
