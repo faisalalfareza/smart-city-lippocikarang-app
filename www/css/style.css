@@ -1020,11 +1020,11 @@ whatsnew-image {
 
 .contentComplaint {
     margin-top: 7em;
-    background-color: lightgray;
+    background-color: white;
     position: absolute;
     align-content: center;
-    margin-left: 14%;
-    margin-right: 14%;
+    margin-left: 11%;
+    margin-right: 11%;
 }
 
 .contentCommentHe {
