@@ -2,130 +2,7 @@ angular
     .module('livein')
     .controller('busSchedule', busSchedule);
 
-    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehiclesService) {
-
-        $ionicPlatform.ready(function() {
-
-            trackingBus();
-
-            function trackingBus() {
-       
-                trackingVehiclesService.busRoute(function(response) {
-
-                    $scope.route = response;
-                    console.log($scope.route);
-
-                    // var getStatus = $ionicPopup.alert({
-                    //     title: 'Tracking in Controller',
-                    //     template: response,
-                    //     okText: $filter('translate')('okay'),
-                    //     okType: "button-stable",
-                    //     cssClass: "alertPopup"
-                    // });
-
-                    // getStatus.then(function(res) {
-                    //     if (res) {
-                    //         console.log('Successfully!');
-                    //         console.log(response);
-                    //     }
-                    // }); 
-
-                });
-            }
-
-            /*
-            function trackingBus() {
-
-                trackingVehicles.busRoute()
-                    .then(function(response) {
-
-                        var getStatus = $ionicPopup.alert({
-                            title: 'Tracking in Controller',
-                            template: response,
-                            okText: $filter('translate')('okay'),
-                            okType: "button-stable",
-                            cssClass: "alertPopup"
-                        });
-
-                        getStatus.then(function(res) {
-                            if (res) {
-                                console.log('Successfully!');
-                                console.log(response);
-                            }
-                        });     
-
-                });
-
-            }
-            */
-
-            /*
-            function trackingBus() {
-
-                console.log('GetIn!');
-
-                var username = 'XLQQ00001';
-                var password = 'AOlc@01-07';
-                var soapRequest ='<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="fleettestlive.cartrack.id/api/"><x:Header> <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"> <wsse:UsernameToken> <wsse:Username/> <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"/> </wsse:UsernameToken> </wsse:Security> </x:Header> <x:Body> <api:endpoint.get_vehicle_last_positions> <api:username>?</api:username> </api:endpoint.get_vehicle_last_positions> </x:Body> </x:Envelope>';
-
-                $.soap({
-                    url: 'http://fleettestlive.cartrack.id/api/index.php?wsdl',
-                    namespaceQualifier: 'busService',
-                    namespaceURL: 'http://fleettestlive.cartrack.id/api/',  
-                    noPrefix: false,                  
-                    method: 'endpoint.get_vehicle_last_positions',
-                    appendMethodToURL: false,				
-                    SOAPAction: 'http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions',		
-                    soap12: false,
-
-                    HTTPHeaders: {
-                        type: 'POST',
-                        Authorization: 'Basic ' + btoa(username + ':' + password),
-                        Origin: '*'
-                        // Authorization: 'Basic WExRUTAwMDAxOkFPbGNAMDEtMDc='
-                    },
-                    data: {	// JSON structure used to build request XML - SHOULD be coupled with ('namespaceQualifier' AND 'namespaceURL') AND ('method' OR 'elementName')
-                        method: 'endpoint.get_vehicle_last_positions',
-                        SOAPAction: 'http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions'
-                    },
-                    data: function(SOAPObject) { // function returning an instance of the SOAPObject class
-                        return new SOAPObject(soapRequest);
-                    },
-
-                    beforeSend: function(SOAPEnvelope) {
-                        console.log('beforeSend!');
-                        console.log(SOAPEnvelope.toString());
-                    },
-                    success: function (soapResponse) {
-                        var result = soapResponse.toJSON();
-                        alert('Success!');
-                        console.log(result);
-                        // do stuff with soapResponse
-                        // if you want to have the response as JSON use soapResponse.toJSON();
-                        // or soapResponse.toString() to get XML string
-                        // or soapResponse.toXML() to get XML DOM
-                    },
-                    error: function (SOAPResponse) {
-                        // show error
-                        alert('Failed!');
-                    },
-                    statusCode: {									
-                        404: function() {
-                            console.log('404 Not Found')
-                        },
-                        200: function() {
-                            console.log('200 OK')
-                        }
-                    },
-
-                    enableLogging: true
-
-                });
-
-            }
-            */
-            
-        });
+    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehiclesFactory) {
 
         $scope.daily = 'active';
 
@@ -161,88 +38,77 @@ angular
                 $scope.daily = 'active';
                 $scope.weekend = '';
             }
-        };
-  
-
-        loadMap();
-
+        };        
+        
         function loadMap() {
 
-            var locations = [
-                ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
-                ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
-                ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
-                ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
-                ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
-            ];
-            
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+            trackingVehiclesFactory.busRoute()
+                .then(function(response) {
 
-            var infowindow = new google.maps.InfoWindow();
+                // var getStatus = $ionicPopup.alert({
+                //     template: response,
+                //     okText: $filter('translate')('okay'),
+                //     okType: "button-stable",
+                //     cssClass: "alertPopup"
+                // });
 
-            var marker, i;
+                // getStatus.then(function(res) {
+                //     if (res) {
+                //         console.log('Successfully!');
+                //         console.log(response);
+                //     }
+                // });     
+                
+                
 
-            var icon = {
-                url: "img/ic_destination.png", // url
-                scaledSize: new google.maps.Size(40, 40), // scaled size
-                origin: new google.maps.Point(0,0), // origin
-                anchor: new google.maps.Point(0, 0) // anchor
-            };
+                console.log('Successfully!');
+                console.log(response);
 
-            for (i = 0; i < locations.length; i++) { 
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    align: 'center',
-                    icon: icon,
-                    map: map
+                // setInterval(function() {
+                    var locations = [
+                        ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
+                        ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
+                        ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
+                        ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
+                        ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
+                    ];
+                // }, 5000);
+                
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 13,
+                    center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
 
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        infowindow.setContent(locations[i][0]);
-                        infowindow.open(map, marker);
-                    }
-                })(marker, i));
-            }
+                var infowindow = new google.maps.InfoWindow();
 
-        }        
+                var marker, i;
 
-        // $scope.loadMap = function() {
+                var icon = {
+                    url: "img/ic_destination.png", // url
+                    scaledSize: new google.maps.Size(40, 40), // scaled size
+                    origin: new google.maps.Point(0,0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
 
-        //     var mapOptions = {
-        //         center: new google.maps.LatLng(43.074174, -89.380915),
-        //         styles: [{ featureType: "all", stylers: [{ saturation: -75 }] }],
-        //         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        //         mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_CENTER },
-        //         zoom: 18,
-        //         zoomControl: true,
-        //         mapTypeControl: false,
-        //         streetViewControl: false,
-        //         zoomControlOptions: {
-        //             position: google.maps.ControlPosition.RIGHT_BOTTOM,
-        //             style: google.maps.ZoomControlStyle.SMALL
-        //         }
-        //     };
+                for (i = 0; i < locations.length; i++) { 
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        align: 'center',
+                        icon: icon,
+                        map: map
+                    });
 
-        //     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
 
-        //     navigator.geolocation.getCurrentPosition(function(pos) {
-        //         map.setCenter(new google.maps.LatLng(-6.3075372, 107.1695603));
-        //         var myLocation = new google.maps.Marker({
-        //             position: new google.maps.LatLng(-6.3075372, 107.1695603),
-        //             map: map,
-        //             title: $filter('translate')('my_location')
-        //         });
-        //         infowindow.setContent('Lippocikarang');
-        //         infowindow.open(map, myLocation);
-        //         $scope.curentloc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        //     });
-        //     $scope.map = map;
-        // }
+            }); // End Get List Bus
+        } // End Load Map Function        
 
         $scope.$on('$ionicView.enter', function() {
 
