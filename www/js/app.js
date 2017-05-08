@@ -1794,6 +1794,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     $ionicPlatform.ready(function() {
 
+        $rootScope.StartEvent = false;
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
