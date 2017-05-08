@@ -37,7 +37,7 @@ angular
         });
     };
 
-    function eComplaintList($ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+    function eComplaintList($ionicSlideBoxDelegate,$rootScope, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
         $scope.images = [];
         $scope.data = {};
         $scope.checking = false;
@@ -125,7 +125,6 @@ angular
                                             $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                                         });
 
-                                        console.log('alert response : ' , JSON.stringify($scope.dataList));
                                     } else {
                                         console.log('huft kasian ');
                                     }
@@ -163,7 +162,8 @@ angular
                 $ionicLoading.hide();
             }
         }
-
+        $rootScope.detailDataList = [];
+        $rootScope.allDataList = [];
         //getlistcase
         eComplaintService.getListCase(at, function(response) {
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
@@ -173,7 +173,14 @@ angular
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
-                console.log('Response : ',JSON.stringify($scope.dataList));
+                //console.log('Response : ',JSON.stringify($scope.dataList));
+                $rootScope.allDataList = $scope.dataList;
+
+                for (var i = 0; i < 5; i++) {
+                    var item = $scope.dataList[i];
+                    $rootScope.detailDataList = item;
+                    console.log('ini rootScope data list detail : ',JSON.stringify($rootScope.detailDataList));
+                }
             } else {
                 console.log('huft kasian ' , response);
             }
@@ -210,38 +217,38 @@ angular
                     .then(function (results) {
                     for (var i = 0; i < results.length; i++) {
                         console.log('Image URI: ' + results[i]);
+                        console.log(('length image nya asli : '+ results[i].length));
+                        if(results[i].length <= 15000){
+                            window.resolveLocalFileSystemURI(results[i],
+                                    function (fileEntry) {
+                                        // convert to Base64 string
 
-                        window.resolveLocalFileSystemURI(results[i],
-                                function (fileEntry) {
-                                    // convert to Base64 string
-
-                                    fileEntry.file(
-                                        function(file) {
-                                            //got file
-                                            var reader = new FileReader();
-                                            reader.onload = function (evt) {
-                                                var imgData = evt.target.result;
-                                                var dataIni = btoa(imgData); // this is your Base64 string
-
-                                                console.log('dataIni : ',dataIni);
-                                                //console.log('imgData : ', imgData);
-
-                                                $scope.images.push({
-                                                    filename: "eComplaint-"+results,
-                                                    Base64String: dataIni
-                                                }); 
-                                            };
-                                            reader.readAsBinaryString(file);
-                                        }, 
-                                    function (evt) { 
-                                        //failed to get file
-                                    });
-                                },
-                                // error callback
-                                function () { }
-                            );
+                                        fileEntry.file(
+                                            function(file) {
+                                                //got file
+                                                var reader = new FileReader();
+                                                reader.onload = function (evt) {
+                                                    var imgData = evt.target.result;
+                                                    var dataIni = btoa(imgData); // this is your Base64 string
+                                                    
+                                                        $scope.images.push({
+                                                            filename: "eComplaint-"+results,
+                                                            Base64String: dataIni
+                                                        });
+                                                };
+                                                reader.readAsBinaryString(file);
+                                            }, 
+                                        function (evt) { 
+                                            //failed to get file
+                                        });
+                                    },
+                                    // error callback
+                                    function () { }
+                                );
+                            } else {
+                                console.log('sorry max size is 15 mb');
+                            }
                         }
-
 
                     $scope.results=results;
 
@@ -301,7 +308,10 @@ angular
 
     };
 
-    function eComplaintDetail($ionicSlideBoxDelegate,$stateParams, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+    function eComplaintDetail($sce,$ionicSlideBoxDelegate,$stateParams, $rootScope, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPlatform, $ionicPopup, $timeout, $location, $cordovaFileOpener2, $filter, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $cordovaActionSheet,$window, $cordovaImagePicker){
+        console.log('ini 5 data : ' , JSON.stringify($rootScope.detailDataList));
+        console.log('ini semua data : ', JSON.stringify($rootScope.allDataList));
+
         $scope.title = $stateParams.CaseNumber;
         $scope.images = [];
         $scope.datanya = [];
@@ -340,14 +350,14 @@ angular
                 
                 $scope.list = response;
                 $scope.dataList = response.ListCase;
-                $scope.detail.push($scope.dataList);
+
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
 
-                $scope.dataImg = $scope.dataList.ListImage[0];
-                console.log('data image 349 : ' ,$scope.dataImg);
-                
+                $scope.dataImg = $sce.trustAsResourceUrl($scope.dataList[0].ListImage[0]);
+                $scope.dataImgg = $sce.trustAsResourceUrl($scope.dataList[0].ListImage[1]);
+                //console.log('ini semua image : ', JSON.stringify($scope.dataImgg));
                 /*if($scope.detail != null){
                     for (var i = 0; i < $scope.detail.length; i++) {
                         if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
