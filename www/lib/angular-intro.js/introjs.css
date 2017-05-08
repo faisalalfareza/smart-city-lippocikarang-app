@@ -303,7 +303,6 @@ tr.introjs-showElement > th {
   box-sizing: content-box;
   margin-right: 5px;
   color: #7a7a7a;
-  font-family: "Calibri";
   /*display: none !important;*/
 }
 
@@ -313,7 +312,6 @@ tr.introjs-showElement > th {
   border-radius: 0.2em 0 0 0.2em;
   border-right: none;
   color: #41a5dc;
-  font-family: "Calibri";
 }
 
 .introjs-prevbutton.introjs-fullbutton {
@@ -328,7 +326,6 @@ tr.introjs-showElement > th {
   -moz-border-radius: 0 0.2em 0.2em 0;
   border-radius: 0 0.2em 0.2em 0;
   color: #41a5dc;
-  font-family: "Calibri";
 }
 
 .introjs-nextbutton.introjs-fullbutton {

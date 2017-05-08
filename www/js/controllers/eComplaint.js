@@ -345,8 +345,8 @@ angular
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
 
-                $scope.dataImg = $scope.dataList.ListImage;
-                console.log('data image : ' ,$scope.dataImg);
+                $scope.dataImg = $scope.dataList.ListImage[0];
+                console.log('data image 349 : ' ,$scope.dataImg);
                 
                 /*if($scope.detail != null){
                     for (var i = 0; i < $scope.detail.length; i++) {

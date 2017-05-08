@@ -4,10 +4,8 @@ angular
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPlatform, dataWhatsNew, talktoUs, $filter, AdvertiseService) {
 
-        startIntroduction();
-
         if ($localStorage.firstOpen == null) {
-            // startIntroduction();
+            startIntroduction();
             $localStorage.firstOpen = { status : true };
         }
 
