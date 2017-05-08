@@ -28,8 +28,17 @@
                             <p>{{data.CaseNumber}}</p>
                             <p ng-if="{{data.CaseNumber != null}}">&nbsp;</p>
                             
-                            <img src="{{data.ListImage}}" width="100vw" height="auto">
-                            <canvas id="myCanvas" width="100vw" height="auto"></canvas>
+                            <div class="row">
+                                <div class="col">
+                                    <iframe name="iframe1" src="{{dataImg}}"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <iframe name="iframe1" src="https://lkapi.vnetcloud.com/EcomplaintSmartCityAPIDev/getattachmentcrm?ref=annotation&id=4a5d01b9-9d30-e711-be5e-005056b43e55&type=0"></iframe>
+                                </div>
+                            </div>
                             
                             <p>{{data.Description}}</p>
                             <p ng-if="{{data.Description != null}}">&nbsp;</p>

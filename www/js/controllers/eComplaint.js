@@ -18,6 +18,7 @@ angular
                         } else {
                             localStorage.setItem('at', at);
                             console.log('set item : ' ,at);
+                            var pp = localStorage.getItem('at');
                             console.log(localStorage.getItem('at'));
                         }
                         
@@ -53,7 +54,7 @@ angular
                     console.log(pp);
                     
                         localStorage.setItem('pp', pp);
-                        console.log('set item : ' ,pp);
+                        console.log('set pps : ' ,pp);
                     
                     $scope.dataUnit = response;
                     $scope.unit = response.ListUnit;
@@ -198,23 +199,12 @@ angular
         //coba
         $scope.Pick = function(){
             var options = {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false,
-                correctOrientation:true
+                maximumImagesCount: 2,
+                width: 800,
+                height: 800,
+                quality: 100
             };
-            /*
-            $scope.images.push({
-                filename: "eComplaint-"+results[i],
-                Base64String: imgData
-            }); 
-            */
+        
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
                 $cordovaImagePicker.getPictures(options)
                     .then(function (results) {
@@ -354,8 +344,11 @@ angular
                 $scope.dataList.forEach(function(itemlist, indexlist, arrlist) {
                     $scope.dataList[indexlist].tanggal = new Date($scope.dataList[indexlist].CreatedOn).toISOString();
                 });
+
+                $scope.dataImg = $scope.dataList.ListImage[0];
+                console.log('data image 349 : ' ,$scope.dataImg);
                 
-                if($scope.detail != null){
+                /*if($scope.detail != null){
                     for (var i = 0; i < $scope.detail.length; i++) {
                         if($scope.detail[i].CaseNumber == $stateParams.CaseNumber){
                             $scope.detailList = $scope.detail[i];
@@ -374,7 +367,7 @@ angular
                     }
                 } else {
                     console.log('scope.detail is null')
-                }
+                }*/
 
             } else {
                 console.log('huft kasian ' , response);

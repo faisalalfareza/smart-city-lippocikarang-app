@@ -526,6 +526,17 @@ w {
     opacity: 0.5;
 }
 
+.button-custom,
+.button-custom.icon:before{
+  font-size: 34px !important;
+  border-style: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color: white;
+  
+}
 
 /* End Tabs */
 
@@ -553,7 +564,7 @@ w {
     border:0;
     border-radius: 10px !important;
     background-color: white;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    
 }
 
 .itemModal.advertisement.fullmodal {

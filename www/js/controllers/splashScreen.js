@@ -43,22 +43,16 @@ angular
 
     $scope.startApp = function () {
 
-      if (!$localStorage.currentUser) {
-
-        $state.go('app.main');
-        return $timeout(() => angular.noop, 3000);
-
-      } else {
-
         $state.go('app.main');
 
         if($location.path("/app/main")) {
-          AdvertiseService.AdsOpen(); 
+          if ($localStorage.firstOpen != null) {
+            AdvertiseService.AdsOpen(); 
+          }
         }
         
         return $timeout(() => angular.noop, 3000);
         
-      }
     };
 
     // Called each time the slide changes

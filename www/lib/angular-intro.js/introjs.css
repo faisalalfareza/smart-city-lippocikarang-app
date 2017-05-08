@@ -3,7 +3,7 @@
   box-sizing: content-box;
   z-index: 999999;
 
-  background-color: rgba(0,0,0, 1.0);
+  background-color: rgba(0, 0, 0, 1.0);
 
   /*background-color: #000;
   opacity: 0;
@@ -14,9 +14,10 @@
   background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
   background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);*/
 
-  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1)";
+  /*filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1)";
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=50);
+  filter: alpha(opacity=50);*/
+
   -webkit-transition: all 0.3s ease-out;
      -moz-transition: all 0.3s ease-out;
       -ms-transition: all 0.3s ease-out;
@@ -126,19 +127,23 @@ tr.introjs-showElement > th {
 }
 
 .introjs-tooltip .introjs-arrow {
-  display: none !important;
+  /*display: none !important;*/
+  
 }
+
 .introjs-arrow {
-  border: 5px solid white;
-  content:'';
+  /*border: 5px solid white;*/
+  content: '';
   position: absolute;
 }
 .introjs-arrow.top {
-  top: -10px;
-  border-top-color:transparent;
+  top: -1.2em !important;
+  content: url('../../img/stick3.png');
+  -webkit-transform: scale(0.6);
+  /*border-top-color:transparent;
   border-right-color:transparent;
   border-bottom-color:white;
-  border-left-color:transparent;
+  border-left-color:transparent;*/
 }
 .introjs-arrow.top-right {
   top: -10px;
@@ -174,11 +179,14 @@ tr.introjs-showElement > th {
   border-left-color:white;
 }
 .introjs-arrow.bottom {
-  bottom: -10px;
-  border-top-color:white;
+  bottom: -23px;
+  left: 1em;
+  content: url('../../img/stick.png');
+  -webkit-transform: scale(0.9);
+  /*border-top-color:white;
   border-right-color:transparent;
   border-bottom-color:transparent;
-  border-left-color:transparent;
+  border-left-color:transparent;*/
 }
 .introjs-arrow.left {
   left: -10px;
@@ -198,14 +206,18 @@ tr.introjs-showElement > th {
 }
 
 .introjs-tooltip {
+  /*left: 0 !important;*/
+  margin-left: 3px;
+
   color: white;
   font-weight: bold;
-  font-family: arial;
-  font-size: 17px;
+  font-family: 'Arial';
+  font-size: 15px;
   box-sizing: content-box;
   position: absolute;
   visibility: visible;
   padding: 10px;
+  padding-left: 15px;
   background-color: transparent;
   /*min-width: 200px;*/
   max-width: 300px;
@@ -218,9 +230,15 @@ tr.introjs-showElement > th {
           transition: opacity 0.1s ease-out;
 }
 
+.introjs-tooltiptext {
+  margin-top: 1em !important;
+  margin-left: 1.5em !important;
+}
+
 .introjs-tooltipbuttons {
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
+  margin-left: 1em !important;
 }
 
 /*
@@ -232,6 +250,7 @@ tr.introjs-showElement > th {
   position: relative;
   overflow: visible;
   display: inline-block;
+  font-weight: 100;
   padding: 0.3em 0.8em;
   border: 1px solid #d4d4d4;
   margin: 0;
@@ -284,6 +303,7 @@ tr.introjs-showElement > th {
   box-sizing: content-box;
   margin-right: 5px;
   color: #7a7a7a;
+  /*display: none !important;*/
 }
 
 .introjs-prevbutton {
@@ -291,6 +311,7 @@ tr.introjs-showElement > th {
   -moz-border-radius: 0.2em 0 0 0.2em;
   border-radius: 0.2em 0 0 0.2em;
   border-right: none;
+  color: #41a5dc;
 }
 
 .introjs-prevbutton.introjs-fullbutton {
@@ -304,6 +325,7 @@ tr.introjs-showElement > th {
   -webkit-border-radius: 0 0.2em 0.2em 0;
   -moz-border-radius: 0 0.2em 0.2em 0;
   border-radius: 0 0.2em 0.2em 0;
+  color: #41a5dc;
 }
 
 .introjs-nextbutton.introjs-fullbutton {

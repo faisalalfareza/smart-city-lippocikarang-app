@@ -5,15 +5,14 @@
             </ion-nav-back-button>
         
             <ion-nav-buttons side="left">
-                <div>
-                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                    </button>
-                </div>
+                <button class="button button-custom button-clear navcon" menu-toggle="left">
+                    <i class="icon ion-navicon"></i>
+                </button>
             </ion-nav-buttons>
             
             <ion-nav-buttons side="right">
                 <div ng-if="navbar">
-                    <button class="button button-icon icon ion-ios-search" ng-click="searchbarAct()"></button>
+                    <button class="button button-icon navsearch icon ion-ios-search" ng-click="searchbarAct()"></button>
                 </div>
                 <span ng-if="searchbar">
                     <label class="searchBar item-input-wrapper">
@@ -31,7 +30,7 @@
                 <ion-nav-view name="main-content"></ion-nav-view>
             </ion-tab>
 
-            <ion-tab title="{{ 'profile' | translate }}" icon-off="sc-profile-off" icon-on="sc-profile-on" ng-click="profil()">
+            <ion-tab class="profilecon" title="{{ 'profile' | translate }}" icon-off="sc-profile-off" icon-on="sc-profile-on" ng-click="profil()">
                 <ion-nav-view name="profile-content"></ion-nav-view>
             </ion-tab>
 
@@ -337,7 +336,7 @@
                     <div class="row">
                         <div class="col col-80" style="padding-right:8%;">
                             <a ng-click="afliates_sos()">
-                                <img src="img/sostemplate.png" style="width:100%;margin-left:-5%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border-radius:5px;">
+                                <img src="img/sostemplate.png" style="width:100%;margin-left:-5%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);border-radius:8px;">
                             </a>
                             <!--<a class="button button-assertive" ng-click="afliates_sos()" style="width:auto;border-radius:5px;display:flex;align-items:center;justify-content:center;min-height:0;border:0;outline:0;height:85%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);background-color:#CD332C">
                                 <img src="img/sosbutton.png" style="width:15%;margin-left:-5%;">
