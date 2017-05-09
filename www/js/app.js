@@ -1,9 +1,5 @@
 angular
-<<<<<<< HEAD
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angular-intro', 'angular-soap', 'base64'])
-=======
     .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap', 'angular-intro'])
->>>>>>> ac02e42... The new generation of Tracking Bus
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .config(config)
