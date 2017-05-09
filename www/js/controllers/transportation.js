@@ -168,6 +168,7 @@ angular
 
         function loadMap() {
 
+<<<<<<< HEAD
             var locations = [
                 ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
                 ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
@@ -199,6 +200,37 @@ angular
                     align: 'center',
                     icon: icon,
                     map: map
+=======
+            trackingVehiclesFactory.busRoute()
+                .then(function(response) {
+
+                var getStatus = $ionicPopup.alert({
+                    template: response,
+                    okText: $filter('translate')('okay'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
+                });
+
+                getStatus.then(function(res) {
+                    if (res) {
+                        console.log('Successfully!');
+                        console.log(response);
+                    }
+                });     
+
+                var locations = [
+                    ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
+                    ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
+                    ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
+                    ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
+                    ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
+                ];
+        
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 13,
+                    center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+>>>>>>> ac02e42... The new generation of Tracking Bus
                 });
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
