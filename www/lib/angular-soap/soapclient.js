@@ -206,14 +206,14 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
     	xmlHttp.open("GET", url + "?wsdl", async, SOAPClient.username, SOAPClient.password);
 
     	// Some WS implementations (i.e. BEA WebLogic Server 10.0 JAX-WS) don't support Challenge/Response HTTP BASIC, so we send authorization headers in the first request
+        
         xmlHttp.setRequestHeader("Authorization", "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password));
 		xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
         
-        xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-        xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-        // xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-        xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
-        xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+        // xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
+        // xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         
 		
     }
@@ -301,10 +301,10 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
         xmlHttp.open("POST", url, async);
     }
 
-	var requestTimer = setTimeout(function() {
-		xmlHttp.abort();
-		callback(null);
-	}, 30000);
+	// var requestTimer = setTimeout(function() {
+	// 	xmlHttp.abort();
+	// 	callback(null);
+	// }, 30000);
 
     var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + encodeURIComponent(method);
     xmlHttp.setRequestHeader("SOAPAction", "http://fleettestlive.cartrack.id/api/#get_vehicle_last_positions");
@@ -324,7 +324,7 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
         xmlHttp.onreadystatechange = function()
         {
             if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-				clearTimeout(requestTimer);
+				// clearTimeout(requestTimer);
                 SOAPClient._onSendSoapRequest(method, async, callback, wsdl, xmlHttp);
 			}
         }
