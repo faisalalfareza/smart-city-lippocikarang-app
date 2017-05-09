@@ -4,6 +4,8 @@ angular
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPlatform, dataWhatsNew, talktoUs, $filter, AdvertiseService) {
 
+        console.log("This is Main Page");
+        
         $rootScope.StartEvent = false;
         console.log($rootScope.StartEvent);
         
