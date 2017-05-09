@@ -45,24 +45,19 @@ angular
             trackingVehiclesFactory.busRoute()
                 .then(function(response) {
 
-                // var getStatus = $ionicPopup.alert({
-                //     template: response,
-                //     okText: $filter('translate')('okay'),
-                //     okType: "button-stable",
-                //     cssClass: "alertPopup"
-                // });
+                var getStatus = $ionicPopup.alert({
+                    template: response,
+                    okText: $filter('translate')('okay'),
+                    okType: "button-stable",
+                    cssClass: "alertPopup"
+                });
 
-                // getStatus.then(function(res) {
-                //     if (res) {
-                //         console.log('Successfully!');
-                //         console.log(response);
-                //     }
-                // });     
-                
-                
-
-                console.log('Successfully!');
-                console.log(response);
+                getStatus.then(function(res) {
+                    if (res) {
+                        console.log('Successfully!');
+                        console.log(response);
+                    }
+                });     
 
                 var locations = [
                     ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
