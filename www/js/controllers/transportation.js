@@ -14,7 +14,6 @@ angular
 
                     $scope.route = response;
                     console.log($scope.route);
-                    console.log($scope.route);
 
                     // var getStatus = $ionicPopup.alert({
                     //     title: 'Tracking in Controller',
