@@ -2,6 +2,7 @@ angular
     .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'angular-intro', 'angular-soap', 'base64'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
+    .filter('trustAsResourceUrl', trustAsResourceUrl)
     .config(config)
     .run(run)
 
@@ -749,9 +750,9 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             blm_login: 'Sorry, you are not logged in. Please login from Profile to access this menu.',
             blm_rate: 'Sorry, you are not logged in. Please login from Profile to rate.',
             blm_emailAgen: 'Sorry you are not logged in. Please login from Profile to send an email to agent.',
-            intro1: 'Register to <br> experience more <br> <i><p style="font-size:8px;margin:0;">special features for residents!</p></i>',
+            intro1: 'Register to <br> experience more <br> <p style="font-size:8px;font-style:italic;margin:0;">special features for residents!</p>',
             intro2: 'Enjoy Special Discount, <br> Register Now!',
-            intro3: 'Discover More <br> <i><p style="font-size:8px;margin:0;">another features for residents & visitors!</p></i>',
+            intro3: 'Discover More <br> <p style="font-size:8px;font-style:italic;margin:0;">another features for residents & visitors!</p>',
             next: 'Next',
             previous: 'Previous',
             thanks: 'Thanks',
@@ -1281,9 +1282,9 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             blm_login: 'Maaf, Anda belum login. Mohon login dari Profil untuk mengakses menu ini.',
             blm_rate: 'Maaf, Anda belum login. Mohon login dari Profil untuk memberikan rating.',
             blm_emailAgen: 'Maaf Anda belum login. Mohon login dari Profil untuk mengirimkan email pada agen.',
-            intro1: 'Daftarkan diri untuk pengalaman lebih <br> <i><p style="font-size:8px">fitur khusus untuk residents!</p></i>',
+            intro1: 'Daftarkan diri untuk pengalaman lebih <br> <p style="font-size:8px;font-style:italic;margin:0;">fitur khusus untuk residents!</p>',
             intro2: 'Nikmati Diskon Khusus, <br> Daftar Sekarang!',
-            intro3: 'Temukan <br> Lebih Banyak <br> <i><p style="font-size:8px;margin:0;">fitur lainnya untuk resident & visitor!</p></i>',
+            intro3: 'Temukan <br> Lebih Banyak <br> <p style="font-size:8px;font-style:italic;margin:0;">fitur lainnya untuk resident & visitor!</p>',
             next: 'Lanjut',
             previous: 'Kembali',
             thanks: 'Terimakasih',
@@ -1794,6 +1795,8 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
     $ionicPlatform.ready(function() {
 
+        $rootScope.StartEvent = false;
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
@@ -1903,4 +1906,10 @@ function repeatDone() {
             scope.$eval(attrs.repeatDone);
         }
     }
+}
+
+function trustAsResourceUrl($sce) {
+    return function(url) {
+      return $sce.trustAsResourceUrl(url);
+    };
 }

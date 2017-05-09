@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('login', login);
 
-function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, introductionService, $filter, $location, $localStorage, $timeout) {
+function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoading, $state, registerService, AdvertiseService, $filter, $location, $localStorage, $timeout) {
     $scope.data = {};
     $scope.credentials = loginManualService;
     $scope.facebook_auth = facebookAuth;
@@ -33,6 +33,9 @@ function login($window, $scope, $rootScope, LoginService, $ionicPopup, $ionicLoa
 
                         $scope.users = response;
                         $state.go('app.main');
+                        
+                         $rootScope.StartEvent = false;
+
                         if ($location.path() == "/app/main") {
                             
                             var getStatus = $ionicPopup.alert({

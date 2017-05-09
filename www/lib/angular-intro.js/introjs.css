@@ -137,9 +137,9 @@ tr.introjs-showElement > th {
   position: absolute;
 }
 .introjs-arrow.top {
-  top: -1em !important;
-  content: url('../../img/stick2.png');
-  -webkit-transform: scale(0.7);
+  top: -1.2em !important;
+  content: url('../../img/stick3.png');
+  -webkit-transform: scale(0.6);
   /*border-top-color:transparent;
   border-right-color:transparent;
   border-bottom-color:white;
@@ -179,10 +179,10 @@ tr.introjs-showElement > th {
   border-left-color:white;
 }
 .introjs-arrow.bottom {
-  bottom: -10px;
+  bottom: -23px;
   left: 1em;
   content: url('../../img/stick.png');
-  -webkit-transform: scale(0.7);
+  -webkit-transform: scale(0.9);
   /*border-top-color:white;
   border-right-color:transparent;
   border-bottom-color:transparent;
@@ -311,6 +311,7 @@ tr.introjs-showElement > th {
   -moz-border-radius: 0.2em 0 0 0.2em;
   border-radius: 0.2em 0 0 0.2em;
   border-right: none;
+  color: #41a5dc;
 }
 
 .introjs-prevbutton.introjs-fullbutton {
@@ -324,6 +325,7 @@ tr.introjs-showElement > th {
   -webkit-border-radius: 0 0.2em 0.2em 0;
   -moz-border-radius: 0 0.2em 0.2em 0;
   border-radius: 0 0.2em 0.2em 0;
+  color: #41a5dc;
 }
 
 .introjs-nextbutton.introjs-fullbutton {
