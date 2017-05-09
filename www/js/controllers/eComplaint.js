@@ -6,6 +6,7 @@ angular
 
     function eComplaint($ionicPlatform, $window, $ionicSlideBoxDelegate, $localStorage, $scope, $state, eComplaintService, $ionicLoading, $ionicPopup, $timeout, $location, $cordovaFile, $cordovaFileTransfer,$cordovaFileOpener2, $filter) {
         ionic.Platform.ready(function () {
+        
             $scope.at = localStorage.getItem('at');
                 eComplaintService.getToken(function(response) {
                     if (response != false) {
