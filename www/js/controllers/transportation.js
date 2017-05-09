@@ -64,16 +64,14 @@ angular
                 console.log('Successfully!');
                 console.log(response);
 
-                // setInterval(function() {
-                    var locations = [
-                        ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
-                        ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
-                        ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
-                        ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
-                        ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
-                    ];
-                // }, 5000);
-                
+                var locations = [
+                    ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
+                    ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
+                    ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
+                    ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
+                    ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
+                ];
+        
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 13,
                     center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
@@ -94,6 +92,7 @@ angular
                 for (i = 0; i < locations.length; i++) { 
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        animation: google.maps.Animation.DROP,
                         align: 'center',
                         icon: icon,
                         map: map
