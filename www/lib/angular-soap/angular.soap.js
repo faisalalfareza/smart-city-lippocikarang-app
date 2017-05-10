@@ -15,21 +15,20 @@ angular.module('angularSoap', [])
 			var soapCallback = function (e, status) {
                 if (e == null || e.constructor.toString().indexOf("function Error()") != -1) {
                     deferred.reject("An error has occurred " + status);
+					console.log("Callback in if")
+					console.log(status) // {"location":null}
+					console.log("e : " + e)
                 } else {
                     deferred.resolve(e);
+					console.log("Callback in else")
+					console.log("e : " + e)
                 }
             }
-
-			function GetSoapResponse_callBack(r, soapResponse) {
-				deferred.resolve(soapResponse);
-			}
 			
 			console.log('ini url : ' + url);
 			console.log('ini action : ' + action);
-			console.log(soapParams);
-			console.log(soapCallback);
 
-			SOAPClient.invoke(url, action, soapParams, true, GetSoapResponse_callBack);
+			SOAPClient.invoke(url, action, soapParams, true, soapCallback);
 
 			return deferred.promise;
 		},
