@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <button class="button button-outline button-full" type="submit" style="border:3px solid #fff;color:#fff;font-weight:bold;border-radius:15px;text-transform:uppercase">{{ 'start_now'| translate }}</button>
+                <button ng-disabled="myForm.$invalid" class="button button-outline button-full" type="submit" style="border:3px solid #fff;color:#fff;font-weight:bold;border-radius:15px;text-transform:uppercase">{{ 'start_now'| translate }}</button>
 
                 <div class="col" style="text-align:center">
                     <p style="color:#C5EFF7;letter-spacing:1px;font-size:13px;">{{ 'are_alreadyaccount'| translate }} <a style="text-decoration:none" ui-sref="login">{{ 'login'| translate }}</a></p>
