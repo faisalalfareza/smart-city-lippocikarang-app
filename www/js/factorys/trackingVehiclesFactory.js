@@ -9,9 +9,19 @@ angular
 
         return {
             busRoute: function(callback){ 
+
                 return $soap.post(
                     base_url, 
-                    "#get_vehicle_last_positions"
+                    "#get_vehicle_last_positions", { // endpoint.get_vehicle_last_positions
+                        headers: {
+                            'Content-Type' : 'text/xml; charset=utf-8',
+                            'Cache-Control' : 'no-cache',
+                            'Access-Control-Allow-Credentials' : true,
+                            'Access-Control-Allow-Origin' : '*',
+                            'Access-Control-Allow-Methods' : 'GET, POST',
+                            'Access-Control-Allow-Headers' : 'Origin, Content-Type, Accept',
+                        }
+                    }
                 ).then(
                     function(response) {
                         console.log("Successfully!");

@@ -59,8 +59,8 @@ angular
                 //     }
                 // });   
 
-                // console.log('Successfully!');
-                // console.log(response);  
+                console.log('Controllers!');
+                console.log(response);  
 
                 var locations = [
                     ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],

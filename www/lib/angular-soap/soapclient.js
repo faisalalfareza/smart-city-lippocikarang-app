@@ -143,6 +143,12 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 		// Some WS implementations (i.e. BEA WebLogic Server 10.0 JAX-WS) don't support Challenge/Response HTTP BASIC, so we send authorization headers in the first request
 		xmlHttp.setRequestHeader("Authorization", "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password));
 
+		xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+		xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
+		xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+		xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+		xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+
 		console.log( "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password) );
 	}
 	else
@@ -155,7 +161,9 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 				SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
 		}
 	}
+
 	xmlHttp.send(null);
+	
 	if (!async)
 		return SOAPClient._onLoadWsdl(url, method, parameters, async, callback, xmlHttp);
 }
@@ -211,6 +219,11 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	
 	xmlHttp.setRequestHeader("SOAPAction", soapaction);
 	xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+
+	xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
+	xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+	xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
+	xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
 
 	if(async) 
 	{
