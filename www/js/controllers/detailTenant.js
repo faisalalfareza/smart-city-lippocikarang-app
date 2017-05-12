@@ -696,7 +696,7 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
                 title: $filter('translate')('my_location')
              });
 
-        //  set destinaiton
+            //  set destinaiton
             var directionsDisplay = new google.maps.DirectionsRenderer;
             var directionsService = new google.maps.DirectionsService;
 
@@ -744,7 +744,9 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             element = response.rows[0].elements[0];
 
             $scope.distance = element.distance.text;
+            console.log($scope.distance);
             $scope.duration = element.duration.text;
+            console.log($scope.duration);
     
         });
     }

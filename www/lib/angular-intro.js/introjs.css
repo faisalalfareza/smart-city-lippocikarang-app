@@ -205,6 +205,16 @@ tr.introjs-showElement > th {
   border-left-color:transparent;
 }
 
+.introjs-first {
+  
+}
+.introjs-second {
+  
+}
+.introjs-third {
+
+}
+
 .introjs-tooltip {
   /*left: 0 !important;*/
   margin-left: 3px;
