@@ -98,6 +98,7 @@ angular
                                 'longlat': longlat
                             });
                         });
+                        console.log('listbookmark : ', $scope.listbookmark);
                     } else {
                         $scope.listbookmarkTenant = { name: $filter('translate')('failed_get_data') };
                     }
