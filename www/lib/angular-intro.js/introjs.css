@@ -140,6 +140,7 @@ tr.introjs-showElement > th {
   top: -1.2em !important;
   content: url('../../img/stick3.png');
   -webkit-transform: scale(0.6);
+
   /*border-top-color:transparent;
   border-right-color:transparent;
   border-bottom-color:white;
@@ -212,7 +213,7 @@ tr.introjs-showElement > th {
   
 }
 .introjs-third {
-
+  
 }
 
 .introjs-tooltip {
