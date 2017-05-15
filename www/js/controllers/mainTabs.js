@@ -8,8 +8,6 @@ angular
         
         // $rootScope.StartEvent = false;
         // console.log($rootScope.StartEvent);
-
-        startIntroduction();
         
         if ($localStorage.firstOpen == null) {
             startIntroduction();

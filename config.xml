@@ -13,6 +13,7 @@
     <allow-intent href="tel:*" />
     <allow-navigation href="*" />
     <allow-navigation href="http://192.168.1.6:8100" />
+    <allow-navigation href="http://192.168.0.18:8100" />
     <preference name="Orientation" value="default" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -215,6 +216,6 @@
     </plugin>
     <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
     <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
-    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
     <plugin name="cordova-plugin-appavailability" spec="https://github.com/ohh2ahh/AppAvailability.git" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
 </widget>

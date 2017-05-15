@@ -1774,35 +1774,6 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
         }    
     });
 
-    $ionicPlatform.ready(function(){
-        
-     backgroundGeolocation.configure(callBackFn,failureFn,{
-        desiredAccuracy: 10,
-        stationaryRadius: 20,
-        distanceFilter: 30,
-        interval: 60000
-
-    });
-
-    //get location succes
-    function callBackFn (position){
-            // alert(JSON.stringify(position));
-            $rootScope.backgroundmyLatlng = new google.maps.LatLng(position.latitude,position.longitude);
-
-        }   
-
-        function failureFn(errror){
-            $rootScope.backgroundmyLatlng= undefined;
-        //    alert(JSON.stringify(position));
-            // $scope.tujuan = new google.maps.LatLng($rootScope.lattenant, $rootScope.longtenant);
-            // getdirection($scope.tujuan)
-
-        }
-
-      backgroundGeolocation.start();
-
-    });
-
     $ionicPlatform.ready(function() {
 
         $rootScope.StartEvent = false;
@@ -1819,6 +1790,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
 
         // Push Notification
         setInterval(function() {
+
             if ($localStorage.currentUser != null) {
 
                 // Push Notifications
@@ -1826,7 +1798,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                 PushAdvertise();
 
             }
-        }, 10000);             
+        }, 5000);             
 
         function PushNotifications() {
             NotifAccountService.countNotif(function(response) {
@@ -1858,7 +1830,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                         // console.log('Notif Nonaktif ..');
                     }
                 } else {
-                    // console.log('Tidak ada notif baru ..');
+                    console.log('Tidak ada notif baru ..');
                 }
             });
         }
@@ -1871,10 +1843,28 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                     //console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
-                    // console.log('Tidak ada ads baru ..');
+                    console.log('Tidak ada ads baru ..');
                 }
             });
         }
+
+        backgroundGeolocation.configure(callBackFn,failureFn,{
+            desiredAccuracy: 10,
+            stationaryRadius: 20,
+            distanceFilter: 30,
+            interval: 60000
+        });
+
+        //get location succes
+        function callBackFn (position) {
+            $rootScope.backgroundmyLatlng = new google.maps.LatLng(position.latitude,position.longitude);
+        }   
+
+        function failureFn(errror){
+            $rootScope.backgroundmyLatlng= undefined;
+        }
+
+        backgroundGeolocation.start();
 
     });
 

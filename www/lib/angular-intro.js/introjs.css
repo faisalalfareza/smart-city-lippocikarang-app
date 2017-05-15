@@ -213,9 +213,11 @@ tr.introjs-showElement > th {
   
 }
 .introjs-third {
-  
-}
 
+}
+.introjs-tooltip:nth-child(2) {
+  background-color: red !important;
+}
 .introjs-tooltip {
   /*left: 0 !important;*/
   margin-left: 3px;
