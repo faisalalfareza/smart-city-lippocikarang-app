@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap', 'angular-intro'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .filter('trustAsResourceUrl', trustAsResourceUrl)
@@ -1830,7 +1830,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                         // console.log('Notif Nonaktif ..');
                     }
                 } else {
-                    console.log('Tidak ada notif baru ..');
+                    // console.log('Tidak ada notif baru ..');
                 }
             });
         }
@@ -1843,7 +1843,7 @@ function run($ionicPlatform, $ionicPopup, $timeout, $rootScope, $location, $filt
                     //console.log('Anda memiliki ' + sum + ' ads baru..');
                     AdvertiseService.AdsOpen();
                 } else {
-                    console.log('Tidak ada ads baru ..');
+                    // console.log('Tidak ada ads baru ..');
                 }
             });
         }
