@@ -980,7 +980,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             Art___Culture: 'Art & Culture',
             sub2_forget_password: 'We will send you an email shortly to reset your password',
             sub_forget_password: 'Enter your e-mail address or phone number\nbelow to reset your password',
-            reset_success: 'Reset password is successfully',
+            reset_success: 'Reset Password success!',
             cannot_send_code: 'Cannot send code',
             email_not_exist: 'Email or phone doesn\'t exist',
             email_exist: 'Phone or email alredy exist!',
