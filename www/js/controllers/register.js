@@ -10,7 +10,42 @@ angular
         $scope.twitter_auth = twitter_auth;
 
         function registerManualService(user) {
-            if(user.confpassword == user.password) {
+            if(user.fullname == null){
+               $ionicLoading.show({
+                    template: $filter('translate')('cbe_fullname'),
+                    duration: 3000
+                });
+            }
+
+            if(user.gender == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_fullname'),
+                    duration: 3000
+                });
+            }
+
+            if(user.phone == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_phone'),
+                    duration: 3000
+                });
+            }
+
+            if(user.email == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_email'),
+                    duration: 3000
+                });
+            }
+
+            if(user.password == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_password'),
+                    duration: 3000
+                });
+            }
+
+            if(user.password != null && user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword == user.password) {
                 $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                 registerService.registerManualService(
