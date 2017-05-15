@@ -45,7 +45,14 @@ angular
                 });
             }
 
-            if(user.password != null && user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword == user.password) {
+            if(user.password != confpassword){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_password'),
+                    duration: 3000
+                });
+            }
+
+            if(user.password != null && user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword != null) {
                 $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                 registerService.registerManualService(
@@ -77,11 +84,9 @@ angular
                     });
 
             } else {
-                var alertPopup = $ionicPopup.alert({
-                    template: 'Confirm Password Not Match',
-                    okText: $filter('translate')('yes'),
-                    okType: "button-stable",
-                    cssClass: "alertPopup"
+                $ionicLoading.show({
+                    template: $filter('translate')('cbe_fullname'),
+                    duration: 3000
                 });
             }
         };
