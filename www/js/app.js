@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap', 'angular-intro'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .filter('trustAsResourceUrl', trustAsResourceUrl)
@@ -52,7 +52,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             controller: 'forget'
         })
         .state('reset', {
-            cache: false,
+            //cache: false,
             url: "/reset",
             templateUrl: "partials/resetPassword.html",
             controller: 'forget'
