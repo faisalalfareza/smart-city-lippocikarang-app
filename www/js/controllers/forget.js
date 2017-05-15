@@ -51,7 +51,8 @@ angular
                                                                         idaccount,
                                                                         $scope.data.code,
                                                                         function(response) {
-                                                                            if (response != false) {
+                                                                            console.log(response[0].status);
+                                                                            if (response[0].status != false) {
                                                                                 $rootScope.idaccount = idaccount;
                                                                                 $state.go('reset');
                                                                             } else {
