@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap', 'angular-intro'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .filter('trustAsResourceUrl', trustAsResourceUrl)
@@ -52,7 +52,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             controller: 'forget'
         })
         .state('reset', {
-            cache: false,
+            //cache: false,
             url: "/reset",
             templateUrl: "partials/resetPassword.html",
             controller: 'forget'
@@ -888,7 +888,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             notification: 'Turn On Notification',
             notification_info: 'Get update, latest information and special offers.',
             notification_push: 'You have a new notification',
-            number_not_valid: 'Number or email Is not valid',
+            number_not_valid: 'Your code is not valid',
             number_null: 'Number is null',
             open: 'OPEN',
             others: 'Others',
@@ -980,7 +980,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             Art___Culture: 'Art & Culture',
             sub2_forget_password: 'We will send you an email shortly to reset your password',
             sub_forget_password: 'Enter your e-mail address or phone number\nbelow to reset your password',
-            reset_success: 'Reset password is successfully',
+            reset_success: 'Reset Password success!',
             cannot_send_code: 'Cannot send code',
             email_not_exist: 'Email or phone doesn\'t exist',
             email_exist: 'Phone or email alredy exist!',
@@ -1429,7 +1429,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             notification: 'Nyalakan notifikasi',
             notification_info: 'Dapatkan informasi terbaru',
             notification_push: 'Kamu mempunyai pemberitahuan baru',
-            number_not_valid: 'Nomor atau email salah',
+            number_not_valid: 'Kode anda tidak valid',
             number_null: 'Nomor anda kosong',
             open: 'BUKA',
             others: 'Lainnya',

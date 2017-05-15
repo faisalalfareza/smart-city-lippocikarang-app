@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('forget', forget);
 
-    function forget($scope, $stateParams, $state, $ionicLoading, ForgetPasswordService, $ionicModal, $ionicPopup, $location, $rootScope, $filter) {
+    function forget($scope, $stateParams,$localStorage, $state, $ionicLoading, ForgetPasswordService, $ionicModal, $ionicPopup, $location, $rootScope, $filter) {
         $scope.startApp = function() {
             $state.go('login');
         };
@@ -10,21 +10,22 @@ angular
         $scope.forgetPassword = forgetPassword;
 
         function forgetPassword(detail) {
+            //$localStorage.ctct = [];
             $scope.data = {};
             console.log(detail.contact);
+
             ForgetPasswordService.forgetPassword(
                 detail.contact,
                 function(response) {
                     if (response != false) {
                         $scope.detail = response;
-
-                        console.log('scope detail : ' ,$scope.detail);
-
+                        
                         $rootScope.dataContact = response[0];
                         $rootScope.idaccount = response[0].idaccount;
                         var idaccount = $rootScope.idaccount;
 
-                        console.log('root scope : ' , $rootScope.dataContact);
+                        $localStorage.ctct.push($rootScope.dataContact.contact);
+                        
                         $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                         ForgetPasswordService.genCode(
@@ -50,7 +51,8 @@ angular
                                                                         idaccount,
                                                                         $scope.data.code,
                                                                         function(response) {
-                                                                            if (response != false) {
+                                                                            console.log(response[0].status);
+                                                                            if (response[0].status != false) {
                                                                                 $rootScope.idaccount = idaccount;
                                                                                 $state.go('reset');
                                                                             } else {
@@ -101,6 +103,10 @@ angular
         };
 
         $scope.resetPassword = resetPassword;
+        
+        $scope.ctct = $localStorage.ctct[0];
+        $scope.ep = $scope.ctct[0].contact;
+        console.log('halo : ', $scope.ep);
 
         function resetPassword(data) {
             console.log($rootScope.idaccount + data.password);

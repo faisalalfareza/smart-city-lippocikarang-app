@@ -17,7 +17,7 @@ angular
         function startIntroduction() {
 
             var screen = angular.element(document.querySelector('ion-side-menu'));
-            screen.css('visibility', 'hidden');
+            screen.css('visibility', 'visible');
             
             $rootScope.IntroOptions = {
                     steps:[
