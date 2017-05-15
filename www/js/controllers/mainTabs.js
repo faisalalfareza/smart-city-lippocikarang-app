@@ -6,8 +6,10 @@ angular
 
         console.log("Push");
         
-        $rootScope.StartEvent = false;
-        console.log($rootScope.StartEvent);
+        // $rootScope.StartEvent = false;
+        // console.log($rootScope.StartEvent);
+
+        startIntroduction();
         
         if ($localStorage.firstOpen == null) {
             startIntroduction();
@@ -23,18 +25,18 @@ angular
                     steps:[
                     {
                         element: document.querySelector('.tabs .tab-item.profilecon'),
-                        intro: $filter('translate')('intro1'),
+                        intro: '<div class="introjs-first">' + $filter('translate')('intro1') + '</div>',
                         position: 'top'
                     },
                     {
                         element: document.querySelector('#step1'),
-                        intro: $filter('translate')('intro2'),
+                        intro: '<div class="introjs-second">' + $filter('translate')('intro2') + '</div>',
                         position: 'top'
                     },
                     {
                         //.bar .button.button-custom.navcon
                         element: document.querySelector('.bar'),
-                        intro: $filter('translate')('intro3'),
+                        intro: '<div class="introjs-third">' + $filter('translate')('intro3') + '</div>',
                         position: 'bottom'
                     }
                     ],
