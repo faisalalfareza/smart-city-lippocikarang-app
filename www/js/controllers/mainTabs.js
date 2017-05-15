@@ -4,10 +4,8 @@ angular
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPlatform, dataWhatsNew, talktoUs, $filter, AdvertiseService) {
 
-        console.log("Push");
-        
         // $rootScope.StartEvent = false;
-        // console.log($rootScope.StartEvent);
+        startIntroduction();
         
         if ($localStorage.firstOpen == null) {
             startIntroduction();
@@ -17,7 +15,7 @@ angular
         function startIntroduction() {
 
             var screen = angular.element(document.querySelector('ion-side-menu'));
-            screen.css('visibility', 'visible');
+            screen.css('visibility', 'hidden');
             
             $rootScope.IntroOptions = {
                     steps:[

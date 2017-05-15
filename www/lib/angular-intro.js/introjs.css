@@ -180,10 +180,10 @@ tr.introjs-showElement > th {
   border-left-color:white;
 }
 .introjs-arrow.bottom {
-  bottom: -23px;
-  left: 1em;
+  bottom: -33px;
+  left: 2.8em;
   content: url('../../img/stick.png');
-  -webkit-transform: scale(0.9);
+  -webkit-transform: scale(0.8);
   /*border-top-color:white;
   border-right-color:transparent;
   border-bottom-color:transparent;
@@ -243,15 +243,18 @@ tr.introjs-showElement > th {
           transition: opacity 0.1s ease-out;
 }
 
+.introjs-tooltiptext , .introjs-tooltipbuttons {
+  -webkit-transform: scale(0.8) !important;
+  /*margin-left: 3em !important;*/
+}
 .introjs-tooltiptext {
   margin-top: 1em !important;
-  margin-left: 1.5em !important;
+  margin-left: 2em !important;
 }
 
 .introjs-tooltipbuttons {
   text-align: left;
   white-space: nowrap;
-  margin-left: 1em !important;
 }
 
 /*
