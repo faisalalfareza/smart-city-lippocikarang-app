@@ -750,7 +750,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             blm_login: 'Sorry, you are not logged in. Please login from Profile to access this menu.',
             blm_rate: 'Sorry, you are not logged in. Please login from Profile to rate.',
             blm_emailAgen: 'Sorry you are not logged in. Please login from Profile to send an email to agent.',
-            intro1: 'Register to <br> experience more <br> <p style="font-size:8px;font-style:italic;margin:0;">special features for residents!</p>',
+            intro1: 'Register to experience more <br> <p style="font-size:8px;font-style:italic;margin:0;">special features for residents!</p>',
             intro2: 'Enjoy Special Discount, <br> Register Now!',
             intro3: 'Discover More',
             next: 'Next',

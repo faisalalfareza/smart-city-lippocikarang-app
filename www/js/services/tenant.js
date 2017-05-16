@@ -3,7 +3,7 @@ angular
     .service('TenantServiceA', TenantServiceA)
     .service('NewsService', NewsService)
 
-    function TenantServiceA($http, $filter) {
+    function TenantServiceA($http, $filter, $localStorage) {
         var service = {};
 
         service.rateTenant = rateTenant;
@@ -47,16 +47,18 @@ angular
             $http(req)
                 .success(function (response) {
                     callback(response);
+                    
                 })
                 .error(function () {
                     callback(false);
                 });
         }
-
         function listbookmarkTenant(callback) {
+            var idacount = $localStorage.currentUser.data[0].idaccount;
+
             var req = {
                 method: 'GET',
-                url: $filter('translate')('apilink') + 'api/Bookmark/?action=listbookmark&pagenumber=1&pagesize=100&idaccount=' + '144'
+                url: $filter('translate')('apilink') + 'api/Bookmark/?action=listbookmark&pagenumber=1&pagesize=100&idaccount=' + idacount
             }
 
             $http(req)

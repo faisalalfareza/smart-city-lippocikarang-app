@@ -60,9 +60,11 @@ angular
     }
 
     function bookmark($scope, $ionicLoading, $location, $state, TenantServiceA, $cordovaGeolocation, $filter) {
+        
         listbookmarkService();
 
         function listbookmarkService() {
+            
             $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
             $scope.noMoreItemsAvailable = false;
 
