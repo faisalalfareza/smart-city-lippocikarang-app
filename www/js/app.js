@@ -69,6 +69,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         })
         .state('app.category', {
             url: "/category/:idcategory",
+            cache: false,
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/tenant.html",
@@ -78,6 +79,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
         })
         .state('app.recomended', {
             url: "/recomended/:idcategory",
+            cache: false,
             views: {
                 'menu-content': {
                     templateUrl: "partials/sides/recomended.html",
@@ -471,6 +473,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             }
         })
         .state('app.listbookmark', {
+            cache: false,
             url: "/listbookmark",
             views: {
                 'profile-content': {
