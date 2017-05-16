@@ -42,8 +42,10 @@ angular
         
         function loadMap() {
 
-            trackingVehiclesFactory.busRoute()
-                .then(function(response) {
+            trackingVehiclesFactory.busRoute(function(response) {
+
+                console.log("Controlla");
+                console.log(response);
 
                 // var getStatus = $ionicPopup.alert({
                 //     template: response,
@@ -58,9 +60,6 @@ angular
                 //         console.log(response);
                 //     }
                 // });   
-
-                console.log('Controllers!');
-                // console.log(response);  
 
                 var locations = [
                     ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
