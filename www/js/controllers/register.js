@@ -10,49 +10,8 @@ angular
         $scope.twitter_auth = twitter_auth;
 
         function registerManualService(user) {
-            if(user.fullname == null){
-               $ionicLoading.show({
-                    template: $filter('translate')('cbe_fullname'),
-                    duration: 3000
-                });
-            }
-
-            if(user.gender == null){
-              $ionicLoading.show({
-                    template: $filter('translate')('cbe_fullname'),
-                    duration: 3000
-                });
-            }
-
-            if(user.phone == null){
-              $ionicLoading.show({
-                    template: $filter('translate')('cbe_phone'),
-                    duration: 3000
-                });
-            }
-
-            if(user.email == null){
-              $ionicLoading.show({
-                    template: $filter('translate')('cbe_email'),
-                    duration: 3000
-                });
-            }
-
-            if(user.password == null){
-              $ionicLoading.show({
-                    template: $filter('translate')('cbe_password'),
-                    duration: 3000
-                });
-            }
-
-            if(user.password != confpassword){
-              $ionicLoading.show({
-                    template: $filter('translate')('cbe_password'),
-                    duration: 3000
-                });
-            }
-
-            if(user.password != null && user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword != null) {
+            if(user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword != null && user.password == user.confpassword && user.checkbox1 != null) {
+                alert('cocok');
                 $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                 registerService.registerManualService(
@@ -83,11 +42,50 @@ angular
                         $ionicLoading.hide();
                     });
 
-            } else {
-                $ionicLoading.show({
+            } else if(user.fullname == null){
+               $ionicLoading.show({
                     template: $filter('translate')('cbe_fullname'),
                     duration: 3000
                 });
+            } else if(user.gender == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_fullname'),
+                    duration: 3000
+                });
+            } else if(user.phone == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_phone'),
+                    duration: 3000
+                });
+            }
+
+            else if(user.email == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_email'),
+                    duration: 3000
+                });
+            }
+
+            else if(user.password == null){
+              $ionicLoading.show({
+                    template: $filter('translate')('cbe_pass'),
+                    duration: 3000
+                });
+            }
+
+            else if(user.confpassword != user.password || user.password != user.confpassword){
+              $ionicLoading.show({
+                    template: $filter('translate')('not_equal'),
+                    duration: 3000
+                });
+            } else if(user.checkbox1 == null) {
+                $ionicLoading.show({
+                    template: $filter('translate')('cbe_check1'),
+                    duration: 3000
+                });
+            } 
+            else {
+                console.log('error');
             }
         };
 
