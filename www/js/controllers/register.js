@@ -11,7 +11,6 @@ angular
 
         function registerManualService(user) {
             if(user.email != null && user.fullname != null && user.gender != null  && user.phone != null && user.password != null && user.confpassword != null && user.password == user.confpassword && user.checkbox1 != null) {
-                alert('cocok');
                 $ionicLoading.show({ template: $filter('translate')('loading') + "..." });
 
                 registerService.registerManualService(

@@ -15,25 +15,27 @@ angular
 
             return $soap.post(
                 base_url, 
-                "#get_vehicle_last_positions", { 
+                "endpoint.get_vehicle_last_positions", { 
 
                     // endpoint.get_vehicle_last_positions
                     // #get_vehicle_last_positions
 
                     headers: {
                         'Content-Type' : 'text/xml; charset=utf-8',
-                        'SOAPAction' : '#get_vehicle_last_positions'
+                        'SOAPAction' : 'fleettestlive.cartrack.id/api/#get_vehicle_last_positions'
                     }
 
                 }
             ).then(
                 function(response) {
-                    console.log("Successfully!");
-                    callback(response);
+                    alert("Successfully!");
+                    // console.log("Successfully!");
+                    // callback(response);
                 },
                 function(reason) {
-                    console.log("Failure!");
-                    callback(reason);
+                    alert("Failure!");
+                    // console.log("Failure!");
+                    // callback(reason);
                 }
             );
         }

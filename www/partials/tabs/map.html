@@ -3,28 +3,27 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content style="padding-bottom: 20dp" id="mapContainer" class="has-header" has-bouncing="false">
-    <div ng-if="hh == 1"   class="row" style="width: 100%">
-      <div class="col col-50">
-          <div class="row">
-            <div class=" col col-50" style="align-content: center">
-              <img width="50%" style="display:block;margin: auto;top: 0; left: 0;right: 0;bottom: 0;" src="img/ic_distances.png">
+    <div ng-if="hh == 1" class="row" style="width: 100%;padding: 0;">
+      <div class="col col-50" style="width:100%;border-right:0.25px solid #0e0e0e;">
+            <div class="row">
+                <div class="col-25" style="align-content:left">
+                    <img style="display:block;left:0;" width="100%" src="img/ic_distances.png">
+                </div>
+                <div class="col" style="align-content:left">
+                    <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;" ng-model="duration">{{distance}}</p>
+                </div>
             </div>
-            <div class=" col col-50" style="align-content: center">
-              <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;" ng-model="duration"> {{distance}}</p>
+        </div>
+      <div class="col col-50" style="width:100%;border-left:0.25px solid #0e0e0e;">
+          <div class="row">
+              <div class="col-25" style="align-content:left;width:auto;">
+                  <img style="display:block;left:0;;display: block;left: 0;top: 10px;" width="100%" src="img/tenantDetail/ic_time.png">
+              </div>
+              <div class="col" style="align-content:left;width:auto;">
+                  <p ng-if="durationH != null" style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;" ng-model="duration">{{durationH}} {{'duration_jam' | translate}} {{durationM}} {{'duration_mnt' | translate}}</p>
+                  <p ng-if="durationH == null" style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;" ng-model="duration">{{durationM}} {{'duration_mnt' | translate}}</p>
               </div>
           </div>
-
-      </div>
-      <div style="border-left:solid thin;border-color: #0e0e0e;" class="col col-50">
-        <div class="row">
-          <div class=" col col-50" style="align-content: center">
-              <img width="50%" style=" margin: auto;top: 0; left: 0;right: 0;bottom: 0; float: right" src="img/tenantDetail/ic_time.png">
-          </div>
-          <div class=" col col-50" style="align-content: center">
-              <p style="margin-top: 0;top: 1em;position:absolute;vertical-align: middle;" ng-model="duration"  >{{duration}}</p>
-          </div>
-        </div>
-
       </div>
     </div>
     <div style="z-index:1;position: absolute;width: 100%">
