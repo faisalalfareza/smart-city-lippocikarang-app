@@ -4,7 +4,8 @@ angular
 
     function mainTabs($scope, $rootScope, $timeout, $window, $ionicPopup, $localStorage, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $ionicPlatform, dataWhatsNew, talktoUs, $filter, AdvertiseService) {
 
-        $rootScope.StartEvent = false;
+        // $rootScope.StartEvent = false;
+        startIntroduction();
         
         if ($localStorage.firstOpen == null) {
             startIntroduction();
@@ -40,10 +41,15 @@ angular
                     exitOnOverlayClick: false,
                     exitOnEsc: false,
                     showProgress: false,
-                    nextLabel: $filter('translate')('next'),
-                    prevLabel: $filter('translate')('previous'),
-                    skipLabel: $filter('translate')('skip'),
-                    doneLabel: $filter('translate')('thanks')
+                    // nextLabel: $filter('translate')('next'),
+                    // prevLabel: $filter('translate')('previous'),
+                    // skipLabel: $filter('translate')('skip'),
+                    // doneLabel: $filter('translate')('thanks')
+                    nextLabel: 'Next',
+                    prevLabel: 'Previous',
+                    skipLabel: 'Skip',
+                    doneLabel: 'Thanks'
+                    
             };
 
             var introprofile = angular.element(document.querySelector('.tabs .tab-item.profilecon'));
