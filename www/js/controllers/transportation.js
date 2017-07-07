@@ -2,7 +2,7 @@ angular
     .module('livein')
     .controller('busSchedule', busSchedule);
 
-    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform, trackingVehiclesFactory) {
+    function busSchedule($scope, $state, $compile, $ionDrawerVerticalDelegate, $ionicSlideBoxDelegate, $ionicLoading, $ionicPopup, $filter, $ionicPlatform){ //, trackingVehiclesFactory) {
 
         $scope.daily = 'active';
 
@@ -42,68 +42,68 @@ angular
         
         function loadMap() {
 
-            trackingVehiclesFactory.busRoute(function(response) {
-
-                console.log("Controlla");
-                console.log(response);
-
-                // var getStatus = $ionicPopup.alert({
-                //     template: response,
-                //     okText: $filter('translate')('okay'),
-                //     okType: "button-stable",
-                //     cssClass: "alertPopup"
-                // });
-
-                // getStatus.then(function(res) {
-                //     if (res) {
-                //         console.log('Successfully!');
-                //         console.log(response);
-                //     }
-                // });   
-
-                var locations = [
-                    ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
-                    ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
-                    ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
-                    ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
-                    ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
-                ];
+            /* Start : Tracking Bus */
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://fleettestlive.cartrack.id/api/index.php",
+                "method": "POST",
+                "headers": {
+                    "authorization": "Basic WExRUTAwMDAxOkFPbGNAMDEtMDc=",
+                    "soapaction": "fleettestlive.cartrack.id/api/#get_vehicle_last_positions",
+                    "content-type": "text/xml; charset=utf-8",
+                    "cache-control": "no-cache"
+                },
+                "data": "<x:Envelope xmlns:x=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"fleettestlive.cartrack.id/api/\">\n    <x:Body>\n        <api:endpoint.get_vehicle_last_positions>\n\n        </api:endpoint.get_vehicle_last_positions>\n    </x:Body>\n</x:Envelope>"
+            };
+            
+            $.ajax(settings).done(function (response) {
+                console.log(new XMLSerializer().serializeToString(response));
+            });
+            /* End : Tracking Bus */
+            
+            var locations = [
+                ['<center><strong>AOLC01</strong> <br> Jalan Mohammad Husni Thamrin, Serang, Bekasi, Jawa Barat, Indonesia</center>', -6.3387851, 107.1285249, 4],
+                ['<center><strong>AOLC02</strong> <br> Jalan Tol Jakarta - Cikampek, Jakarta Timur, DKI Jakarta, Indonesia</center>', -6.3395528, 107.1109656, 5],
+                ['<center><strong>AOLC03</strong> <br> Jalan Jenderal Sudirman, Tanah Abang, Jakarta Pusat, DKI Jakarta, Indonesia</center>', -6.3359905, 107.1380942, 3],
+                ['<center><strong>AOLC04</strong> <br> Kebayoran Baru, Jakarta Selatan, DKI Jakarta, Indonesia</center>', -6.3356287, 107.12469867, 2],
+                ['<center><strong>AOLC05</strong> <br> Jalan Tol Jakarta - Cikampek, Cibitung, Bekasi, Jawa Barat, Indonesia</center>', -6.3339542, 107.1328349, 1]
+            ];
         
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 13,
-                    center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: new google.maps.LatLng(locations[3][1], locations[3][2]), //-6.3356287, 107.12469867
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            var icon = {
+                url: "img/ic_destination.png", // url
+                scaledSize: new google.maps.Size(40, 40), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
+            };
+
+            for (i = 0; i < locations.length; i++) { 
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    animation: google.maps.Animation.DROP,
+                    align: 'center',
+                    icon: icon,
+                    map: map
                 });
 
-                var infowindow = new google.maps.InfoWindow();
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
 
-                var marker, i;
-
-                var icon = {
-                    url: "img/ic_destination.png", // url
-                    scaledSize: new google.maps.Size(40, 40), // scaled size
-                    origin: new google.maps.Point(0,0), // origin
-                    anchor: new google.maps.Point(0, 0) // anchor
-                };
-
-                for (i = 0; i < locations.length; i++) { 
-                    marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                        animation: google.maps.Animation.DROP,
-                        align: 'center',
-                        icon: icon,
-                        map: map
-                    });
-
-                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                        return function() {
-                            infowindow.setContent(locations[i][0]);
-                            infowindow.open(map, marker);
-                        }
-                    })(marker, i));
-                }
-
-            }); // End Get List Bus
         } // End Load Map Function        
 
         $scope.$on('$ionicView.enter', function() {
