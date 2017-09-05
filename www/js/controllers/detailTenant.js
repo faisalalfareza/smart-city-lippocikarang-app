@@ -744,10 +744,23 @@ function tenantMap($window, $rootScope, $scope, $ionicLoading, $cordovaGeolocati
             element = response.rows[0].elements[0];
 
             $scope.distance = element.distance.text;
-            console.log($scope.distance);
-            $scope.duration = element.duration.text;
-            console.log($scope.duration);
-    
+            console.log('distance tenant : ',$scope.distance);
+            
+            var abc = element.duration.text;
+                        
+            var bcd = ""+abc.length;
+            
+            if(bcd >= 9){
+                    $scope.durationH = abc.slice( 0, 2 );
+                $scope.durationM = abc.slice( 6, 8 );
+            }
+            else if(bcd <= 8){
+                $scope.durationM = abc.slice( 0, 2 );
+                $scope.durationH = null;
+            } else {
+                console.log('it cannnot be done');
+            }           
+            
         });
     }
 

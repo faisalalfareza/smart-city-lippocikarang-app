@@ -215,7 +215,7 @@ tr.introjs-showElement > th {
   
 }
 .introjs-third {
-  margin-left: -30px !important;
+  margin-left: -20px !important;
 }
 
 .introjs-tooltip {
@@ -255,7 +255,8 @@ tr.introjs-showElement > th {
 .introjs-tooltipbuttons {
   text-align: right !important;
   white-space: nowrap;
-
+  margin-left: 1em;
+  padding: 0;
 }
 
 /*

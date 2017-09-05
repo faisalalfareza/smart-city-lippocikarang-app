@@ -1,5 +1,5 @@
 angular
-    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angularSoap', 'angular-intro'])
+    .module('livein', ['ionic', 'ngCordovaOauth', 'ngCordova', 'ionic-toast', 'ngStorage', 'ngCookies', 'angularMoment', 'pascalprecht.translate', 'ionic.contrib.drawer.vertical', 'ds.clock', 'ngOpenFB', 'ionic.service.core', 'ionic.service.push', 'clickAndWait', 'base64', 'angular-intro'])
     .directive('ngEnter', ngEnter)
     .directive('repeatDone', repeatDone)
     .filter('trustAsResourceUrl', trustAsResourceUrl)
@@ -828,6 +828,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             invitation_msg: 'Share with your friends',
             invite_friend: 'Invite Friend',
             inviteFriend: 'Share With Your Friends',
+            duration_jam: 'hrs',
+            duration_mnt: 'mins',
             japanese: 'Japanese',
             Japanese_Food: 'Japanese',
             jewelry: 'Jewelry',
@@ -897,6 +899,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             cbe_email: 'Invalid email',
             cbe_pass: 'Empty password',
             cbe_check: 'Please check your input',
+            cbe_check1: "You're need to agree terms of use!",
             number_null: 'Number is null',
             open: 'OPEN',
             others: 'Others',
@@ -1373,6 +1376,8 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             invitation_msg: 'Berbagi dengan teman anda',
             invite_friend: 'Undang Teman',
             inviteFriend: 'Berbagi dengan teman anda',
+            duration_jam: 'jam',
+            duration_mnt: 'menit',
             japanese: 'Jepang',
             japanese_food: 'Makanan Jepang',
             Japanese_Food: 'Makanan Jepang',
@@ -1443,6 +1448,7 @@ function config($stateProvider, $cordovaFacebookProvider, $urlRouterProvider, $t
             cbe_email: 'Email tidak valid',
             cbe_pass: 'Password kosong',
             cbe_check: 'Tolong cek inputan',
+            cbe_check1: "Anda harus menyetujui Syarat dan Ketentuan yang berlaku!",
             number_null: 'Nomor anda kosong',
             open: 'BUKA',
             others: 'Lainnya',

@@ -111,13 +111,15 @@ function SOAPClient() {}
 
 SOAPClient.username = null;
 SOAPClient.password = null;
+SOAPClient.cors = true;
 
 SOAPClient.invoke = function(url, method, parameters, async, callback)
 {
 	if(async)
 		SOAPClient._loadWsdl(url, method, parameters, async, callback);
-	else
+	else {
 		return SOAPClient._loadWsdl(url, method, parameters, async, callback);
+	}
 }
 
 // private: wsdl cache
@@ -142,8 +144,8 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 		xmlHttp.open("GET", url + "?wsdl", async, SOAPClient.username, SOAPClient.password);
 		// Some WS implementations (i.e. BEA WebLogic Server 10.0 JAX-WS) don't support Challenge/Response HTTP BASIC, so we send authorization headers in the first request
 		xmlHttp.setRequestHeader("Authorization", "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password));
-
 		xmlHttp.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
+
 		xmlHttp.setRequestHeader("Access-Control-Allow-Credentials", true);
 		xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
 		xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
@@ -151,8 +153,14 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 
 		console.log( "Basic " + SOAPClient._toBase64(SOAPClient.username + ":" + SOAPClient.password) );
 	}
-	else
+	else {
 		xmlHttp.open("GET", url + "?wsdl", async);
+	}
+
+	if (SOAPClient.cors) {
+    	xmlHttp.withCredentials = true;
+    	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    }
 	if(async) 
 	{
 		xmlHttp.onreadystatechange = function() 
@@ -188,13 +196,16 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	var sr = 
 				"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
 				"<soap:Envelope " +
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-				"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
 				"xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">" +
-				"<soap:Body>" +
-				"<" + method + " xmlns=\"" + ns + "\">" +
-				parameters.toXml() +
-				"</" + method + "></soap:Body></soap:Envelope>";
+				"xmlns:api=\"" + ns + "\" " +
+					"<soap:Body>" +
+						"<api:" + method + ">" +
+						"</api:" + method + ">" + 
+					"</soap:Body>" + 
+				"</soap:Envelope>";
+	
+	conosle.log("sr");
+	conosle.log(sr);
 
 	// send request
 	var xmlHttp = SOAPClient._getXmlHttp();
@@ -213,8 +224,9 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	else
 		xmlHttp.open("POST", url, async);
 
-	//var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + encodeURIComponent(method);
-	var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + method;
+	// var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + encodeURIComponent(method);
+	// var soapaction = ((ns.lastIndexOf("/") != ns.length - 1) ? ns + "/" : ns) + method;
+	var soapaction = 'fleettestlive.cartrack.id/api/#get_vehicle_last_positions';
 	console.log('SOAPACTION : ' + soapaction);
 	
 	xmlHttp.setRequestHeader("SOAPAction", soapaction);
@@ -225,6 +237,10 @@ SOAPClient._sendSoapRequest = function(url, method, parameters, async, callback,
 	xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
 	xmlHttp.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
 
+	if (SOAPClient.cors) {
+    	xmlHttp.withCredentials = true;
+    	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    }
 	if(async) 
 	{
 		xmlHttp.onreadystatechange = function() 

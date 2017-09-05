@@ -208,10 +208,28 @@ function mainmap($scope,$rootScope ,$location, $ionicLoading, distanceduration,$
             if(element.distance.text){
                 $scope.distance = element.distance.text;
                 $scope.duration = element.duration.text;
+                    var abc = element.duration.text;
+                        
+                       var bcd = ""+abc.length;
+                        
+                        if(bcd >= 9){
+                            $scope.durationH = abc.slice( 0, 2 );
+                            $scope.durationM = abc.slice( 6, 8 );
+                        }
+                        else if(bcd <= 8){
+                            $scope.durationM = abc.slice( 0, 2 );
+                            $scope.durationH = null;
+                        } else {
+                            console.log('it cannnot be done');
+                        }                  
+                    
+
                 $scope.hh.push(1);
+            } else {
+                console.log('cannot translate this fucking duration');
             }
 
-            console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);
+            //console.log('jarak = ' + $scope.distance + "  duration" + $scope.duration);
 
         })
 

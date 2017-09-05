@@ -20,7 +20,8 @@
                         <img style="display:block;left:0;;display: block;left: 0;top: 10px;" width="100%" src="img/tenantDetail/ic_time.png">
                     </div>
                     <div class="col" style="align-content:left;width:auto;">
-                        <p style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{duration}}</p>
+                        <p ng-if="durationH != null" style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;" >{{durationH}} {{'duration_jam' | translate}} {{durationM}} {{'duration_mnt' | translate}}</p>
+                        <p ng-if="durationH == null" style="top:1em;position:absolute;vertical-align:middle;text-align:center;font-weight:700;font-size:12px;">{{durationM}} {{'duration_mnt' | translate}}</p>
                     </div>
                 </div>
             </div>
